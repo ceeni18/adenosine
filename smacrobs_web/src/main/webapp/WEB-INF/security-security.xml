@@ -1,0 +1,24 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+ <http>
+        <intercept-url pattern="/user*" access="ROLE_USER" />
+        <form-login login-page="/index" default-target-url="/welcome" authentication-failure-url="/loginfailed" />
+        <logout logout-success-url="/logout" /> 
+</http>
+    
+
+    <authentication-manager>
+        <authentication-provider>
+         <user-service>
+                <user name="user@gmail.com" password="user" authorities="ROLE_USER" />
+            </user-service>      
+        </authentication-provider>
+    </authentication-manager> 
+
+</beans:beans>
