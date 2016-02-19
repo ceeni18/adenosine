@@ -9,12 +9,14 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.model.FitbitTokens;
 import com.web.utils.Constants;
 
-public class FitbitOAuthService {
+@Service("FitbitOAuthService")
+public class FitbitOAuthService implements IFitbitOAuthService {
 	String redirectUrl;
 	ModelAndView mv;
 	String url;
@@ -35,6 +37,8 @@ public class FitbitOAuthService {
 
 		// add request header
 		con.setRequestMethod("POST");
+		
+		//TODO: Hardcoded value below. Change it
 		con.setRequestProperty("Authorization",
 				"Basic MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm");
 		con.setRequestProperty("Content-Type",
@@ -77,15 +81,13 @@ public class FitbitOAuthService {
 		jsonObject = new JSONObject(fitbitTokens);
 		String accessToken = jsonObject.get("access_token").toString();
 		String refreshToken = jsonObject.get("refresh_token").toString();
-		
-		FitbitTokens fitbittokens = new FitbitTokens(accessToken,refreshToken);
+
+		FitbitTokens fitbittokens = new FitbitTokens(accessToken, refreshToken);
 		return fitbittokens;
 	}
-	
-	private String getURLParameters()
-	{
+
+	private String getURLParameters() {
 		return "client_id=227FN4&grant_type=authorization_code&redirect_uri=http://localhost:8081/smacrobs/oauthredirect&code=";
 	}
-	
 
 }

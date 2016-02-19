@@ -9,12 +9,14 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.model.SleepDetails;
 import com.web.utils.Constants;
 
-public class SleepDetailsService {
+@Service("SleepDetailsService")
+public class SleepDetailsService implements ISleepDetailsService {
 
 	String redirectUrl;
 	ModelAndView mv;
@@ -63,12 +65,11 @@ public class SleepDetailsService {
 		JSONObject innerJsonObject = new JSONObject(jsonObject
 				.get("sleep-minutesAsleep").toString().replace("[", "")
 				.replace("]", ""));
-		
-		SleepDetails sleepDetails = new SleepDetails(
-		innerJsonObject.get("value").toString());
-		
+
+		SleepDetails sleepDetails = new SleepDetails(innerJsonObject.get(
+				"value").toString());
+
 		return sleepDetails;
-		
-		
+
 	}
 }

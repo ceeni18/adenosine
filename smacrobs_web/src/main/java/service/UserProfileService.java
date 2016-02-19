@@ -9,12 +9,18 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
+
+import repository.IUserProfileRepository;
+import repository.UserProfileRepository;
 
 import com.web.model.UserProfile;
 import com.web.utils.Constants;
 
-public class UserProfileService {
+@Service("UserProfileService")
+public class UserProfileService implements IUserProfileService{
 	String controllerMessage = "In Fitbit-OAuth-Connection Controller";
 	String redirectUrl;
 	ModelAndView mv;
@@ -25,6 +31,19 @@ public class UserProfileService {
 	DataOutputStream dataOutputStream; 
 	BufferedReader br;
 	JSONObject jsonObject;
+	
+	IUserProfileRepository repository;
+	
+	public UserProfileService()
+	{
+		
+	}
+	
+	@Autowired
+	public UserProfileService(IUserProfileRepository repository)
+	{
+		this.repository = repository;
+	}
 	
 	public UserProfile getUserProfileDetails(String accessToken,String refreshToken) throws IOException
 	{	
@@ -71,6 +90,11 @@ public class UserProfileService {
 				,innerJsonObject.get("fullName").toString()
 				,innerJsonObject.get("weight").toString()
 		);
+		
+		
+		//TODO: check if user already present, If not create, else just find the user
+		repository.createUser(userProfile);
+		
 		
 		return userProfile;
 	}

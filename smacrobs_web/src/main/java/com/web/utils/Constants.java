@@ -1,10 +1,11 @@
 package com.web.utils;
 
+//TODO: should put these in properties file??
 public class Constants {
 	static String fitbitOauthResposeType="code";
 	static String fitbitOauthClientId="227FN4";
 	static String redirectUriFromFitbit="http://localhost:8081/smacrobs/oauthredirect";
-	static String fitbitScope="activity%20profile%20settings%20social%20sleep";
+	static String fitbitScope="activity%20profile%20settings%20sleep%20heartrate";
 	static String fitbitUriForTokens="https://api.fitbit.com/oauth2/token";
 	static String minutesAsleepURL ="https://api.fitbit.com/1/user/-/sleep/minutesAsleep/date/";
 	static String userProfileURL ="https://api.fitbit.com/1/user/-/profile.json";

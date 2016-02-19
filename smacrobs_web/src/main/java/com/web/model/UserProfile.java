@@ -1,5 +1,8 @@
 package com.web.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "userprofile")
 public class UserProfile {
 	 String age;
 	 String avatar;
