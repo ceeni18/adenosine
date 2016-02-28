@@ -14,6 +14,7 @@ public class SpringMongoConfig {
 	public @Bean
 	MongoDbFactory mongoDbFactory() throws Exception {
 		return new SimpleMongoDbFactory(new MongoClient(), "users");
+		//return new SimpleMongoDbFactory(new MongoClient("http://52.73.142.19/", 27017), "adenosine", new UserCredentials("adenosine", "abcdefghijkl"));
 	}
 	
 	public @Bean

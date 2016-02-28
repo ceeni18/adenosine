@@ -16,7 +16,7 @@ import com.web.model.FitbitTokens;
 import com.web.utils.Constants;
 
 @Service("FitbitOAuthService")
-public class FitbitOAuthService implements IFitbitOAuthService {
+public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 	String redirectUrl;
 	ModelAndView mv;
 	String url;

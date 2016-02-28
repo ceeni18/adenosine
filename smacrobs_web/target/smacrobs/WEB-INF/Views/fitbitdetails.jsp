@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Refresh" content="5;url=index.jsp">
 <title>Fitbit Details</title>
 </head>
 <body>
@@ -19,8 +20,6 @@
 		<p>DOB: ${userProfile.dateOfBirth}</p>
 		<img src=${userProfile.avatar} alt="profilepic"></img>
 		<p>Height: ${userProfile.height}</p>
-		<p>Weight: ${userProfile.weight}</p>
-				
 	</center>
 </body>
 </html>

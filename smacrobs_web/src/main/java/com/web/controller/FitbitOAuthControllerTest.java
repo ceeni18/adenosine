@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import service.IFitbitOAuthService;
-import service.ISleepDetailsService;
-import service.IUserProfileService;
+import service.FitbitOAuthServiceIntf;
+import service.FitbitDetailsServiceIntf;
+import service.UserProfileServiceIntf;
 
 
 import com.web.model.FitbitTokens;
@@ -23,18 +23,18 @@ public class FitbitOAuthControllerTest {
 	String controllerMessage = "In Fitbit-OAuth-Connection Controller";
 	String redirectUrl;
 	ModelAndView mv;
-	IUserProfileService userProfileService;
-	ISleepDetailsService sleepDetailsService;
-	IFitbitOAuthService fitbitOuthService;
+	UserProfileServiceIntf userProfileService;
+	FitbitDetailsServiceIntf sleepDetailsService;
+	FitbitOAuthServiceIntf fitbitOuthService;
 
 	public FitbitOAuthControllerTest() {
 
 	}
 
 	@Autowired
-	public FitbitOAuthControllerTest(IUserProfileService userProfileService,
-			ISleepDetailsService sleepDetailsService,
-			IFitbitOAuthService fitbitOAuthService) {
+	public FitbitOAuthControllerTest(UserProfileServiceIntf userProfileService,
+			FitbitDetailsServiceIntf sleepDetailsService,
+			FitbitOAuthServiceIntf fitbitOAuthService) {
 		this.userProfileService = userProfileService;
 		this.fitbitOuthService = fitbitOAuthService;
 		this.sleepDetailsService = sleepDetailsService;
@@ -69,9 +69,9 @@ public class FitbitOAuthControllerTest {
 				accessToken, refreshToken);
 
 		mv = new ModelAndView("fitbitdetails");
-		mv.addObject("message", "Minutes Asleep data from fitbit");
-		mv.addObject("sleepDetails", sleepDetails);
+		//mv.addObject("message", "Minutes Asleep data from fitbit");
 		mv.addObject("userProfile", userProfile);
+		mv.addObject("sleepDetails", sleepDetails);
 		return mv;
 	}
 

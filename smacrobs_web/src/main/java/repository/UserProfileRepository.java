@@ -1,17 +1,15 @@
 package repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.web.model.User;
 import com.web.model.UserProfile;
 
 @Service("UserProfileRepository")
-public class UserProfileRepository implements IUserProfileRepository {
+public class UserProfileRepository implements UserProfileRepositoryIntf {
 
 @Autowired	
 MongoTemplate mongoOperation;

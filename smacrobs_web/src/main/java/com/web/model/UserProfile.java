@@ -2,25 +2,21 @@ package com.web.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "userprofile")
+@Document(collection = "userProfile")
 public class UserProfile {
 	 String age;
 	 String avatar;
      String gender;
-     String height;
      String dateOfBirth;
      String fullName;
-     String weight;
      
-     public UserProfile(String am,String av,String gen,String hei, String dob,String fn,String wei)
+     public UserProfile(String am,String av,String gen, String dob,String fn)
      {
     	 age=am;
     	 avatar=av;
     	 gender=gen;
-    	 height=hei;
     	 dateOfBirth=dob;
     	 fullName=fn;
-    	 weight=wei;
      }
 
 	public String getAge() {
@@ -47,14 +43,6 @@ public class UserProfile {
 		this.gender = gender;
 	}
 
-	public String getHeight() {
-		return height;
-	}
-
-	public void setHeight(String height) {
-		this.height = height;
-	}
-
 	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -70,14 +58,4 @@ public class UserProfile {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-
-	public String getWeight() {
-		return weight;
-	}
-
-	public void setWeight(String weight) {
-		this.weight = weight;
-	}
-     
-
 }
