@@ -13,7 +13,7 @@ public class UserProfile {
     private final String dateOfBirth;
     private final String tiSensorId;
 
-	private UserProfile(UserProfileBuidler builder){
+	private UserProfile(UserProfileBuilder builder){
 		// required parameters
 		this.userId = builder.userId;
 		this.fullName = builder.fullname;

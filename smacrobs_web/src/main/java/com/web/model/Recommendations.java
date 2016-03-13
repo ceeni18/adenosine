@@ -2,6 +2,9 @@ package com.web.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+import java.util.HashMap;
+
 @Document(collection = "recommendations")
 public class Recommendations {
     private final String userId;
@@ -14,7 +17,7 @@ public class Recommendations {
         this.recommendations = builder.recommendations;
     }
 
-    public static class RecommendationsBuilder(){
+    public static class RecommendationsBuilder{
         private String userId;
         private Date date;
         private HashMap<String, String> recommendations;

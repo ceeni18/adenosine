@@ -1,10 +1,11 @@
 package com.web.model;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "sleepDetails")
+@Document(collection = "fitbitData")
 public class FitbitData {
 	private final String userId;
 	private final Date date;
@@ -13,10 +14,10 @@ public class FitbitData {
 	private final int efficiency;
 	private final long duration;
 	private final int restlessCount;
-    private final int awakeCount;
+        private final int awakeCount;
 	private final boolean isMainSleep;
 	private final Map<String, Integer> dataMap;
-    private final int heartRate;
+        private final int heartRate;
 
     private FitbitData(FitbitDataBuilder builder){
         this.userId = builder.userId;

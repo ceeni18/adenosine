@@ -2,6 +2,8 @@ package com.web.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document(collection = "tiSensor")
 public class TiSensor {
     private final String tiSensorId;
@@ -11,7 +13,7 @@ public class TiSensor {
     private final double light;
     private final Date dateTime;
 
-    private Tisensor(TiSensorBuilder builder){
+    private TiSensor(TiSensorBuilder builder){
         this.tiSensorId = builder.tiSensorId;
         this.userId = builder.userId;
         this.temperature = builder.temperature;
@@ -19,7 +21,7 @@ public class TiSensor {
         this.dateTime = builder.dateTime;
     }
 
-    public static class TiSensorBuilder(){
+    public static class TiSensorBuilder{
         private String tiSensorId;
         private String userId;
         private double temperature;
