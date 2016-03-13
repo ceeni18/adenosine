@@ -4,58 +4,98 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "userProfile")
 public class UserProfile {
-	 String age;
-	 String avatar;
-     String gender;
-     String dateOfBirth;
-     String fullName;
-     
-     public UserProfile(String am,String av,String gen, String dob,String fn)
-     {
-    	 age=am;
-    	 avatar=av;
-    	 gender=gen;
-    	 dateOfBirth=dob;
-    	 fullName=fn;
-     }
+    private final String userId;
+    private final String fullName;
 
-	public String getAge() {
-		return age;
+    private final String age;
+    private final String avatar;
+    private final String gender;
+    private final String dateOfBirth;
+    private final String tiSensorId;
+
+	private UserProfile(UserProfileBuidler builder){
+		// required parameters
+		this.userId = builder.userId;
+		this.fullName = builder.fullname;
+
+		// optional parameters
+		this.tiSensorId = builder.tiSensorId;
+		this.gender = builder.gender;
+		this.age = builder.age;
+		this.dateOfBirth = builder.dateOfBirth;
+		this.avatar = builder.avatar;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
+	public static class UserProfileBuilder{
+		private final String userId;
+		private final String fullName;
+
+		private String tiSensorId;
+		private String gender;
+		private String age;
+		private String dateOfBirth;
+		private String avatar;
+
+		public UserProfileBuilder(String userId, String fullName){
+			this.userId = userId;
+			this.fullName = fullName;
+		}
+
+		public UserProfileBuilder setTiSensorId(String tiSensorId){
+			this.tiSensorId = tiSensorId;
+			return this;
+		}
+
+		public UserProfileBuilder setGender(String gender){
+			this.gender = gender;
+			return this;
+		}
+
+		public UserProfileBuilder setAge(String age){
+			this.age = age;
+			return this;
+		}
+
+		public UserProfileBuilder setDateOfBirth(String dateOfBirth){
+			this.dateOfBirth = dateOfBirth;
+			return this;
+		}
+
+		public UserProfileBuilder setAvatar(String url){
+			this.avatar = url;
+			return this;
+		}
+
+		public UserProfile build(){
+			return new UserProfile(this);
+		}
 	}
 
-	public String getAvatar() {
-		return avatar;
-	}
+    public String getAge() {
+        return age;
+    }
 
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
+    public String getAvatar() {
+        return avatar;
+    }
 
-	public String getGender() {
-		return gender;
-	}
+    public String getGender() {
+        return gender;
+    }
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
+    public String getFullName() {
+        return fullName;
+    }
 
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public String getFullName() {
-		return fullName;
-	}
-
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public String getTiSensorId() {
+        return tiSensorId;
+    }
 }
