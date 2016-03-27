@@ -8,11 +8,13 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.web.controller.FitbitOAuthControllerTest;
 import com.web.model.UserProfile;
 import com.web.utils.Constants;
 
@@ -20,6 +22,7 @@ import repository.UserProfileRepositoryIntf;
 
 @Service("UserProfileService")
 public class UserProfileServiceImpl implements UserProfileServiceIntf{
+	private static final Logger logger = Logger.getLogger(UserProfileServiceImpl.class);
 	String controllerMessage = "In Fitbit-OAuth-Connection Controller";
 	String redirectUrl;
 	ModelAndView mv;
@@ -32,6 +35,9 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf{
 	JSONObject jsonObject;
 	
 	UserProfileRepositoryIntf repository;
+	
+	@Autowired
+	Constants constants;
 	
 	public UserProfileServiceImpl()
 	{
@@ -46,7 +52,7 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf{
 	
 	public UserProfile getUserProfileDetails(String accessToken,String refreshToken) throws IOException
 	{	
-		url = Constants.getUserProfileURL();
+		url = constants.getUserProfileURL();
 		urlobj = new URL(url);
 
 		con = (HttpsURLConnection) urlobj.openConnection();
@@ -56,8 +62,8 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf{
 		con.setRequestProperty("Authorization", "Bearer "+accessToken);
 
 		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
+		logger.debug("\nSending 'GET' request to URL : " + url);
+		logger.debug("Response Code : " + responseCode);
 
 		//read the data
 		br = new BufferedReader(
@@ -70,7 +76,7 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf{
 			userProfileData=userProfileData+inputLine+"\n";
 		}
 
-		System.out.print(userProfileData);
+		logger.debug(userProfileData);
 
 		br.close();
 		
@@ -88,8 +94,6 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf{
 				,innerJsonObject.get("fullName").toString()
 		);
 		
-		
-		//TODO: check if user already present, If not create, else just find the user
 		repository.createUser(userProfile);
 		
 		

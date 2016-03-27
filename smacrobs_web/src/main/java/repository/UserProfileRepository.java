@@ -1,5 +1,6 @@
 package repository;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -11,21 +12,15 @@ import com.web.model.UserProfile;
 @Service("UserProfileRepository")
 public class UserProfileRepository implements UserProfileRepositoryIntf {
 
-@Autowired	
-MongoTemplate mongoOperation;
-	
-public UserProfileRepository()
-{
-	
-}
+	private static final Logger logger = Logger.getLogger(UserProfileRepository.class);
+
+	@Autowired	
+	MongoTemplate mongoOperation;
 	
 	public void createUser(UserProfile userProfile) {
-		System.out.println("saving user profile details");
+		logger.debug("saving user profile details");
 		mongoOperation.save(userProfile);		
 	}
 
-	//TODO: Need to query based on the ID
-	public UserProfile findUser(String name) {
-		return mongoOperation.findOne(new Query(Criteria.where("name").is(name)), UserProfile.class);	
-	}
+
 }

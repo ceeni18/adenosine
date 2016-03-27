@@ -14,7 +14,7 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" />
+	href="<%=request.getContextPath()%>/assets/css/bootstrap.css" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -54,7 +54,7 @@ function DisplayCreateAccountModal()
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="#">Contact Us</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="/smacrobs/template">Template</a></li>
 				<li><a href="/smacrobs/oauth">Login with Fitbit</a></li>
 			</ul>
 

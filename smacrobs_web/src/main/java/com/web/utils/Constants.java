@@ -1,25 +1,31 @@
 package com.web.utils;
 
-//TODO: should put these in properties file??
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 public class Constants {
 	static String fitbitOauthResposeType="code";
-	static String fitbitOauthClientId="227FN4";
-	static String redirectUriFromFitbit="http://localhost:8081/smacrobs/oauthredirect";
-	static String fitbitScope="activity%20profile%20settings%20sleep%20heartrate";
-	static String fitbitUriForTokens="https://api.fitbit.com/oauth2/token";
-	static String sleepLogURL ="https://api.fitbit.com/1/user/-/sleep/date/";
-	static String userProfileURL ="https://api.fitbit.com/1/user/-/profile.json";
 	public static String JSON_EXTENSION = ".json";
 	
-	public static String getUserProfileURL() {
+	String appClientIdAndSecrect;
+	String fitbitOauthClientId;	
+	String redirectUriFromFitbit;
+	String fitbitScope;
+	String fitbitUriForTokens;
+	String sleepLogURL;
+	String userProfileURL;
+	String heartRateURL;
+	
+	
+	public  String getUserProfileURL() {
 		return userProfileURL;
 	}
 
-	public static String getSleepLogURL() {
+	public  String getSleepLogURL() {
 		return sleepLogURL;
 	}
 
-	public static String getFitbitUriForTokens() {
+	public  String getFitbitUriForTokens() {
 		return fitbitUriForTokens;
 	}
 
@@ -27,15 +33,55 @@ public class Constants {
 		return fitbitOauthResposeType;
 	}
 	
-	public static String getFitbitOauthClientId() {
+	public String getFitbitOauthClientId() {
 		return fitbitOauthClientId;
 	}
 	
-	public static String getRedirectUriFromFitbit() {
+	public  String getRedirectUriFromFitbit() {
 		return redirectUriFromFitbit;
 	}
 	
-	public static String getFitbitScope() {
+	public  String getFitbitScope() {
 		return fitbitScope;
+	}
+
+	public void setFitbitOauthClientId(String fitbitOauthClientId) {
+		this.fitbitOauthClientId = fitbitOauthClientId;
+	}
+
+	public void setRedirectUriFromFitbit(String redirectUriFromFitbit) {
+		this.redirectUriFromFitbit = redirectUriFromFitbit;
+	}
+
+	public void setFitbitScope(String fitbitScope) {
+		this.fitbitScope = fitbitScope;
+	}
+
+	public void setFitbitUriForTokens(String fitbitUriForTokens) {
+		this.fitbitUriForTokens = fitbitUriForTokens;
+	}
+
+	public void setSleepLogURL(String sleepLogURL) {
+		this.sleepLogURL = sleepLogURL;
+	}
+
+	public void setUserProfileURL(String userProfileURL) {
+		this.userProfileURL = userProfileURL;
+	}
+
+	public String getHeartRateURL() {
+		return heartRateURL;
+	}
+
+	public void setHeartRateURL(String heartRateURL) {
+		this.heartRateURL = heartRateURL;
+	}
+
+	public String getAppClientIdAndSecrect() {
+		return appClientIdAndSecrect;
+	}
+
+	public void setAppClientIdAndSecrect(String appClientIdAndSecrect) {
+		this.appClientIdAndSecrect = appClientIdAndSecrect;
 	}
 }

@@ -8,15 +8,19 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.web.model.FitbitTokens;
+import com.web.controller.FitbitOAuthControllerTest;
+import com.web.utils.FitbitTokens;
 import com.web.utils.Constants;
 
 @Service("FitbitOAuthService")
 public class FitbitOAuthService implements FitbitOAuthServiceIntf {
+	private static final Logger logger = Logger.getLogger(FitbitOAuthService.class);
 	String redirectUrl;
 	ModelAndView mv;
 	String url;
@@ -26,10 +30,13 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 	DataOutputStream dataOutputStream;
 	BufferedReader br;
 	JSONObject jsonObject;
+	
+	@Autowired
+	Constants constants;
 
 	public FitbitTokens getFitbitTokens(String authCode) throws IOException {
 		// Create URL
-		url = Constants.getFitbitUriForTokens();
+		url = constants.getFitbitUriForTokens();
 		urlobj = new URL(url);
 
 		// Create Connection
@@ -38,9 +45,8 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 		// add request header
 		con.setRequestMethod("POST");
 		
-		//TODO: Hardcoded value below. Change it
 		con.setRequestProperty("Authorization",
-				"Basic MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm");
+				"Basic "+constants.getAppClientIdAndSecrect());
 		con.setRequestProperty("Content-Type",
 				"application/x-www-form-urlencoded");
 
@@ -59,9 +65,9 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 		int responseCode = con.getResponseCode();
 
 		// Debug statements
-		System.out.println("\nSending 'POST' request to URL : " + url);
-		System.out.println("Post parameters : " + urlParameters);
-		System.out.println("Response Code : " + responseCode);
+		logger.info("\nSending 'POST' request to URL : " + url);
+		logger.info("Post parameters : " + urlParameters);
+		logger.info("Response Code : " + responseCode);
 
 		// read the response
 		br = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -75,7 +81,7 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 		br.close();
 
 		// print result
-		System.out.println(fitbitTokens);
+		logger.info(fitbitTokens);
 
 		// parse json
 		jsonObject = new JSONObject(fitbitTokens);
@@ -87,7 +93,7 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 	}
 
 	private String getURLParameters() {
-		return "client_id=227FN4&grant_type=authorization_code&redirect_uri=http://localhost:8081/smacrobs/oauthredirect&code=";
+		return "client_id="+constants.getFitbitOauthClientId()+"&grant_type=authorization_code&redirect_uri="+constants.getRedirectUriFromFitbit()+"&code=";
 	}
 
 }

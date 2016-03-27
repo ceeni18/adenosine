@@ -13,24 +13,24 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-		/WEB-INF/dispatcher-servlet.xml,
-		/WEB-INF/security-security.xml
+		/WEB-INF/dispatcher-servlet.xml<!-- ,
+		/WEB-INF/security-security.xml -->
 		</param-value>
 	</context-param>
 	
-<!-- Spring Security -->
-<!--The name and class are is fixed(Spring security)  -->
+<!-- Spring Security
+The name and class are is fixed(Spring security) 
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
 
 
-<!--  this says that all the requests in this URL pattern should go through the springSecurityFilterChain -->
+ this says that all the requests in this URL pattern should go through the springSecurityFilterChain
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 
 	<listener>
