@@ -1,9 +1,9 @@
 package service;
 
-import java.io.IOException;
-
 import com.web.model.UserProfile;
+import com.web.model.FitbitTokens;
 
 public interface UserProfileServiceIntf {
-	public UserProfile getUserProfileDetails(String accessToken,String refreshToken) throws IOException;
+	void setFitbitTokens(FitbitTokens fitbitTokens);
+	UserProfile getUserProfileDetails();
 }

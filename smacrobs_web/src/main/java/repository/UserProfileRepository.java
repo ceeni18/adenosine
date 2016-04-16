@@ -1,18 +1,16 @@
 package repository;
 
-import org.apache.log4j.Logger;
+import com.web.model.UserProfile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-
-import com.web.model.UserProfile;
 
 @Service("UserProfileRepository")
 public class UserProfileRepository implements UserProfileRepositoryIntf {
 
-	private static final Logger logger = Logger.getLogger(UserProfileRepository.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserProfileRepository.class);
 
 	@Autowired	
 	MongoTemplate mongoOperation;
@@ -21,6 +19,4 @@ public class UserProfileRepository implements UserProfileRepositoryIntf {
 		logger.debug("saving user profile details");
 		mongoOperation.save(userProfile);		
 	}
-
-
 }

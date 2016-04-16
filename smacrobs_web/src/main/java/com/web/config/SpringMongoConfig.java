@@ -1,25 +1,51 @@
 package com.web.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.authentication.UserCredentials;
 
 import com.mongodb.MongoClient;
 
 @Configuration
 public class SpringMongoConfig {
+	private static Logger logger = LoggerFactory.getLogger(
+			SpringMongoConfig.class);
 
 	public @Bean
 	MongoDbFactory mongoDbFactory() throws Exception {
-		return new SimpleMongoDbFactory(new MongoClient(), "users");
-		//return new SimpleMongoDbFactory(new MongoClient("http://52.73.142.19/", 27017), "adenosine", new UserCredentials("adenosine", "abcdefghijkl"));
+		logger.debug("Connecting to MongoDB at "+
+				Constants.DATABASE_HOSTNAME+":"+Constants.DATABASE_PORT);
+		logger.debug("Using Database "+Constants.DATABASE_NAME);
+		logger.debug("with Username: "+ Constants.DATABASE_USERNAME+" and " +
+				"password: "+Constants.DATABASE_PASSWORD);
+
+		return new SimpleMongoDbFactory(
+				new MongoClient(
+						Constants.DATABASE_HOSTNAME,
+						Constants.DATABASE_PORT
+				),
+				Constants.DATABASE_NAME,
+				new UserCredentials(
+						Constants.DATABASE_USERNAME,
+						Constants.DATABASE_PASSWORD
+				));
 	}
-	
+
 	public @Bean
-	MongoTemplate mongoTemplate() throws Exception {	
-		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());			
-		return mongoTemplate;		
+	MongoTemplate mongoTemplate(){
+		MongoDbFactory mongoDbFactory = null;
+        MongoTemplate mongoTemplate = null;
+		try {
+			mongoDbFactory = mongoDbFactory();
+            mongoTemplate = new MongoTemplate(mongoDbFactory);
+		}catch (Exception e){
+			logger.warn("Database exception :"+e);
+		}
+		return mongoTemplate;
 	}
 }

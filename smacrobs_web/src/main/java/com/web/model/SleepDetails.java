@@ -1,98 +1,302 @@
 package com.web.model;
 
-import java.util.Map;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class SleepDetails {
-	private long logId;
-	private int efficiency;
-	private long duration;
-	private int restlessCount;
-	private int awakeCount;
-	private boolean isMainSleep;
-	private Map<String, Integer> dataMap;
+import java.util.Arrays;
 
-	//public SleepDetails(long log, int eff, long dur, int rCount, int aCount, boolean isMain, String dTime, int val) {
-	public SleepDetails(long log, int eff, long dur, int rCount, int aCount, boolean isMain, Map<String, Integer> map) {
-		logId = log;
-		efficiency = eff;
-		duration = dur;
-		restlessCount = rCount;
-		awakeCount = aCount;
-		isMainSleep = isMain;
-		dataMap = map;
-		//dateTime = dTime;
-		//value = val;
-	}
+@Document(collection = "sleepDetails")
+public class SleepDetails
+{
+    private Summary summary;
 
-	public long getLogId() {
-		return logId;
-	}
+    private Sleep[] sleep;
 
-	public void setLogId(long logId) {
-		this.logId = logId;
-	}
+    public Summary getSummary ()
+    {
+        return summary;
+    }
 
-	public int getEfficiency() {
-		return efficiency;
-	}
+    public void setSummary (Summary summary)
+    {
+        this.summary = summary;
+    }
 
-	public void setEfficiency(int efficiency) {
-		this.efficiency = efficiency;
-	}
+    public Sleep[] getSleep ()
+    {
+        return sleep;
+    }
 
-	public long getDuration() {
-		return duration;
-	}
+    public void setSleep (Sleep[] sleep)
+    {
+        this.sleep = sleep;
+    }
 
-	public void setDuration(long duration) {
-		this.duration = duration;
-	}
+    public String toString() {
+        return "SleepDetails{" +
+                "summary=" + summary +
+                ", sleep=" + Arrays.toString(sleep) +
+                '}';
+    }
 
-	public int getRestlessCount() {
-		return restlessCount;
-	}
+    class Summary
+    {
+        private String totalTimeInBed;
 
-	public void setRestlessCount(int restlessCount) {
-		this.restlessCount = restlessCount;
-	}
+        private String totalMinutesAsleep;
 
-	public int getAwakeCount() {
-		return awakeCount;
-	}
+        private String totalSleepRecords;
 
-	public void setAwakeCount(int awakeCount) {
-		this.awakeCount = awakeCount;
-	}
+        public String getTotalTimeInBed ()
+        {
+            return totalTimeInBed;
+        }
 
-	public boolean getIsMainSleep() {
-		return isMainSleep;
-	}
+        public void setTotalTimeInBed (String totalTimeInBed)
+        {
+            this.totalTimeInBed = totalTimeInBed;
+        }
 
-	public void setMainSleep(boolean isMainSleep) {
-		this.isMainSleep = isMainSleep;
-	}
+        public String getTotalMinutesAsleep ()
+        {
+            return totalMinutesAsleep;
+        }
 
-	public Map<String, Integer> getDataMap() {
-		return dataMap;
-	}
+        public void setTotalMinutesAsleep (String totalMinutesAsleep)
+        {
+            this.totalMinutesAsleep = totalMinutesAsleep;
+        }
 
-	public void setDataMap(Map<String, Integer> dataMap) {
-		this.dataMap = dataMap;
-	}
+        public String getTotalSleepRecords ()
+        {
+            return totalSleepRecords;
+        }
 
-	/*public String getDateTime() {
-		return dateTime;
-	}
+        public void setTotalSleepRecords (String totalSleepRecords)
+        {
+            this.totalSleepRecords = totalSleepRecords;
+        }
+    }
 
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
-	}
+    public class Sleep
+    {
+        private String isMainSleep;
 
-	public int getValue() {
-		return value;
-	}
+        private String restlessCount;
 
-	public void setValue(int value) {
-		this.value = value;
-	}*/
+        private String logId;
+
+        private String minutesAfterWakeup;
+
+        private String minutesToFallAsleep;
+
+        private String restlessDuration;
+
+        private String startTime;
+
+        private String minutesAwake;
+
+        private MinuteData[] minuteData;
+
+        private String timeInBed;
+
+        private String duration;
+
+        private String awakeCount;
+
+        private String awakeDuration;
+
+        private String awakeningsCount;
+
+        private String efficiency;
+
+        private String minutesAsleep;
+
+        public String getIsMainSleep ()
+        {
+            return isMainSleep;
+        }
+
+        public void setIsMainSleep (String isMainSleep)
+        {
+            this.isMainSleep = isMainSleep;
+        }
+
+        public String getRestlessCount ()
+        {
+            return restlessCount;
+        }
+
+        public void setRestlessCount (String restlessCount)
+        {
+            this.restlessCount = restlessCount;
+        }
+
+        public String getLogId ()
+        {
+            return logId;
+        }
+
+        public void setLogId (String logId)
+        {
+            this.logId = logId;
+        }
+
+        public String getMinutesAfterWakeup ()
+        {
+            return minutesAfterWakeup;
+        }
+
+        public void setMinutesAfterWakeup (String minutesAfterWakeup)
+        {
+            this.minutesAfterWakeup = minutesAfterWakeup;
+        }
+
+        public String getMinutesToFallAsleep ()
+        {
+            return minutesToFallAsleep;
+        }
+
+        public void setMinutesToFallAsleep (String minutesToFallAsleep)
+        {
+            this.minutesToFallAsleep = minutesToFallAsleep;
+        }
+
+        public String getRestlessDuration ()
+        {
+            return restlessDuration;
+        }
+
+        public void setRestlessDuration (String restlessDuration)
+        {
+            this.restlessDuration = restlessDuration;
+        }
+
+        public String getStartTime ()
+        {
+            return startTime;
+        }
+
+        public void setStartTime (String startTime)
+        {
+            this.startTime = startTime;
+        }
+
+        public String getMinutesAwake ()
+        {
+            return minutesAwake;
+        }
+
+        public void setMinutesAwake (String minutesAwake)
+        {
+            this.minutesAwake = minutesAwake;
+        }
+
+        public MinuteData[] getMinuteData ()
+        {
+            return minuteData;
+        }
+
+        public void setMinuteData (MinuteData[] minuteData)
+        {
+            this.minuteData = minuteData;
+        }
+
+        public String getTimeInBed ()
+        {
+            return timeInBed;
+        }
+
+        public void setTimeInBed (String timeInBed)
+        {
+            this.timeInBed = timeInBed;
+        }
+
+        public String getDuration ()
+        {
+            return duration;
+        }
+
+        public void setDuration (String duration)
+        {
+            this.duration = duration;
+        }
+
+        public String getAwakeCount ()
+        {
+            return awakeCount;
+        }
+
+        public void setAwakeCount (String awakeCount)
+        {
+            this.awakeCount = awakeCount;
+        }
+
+        public String getAwakeDuration ()
+        {
+            return awakeDuration;
+        }
+
+        public void setAwakeDuration (String awakeDuration)
+        {
+            this.awakeDuration = awakeDuration;
+        }
+
+        public String getAwakeningsCount ()
+        {
+            return awakeningsCount;
+        }
+
+        public void setAwakeningsCount (String awakeningsCount)
+        {
+            this.awakeningsCount = awakeningsCount;
+        }
+
+        public String getEfficiency ()
+        {
+            return efficiency;
+        }
+
+        public void setEfficiency (String efficiency)
+        {
+            this.efficiency = efficiency;
+        }
+
+        public String getMinutesAsleep ()
+        {
+            return minutesAsleep;
+        }
+
+        public void setMinutesAsleep (String minutesAsleep)
+        {
+            this.minutesAsleep = minutesAsleep;
+        }
+    }
+
+    public class MinuteData
+    {
+        private String dateTime;
+
+        private String value;
+
+        public String getDateTime ()
+        {
+            return dateTime;
+        }
+
+        public void setDateTime (String dateTime)
+        {
+            this.dateTime = dateTime;
+        }
+
+        public String getValue ()
+        {
+            return value;
+        }
+
+        public void setValue (String value)
+        {
+            this.value = value;
+        }
+    }
+
 }

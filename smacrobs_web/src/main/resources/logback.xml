@@ -7,9 +7,9 @@
         </encoder>
     </appender>
 
-    <logger name="com.web.controller" level="INFO"/>
-    <logger name="com.web.service" level="INFO"/>
-    <logger name="com.web.repository" level="INFO"/>
+    <logger name="com" level="DEBUG"/>
+    <logger name="repository" level="DEBUG"/>
+    <logger name="service" level="DEBUG"/>
 
     <root level="OFF">
         <appender-ref ref="STDOUT" />

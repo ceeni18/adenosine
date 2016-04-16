@@ -54,7 +54,7 @@ function DisplayCreateAccountModal()
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="#">Contact Us</a></li>
-				<li><a href="/smacrobs/template">Template</a></li>
+				<li><a href="/template">Template</a></li>
 				<li><a href="/smacrobs/oauth">Login with Fitbit</a></li>
 			</ul>
 
