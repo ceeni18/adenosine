@@ -65,9 +65,9 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 		int responseCode = con.getResponseCode();
 
 		// Debug statements
-		logger.info("\nSending 'POST' request to URL : " + url);
-		logger.info("Post parameters : " + urlParameters);
-		logger.info("Response Code : " + responseCode);
+		System.out.println("\nSending 'POST' request to URL : " + url);
+		System.out.println("Post parameters : " + urlParameters);
+		System.out.println("Response Code : " + responseCode);
 
 		// read the response
 		br = new BufferedReader(new InputStreamReader(con.getInputStream()));

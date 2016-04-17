@@ -13,11 +13,17 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+
+
 <!-- bootstrap & fontawesome -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/bootstrap.css" />
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/font-awesome.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/ace.onpage-help.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/js/themes/sunburst.css" />
 
 <!-- page specific plugin styles -->
 
@@ -52,6 +58,10 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- High charts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 </head>
 
 <body class="no-skin">
@@ -73,8 +83,8 @@
 			<!-- /section:basics/sidebar.mobile.toggle -->
 			<div class="navbar-header pull-left">
 				<!-- #section:basics/navbar.layout.brand -->
-				<a href="#" class="navbar-brand"> <small> <i class="fa fa-bed"></i>
-				Smacrobs
+				<a href="#" class="navbar-brand"> <small> <i
+						class="fa fa-bed"></i> Smacrobs
 				</small>
 				</a>
 
@@ -89,206 +99,8 @@
 			<div class="navbar-buttons navbar-header pull-right"
 				role="navigation">
 				<ul class="nav ace-nav">
-					<li class="grey"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"> <i
-							class="ace-icon fa fa-tasks"></i> <span class="badge badge-grey">4</span>
-					</a>
+					
 
-						<ul
-							class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-							<li class="dropdown-header"><i class="ace-icon fa fa-check"></i>
-								4 Tasks to complete</li>
-
-							<li class="dropdown-content">
-								<ul class="dropdown-menu dropdown-navbar">
-									<li><a href="#">
-											<div class="clearfix">
-												<span class="pull-left">Software Update</span> <span
-													class="pull-right">65%</span>
-											</div>
-
-											<div class="progress progress-mini">
-												<div style="width: 65%" class="progress-bar"></div>
-											</div>
-									</a></li>
-
-									<li><a href="#">
-											<div class="clearfix">
-												<span class="pull-left">Hardware Upgrade</span> <span
-													class="pull-right">35%</span>
-											</div>
-
-											<div class="progress progress-mini">
-												<div style="width: 35%"
-													class="progress-bar progress-bar-danger"></div>
-											</div>
-									</a></li>
-
-									<li><a href="#">
-											<div class="clearfix">
-												<span class="pull-left">Unit Testing</span> <span
-													class="pull-right">15%</span>
-											</div>
-
-											<div class="progress progress-mini">
-												<div style="width: 15%"
-													class="progress-bar progress-bar-warning"></div>
-											</div>
-									</a></li>
-
-									<li><a href="#">
-											<div class="clearfix">
-												<span class="pull-left">Bug Fixes</span> <span
-													class="pull-right">90%</span>
-											</div>
-
-											<div class="progress progress-mini progress-striped active">
-												<div style="width: 90%"
-													class="progress-bar progress-bar-success"></div>
-											</div>
-									</a></li>
-								</ul>
-							</li>
-
-							<li class="dropdown-footer"><a href="#"> See tasks with
-									details <i class="ace-icon fa fa-arrow-right"></i>
-							</a></li>
-						</ul></li>
-
-					<li class="purple"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"> <i
-							class="ace-icon fa fa-bell icon-animated-bell"></i> <span
-							class="badge badge-important">8</span>
-					</a>
-
-						<ul
-							class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-							<li class="dropdown-header"><i
-								class="ace-icon fa fa-exclamation-triangle"></i> 8 Notifications
-							</li>
-
-							<li class="dropdown-content">
-								<ul class="dropdown-menu dropdown-navbar navbar-pink">
-									<li><a href="#">
-											<div class="clearfix">
-												<span class="pull-left"> <i
-													class="btn btn-xs no-hover btn-pink fa fa-comment"></i> New
-													Comments
-												</span> <span class="pull-right badge badge-info">+12</span>
-											</div>
-									</a></li>
-
-									<li><a href="#"> <i
-											class="btn btn-xs btn-primary fa fa-user"></i> Bob just
-											signed up as an editor ...
-									</a></li>
-
-									<li><a href="#">
-											<div class="clearfix">
-												<span class="pull-left"> <i
-													class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-													New Orders
-												</span> <span class="pull-right badge badge-success">+8</span>
-											</div>
-									</a></li>
-
-									<li><a href="#">
-											<div class="clearfix">
-												<span class="pull-left"> <i
-													class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-													Followers
-												</span> <span class="pull-right badge badge-info">+11</span>
-											</div>
-									</a></li>
-								</ul>
-							</li>
-
-							<li class="dropdown-footer"><a href="#"> See all
-									notifications <i class="ace-icon fa fa-arrow-right"></i>
-							</a></li>
-						</ul></li>
-
-					<li class="green"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"> <i
-							class="ace-icon fa fa-envelope icon-animated-vertical"></i> <span
-							class="badge badge-success">5</span>
-					</a>
-
-						<ul
-							class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-							<li class="dropdown-header"><i
-								class="ace-icon fa fa-envelope-o"></i> 5 Messages</li>
-
-							<li class="dropdown-content">
-								<ul class="dropdown-menu dropdown-navbar">
-									<li><a href="#" class="clearfix"> <img
-											src="<%=request.getContextPath()%>/assets/avatars/avatar.png"
-											class="msg-photo" alt="Alex's Avatar" /> <span
-											class="msg-body"> <span class="msg-title"> <span
-													class="blue">Alex:</span> Ciao sociis natoque penatibus et
-													auctor ...
-											</span> <span class="msg-time"> <i
-													class="ace-icon fa fa-clock-o"></i> <span>a moment
-														ago</span>
-											</span>
-										</span>
-									</a></li>
-
-									<li><a href="#" class="clearfix"> <img
-											src="<%=request.getContextPath()%>/assets/avatars/avatar3.png"
-											class="msg-photo" alt="Susan's Avatar" /> <span
-											class="msg-body"> <span class="msg-title"> <span
-													class="blue">Susan:</span> Vestibulum id ligula porta felis
-													euismod ...
-											</span> <span class="msg-time"> <i
-													class="ace-icon fa fa-clock-o"></i> <span>20 minutes
-														ago</span>
-											</span>
-										</span>
-									</a></li>
-
-									<li><a href="#" class="clearfix"> <img
-											src="<%=request.getContextPath()%>/assets/avatars/avatar4.png"
-											class="msg-photo" alt="Bob's Avatar" /> <span
-											class="msg-body"> <span class="msg-title"> <span
-													class="blue">Bob:</span> Nullam quis risus eget urna mollis
-													ornare ...
-											</span> <span class="msg-time"> <i
-													class="ace-icon fa fa-clock-o"></i> <span>3:15 pm</span>
-											</span>
-										</span>
-									</a></li>
-
-									<li><a href="#" class="clearfix"> <img
-											src="<%=request.getContextPath()%>/assets/avatars/avatar2.png"
-											class="msg-photo" alt="Kate's Avatar" /> <span
-											class="msg-body"> <span class="msg-title"> <span
-													class="blue">Kate:</span> Ciao sociis natoque eget urna
-													mollis ornare ...
-											</span> <span class="msg-time"> <i
-													class="ace-icon fa fa-clock-o"></i> <span>1:33 pm</span>
-											</span>
-										</span>
-									</a></li>
-
-									<li><a href="#" class="clearfix"> <img
-											src="<%=request.getContextPath()%>/assets/avatars/avatar5.png"
-											class="msg-photo" alt="Fred's Avatar" /> <span
-											class="msg-body"> <span class="msg-title"> <span
-													class="blue">Fred:</span> Vestibulum id penatibus et auctor
-													...
-											</span> <span class="msg-time"> <i
-													class="ace-icon fa fa-clock-o"></i> <span>10:09 am</span>
-											</span>
-										</span>
-									</a></li>
-								</ul>
-							</li>
-
-							<li class="dropdown-footer"><a href="inbox.html"> See
-									all messages <i class="ace-icon fa fa-arrow-right"></i>
-							</a></li>
-						</ul></li>
 
 					<!-- #section:basics/navbar.user_menu -->
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
@@ -301,16 +113,6 @@
 
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="#"> <i class="ace-icon fa fa-cog"></i>
-									Settings
-							</a></li>
-
-							<li><a href="profile.html"> <i
-									class="ace-icon fa fa-user"></i> Profile
-							</a></li>
-
-							<li class="divider"></li>
-
 							<li><a href="#"> <i class="ace-icon fa fa-power-off"></i>
 									Logout
 							</a></li>
@@ -337,125 +139,35 @@
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 				</script>
 
-			<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-				<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-					<button class="btn btn-success">
-						<i class="ace-icon fa fa-signal"></i>
-					</button>
-
-					<button class="btn btn-info">
-						<i class="ace-icon fa fa-pencil"></i>
-					</button>
-
-					<!-- #section:basics/sidebar.layout.shortcuts -->
-					<button class="btn btn-warning">
-						<i class="ace-icon fa fa-users"></i>
-					</button>
-
-					<button class="btn btn-danger">
-						<i class="ace-icon fa fa-cogs"></i>
-					</button>
-
-					<!-- /section:basics/sidebar.layout.shortcuts -->
-				</div>
-
-				<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-					<span class="btn btn-success"></span> <span class="btn btn-info"></span>
-
-					<span class="btn btn-warning"></span> <span class="btn btn-danger"></span>
-				</div>
-			</div>
+		
 			<!-- /.sidebar-shortcuts -->
 
 			<!--SSR put the profile details here-->
 			<div id="profile">
 
 
+				<ul class="nav nav-list">
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-user"></i> <span class="menu-text">
+								${userProfile.fullName} </span>
+					</a> <b class="arrow"></b></li>
 
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-intersex"></i> <span class="menu-text">Gender:
+								${userProfile.gender} </span>
+					</a> <b class="arrow"></b></li>
 
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-calendar"></i> <span class="menu-text">Age:
+								${userProfile.age} </span>
+					</a> <b class="arrow"></b></li>
 
-				<!-- #section:pages/profile.info -->
-				<!-- <center>
-					<span class="profile-picture"> <img id="avatar"
-						class="editable img-responsive" alt="User's Avatar"
-						src=${userProfile.avatar } />
-					</span>
-				</center>
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-birthday-cake"></i> <span
+							class="menu-text">DOB: ${userProfile.dateOfBirth}</span>
+					</a> <b class="arrow"></b></li>
 
-
-
-				<div class="profile-user-info profile-user-info-striped pull-left">
-
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">Username</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="username">${userProfile.fullName}</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">Gender</div>
-
-						<div class="profile-info-value">
-							<i class="fa fa-user light-orange bigger-110"></i> <span
-								class="editable" id="country">${userProfile.gender}</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">Age</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="age">${userProfile.age}</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row col-md-12">
-						<div class="profile-info-name col-md-12">${userProfile.dateOfBirth}</div>					
-					</div>
-				</div> -->
-				
-				
-					<ul class="nav nav-list">
-					<li class="">
-						<a href="index.html">
-							<i class="menu-icon fa fa-user"></i>
-							<span class="menu-text"> ${userProfile.fullName} </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					
-					<li class="">
-						<a href="index.html">
-							<i class="menu-icon fa fa-intersex"></i>
-							<span class="menu-text">Gender: ${userProfile.gender} </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					
-					<li class="">
-						<a href="index.html">
-							<i class="menu-icon fa fa-calendar"></i>
-							<span class="menu-text">Age: ${userProfile.age} </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					
-					<li class="">
-						<a href="index.html">
-							<i class="menu-icon fa fa-birthday-cake"></i>
-							<span class="menu-text">DOB: ${userProfile.dateOfBirth}</span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-					
-					</ul>
+				</ul>
 
 			</div>
 
@@ -463,7 +175,7 @@
 			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 				<i class="ace-icon fa fa-angle-double-left"
 					data-icon1="ace-icon fa fa-angle-double-left"
-					data-icon2="ace-icon fa fa-angle-double-right" ></i>
+					data-icon2="ace-icon fa fa-angle-double-right"></i>
 			</div>
 
 			<!-- /section:basics/sidebar.layout.minimize -->
@@ -486,250 +198,232 @@
 						</script>
 
 					<ul class="breadcrumb">
-						<li><i class="ace-icon fa fa-home home-icon"></i> <a href="#">Home</a>
+						<li><i class="ace-icon fa fa-home home-icon active"></i> <a href="#">Home</a>
 						</li>
-
-						<li><a href="#">Other Pages</a></li>
-						<li class="active">Blank Page</li>
 					</ul>
 					<!-- /.breadcrumb -->
 
-					<!-- #section:basics/content.searchbox -->
-					<div class="nav-search" id="nav-search">
-						<form class="form-search">
-							<span class="input-icon"> <input type="text"
-								placeholder="Search ..." class="nav-search-input"
-								id="nav-search-input" autocomplete="off" /> <i
-								class="ace-icon fa fa-search nav-search-icon"></i>
-							</span>
-						</form>
-					</div>
-					<!-- /.nav-search -->
+				
 
 					<!-- /section:basics/content.searchbox -->
 				</div>
 
 				<!-- /section:basics/content.breadcrumbs -->
 				<div class="page-content">
-					<!-- #section:settings.box -->
+					<!--SSR #section:settings.box -->
 					<div class="ace-settings-container" id="ace-settings-container">
 						<div class="btn btn-app btn-xs btn-warning ace-settings-btn"
 							id="ace-settings-btn">
 							<i class="ace-icon fa fa-cog bigger-130"></i>
 						</div>
+						<!-- Modal -->
 
-						<div class="ace-settings-box clearfix" id="ace-settings-box">
-							<div class="pull-left width-50">
-								<!-- #section:settings.skins -->
-								<div class="ace-settings-item">
-									<div class="pull-left">
-										<select id="skin-colorpicker" class="hide">
-											<option data-skin="no-skin" value="#438EB9">#438EB9</option>
-											<option data-skin="skin-1" value="#222A2D">#222A2D</option>
-											<option data-skin="skin-2" value="#C6487E">#C6487E</option>
-											<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-										</select>
-									</div>
-									<span>&nbsp; Choose Skin</span>
-								</div>
-
-								<!-- /section:settings.skins -->
-
-								<!-- #section:settings.navbar -->
-								<div class="ace-settings-item">
-									<input type="checkbox" class="ace ace-checkbox-2"
-										id="ace-settings-navbar" /> <label class="lbl"
-										for="ace-settings-navbar"> Fixed Navbar</label>
-								</div>
-
-								<!-- /section:settings.navbar -->
-
-								<!-- #section:settings.sidebar -->
-								<div class="ace-settings-item">
-									<input type="checkbox" class="ace ace-checkbox-2"
-										id="ace-settings-sidebar" /> <label class="lbl"
-										for="ace-settings-sidebar"> Fixed Sidebar</label>
-								</div>
-
-								<!-- /section:settings.sidebar -->
-
-								<!-- #section:settings.breadcrumbs -->
-								<div class="ace-settings-item">
-									<input type="checkbox" class="ace ace-checkbox-2"
-										id="ace-settings-breadcrumbs" /> <label class="lbl"
-										for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-								</div>
-
-								<!-- /section:settings.breadcrumbs -->
-
-								<!-- #section:settings.rtl -->
-								<div class="ace-settings-item">
-									<input type="checkbox" class="ace ace-checkbox-2"
-										id="ace-settings-rtl" /> <label class="lbl"
-										for="ace-settings-rtl"> Right To Left (rtl)</label>
-								</div>
-
-								<!-- /section:settings.rtl -->
-
-								<!-- #section:settings.container -->
-								<div class="ace-settings-item">
-									<input type="checkbox" class="ace ace-checkbox-2"
-										id="ace-settings-add-container" /> <label class="lbl"
-										for="ace-settings-add-container"> Inside <b>.container</b>
-									</label>
-								</div>
-
-								<!-- /section:settings.container -->
-							</div>
-							<!-- /.pull-left -->
-
-							<div class="pull-left width-50">
-								<!-- #section:basics/sidebar.options -->
-								<div class="ace-settings-item">
-									<input type="checkbox" class="ace ace-checkbox-2"
-										id="ace-settings-hover" /> <label class="lbl"
-										for="ace-settings-hover"> Submenu on Hover</label>
-								</div>
-
-								<div class="ace-settings-item">
-									<input type="checkbox" class="ace ace-checkbox-2"
-										id="ace-settings-compact" /> <label class="lbl"
-										for="ace-settings-compact"> Compact Sidebar</label>
-								</div>
-
-								<div class="ace-settings-item">
-									<input type="checkbox" class="ace ace-checkbox-2"
-										id="ace-settings-highlight" /> <label class="lbl"
-										for="ace-settings-highlight"> Alt. Active Item</label>
-								</div>
-
-								<!-- /section:basics/sidebar.options -->
-							</div>
-							<!-- /.pull-left -->
-						</div>
-						<!-- /.ace-settings-box -->
-					</div>
-					<!-- /.ace-settings-container -->
-
-					<!-- /section:settings.box -->
-					<div class="row">
-						<div class="col-xs-12"><!-- SSR page contents -->
-							<!-- PAGE CONTENT BEGINS -->
-							<div class="col-md-2">
-								<div id="sleepData">
-									<span class="btn btn-app btn-sm btn-yellow no-hover"> <span
-										class="line-height-1 bigger-170 blue"> <i
-											class="fa fa-moon-o "></i>
-									</span> <br /> <span class="line-height-1 smaller-90">
-											Sleep </span>
-									</span>
-								</div>
-							</div>
-							
-							<div class="col-md-2">
-								<div id="heartData">
-							<span class="btn btn-app btn-sm btn-pink no-hover">
-													<span class="line-height-1 bigger-170"> <i
-											class="fa fa-heartbeat "></i> </span>
-
-													<br />
-													<span class="line-height-1 smaller-90"> ${heartRateDetails.heartRate}/minute </span>
-												</span></div></div>							
-							
-							<script type="text/javascript">
+						<script type="text/javascript">
 							$(document).ready(function(){
-							    $("#sleepData").click(function(){
-							        $("#sleepDataModal").modal();
+							    $("#ace-settings-btn").click(function(){
+							        $("#tisensorModal").modal();
 							    });
 							});
 							</script>
-							<!-- PAGE CONTENT ENDS -->
-						</div>
-						<!-- /.col -->
+
 					</div>
-					<!-- /.row -->
+					<!-- /.ace-settings-box -->
 				</div>
-				<!-- /.page-content -->
-			</div>
-		</div>
-		<!-- /.main-content -->
-		
-		  <!-- Modal -->
- 				<div id="sleepDataModal" class="modal fade" tabindex="-1">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header no-padding">
-												<div class="table-header">
-													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-														<span class="white">&times;</span>
-													</button>
-													Sleep details from fitbit
-												</div>
-											</div>
+				<!-- /.ace-settings-container -->
 
-											<div class="modal-body no-padding">
-												<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
-													<thead>
-														<tr>
-															<th class="text-center">Sleep Efficiency</th>
-															<th class="text-center">Sleep Duration</th>
-															<th class="text-center">Awake Count</th>
+				<div id="tisensorModal" class="modal fade" tabindex="-1">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header no-padding">
+								<div class="table-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">
+										<span class="white">&times;</span>
+									</button>
+									Input Ti Sensor Key
+								</div>
+							</div>
 
-															<th class="text-center">
-																Restless Count
-															</th>
-														</tr>
-													</thead>
+							<div class="modal-body no-padding">
+								<hr />
+								<div class="row">
 
-													<tbody>
-														<tr>
-															<td class="text-center">
-																${sleepDetails.efficiency}
-															</td>
-															<td class="text-center">${sleepDetails.duration}</td>
-															<td class="text-center">${sleepDetails.awakeCount}</td>
-															<td class="text-center">${sleepDetails.restlessCount}</td>
-														</tr>					
-													</tbody>
-												</table>
-											</div>
+									<div class="input-group col-md-offset-3 col-md-6">
+										<input class="form-control input-mask-product"
+											placeholder="TI Sensor Key" type="text"
+											id="form-field-mask-3" /> <span class="input-group-addon">
+											<i class="ace-icon fa fa-key"></i>
+										</span>
+									</div>
+								</div>
+								<hr />
+								<!-- /.span -->
+							</div>
 
-											<div class="modal-footer no-margin-top">
-												<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-													<i class="ace-icon fa fa-times"></i>
-													Close
-												</button>
+							<div class="modal-footer no-margin-top">
+								<button class="btn btn-sm btn-danger pull-left"
+									data-dismiss="modal">
+									<i class="glyphicon glyphicon-ok"></i> Submit
+								</button>
+
+
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+
+				<!-- /section:settings.box -->
+				<div class="row">
+					<div class="col-xs-12">
+						<!-- SSR page contents -->
+						<!-- PAGE CONTENT BEGINS -->
+
+
+						<div class="col-md-1 col-sm-4 col-xs-12">
+							<div id="heartData">
+								<span class="btn btn-app btn-sm btn-pink no-hover"> <span
+									class="line-height-1 bigger-170"> <i
+										class="fa fa-heartbeat"></i>
+								</span> <br /> <span class="line-height-1 smaller-90">
+										${heartRateDetails.heartRate}/minute </span>
+								</span>
+							</div>
+							
+							<div id="heartData">
+								<span class="btn btn-app btn-sm btn-success no-hover"> <span
+									class="line-height-1 bigger-170"> <i
+										class="fa fa-cutlery"></i>
+								</span> <br /> <span class="line-height-1 smaller-90">
+										${heartRateDetails.heartRate}/minute </span>
+								</span>
+							</div>
+						</div>
+						
+						<div class="col-md-1 col-sm-4 col-xs-12">
+							<div id="heartData">
+								<span class="btn btn-app btn-sm btn-purple no-hover"> <span
+									class="line-height-1 bigger-170"> <i
+										class="fa fa-beer"></i>
+								</span> <br /> <span class="line-height-1 smaller-90">
+										${heartRateDetails.heartRate}/minute </span>
+								</span>
+							</div>
+							
+							
+							<div id="heartData">
+								<span class="btn btn-app btn-sm btn-yellow no-hover"> <span
+									class="line-height-1 bigger-170"> <i
+										class="fa fa-moon-o"></i>
+								</span> <br /> <span class="line-height-1 smaller-90">
+										${heartRateDetails.heartRate}/minute </span>
+								</span>
+							</div>
+						</div>
 
 						
-											</div>
-										</div><!-- /.modal-content -->
-									</div><!-- /.modal-dialog -->
-								</div>
+						<div id="steps" class="col-md-3 col-sm-6 col-xs-12" style="height: 200px"></div>
+						<div id="floors" class="col-md-3 col-sm-6 col-xs-12" style="height: 200px"></div>
+						<div id="distance" class="col-md-3 col-sm-6 col-xs-12" style="height: 200px"></div>
+						<br><br>
+						<div id="food" class="col-md-6 col-sm-6 col-xs-12" style="height: 250px"></div>
+			
 
-		<div class="footer">
-			<div class="footer-inner">
-				<!-- #section:basics/footer -->
-				<div class="footer-content">
-					<span class="bigger-120"> <span class="blue bolder">Ace</span>
-						Application &copy; 2013-2014
-					</span> &nbsp; &nbsp; <span class="action-buttons"> <a href="#">
-							<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-					</a> <a href="#"> <i
-							class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-					</a> <a href="#"> <i
-							class="ace-icon fa fa-rss-square orange bigger-150"></i>
-					</a>
-					</span>
+
+						<!-- PAGE CONTENT ENDS -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+
+
+<!-- SSR Recommendations -->
+<h3 class="header smaller lighter blue">Recommendations</h3>
+				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
+					<div class="widget-box widget-color-orange  light-border">
+						<div class="widget-header">
+							<h5 class="widget-title smaller">Light</h5>
+
+
+						</div>
+
+						<div class="widget-body scrollable">
+							<div class="widget-main padding-6">
+								<div class="alert alert-info">Hello World!</div>
+								<div class="alert alert-success">Hello World!</div>
+								<div class="alert alert-danger">Hello World!</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
-				<!-- /section:basics/footer -->
-			</div>
-		</div>
+				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
+					<div class="widget-box widget-color-blue light-border">
+						<div class="widget-header">
+							<h5 class="widget-title smaller">Food</h5>
 
-		<a href="#" id="btn-scroll-up"
-			class="btn-scroll-up btn btn-sm btn-inverse"> <i
-			class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-		</a>
+						</div>
+
+						<div class="widget-body scrollable">
+							<div class="widget-main padding-6">
+								<div class="alert alert-info">Hello World!</div>
+								<div class="alert alert-success">Hello World!</div>
+								<div class="alert alert-danger">Hello World!</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
+					<div class="widget-box widget-color-pink light-border">
+						<div class="widget-header">
+							<h5 class="widget-title smaller">Temperature</h5>
+
+
+						</div>
+
+						<div class="widget-body scrollable">
+							<div class="widget-main padding-6">
+								<div class="alert alert-info">Hello World!</div>
+								<div class="alert alert-success">Hello World!</div>
+								<div class="alert alert-danger">Hello World!</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+			<!-- /.page-content -->
+		</div>
+	</div>
+	<!-- /.main-content -->
+
+
+
+	<div class="footer">
+		<div class="footer-inner">
+			<!-- #section:basics/footer -->
+			<div class="footer-content">
+				<div class="infobox-chart">
+					<span class="sparkline" data-values="3,4,2,3,4,4,2,2"></span>
+				</div>
+				<span class="bigger-120"> <span class="blue bolder">SMACROBS</span>
+					 &copy; 2015-2016
+				</span> &nbsp; &nbsp;
+			</div>
+
+			<!-- /section:basics/footer -->
+		</div>
+	</div>
+
+	<a href="#" id="btn-scroll-up"
+		class="btn-scroll-up btn btn-sm btn-inverse"> <i
+		class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+	</a>
 	</div>
 	<!-- /.main-container -->
 
@@ -800,10 +494,7 @@
 	<!-- inline scripts related to this page -->
 
 	<!-- the following scripts are used in demo only for onpage help and you don't need them -->
-	<link rel="stylesheet"
-		href="<%=request.getContextPath()%>/assets/css/ace.onpage-help.css" />
-	<link rel="stylesheet"
-		href="<%=request.getContextPath()%>/assets/js/themes/sunburst.css" />
+
 
 	<script type="text/javascript"> ace.vars['base'] = '..'; </script>
 	<script
@@ -817,5 +508,238 @@
 	<script src="<%=request.getContextPath()%>/assets/js/language/css.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
+		<script type="text/javascript">
+		
+		//floors
+		$(function () {
+		    $('#floors').highcharts({
+		        chart: {
+		            type: 'column'
+		        },
+		        title: {
+		            text: 'Floors'
+		        },
+		        
+		        xAxis: {
+		            categories: [
+		                'Floors',
+		            ],
+		            crosshair: true
+		        },
+		        yAxis: {
+		            min: 0,
+		            title: {
+		                text: 'Floors'
+		            }
+		        },
+		        tooltip: {
+		            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+		                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+		            footerFormat: '</table>',
+		            useHTML: true
+		        },
+		        plotOptions: {
+		            column: {
+		                pointPadding: 0.2,
+		                borderWidth: 0,
+		                series: {
+		                    colorByPoint: true
+		                }
+		            }
+		        },
+		        series: [{
+		            name: 'Current',
+		            colorByPoint: false,
+		            data: [9],
+		            color:'#FFFF00'
+		        }, {
+		            name: 'Goal',
+		            colorByPoint: false,
+		            data: [10],
+		            color:'#00FFFF'
+
+		        }]
+		    });
+		});
+		
+
+		//steps
+		$(function () {
+		    $('#steps').highcharts({
+		        chart: {
+		            type: 'bar'
+		        },
+		        title: {
+		            text: 'Steps'
+		        },
+		            
+		        xAxis: {
+		            categories: ['4/7/16'],
+		            title: {
+		                text: null
+		            }
+		        },
+		        yAxis: {
+		            min: 0,
+		            max:10000,
+		            title: {
+		                text: 'Steps (thousands)',
+		                align: 'high'
+		            },
+		            labels: {
+		                overflow: 'justify'
+		            }
+		        },
+		            tooltip: {
+		            headerFormat: '<b>{point.key}</b><br>',
+		            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} steps '
+		        },
+		        plotOptions: {
+		            bar: {
+		                dataLabels: {
+		                    enabled: true
+		                }
+		            },
+		            series: {
+	                    colorByPoint: true
+	                }
+		        
+		        },
+		        
+		        credits: {
+		            enabled: false
+		        },
+		        series: [{
+		            name: 'Currents',
+		            colorByPoint: false,
+		            data: [5000],
+		        	color:'orange'
+		        }, {
+		            name: 'Goal',
+		            colorByPoint: false,
+		            data: [10000],
+		            color:'#7FFF00'
+		        }]
+		    });
+		});
+		
+		//distance
+		$(function () {
+    $('#distance').highcharts({
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 5,
+                beta: 15,
+                viewDistance: 25,
+                depth: 40
+            }
+        },
+
+        title: {
+            text: 'Distance'
+        },
+
+        xAxis: {
+            categories: ['4/7/16']
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: 'Distance'
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<b>{point.key}</b><br>',
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y}'
+        },
+
+        plotOptions: {
+            column: {
+                depth: 40
+            },
+            series: {
+                colorByPoint: true
+            }
+        },
+
+        series: [{
+            name: 'Current',
+            colorByPoint: false,
+            data: [3.4],
+            color:'#FFB6C1',
+            stack: 'male'
+        }, {
+            name: 'Goal',
+            colorByPoint: false,
+            data: [5],
+            color:'#00FF7F',
+            stack: 'male'
+        }]
+    });
+});
+		//food
+		$(function () {
+
+		    $(document).ready(function () {
+
+		        // Build the chart
+		        $('#food').highcharts({
+		            chart: {
+		                plotBackgroundColor: null,
+		                plotBorderWidth: null,
+		                plotShadow: false,
+		                type: 'pie'
+		            },
+		            title: {
+		                text: 'Nutrition Values in gms'
+		            },
+		            tooltip: {
+		                pointFormat: '{series.name}: <b>{point.percentage:.1f}gms</b>'
+		            },
+		            plotOptions: {
+		                pie: {
+		                    allowPointSelect: true,
+		                    cursor: 'pointer',
+		                    dataLabels: {
+		                        enabled: false
+		                    },
+		                    showInLegend: true
+		                }
+		            },
+		            series: [{
+		                colorByPoint: true,
+		                data: [{
+		                    name: 'Carbs',
+		                    y: 56.33,
+		                    color:'#00FFFF'
+		                }, {
+		                    name: 'Fat',
+		                    y: 24.03,
+		                    color:'#7FFF00'
+		                }, {
+		                    name: 'Fibre',
+		                    y: 10.38,
+		                    color:'#FF00FF'
+		                }, {
+		                    name: 'Protein',
+		                    y: 4.77,
+		                    color:'#7B68EE'
+		                }, {
+		                    name: 'Sodium',
+		                    y: 0.91,
+		                    color:'	#FF0000'
+		                }]
+		            }]
+		        });
+		    });
+		});
+		
+		</script>
 </body>
 </html>
