@@ -1,93 +1,71 @@
 package service;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
+import com.web.config.Constants;
+import com.web.model.FitbitTokens;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import javax.net.ssl.HttpsURLConnection;
-
-import org.json.JSONObject;
-import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.web.model.FitbitTokens;
-import com.web.utils.Constants;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 @Service("FitbitOAuthService")
 public class FitbitOAuthService implements FitbitOAuthServiceIntf {
-	String redirectUrl;
-	ModelAndView mv;
-	String url;
-	String urlParameters;
-	HttpsURLConnection con;
-	URL urlobj;
-	DataOutputStream dataOutputStream;
-	BufferedReader br;
-	JSONObject jsonObject;
+    private static final Logger logger = LoggerFactory.getLogger(FitbitOAuthService
+            .class);
 
-	public FitbitTokens getFitbitTokens(String authCode) throws IOException {
-		// Create URL
-		url = Constants.getFitbitUriForTokens();
-		urlobj = new URL(url);
 
-		// Create Connection
-		con = (HttpsURLConnection) urlobj.openConnection();
+	public FitbitTokens getFitbitTokens(String authCode) {
+        logger.debug("Asking Fitbit for access tokens");
+        HttpsURLConnection con = null;
+        String data = null;
+        try {
+            URL url = new URL(Constants.fitbitUriForTokens);
+            con = (HttpsURLConnection) url.openConnection();
 
-		// add request header
-		con.setRequestMethod("POST");
-		
-		//TODO: Hardcoded value below. Change it
-		con.setRequestProperty("Authorization",
-				"Basic MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm");
-		con.setRequestProperty("Content-Type",
-				"application/x-www-form-urlencoded");
+            // add request header
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Authorization",
+                    "Basic "+Constants.appClientIdAndSecrect);
+            con.setRequestProperty("Content-Type",
+                    "application/x-www-form-urlencoded");
 
-		urlParameters = getURLParameters() + authCode;
-
-		// Send post request
-		con.setDoOutput(true);
-		DataOutputStream dataOutputStream = new DataOutputStream(
-				con.getOutputStream());
-		dataOutputStream.writeBytes(urlParameters);
-
-		// Close
-		dataOutputStream.flush();
-		dataOutputStream.close();
-
-		int responseCode = con.getResponseCode();
-
-		// Debug statements
-		System.out.println("\nSending 'POST' request to URL : " + url);
-		System.out.println("Post parameters : " + urlParameters);
-		System.out.println("Response Code : " + responseCode);
-
-		// read the response
-		br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-		String inputLine;
-		String fitbitTokens = "";
-
-		while ((inputLine = br.readLine()) != null) {
-			fitbitTokens = fitbitTokens + inputLine + "\n";
-		}
-		br.close();
-
-		// print result
-		System.out.println(fitbitTokens);
-
-		// parse json
-		jsonObject = new JSONObject(fitbitTokens);
-		String accessToken = jsonObject.get("access_token").toString();
-		String refreshToken = jsonObject.get("refresh_token").toString();
-
-		FitbitTokens fitbittokens = new FitbitTokens(accessToken, refreshToken);
-		return fitbittokens;
+            // Send post request
+            con.setDoOutput(true);
+            DataOutputStream dataOutputStream = new DataOutputStream(con
+                    .getOutputStream());
+            dataOutputStream.writeBytes(getURLParameters(authCode));
+            dataOutputStream.flush();
+            dataOutputStream.close();
+            logger.debug("\nSent 'POST' request to URL : " + con.getURL()+
+                    " Response Code : " + con.getResponseCode());
+            data = ServiceUtils.processData(con);
+        } catch (MalformedURLException ex) {
+            logger.error(""+ex);
+        } catch (IOException ex) {
+            logger.error(""+ex);
+        } finally {
+            if (con != null) {
+                try {
+                    con.disconnect();
+                } catch (Exception ex) {
+                    logger.error(""+ex);
+                }
+            }
+        }
+        FitbitTokens fitbitTokens = ServiceUtils.gson.fromJson(data,
+                FitbitTokens.class);
+		return fitbitTokens;
 	}
 
-	private String getURLParameters() {
-		return "client_id=227FN4&grant_type=authorization_code&redirect_uri=http://localhost:8081/smacrobs/oauthredirect&code=";
+	private String getURLParameters(String authCode) {
+		return "client_id="+Constants.fitbitOauthClientId +
+				"&grant_type=authorization_code" +
+				"&redirect_uri=" + Constants.LOCALHOST + Constants
+                .redirectUriFromFitbit +
+				"&code=" + authCode;
 	}
-
 }
