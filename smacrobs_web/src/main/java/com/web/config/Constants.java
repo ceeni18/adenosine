@@ -28,7 +28,7 @@ public class Constants {
     public static final String redirectUriFromFitbit =
             "/oauthredirect";
     public static final String fitbitScope =
-            "activity%20profile%20settings%20sleep%20heartrate";
+            "activity%20profile%20settings%20sleep%20heartrate%20nutrition%20weight";
     public static final String fitbitUriForTokens =
             "https://api.fitbit.com/oauth2/token";
     public static final String sleepLogURL =
@@ -36,7 +36,13 @@ public class Constants {
     public static final String userProfileURL=
             "https://api.fitbit.com/1/user/-/profile.json";
     public static final String heartRateURL =
-            "https://api.fitbit.com/1/user/-/activities/heart/date/today/1d.json";
+            "https://api.fitbit.com/1/user/-/activities/heart/date/";
+    public static final String foodURL =
+            "https://api.fitbit.com/1/user/-/foods/log/date/";
+    public static final String waterURL =
+            "https://api.fitbit.com/1/user/-/foods/log/water/date/";
+    public static final String activityURL =
+            "https://api.fitbit.com/1/user/-/activities/date/";
 
     static {
         if(System.getenv("environment") == "production") {
@@ -50,7 +56,7 @@ public class Constants {
             DATABASE_NAME      = "mydb";
             DATABASE_USERNAME  = "";
             DATABASE_PASSWORD  = "";
-            DATABASE_HOSTNAME  = "192.168.10.2";
+            DATABASE_HOSTNAME  = "localhost";
             DATABASE_PORT      = 27017;
         }
     }

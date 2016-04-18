@@ -1,228 +1,246 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>EaseMySleep</title>
+		<link rel="shortcut icon" href="fevicon.ico">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		
+		
+		<!--[if lte IE 8]><script src="<%=request.getContextPath()%>/home/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie9.css" /><![endif]-->
+		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
 
-<!--Bootstrap Jquery   -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	</head>
+	<body class="index">
+		<div id="page-wrapper">
 
-<!--Bootstrap Javascript  -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+			<!-- Header -->
+				<header id="header" class="alt">
+					<h1 id="logo"><a href="index.html">EaseMySleep <span>by SMACROBS</span></a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="index.html">Home</a></li>
+							<li class="submenu">
+								<a href="#">What's More?</a>
+								<ul>
+									<li><a href="https://www.fitbit.com/">Fitbit</a></li>
+									<li><a href="http://goo.gl/2Kww8i">TI Sensor</a></li>
+									<li><a href="data.html">Data Analytics</a></li>
+									<li><a href="contact.html">Contact Us</a></li>
+								</ul>
+							</li>				
+						</ul>
+					</nav>
+				</header>
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/assets/css/bootstrap.css" />
+			<!-- Banner -->
+				<section id="banner">
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+					<!--
+						".inner" is set up as an inline-block so it automatically expands
+						in both directions to fit whatever's inside it. This means it won't
+						automatically wrap lines, so be sure to use line breaks where
+						appropriate (<br />).
+					-->
+					<div class="inner">
 
-<title>S.M.A.C.R.O.B.S</title>
+						<header>
+							<h2>EaseMySleep</h2>
+						</header>
+						<p>This is <strong>Twenty</strong>, a free
+						<br />
+						responsive template
+						<br />
+						by <a href="http://html5up.net">HTML5 UP</a>.</p>
+						<footer>
+							<ul class="buttons vertical">
+								<li><a href="/smacrobs/oauth" class="button fit scrolly">Connect With Fitbit</a></li>
+							</ul>
+						</footer>
 
-<script type="text/javascript">
-function DisplaySigninModal()
-{
-	$('#signInModal').modal('show'); 
-}
-function DisplayCreateAccountModal()
-{
-	$('#createAccountModal').modal('show'); 
-}
-</script>
+					</div>
 
-</head>
+				</section>
 
-<body>
-	<!-- Navbar -->
-	<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">SMACROBS</a>
+			<!-- Main -->
+				<article id="main">
+
+					<header class="special container">
+						<span class="icon fa-bar-chart-o"></span>
+						<h2>As this is my <strong>twentieth</strong> freebie for HTML5 UP
+						<br />
+						I decided to give it a really creative name.</h2>
+						<p>Turns out <strong>Twenty</strong> was the best I could come up with. Anyway, lame name aside,
+						<br />
+						it's minimally designed, fully responsive, built on HTML5/CSS3/<strong>skel</strong>,
+						and, like all my stuff,
+						<br />
+						released for free under the <a href="http://html5up.net/license">Creative Commons Attribution 3.0</a> license. Have fun!</p>
+					</header>
+
+					<!-- One -->
+						<section class="wrapper style2 container special-alt">
+							<div class="row 50%">
+								<div class="8u 12u(narrower)">
+
+									<header>
+										<h2>Behold the <strong>icons</strong> that visualize what you’re all about. or just take up space. your call bro.</h2>
+									</header>
+									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu comteger ut fermentum lorem. Lorem ipsum dolor sit amet. Sed tristique purus vitae volutpat ultrices. eu elit eget commodo. Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo.</p>
+									<footer>
+										<ul class="buttons">
+											<li><a href="#" class="button">Find Out More</a></li>
+										</ul>
+									</footer>
+
+								</div>
+								<div class="4u 12u(narrower) important(narrower)">
+
+									<ul class="featured-icons">
+										<li><span class="icon fa-bed"><span class="label">Feature 1</span></span></li>
+										<li><span class="icon fa-heartbeat"><span class="label">Feature 2</span></span></li>
+										<li><span class="icon fa-bicycle"><span class="label">Feature 3</span></span></li>
+										<li><span class="icon fa-cutlery"><span class="label">Feature 4</span></span></li>
+										<li><span class="icon fa-tint"><span class="label">Feature 5</span></span></li>
+										<li><span class="icon fa-lightbulb-o"><span class="label">Feature 6</span></span></li>
+										<li><span class="icon fa-fire"><span class="label">Feature 7</span></span></li>
+										<li><span class="icon fa-volume-up"><span class="label">Feature 8</span></span></li>
+									</ul>
+
+								</div>
+							</div>
+						</section>
+
+					<!-- Two -->
+						<section class="wrapper style1 container special">
+							<div class="row">
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<span class="icon featured fa-check"></span>
+										<header>
+											<h3>This is Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<span class="icon featured fa-check"></span>
+										<header>
+											<h3>Also Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<span class="icon featured fa-check"></span>
+										<header>
+											<h3>Probably Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									</section>
+
+								</div>
+							</div>
+						</section>
+
+					<!-- Three -->
+						<section class="wrapper style3 container special">
+
+							<header class="major">
+								<h2>Next look at this <strong>cool stuff</strong></h2>
+							</header>
+
+							<div class="row">
+								<div class="6u 12u(narrower)">
+
+									<section>
+										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+										<header>
+											<h3>A Really Fast Train</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+									</section>
+
+								</div>
+								<div class="6u 12u(narrower)">
+
+									<section>
+										<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+										<header>
+											<h3>An Airport Terminal</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+									</section>
+
+								</div>
+							</div>
+
+							<footer class="major">
+								<ul class="buttons">
+									<li><a href="#" class="button">See More</a></li>
+								</ul>
+							</footer>
+
+						</section>
+
+				</article>
+
+			<!-- CTA -->
+				<section id="cta">
+
+					<header>
+						<h2>Ready to <strong>KNOW MORE</strong>?</h2>
+						<p>Login to our website with your Fitbit credentials. Sleep Better! Feel Better!</p>
+					</header>
+					<footer>
+						<ul class="buttons">
+							<li><a href="/smacrobs/oauth" class="button special">Login with Fitbit</a></li>
+						</ul>
+					</footer>
+
+				</section>
+
+				<!-- Footer -->
+				<footer id="footer">
+
+					<ul class="copyright">
+						<li>&copy; SMACROBS 2015-2016</li><li>Design: <a href="http://html5up.net">TWENTY By HTML5 UP</a></li>
+					</ul>
+
+				</footer>
+
 		</div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="#">Contact Us</a></li>
-				<li><a href="/template">Template</a></li>
-				<li><a href="/smacrobs/oauth">Login with Fitbit</a></li>
-			</ul>
+		<!-- Scripts -->
+			<script src="<%=request.getContextPath()%>/home/js/jquery.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/jquery.dropotron.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/jquery.scrolly.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/jquery.scrollgress.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/skel.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/util.js"></script>
+			<!--[if lte IE 8]><script src="<%=request.getContextPath()%>/home/js/ie/respond.min.js"></script><![endif]-->
+			<script src="<%=request.getContextPath()%>/home/js/main.js"></script>
 
-
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="javascript:DisplayCreateAccountModal();"><i class="glyphicon glyphicon-user"></i>
-						Create Account</a></li>
-				<li><a href="javascript:DisplaySigninModal();"><span
-						class="glyphicon glyphicon-lock"></span> Sign In</a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	<!-- / Navbar -->
-
-	<!-- Corousel -->
-	<div id="carousel-example-generic" class="carousel slide"
-		data-ride="carousel">
-		<!-- Indicators -->
-		<ol class="carousel-indicators">
-			<li data-target="#carousel-example-generic" data-slide-to="0"
-				class="active"></li>
-			<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-		</ol>
-
-		<!-- Wrapper for slides -->
-		<div class="carousel-inner">
-			<div class="item active">
-				<img src="http://placehold.it/1200x315" alt="...">
-				<div class="carousel-caption">
-					<h3>Track Your sleep</h3>
-				</div>
-			</div>
-			<div class="item">
-				<img src="http://placehold.it/1200x315" alt="...">
-				<div class="carousel-caption">
-					<h3>Track Your Sleep Environment</h3>
-				</div>
-			</div>
-			<div class="item">
-				<img src="http://placehold.it/1200x315" alt="...">
-				<div class="carousel-caption">
-					<h3>Understand the factors that affect sleep</h3>
-				</div>
-			</div>
-		</div>
-
-		<!-- Controls -->
-		<a class="left carousel-control" href="#carousel-example-generic"
-			role="button" data-slide="prev"> <span
-			class="glyphicon glyphicon-chevron-left"></span>
-		</a> <a class="right carousel-control" href="#carousel-example-generic"
-			role="button" data-slide="next"> <span
-			class="glyphicon glyphicon-chevron-right"></span>
-		</a>
-	</div>
-	<!-- / Carousel -->
-
-
-	<!-- Sign in Modal -->
-	<div class="container">
-	
-		<div class="modal fade" id="signInModal" role="dialog">
-			<div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-				
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Sign In</h4>
-					</div>
-					
-					<!-- Form inside modal -->
-					<form>
-					<div class="modal-body">
-					
-						
-							<div class="form-group">
-								<label for="exampleInputEmail1">Email address</label> <input
-									type="email" class="form-control" id="exampleInputEmail1"
-									placeholder="Email">
-							</div>
-							
-							<div class="form-group">
-								<label for="exampleInputPassword1">Password</label> <input
-									type="password" class="form-control" id="exampleInputPassword1"
-									placeholder="Password">
-							</div>
-							
-							
-						
-						
-					</div>
-					
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-default">Sign In</button>
-					</div>
-					</form>
-				</div>
-
-			</div>
-		</div>
-
-	</div>
-	<!-- /Sign in Modal -->
-	
-	
-	<!-- Create Account Modal -->
-	<div class="container">
-	
-		<div class="modal fade" id="createAccountModal" role="dialog">
-			<div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-				
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Create Account</h4>
-					</div>
-					
-					<!-- Form inside modal -->
-					<form>
-					<div class="modal-body">
-					
-						<div class="form-group">
-								<label for="exampleInputEmail1">Full Name*</label> <input
-									type="text" class="form-control" id="FullName">
-							</div>
-							
-							<div class="form-group">
-								<label for="exampleInputEmail1">Email address*</label> <input
-									type="email" class="form-control" id="InputEmail1">
-							</div>
-							
-							<div class="form-group">
-								<label for="exampleInputPassword1">Password*</label> <input
-									type="password" class="form-control" id="InputPassword1"
-									placeholder="Password">
-							</div>
-							
-							
-						
-						
-					</div>
-					
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-default">Create</button>
-					</div>
-					</form>
-				</div>
-
-			</div>
-		</div>
-
-	</div>
-	<!-- /Create Modal -->
-
-
-	<div class="footer navbar-fixed-bottom">
-		<p class="text-muted">
-			SMACROBS V 1.0 <span class="glyphicon glyphicon-copyright-mark"></span>
-		</p>
-	</div>
-
-
-
-</body>
+	</body>
 </html>

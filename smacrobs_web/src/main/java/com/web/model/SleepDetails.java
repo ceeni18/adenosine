@@ -38,7 +38,7 @@ public class SleepDetails
                 '}';
     }
 
-    class Summary
+    public class Summary
     {
         private String totalTimeInBed;
 
