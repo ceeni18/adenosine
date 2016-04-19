@@ -7,12 +7,13 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
-<title>SMACROBS</title>
-
+<!-- NV - start 04/18/2016 --> 
+<title>My Dashboard</title>
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico"  type="image/x-icon" />
+<!-- NV - end 04/18/2016 --> 
 <meta name="description" content="" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
 
 
 <!-- bootstrap & fontawesome -->
@@ -72,8 +73,7 @@
 
 		<div class="navbar-container" id="navbar-container">
 			<!-- #section:basics/sidebar.mobile.toggle -->
-			<button type="button" class="navbar-toggle menu-toggler pull-left"
-				id="menu-toggler" data-target="#sidebar">
+			<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
 				<span class="sr-only">Toggle sidebar</span> <span class="icon-bar"></span>
 
 				<span class="icon-bar"></span> <span class="icon-bar"></span>
@@ -82,8 +82,7 @@
 			<!-- /section:basics/sidebar.mobile.toggle -->
 			<div class="navbar-header pull-left">
 				<!-- #section:basics/navbar.layout.brand -->
-				<a href="#" class="navbar-brand"> <small> <i
-						class="fa fa-bed"></i> Smacrobs
+				<a href="#" class="navbar-brand"> <small> <i class="fa fa-bed"></i> EaseMySleep
 				</small>
 				</a>
 
@@ -109,16 +108,23 @@
 								${fullName}
 						</span> <i class="ace-icon fa fa-caret-down"></i>
 					</a>
-
+						<!-- NV - start 04/18/2016 --> 
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="#"> <i class="ace-icon fa fa-power-off"></i>
+							<li><a href="https://www.fitbit.com/logout" onclick = "return redirectFunc()"> 
+							<i class="ace-icon fa fa-power-off" ></i>
 									Logout
 							</a></li>
 						</ul></li>
 
 					<!-- /section:basics/navbar.user_menu -->
 				</ul>
+				<script type="text/javascript">
+					function redirectFunc() {
+						window.open("http://localhost:8080/smacrobs");
+					}
+				</script>
+				<!-- NV - end 04/18/2016 --> 
 			</div>
 
 			<!-- /section:basics/navbar.dropdown -->
@@ -133,7 +139,7 @@
 			</script>
 
 		<!-- #section:basics/sidebar -->
-		<div id="sidebar" class="sidebar                  responsive">
+		<div id="sidebar" class="sidebar responsive">
 			<script type="text/javascript">
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 				</script>
@@ -146,34 +152,28 @@
 
 
 				<ul class="nav nav-list">
-					<li class=""><a href="index.html"> <i
-							class="menu-icon fa fa-user"></i> <span class="menu-text">
-								${fullName} </span>
+					<li class=""><a href="index.html"> <i class="menu-icon fa fa-user"></i> 
+					<span class="menu-text"> ${fullName} </span>
 					</a> <b class="arrow"></b></li>
 
-					<li class=""><a href="index.html"> <i
-							class="menu-icon fa fa-intersex"></i> <span class="menu-text">Gender:
-								${gender} </span>
+					<li class=""><a href="index.html"> <i class="menu-icon fa fa-intersex"></i> 
+							<span class="menu-text">Gender: ${gender} </span>
 					</a> <b class="arrow"></b></li>
 
-					<li class=""><a href="index.html"> <i
-							class="menu-icon fa fa-calendar"></i> <span class="menu-text">Age:
-								${age} </span>
+					<li class=""><a href="index.html"> <i class="menu-icon fa fa-calendar"></i> 
+							<span class="menu-text">Age: ${age} </span>
 					</a> <b class="arrow"></b></li>
 
-					<li class=""><a href="index.html"> <i
-							class="menu-icon fa fa-birthday-cake"></i> <span
-							class="menu-text">DOB: ${dateOfBirth}</span>
+					<li class=""><a href="index.html"> <i class="menu-icon fa fa-birthday-cake"></i> <span
+							class="menu-text">DOB: ${dateOfBirth} </span>
 					</a> <b class="arrow"></b></li>
 					
-					<li class=""><a href="index.html"> <i
-							class="menu-icon fa fa-arrows-v"></i> <span
-							class="menu-text">Height: ${height}</span>
+					<li class=""><a href="index.html"> <i class="menu-icon fa fa-arrows-v"></i> <span
+							class="menu-text">Height: ${height} </span>
 					</a> <b class="arrow"></b></li>
 					
-					<li class=""><a href="index.html"> <i
-							class="menu-icon fa fa-balance-scale"></i> <span
-							class="menu-text">Weight ${weight}</span>
+					<li class=""><a href="index.html"> <i class="menu-icon fa fa-balance-scale"></i> <span
+							class="menu-text">Weight ${weight} </span>
 					</a> <b class="arrow"></b></li>
 
 				</ul>
@@ -249,7 +249,7 @@
 										aria-hidden="true">
 										<span class="white">&times;</span>
 									</button>
-									Input Ti Sensor Key
+									Input TI Sensor Key
 								</div>
 							</div>
 
@@ -462,47 +462,27 @@
 	<!-- page specific plugin scripts -->
 
 	<!-- ace scripts -->
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.scroller.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.colorpicker.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.fileinput.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.typeahead.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.wysiwyg.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.spinner.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.treeview.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.wizard.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.aside.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.scroller.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.colorpicker.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.fileinput.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.typeahead.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.wysiwyg.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.spinner.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.treeview.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.wizard.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.aside.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.ajax-content.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.touch-drag.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.sidebar.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.sidebar-scroll-1.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.submenu-hover.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.widget-box.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.settings.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.settings-rtl.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.settings-skin.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.widget-on-reload.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.ajax-content.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.touch-drag.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.sidebar.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.sidebar-scroll-1.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.submenu-hover.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.widget-box.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.settings.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.settings-rtl.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.settings-skin.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.widget-on-reload.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.searchbox-autocomplete.js"></script>
 
 	<!-- inline scripts related to this page -->
 
@@ -510,17 +490,13 @@
 
 
 	<script type="text/javascript"> ace.vars['base'] = '..'; </script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/elements.onpage-help.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/ace/ace.onpage-help.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.onpage-help.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.onpage-help.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/rainbow.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/language/generic.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/language/generic.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/language/html.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/language/css.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
 		<script type="text/javascript">
 		
 		//floors
@@ -569,7 +545,7 @@
 		        }, {
 		            name: 'Goal',
 		            colorByPoint: false,
-		            data: [10],
+		            data: [${floorsGoal}],
 		            color:'#00FFFF'
 
 		        }]
@@ -630,7 +606,7 @@
 		        }, {
 		            name: 'Goal',
 		            colorByPoint: false,
-		            data: [10000],
+		            data: [${stepsGoal}],
 		            color:'#7FFF00'
 		        }]
 		    });
@@ -689,7 +665,7 @@
         }, {
             name: 'Goal',
             colorByPoint: false,
-            data: [5],
+            data: [${distanceGoal}],
             color:'#00FF7F',
             stack: 'male'
         }]
@@ -753,7 +729,7 @@
 		});
 		
 		
-		//sleep
+		//sleep charts
 		$(function() {
   var colors = [null, '#0033cc', '#00ffff', '#ff33cc']
   Highcharts.setOptions({

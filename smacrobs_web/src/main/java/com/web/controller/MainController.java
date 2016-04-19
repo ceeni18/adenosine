@@ -4,6 +4,7 @@ import ch.qos.logback.classic.LoggerContext;
 
 import com.web.config.Constants;
 import com.web.model.ActivityDetails;
+import com.web.model.ActivityGoalDetails;
 import com.web.model.FoodDetails;
 import com.web.model.HeartRateDetails;
 import com.web.model.SleepDetails;
@@ -83,28 +84,55 @@ public class MainController {
         FoodDetails foodDetails = fitbitDetailsService.getFoodDetails();
         ActivityDetails activityDetails = fitbitDetailsService.getActivityDetails();
         WaterDetails waterDetails = fitbitDetailsService.getWaterDetails();
+        ActivityGoalDetails activityGoalDetails = fitbitDetailsService.getActivityGoalDetails();
 
         mv = new ModelAndView("dashboard");
-        //mv.addObject("userProfile", userProfile);
+
         mv.addObject("sleepDetails", sleepDetails);
         
-        mv=getHeartRate(mv, heartRateDetails);
-        mv=getActivity(mv,activityDetails);
-        mv=getFood(mv,foodDetails);
-        mv=getWater(mv,waterDetails);
-        mv=getUserProfile(mv, userProfile);
+        mv = getHeartRate(mv, heartRateDetails);
+        mv = getActivity(mv,activityDetails);
+        mv = getFood(mv,foodDetails);
+        mv = getWater(mv,waterDetails);
+        mv = getUserProfile(mv, userProfile);
+        mv = getActivityGoals(mv, activityGoalDetails);
+        
+        
         return mv;
     }
 
+	private ModelAndView getActivityGoals(ModelAndView modelAndView, ActivityGoalDetails activityGoalDetails) {
+		String distance = "0";
+		String floor = "0";
+		String step = "0";
+		String cal = "0";
+		
+		try {
+			distance = activityGoalDetails.getGoals().getDistance();
+			floor = activityGoalDetails.getGoals().getFloors();
+			step = activityGoalDetails.getGoals().getSteps();
+			cal = activityGoalDetails.getGoals().getCaloriesOut();
+		}catch(Exception ex) {
+			logger.warn(ex.getMessage());
+		}
+		
+		modelAndView.addObject("distanceGoal", Float.parseFloat(distance));
+		modelAndView.addObject("floorsGoal", Integer.parseInt(floor));
+		modelAndView.addObject("stepsGoal", Integer.parseInt(step));
+		modelAndView.addObject("caloriesOutGoal", Integer.parseInt(cal));
+		System.out.println(modelAndView.toString());
+		return modelAndView;
+	}
+
 	private ModelAndView getUserProfile(ModelAndView modelAndView, UserProfile userProfile) {
-		System.out.println(userProfile.toString());
-		System.out.println(userProfile.getUser().toString());
 		String fullName = "0";
 		String gender = "0";
 		String age = "0";
 		String dateOfBirth = "0";
 		String weight = "0";
+		String weightUnit = "0";
 		double height = 0;
+		String heightUnit = "0";
 		String avatar = "0";
 		try {
 			fullName = userProfile.getUser().getFullName();
@@ -112,7 +140,9 @@ public class MainController {
 			age = userProfile.getUser().getAge();
 			dateOfBirth = userProfile.getUser().getDateOfBirth();
 			weight = userProfile.getUser().getWeight();
+			weightUnit = userProfile.getUser().getWeightUnit();
 			height = Math.round(Double.parseDouble(userProfile.getUser().getHeight()));
+			heightUnit = userProfile.getUser().getHeightUnit();
 			avatar = userProfile.getUser().getAvatar();
 		}catch(Exception ex) {
 			logger.warn(ex.getMessage());
@@ -123,7 +153,9 @@ public class MainController {
 		modelAndView.addObject("age", age);
 		modelAndView.addObject("dateOfBirth", dateOfBirth);
 		modelAndView.addObject("weight", weight);
+		modelAndView.addObject("weightUnit", weightUnit);
 		modelAndView.addObject("height", height);
+		modelAndView.addObject("heightUnit", heightUnit);
 		modelAndView.addObject("avatar", avatar);
 		System.out.println(modelAndView.toString());
 		return modelAndView;

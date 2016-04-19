@@ -12,7 +12,9 @@
 <html lang="en">
 	<head>
 		<title>EaseMySleep</title>
-		<link rel="shortcut icon" href="fevicon.ico">
+		<!-- NV - start 04/18/2016 --> 
+		<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico"  type="image/x-icon" />
+		<!-- NV - end 04/18/2016 --> 
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -37,10 +39,12 @@
 							<li class="submenu">
 								<a href="#">What's More?</a>
 								<ul>
+									<!-- NV - start 04/18/2016 --> 
 									<li><a href="https://www.fitbit.com/">Fitbit</a></li>
 									<li><a href="http://goo.gl/2Kww8i">TI Sensor</a></li>
-									<li><a href="data.html">Data Analytics</a></li>
-									<li><a href="contact.html">Contact Us</a></li>
+									<li><a href="<%=request.getContextPath()%>/data.html">Data Analytics</a></li>
+									<li><a href="<%=request.getContextPath()%>/contact.html">Contact Us</a></li>
+									<!-- NV - end 04/18/2016 --> 
 								</ul>
 							</li>				
 						</ul>

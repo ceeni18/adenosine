@@ -3,21 +3,20 @@ package service;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-
-import com.web.config.Constants;
-import com.web.model.ActivityDetails;
-import com.web.model.FoodDetails;
-import com.web.model.HeartRateDetails;
-import com.web.model.SleepDetails;
-import com.web.model.FitbitTokens;
-import com.web.model.UserProfile;
-import com.web.model.WaterDetails;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.web.config.Constants;
+import com.web.model.ActivityDetails;
+import com.web.model.ActivityGoalDetails;
+import com.web.model.FitbitTokens;
+import com.web.model.FoodDetails;
+import com.web.model.HeartRateDetails;
+import com.web.model.SleepDetails;
+import com.web.model.WaterDetails;
 
 import repository.FitbitDetailsRepositoryIntf;
 
@@ -100,6 +99,18 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		return waterDetails;
 	}
 	
+	public ActivityGoalDetails getActivityGoalDetails() {
+		String data = ServiceUtils.httpGet(Constants.activityGoalURL,
+                access_token);
+		ActivityGoalDetails activityGoalDetails = ServiceUtils.gson.fromJson(data,
+				ActivityGoalDetails.class);
+		System.out.println("GOAL PATTERNS"+activityGoalDetails);
+		if(activityGoalDetails != null){
+			//TODO: Save
+			//fitbitDetailsRepository.saveActivityGoalData(activityGoalDetails);
+		}
+		return activityGoalDetails;
+	}
 	
 	private String toDate() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

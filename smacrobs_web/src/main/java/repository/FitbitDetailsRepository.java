@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
-@Service("SleepDetailsRepository")
+@Service("FitbitDetailsRepository")
 public class FitbitDetailsRepository implements FitbitDetailsRepositoryIntf {
 	private static final Logger logger = LoggerFactory.getLogger(FitbitDetailsRepository.class);
 	

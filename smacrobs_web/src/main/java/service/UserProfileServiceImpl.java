@@ -34,15 +34,9 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf {
 		System.out.println("USER PROFILE PATTERNS"+userProfileDetails);
 		if(userProfileDetails != null){
 			//TODO: Save
-			//fitbitDetailsRepository.saveWaterData(foodDetails);
+			userProfileRepository.createUser(userProfileDetails);
 		}
 		return userProfileDetails;
 	}
 	
-	private String toDate() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, -1);
-		return dateFormat.format(cal.getTime());
-	}
 }
