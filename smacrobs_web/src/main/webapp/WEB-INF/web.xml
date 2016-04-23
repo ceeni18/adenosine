@@ -4,7 +4,7 @@
 
 <!-- Order of elements should not be changed -->
 <web-app>
-	<display-name>Smacrobs Web Application</display-name>
+	<display-name>EaseMySleep | Web Application</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>

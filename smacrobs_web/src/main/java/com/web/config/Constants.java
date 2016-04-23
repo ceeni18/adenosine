@@ -1,9 +1,5 @@
 package com.web.config;
 
-/**
- * Created by uday on 3/24/16.
- */
-
 public class Constants {
 
 	public static final String LOCALHOST = "http://localhost:8080/smacrobs";
@@ -45,6 +41,7 @@ public class Constants {
 			"https://api.fitbit.com/1/user/-/activities/date/";
 	public static final String activityGoalURL = 
 			"https://api.fitbit.com/1/user/-/activities/goals/daily.json";
+	public static final String dateFormat = "yyyy-MM-dd";
 
 	static {
 		if(System.getenv("environment") == "production") {

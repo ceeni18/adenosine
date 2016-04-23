@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE HTML>
 <!--
 	Twenty by HTML5 UP
@@ -32,18 +31,18 @@
 
 			<!-- Header -->
 				<header id="header" class="alt">
-					<h1 id="logo"><a href="index.html">EaseMySleep <span>by SMACROBS</span></a></h1>
+					<h1 id="logo"><a href="<%=request.getContextPath()%>">EaseMySleep <span>by SMACROBS</span></a></h1>
 					<nav id="nav">
 						<ul>
-							<li class="current"><a href="index.html">Home</a></li>
+							<li class="current"><a href="<%=request.getContextPath()%>">Home</a></li>
 							<li class="submenu">
 								<a href="#">What's More?</a>
 								<ul>
 									<!-- NV - start 04/18/2016 --> 
-									<li><a href="https://www.fitbit.com/">Fitbit</a></li>
-									<li><a href="http://goo.gl/2Kww8i">TI Sensor</a></li>
-									<li><a href="<%=request.getContextPath()%>/data.html">Data Analytics</a></li>
-									<li><a href="<%=request.getContextPath()%>/contact.html">Contact Us</a></li>
+									<li><a href="/smacrobs/fitbit">Fitbit</a></li>
+									<li><a href="/smacrobs/senso">TI Sensor</a></li>
+									<li><a href="/smacrobs/data">Data Analytics</a></li>
+									<li><a href="/smacrobs/contact">Contact Us</a></li>
 									<!-- NV - end 04/18/2016 --> 
 								</ul>
 							</li>				
@@ -65,11 +64,12 @@
 						<header>
 							<h2>EaseMySleep</h2>
 						</header>
-						<p>This is <strong>Twenty</strong>, a free
-						<br />
-						responsive template
-						<br />
-						by <a href="http://html5up.net">HTML5 UP</a>.</p>
+						<p style="font-size:25px">Did you have a restless sleep last night?
+						<br /><br />
+						<strong> Wonder Why?</strong>
+						<br /><br />
+						Click to know more.
+						</p>
 						<footer>
 							<ul class="buttons vertical">
 								<li><a href="/smacrobs/oauth" class="button fit scrolly">Connect With Fitbit</a></li>
@@ -85,15 +85,13 @@
 
 					<header class="special container">
 						<span class="icon fa-bar-chart-o"></span>
-						<h2>As this is my <strong>twentieth</strong> freebie for HTML5 UP
+						<h2><strong>SLEEP TRIVIA</strong></h2> 
 						<br />
-						I decided to give it a really creative name.</h2>
-						<p>Turns out <strong>Twenty</strong> was the best I could come up with. Anyway, lame name aside,
-						<br />
-						it's minimally designed, fully responsive, built on HTML5/CSS3/<strong>skel</strong>,
-						and, like all my stuff,
-						<br />
-						released for free under the <a href="http://html5up.net/license">Creative Commons Attribution 3.0</a> license. Have fun!</p>
+						<ul class="lists">
+							<li>Did you know that you may die after 96 hours without sleep?</li>
+						 	<li>You will lose all your senses after 150 hours without sleep?</li>
+							<li><strong>Sleep Deprivation</strong> is so debilitating that it is sometimes used as a component of military interrogation.</li>
+						</ul>
 					</header>
 
 					<!-- One -->
@@ -102,9 +100,9 @@
 								<div class="8u 12u(narrower)">
 
 									<header>
-										<h2>Behold the <strong>icons</strong> that visualize what you’re all about. or just take up space. your call bro.</h2>
+										<h2>Your sleep decides the energy during the day and the energy defines you.</h2>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu comteger ut fermentum lorem. Lorem ipsum dolor sit amet. Sed tristique purus vitae volutpat ultrices. eu elit eget commodo. Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo.</p>
+									<p>Your food and water in-take, your activities during the day, the coffee you drink, the drink that makes you high, your smartphone, laptop and the big screens, the temperature in your bedroom, the mattress on your bed. All of these contribute to your sleep. Do you care? </p>
 									<footer>
 										<ul class="buttons">
 											<li><a href="#" class="button">Find Out More</a></li>
@@ -115,14 +113,14 @@
 								<div class="4u 12u(narrower) important(narrower)">
 
 									<ul class="featured-icons">
-										<li><span class="icon fa-bed"><span class="label">Feature 1</span></span></li>
-										<li><span class="icon fa-heartbeat"><span class="label">Feature 2</span></span></li>
-										<li><span class="icon fa-bicycle"><span class="label">Feature 3</span></span></li>
-										<li><span class="icon fa-cutlery"><span class="label">Feature 4</span></span></li>
-										<li><span class="icon fa-tint"><span class="label">Feature 5</span></span></li>
-										<li><span class="icon fa-lightbulb-o"><span class="label">Feature 6</span></span></li>
-										<li><span class="icon fa-fire"><span class="label">Feature 7</span></span></li>
-										<li><span class="icon fa-volume-up"><span class="label">Feature 8</span></span></li>
+										<li><span class="icon fa-bed"></span></li>
+										<li><span class="icon fa-heartbeat"></span></li>
+										<li><span class="icon fa-bicycle"></span></li>
+										<li><span class="icon fa-cutlery"></span></li>
+										<li><span class="icon fa-tint"></span></li>
+										<li><span class="icon fa-lightbulb-o"></span></li>
+										<li><span class="icon fa-fire"></span></li>
+										<li><span class="icon fa-volume-up"></span></li>
 									</ul>
 
 								</div>
@@ -139,7 +137,7 @@
 										<header>
 											<h3>This is Something</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<p>People who don't get enough sleep are more likely to have bigger appetites due to the fact that their leptin levels (an appetite-regulating hormone) fall, promoting appetite increase.</p>
 									</section>
 
 								</div>
@@ -150,7 +148,7 @@
 										<header>
 											<h3>Also Something</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<p>In general, most healthy adults need seven to nine hours of sleep a night. However, some individuals are able to function without sleepiness or drowsiness after as little as six hours of sleep. Others can't perform at their peak unless they've slept for ten hours.</p>
 									</section>
 
 								</div>
@@ -161,7 +159,7 @@
 										<header>
 											<h3>Probably Something</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<p>24 hours of wakefulness caused as much impairment as a blood alcohol content of 0.10%.Microsleeps are brief episodes of sleep that occur in the midst of ongoing wakeful activity. They can happen in people who are sleep deprived, often without their awareness.</p>
 									</section>
 
 								</div>
@@ -172,40 +170,35 @@
 						<section class="wrapper style3 container special">
 
 							<header class="major">
-								<h2>Next look at this <strong>cool stuff</strong></h2>
+								<h2>Next look at these <strong>short videos</strong></h2>
 							</header>
 
 							<div class="row">
 								<div class="6u 12u(narrower)">
 
 									<section>
-										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+										<!-- <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>-->
+										<iframe width="500" height="300" src="https://www.youtube.com/embed/qPoZVQvsbW0" frameborder="0" allowfullscreen></iframe>
 										<header>
-											<h3>A Really Fast Train</h3>
+											<h3>What is Sleep Deprivation?</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+										<p>Watch this video to understand the risks of sleep deprivation.</p>
 									</section>
 
 								</div>
 								<div class="6u 12u(narrower)">
 
 									<section>
-										<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+										<!-- <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>-->
+										<iframe width="500" height="300" src="//www.dailymotion.com/embed/video/x1ky31w" frameborder="0" allowfullscreen></iframe>
 										<header>
-											<h3>An Airport Terminal</h3>
+											<h3>How to sleep better?</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+										<p>Watch this video to understand sleep and sleep better.</p>
 									</section>
 
 								</div>
 							</div>
-
-							<footer class="major">
-								<ul class="buttons">
-									<li><a href="#" class="button">See More</a></li>
-								</ul>
-							</footer>
-
 						</section>
 
 				</article>
@@ -219,7 +212,7 @@
 					</header>
 					<footer>
 						<ul class="buttons">
-							<li><a href="/smacrobs/oauth" class="button special">Login with Fitbit</a></li>
+							<li><a href="<%=request.getContextPath()%>/smacrobs/oauth" class="button special">Login with Fitbit</a></li>
 						</ul>
 					</footer>
 
@@ -229,7 +222,7 @@
 				<footer id="footer">
 
 					<ul class="copyright">
-						<li>&copy; SMACROBS 2015-2016</li><li>Design: <a href="http://html5up.net">TWENTY By HTML5 UP</a></li>
+						<li>&copy; <strong>SMACROBS</strong> 2015-2016</li><li>Design: <a href="http://html5up.net">TWENTY By HTML5 UP</a></li>
 					</ul>
 
 				</footer>

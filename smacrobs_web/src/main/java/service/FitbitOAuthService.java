@@ -14,50 +14,51 @@ import java.net.URL;
 
 @Service("FitbitOAuthService")
 public class FitbitOAuthService implements FitbitOAuthServiceIntf {
-    private static final Logger logger = LoggerFactory.getLogger(FitbitOAuthService
-            .class);
+	private static final Logger logger = LoggerFactory.getLogger(FitbitOAuthService
+			.class);
 
 
 	public FitbitTokens getFitbitTokens(String authCode) {
-        logger.debug("Asking Fitbit for access tokens");
-        HttpsURLConnection con = null;
-        String data = null;
-        try {
-            URL url = new URL(Constants.fitbitUriForTokens);
-            con = (HttpsURLConnection) url.openConnection();
+		logger.info("Asking Fitbit for access tokens");
+		HttpsURLConnection con = null;
+		String data = null;
+		try {
+			URL url = new URL(Constants.fitbitUriForTokens);
+			con = (HttpsURLConnection) url.openConnection();
 
-            // add request header
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Authorization",
-                    "Basic "+Constants.appClientIdAndSecrect);
-            con.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
+			// add request header
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Authorization",
+					"Basic "+Constants.appClientIdAndSecrect);
+			con.setRequestProperty("Content-Type",
+					"application/x-www-form-urlencoded");
+			con.setRequestProperty("Accept-Language", "en_US");
 
-            // Send post request
-            con.setDoOutput(true);
-            DataOutputStream dataOutputStream = new DataOutputStream(con
-                    .getOutputStream());
-            dataOutputStream.writeBytes(getURLParameters(authCode));
-            dataOutputStream.flush();
-            dataOutputStream.close();
-            logger.debug("\nSent 'POST' request to URL : " + con.getURL()+
-                    " Response Code : " + con.getResponseCode());
-            data = ServiceUtils.processData(con);
-        } catch (MalformedURLException ex) {
-            logger.error(""+ex);
-        } catch (IOException ex) {
-            logger.error(""+ex);
-        } finally {
-            if (con != null) {
-                try {
-                    con.disconnect();
-                } catch (Exception ex) {
-                    logger.error(""+ex);
-                }
-            }
-        }
-        FitbitTokens fitbitTokens = ServiceUtils.gson.fromJson(data,
-                FitbitTokens.class);
+			// Send post request
+			con.setDoOutput(true);
+			DataOutputStream dataOutputStream = new DataOutputStream(con
+					.getOutputStream());
+			dataOutputStream.writeBytes(getURLParameters(authCode));
+			dataOutputStream.flush();
+			dataOutputStream.close();
+			logger.debug("\nSent 'POST' request to URL : " + con.getURL()+
+					" Response Code : " + con.getResponseCode());
+			data = ServiceUtils.processData(con);
+		} catch (MalformedURLException ex) {
+			logger.error(""+ex);
+		} catch (IOException ex) {
+			logger.error(""+ex);
+		} finally {
+			if (con != null) {
+				try {
+					con.disconnect();
+				} catch (Exception ex) {
+					logger.error(""+ex);
+				}
+			}
+		}
+		FitbitTokens fitbitTokens = ServiceUtils.gson.fromJson(data,
+				FitbitTokens.class);
 		return fitbitTokens;
 	}
 
@@ -65,7 +66,7 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 		return "client_id="+Constants.fitbitOauthClientId +
 				"&grant_type=authorization_code" +
 				"&redirect_uri=" + Constants.LOCALHOST + Constants
-                .redirectUriFromFitbit +
+				.redirectUriFromFitbit +
 				"&code=" + authCode;
 	}
 }

@@ -7,10 +7,12 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
-<!-- NV - start 04/18/2016 --> 
-<title>My Dashboard</title>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico"  type="image/x-icon" />
-<!-- NV - end 04/18/2016 --> 
+<!-- NV - start 04/18/2016 -->
+<title>My Dashboard | EaseMySleep</title>
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/images/favicon.ico"
+	type="image/x-icon" />
+<!-- NV - end 04/18/2016 -->
 <meta name="description" content="" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -62,6 +64,7 @@
 <!-- High charts -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
 </head>
 
 <body class="no-skin">
@@ -73,7 +76,8 @@
 
 		<div class="navbar-container" id="navbar-container">
 			<!-- #section:basics/sidebar.mobile.toggle -->
-			<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+			<button type="button" class="navbar-toggle menu-toggler pull-left"
+				id="menu-toggler" data-target="#sidebar">
 				<span class="sr-only">Toggle sidebar</span> <span class="icon-bar"></span>
 
 				<span class="icon-bar"></span> <span class="icon-bar"></span>
@@ -82,7 +86,8 @@
 			<!-- /section:basics/sidebar.mobile.toggle -->
 			<div class="navbar-header pull-left">
 				<!-- #section:basics/navbar.layout.brand -->
-				<a href="#" class="navbar-brand"> <small> <i class="fa fa-bed"></i> EaseMySleep
+				<a href="#" class="navbar-brand"> <small> <i
+						class="fa fa-bed"></i> EaseMySleep
 				</small>
 				</a>
 
@@ -97,23 +102,21 @@
 			<div class="navbar-buttons navbar-header pull-right"
 				role="navigation">
 				<ul class="nav ace-nav">
-					
+
 
 
 					<!-- #section:basics/navbar.user_menu -->
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
 						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="${avatar}" alt="User's Photo" /> <span
-							class="user-info"> <small>Welcome,</small>
-								${fullName}
+							src="${avatar}" alt="User's Photo" /> <span class="user-info">
+								<small>Welcome,</small> ${fullName}
 						</span> <i class="ace-icon fa fa-caret-down"></i>
-					</a>
-						<!-- NV - start 04/18/2016 --> 
+					</a> <!-- NV - start 04/18/2016 -->
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="https://www.fitbit.com/logout" onclick = "return redirectFunc()"> 
-							<i class="ace-icon fa fa-power-off" ></i>
-									Logout
+							<li><a href="https://www.fitbit.com/logout"
+								onclick="return redirectFunc()"> <i
+									class="ace-icon fa fa-power-off"></i> Logout
 							</a></li>
 						</ul></li>
 
@@ -124,7 +127,7 @@
 						window.open("http://localhost:8080/smacrobs");
 					}
 				</script>
-				<!-- NV - end 04/18/2016 --> 
+				<!-- NV - end 04/18/2016 -->
 			</div>
 
 			<!-- /section:basics/navbar.dropdown -->
@@ -144,42 +147,49 @@
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 				</script>
 
-		
+
 			<!-- /.sidebar-shortcuts -->
 
 			<!--SSR put the profile details here-->
+			<!-- NV - start 04/18/2016 -->
 			<div id="profile">
 
 
 				<ul class="nav nav-list">
-					<li class=""><a href="index.html"> <i class="menu-icon fa fa-user"></i> 
-					<span class="menu-text"> ${fullName} </span>
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-user"></i> <span class="menu-text">
+								${fullName} </span>
 					</a> <b class="arrow"></b></li>
 
-					<li class=""><a href="index.html"> <i class="menu-icon fa fa-intersex"></i> 
-							<span class="menu-text">Gender: ${gender} </span>
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-intersex"></i> <span class="menu-text">
+								${gender} </span>
 					</a> <b class="arrow"></b></li>
 
-					<li class=""><a href="index.html"> <i class="menu-icon fa fa-calendar"></i> 
-							<span class="menu-text">Age: ${age} </span>
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-calendar"></i> <span class="menu-text">
+								${age} years</span>
 					</a> <b class="arrow"></b></li>
 
-					<li class=""><a href="index.html"> <i class="menu-icon fa fa-birthday-cake"></i> <span
-							class="menu-text">DOB: ${dateOfBirth} </span>
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-birthday-cake"></i> <span
+							class="menu-text">${dateOfBirth} </span>
 					</a> <b class="arrow"></b></li>
-					
-					<li class=""><a href="index.html"> <i class="menu-icon fa fa-arrows-v"></i> <span
-							class="menu-text">Height: ${height} </span>
+
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-arrows-v"></i> <span class="menu-text">
+								${height} inches</span>
 					</a> <b class="arrow"></b></li>
-					
-					<li class=""><a href="index.html"> <i class="menu-icon fa fa-balance-scale"></i> <span
-							class="menu-text">Weight ${weight} </span>
+
+					<li class=""><a href="index.html"> <i
+							class="menu-icon fa fa-balance-scale"></i> <span
+							class="menu-text">${weight} pounds</span>
 					</a> <b class="arrow"></b></li>
 
 				</ul>
 
 			</div>
-
+			<!-- NV - end 04/18/2016 -->
 			<!-- #section:basics/sidebar.layout.minimize -->
 			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 				<i class="ace-icon fa fa-angle-double-left"
@@ -207,12 +217,12 @@
 						</script>
 
 					<ul class="breadcrumb">
-						<li><i class="ace-icon fa fa-home home-icon active"></i> <a href="#">Home</a>
-						</li>
+						<li><i class="ace-icon fa fa-home home-icon active"></i> <a
+							href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 					</ul>
 					<!-- /.breadcrumb -->
 
-				
+
 
 					<!-- /section:basics/content.searchbox -->
 				</div>
@@ -287,6 +297,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- SSR page contents -->
+						<!-- NV - start 04/21/2016 -->
 						<!-- PAGE CONTENT BEGINS -->
 
 
@@ -300,59 +311,105 @@
 										${heartRate}/minute </span>
 								</span>
 							</div>
-							
-							<div id="heartData">
+						</div>
+						
+						
+						<div class="col-md-1 col-sm-4 col-xs-12">
+							<div id="calData">
 								<span class="btn btn-app btn-sm btn-success no-hover"> <span
 									class="line-height-1 bigger-170"> <i
 										class="fa fa-cutlery"></i>
 								</span> <br /> <span class="line-height-1 smaller-90">
-										${heartRateDetails.heartRate}/minute </span>
+										${caloriesIn} cal</span>
+								</span>
+							</div>
+						</div>
+
+						<div class="col-md-1 col-sm-4 col-xs-12">
+							<div id="waterData">
+								<span class="btn btn-app btn-sm btn-purple no-hover"> <span
+									class="line-height-1 bigger-170"> <i class="fa fa-tint"></i>
+								</span> <br /> <span class="line-height-1 smaller-90"> ${water}
+										fl. oz.</span>
 								</span>
 							</div>
 						</div>
 						
 						<div class="col-md-1 col-sm-4 col-xs-12">
-							<div id="heartData">
-								<span class="btn btn-app btn-sm btn-purple no-hover"> <span
-									class="line-height-1 bigger-170"> <i
-										class="fa fa-tint"></i>
-								</span> <br /> <span class="line-height-1 smaller-90">
-										${water} litre</span>
-								</span>
-							</div>
-							
 							
 							<div id="heartData">
 								<span class="btn btn-app btn-sm btn-yellow no-hover"> <span
 									class="line-height-1 bigger-170"> <i
 										class="fa fa-moon-o"></i>
 								</span> <br /> <span class="line-height-1 smaller-90">
-										${heartRateDetails.heartRate}/minute </span>
+										${sleepDuration} </span>
 								</span>
 							</div>
 						</div>
 
+							<!-- PAGE CONTENT ENDS -->
+							
+
+						<div class="col-md-1 col-sm-4 col-xs-12">
+							<div id="sleepEffData">
+								<span class="btn btn-app btn-sm btn-primary no-hover"> <span
+									class="line-height-1 bigger-170"> <i class="fa fa-tint"></i>
+								</span> <br /> <span class="line-height-1 smaller-90"> ${efficiency}
+										%</span>
+								</span>
+							</div>
+						</div>
+						
+							<div class="col-md-1 col-sm-4 col-xs-12">
+							<div id="sleepCountData">
+								<span class="btn btn-app btn-sm btn-info no-hover"> <span
+									class="line-height-1 bigger-170"> <i
+										class="fa fa-moon-o"></i>
+								</span> <br /> <span class="line-height-1 smaller-90">
+										${awakeningTime}x Awake </span>
+								</span>
+							</div>
+						</div>
+						<h1>Hi ${fullName}, Welcome to EaseMySleep!</h1>
+							<h4>This is a personalized dashboard for tracking your sleep
+								and other activities</h4>
 						
 						
-						<div id="steps" class="col-md-3 col-sm-6 col-xs-12" style="height: 200px"></div>
-						<div id="floors" class="col-md-3 col-sm-6 col-xs-12" style="height: 200px"></div>
-						<div id="distance" class="col-md-3 col-sm-6 col-xs-12" style="height: 200px"></div>
-						
+					</div>
+					<!-- /.col -->
+				</div>
+
+				<!-- /.row -->
+				<!-- /section:settings.box -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="sleep" class="col-md-10 col-sm-6 col-xs-12"
+							style="height: 350px"></div>
+						<div id="temp" class="col-md-10 col-sm-6 col-xs-12"
+							style="height: 500px"></div>
 						<hr>
-						<div id="sleep" class="col-md-10 col-sm-6 col-xs-12" style="height: 300px"></div>
-						<div id="food" class="col-md-3 col-sm-6 col-xs-12" style="height: 250px"></div>
-			
-
-
-						<!-- PAGE CONTENT ENDS -->
+						<hr>
+						<div id="steps" class="col-md-3 col-sm-6 col-xs-12"
+							style="height: 200px"></div>
+						<div id="floors" class="col-md-3 col-sm-6 col-xs-12"
+							style="height: 200px"></div>
+						<div id="distance" class="col-md-3 col-sm-6 col-xs-12"
+							style="height: 200px"></div>
+						<!-- NV - end 04/21/2016 -->
 					</div>
 					<!-- /.col -->
 				</div>
 				<!-- /.row -->
+				<!-- /section:settings.box -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="food" class="col-md-3 col-sm-6 col-xs-12"
+							style="height: 250px"></div>
+					</div>
+				</div>
 
-
-<!-- SSR Recommendations -->
-<h3 class="header smaller lighter blue">Recommendations</h3>
+				<!-- SSR Recommendations -->
+				<h3 class="header smaller lighter blue">Recommendations</h3>
 				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
 					<div class="widget-box widget-color-orange  light-border">
 						<div class="widget-header">
@@ -425,7 +482,7 @@
 					<span class="sparkline" data-values="3,4,2,3,4,4,2,2"></span>
 				</div>
 				<span class="bigger-120"> <span class="blue bolder">SMACROBS</span>
-					 &copy; 2015-2016
+					&copy; 2015-2016
 				</span> &nbsp; &nbsp;
 			</div>
 
@@ -462,27 +519,47 @@
 	<!-- page specific plugin scripts -->
 
 	<!-- ace scripts -->
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.scroller.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.colorpicker.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.fileinput.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.typeahead.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.wysiwyg.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.spinner.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.treeview.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.wizard.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.aside.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.scroller.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.colorpicker.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.fileinput.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.typeahead.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.wysiwyg.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.spinner.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.treeview.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.wizard.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.aside.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.ajax-content.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.touch-drag.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.sidebar.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.sidebar-scroll-1.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.submenu-hover.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.widget-box.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.settings.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.settings-rtl.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.settings-skin.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.widget-on-reload.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.ajax-content.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.touch-drag.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.sidebar.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.sidebar-scroll-1.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.submenu-hover.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.widget-box.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.settings.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.settings-rtl.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.settings-skin.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.widget-on-reload.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.searchbox-autocomplete.js"></script>
 
 	<!-- inline scripts related to this page -->
 
@@ -490,14 +567,19 @@
 
 
 	<script type="text/javascript"> ace.vars['base'] = '..'; </script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/elements.onpage-help.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/ace/ace.onpage-help.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/elements.onpage-help.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/ace/ace.onpage-help.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/rainbow.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/language/generic.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/language/generic.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/language/html.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/language/css.js"></script>
-	<script src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
-		<script type="text/javascript">
+	<script
+		src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
+
+	<script type="text/javascript">
 		
 		//floors
 		$(function () {
@@ -511,14 +593,14 @@
 		        
 		        xAxis: {
 		            categories: [
-		                'Floors',
+		                //'Floors',
 		            ],
 		            crosshair: true
 		        },
 		        yAxis: {
 		            min: 0,
 		            title: {
-		                text: 'Floors'
+		                //text: 'Floors'
 		            }
 		        },
 		        tooltip: {
@@ -564,7 +646,7 @@
 		        },
 		            
 		        xAxis: {
-		            categories: ['4/7/16'],
+		            categories: ['Steps',],
 		            title: {
 		                text: null
 		            }
@@ -631,7 +713,7 @@
         },
 
         xAxis: {
-            categories: ['4/7/16']
+            categories: ['Distance',]
         },
 
         yAxis: {
@@ -673,6 +755,11 @@
 });
 		//food
 		$(function () {
+			/* Highcharts.setOptions({
+		        lang: {
+	                noData: "No food data to display"
+	            }
+		    }); */
 
 		    $(document).ready(function () {
 
@@ -700,6 +787,7 @@
 		                    showInLegend: true
 		                }
 		            },
+		           
 		            series: [{
 		                colorByPoint: true,
 		                data: [{
@@ -728,6 +816,110 @@
 		    });
 		});
 		
+		<!-- NV - start 04/18/2016 -->
+		//Synchronized Charts
+		$(function () {
+
+		    var ordersJson = '{"charts":[{"name":"Humidity","units": "%","type": "line","data":[[1446994800000,18.5],[1446998400000,18.6],[1447002000000,18.4],[1447005600000,18.4],[1447009200000,18.5],[1447012800000,17.5],[1447016400000,18.5],[1447020000000,17.8],[1447023600000,18.6],[1447027200000,20.1],[1447030800000,20.5],[1447034400000,20.4],[1447038000000,18.5],[1447041600000,18.3],[1447045200000,18.0],[1447048800000,18.2],[1447052400000,18.4],[1447056000000,18.5],[1447059600000,18.3],[1447063200000,18.8],[1447066800000,19.0],[1447070400000,18.5],[1447074000000,18.9],[1447077600000,18.4]]},{"name":"Temperature","units": "°C","type": "line","data":[[1446994800000,18.5],[1446998400000,18.6],[1447002000000,18.4],[1447005600000,18.4],[1447009200000,18.5],[1447012800000,17.5],[1447016400000,18.5],[1447020000000,17.8],[1447023600000,18.6],[1447027200000,20.1],[1447030800000,20.5],[1447034400000,20.4],[1447038000000,18.5],[1447041600000,18.3],[1447045200000,18.0],[1447048800000,18.2],[1447052400000,18.4],[1447056000000,18.5],[1447059600000,18.3],[1447063200000,18.8],[1447066800000,19.0],[1447070400000,18.5],[1447074000000,18.9],[1447077600000,18.4]]},{"name":"Light","type": "line","units": "lux","data":[[1446994800000,55.1],[1446998400000,55],[1447002000000,54.4],[1447005600000,54.4],[1447009200000,54.3],[1447012800000,54.1],[1447016400000,55.1],[1447020000000,55.1],[1447023600000,55.1],[1447027200000,55.1],[1447030800000,55.1],[1447034400000,55.1],[1447038000000,55.1],[1447041600000,55.1],[1447045200000,55.1],[1447048800000,55.1],[1447052400000,55.1],[1447056000000,55.1],[1447059600000,55.1],[1447063200000,55.1],[1447066800000,55.1],[1447070400000,55.1],[1447074000000,55.1],[1447077600000,55.1]]}]}';
+
+		    Highcharts.setOptions({
+		        global: {
+		            timezoneOffset: 7 * 60 //7 hours ahead of UTC
+		        }
+		    });
+
+		    var json = $.parseJSON(ordersJson),
+		        container = $('#temp');
+
+		    var row = $('<div class="row">').appendTo(container);
+		    $.each(json.charts, function (i, chart) {
+		        var column = $('<div class="col-md-12" ">').appendTo(row);
+		        $('<div class="chart" id="' + i + '">')
+		            .appendTo(column)
+		            .highcharts({
+		            chart: {
+		                marginLeft: 40,
+		                spacingTop: 20,
+		                spacingBottom: 30,
+		                height: 260,
+		                type: chart.type
+		            },
+		            title: {
+		                text: chart.name,
+		                align: 'left',
+		                x: 30
+		            },
+		            credits: {
+		                enabled: false
+		            },
+		            legend: {
+		                enabled: false
+		            },
+		            xAxis: {
+		                type: 'datetime',
+		                crosshair: true,
+		                tickInterval: 1000 * 3600,
+		                labels: {
+		        					formatter: function() {
+		          					return Highcharts.dateFormat('%H:%M', this.value);
+		       						}
+		      					}
+		            },
+		            yAxis: {
+		               visible: false,
+		            },
+		            tooltip: {
+		                formatter: function() {
+		        					var d = new Date(this.x);
+		                  return '<b>Time: </b>' + Highcharts.dateFormat('%H:%M', d) + '<br><b>' + this.y + '</b>' + chart.units;
+		                },
+		                
+		            },
+		            plotOptions: {
+		            	series: {
+		               	pointStart: Date.UTC(2016, 0, 6, 5, 0), // start date
+		       				 	pointInterval: 1000 * 60 * 1, // data every minute
+		                pointPadding: 0,
+		                groupPadding: 0,
+		                borderWidth: 0,
+		               }
+		            },
+		            series: [{
+		               // type: 'line',
+		                color: Highcharts.getOptions().colors[i],
+		                tooltip: {
+		                    valueSuffix: ' orders'
+		                },
+		                pointPlacement: 'between',
+		                data: chart.data
+		            }]
+		        });
+		        if (i % 2) {
+		            row = $('<div class="row">').appendTo(container);
+		        }
+		    });
+		    for (var j = 0; j < Highcharts.charts.length; j++) {
+		        $('#' + j).bind('mousemove touchmove', function (e) {
+		            var i = $(this).attr('id'),
+		                chart = Highcharts.charts[i],
+		                point;
+		            e = chart.pointer.normalize(e);
+		            point = chart.series[0].searchPoint(e, true);
+		            for (i = 0; i < Highcharts.charts.length; i = i + 1) {
+		                chart = Highcharts.charts[i];
+		                point = chart.series[0].searchPoint(e, true);
+		                if (point) {
+		                    point.onMouseOver();
+		                    chart.tooltip.refresh(point);
+		                    chart.xAxis[0].drawCrosshair(e, point);
+		                }
+		            }
+		        });
+		    }
+		    Highcharts.Pointer.prototype.reset = function () {
+		        return undefined;
+		    };
+		});		
 		
 		//sleep charts
 		$(function() {
@@ -787,20 +979,16 @@
     }
   }
 
-    
-
-
-
   $('#sleep').highcharts({
-    title: {
-      text: 'Minute By Minute Synchronized Chart',
+    /* title: {
+      //text: 'Minute By Minute Synchronized Chart',
       style: {
         fontWeight: 'bold',
       }
     },
     subtitle: {
-      text: 'Temperature, Light & Sleep',
-    },
+      //text: 'Temperature, Light & Sleep',
+    }, */
     chart: {
       renderTo: 'container',
       type: 'column'
@@ -918,7 +1106,7 @@
     })
   });
 });
-		
-		</script>
+		<!-- NV - end 04/18/2016 -->		
+</script>
 </body>
 </html>
