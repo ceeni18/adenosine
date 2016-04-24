@@ -1,13 +1,14 @@
 package service;
 
-import com.web.config.Constants;
-import com.web.model.UserProfile;
-import com.web.model.FitbitTokens;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.web.config.Constants;
+import com.web.model.FitbitTokens;
+import com.web.model.UserProfile;
+
 import repository.UserProfileRepositoryIntf;
 
 @Service("UserProfileService")
@@ -19,15 +20,17 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf {
 	public void setFitbitTokens(FitbitTokens fitbitTokens){
 		this.access_token = fitbitTokens.getAccess_token();
 	}
-	
-	public UserProfile getUserProfileDetails() {
+
+	public UserProfile getUserDetails() {
 		String data = ServiceUtils.httpGet(Constants.userProfileURL,
-                access_token);
-		String user = new JSONObject(data).get("user").toString();
-		UserProfile userProfile = ServiceUtils.gson.fromJson(user,
+				access_token);
+		UserProfile userProfileDetails = ServiceUtils.gson.fromJson(data,
 				UserProfile.class);
-		logger.debug(userProfile.toString());
-		this.userProfileRepository.createUser(userProfile);
-		return userProfile;
+		logger.debug("USER PROFILE PATTERNS :: " + userProfileDetails);
+		if(userProfileDetails != null){
+			userProfileRepository.createUser(userProfileDetails);
+		}
+		return userProfileDetails;
 	}
+
 }

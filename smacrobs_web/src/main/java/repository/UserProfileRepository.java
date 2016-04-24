@@ -14,9 +14,9 @@ public class UserProfileRepository implements UserProfileRepositoryIntf {
 
 	@Autowired	
 	MongoTemplate mongoOperation;
-	
+
 	public void createUser(UserProfile userProfile) {
-		logger.debug("saving user profile details");
+		logger.info("Saving User Profile details");
 		mongoOperation.save(userProfile);		
 	}
 }

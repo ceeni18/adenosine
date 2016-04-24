@@ -5,5 +5,5 @@ import com.web.model.FitbitTokens;
 
 public interface UserProfileServiceIntf {
 	void setFitbitTokens(FitbitTokens fitbitTokens);
-	UserProfile getUserProfileDetails();
+	UserProfile getUserDetails();
 }
