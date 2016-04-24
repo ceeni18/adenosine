@@ -25,6 +25,15 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie9.css" /><![endif]-->
 		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
 
+<script>
+console.log('${userId}'=='');
+console.log('${userId}');
+if('${userId}'!='')
+{
+	location.replace("/smacrobs/dashboard");
+	
+}
+</script>
 	</head>
 	<body class="index">
 		<div id="page-wrapper">
@@ -238,6 +247,11 @@
 			<script src="<%=request.getContextPath()%>/home/js/util.js"></script>
 			<!--[if lte IE 8]><script src="<%=request.getContextPath()%>/home/js/ie/respond.min.js"></script><![endif]-->
 			<script src="<%=request.getContextPath()%>/home/js/main.js"></script>
-
+<script type="text/javascript">
+							$(document).ready(function(){
+								
+								
+							});
+							</script>
 	</body>
 </html>

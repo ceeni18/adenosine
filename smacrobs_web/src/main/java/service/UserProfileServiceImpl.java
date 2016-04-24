@@ -33,4 +33,8 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf {
 		return userProfileDetails;
 	}
 
+	public void UpdateTiSensorId(String tisensorId, String userId) {
+		userProfileRepository.updateUser(tisensorId, userId);
+	}
+
 }

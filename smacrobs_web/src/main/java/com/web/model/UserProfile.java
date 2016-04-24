@@ -2,10 +2,13 @@ package com.web.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.google.gson.annotations.SerializedName;
+
 @Document(collection = "userProfile")
 public class UserProfile
 {
 	private User user;
+	//private String tiSensorId;
 
 	public User getUser ()
 	{
@@ -16,6 +19,14 @@ public class UserProfile
 	{
 		this.user = user;
 	}
+	
+	/*public String getTiSensorId() {
+		return tiSensorId;
+	}
+
+	public void setTiSensorId(String tiSensorId) {
+		this.tiSensorId = tiSensorId;
+	}*/
 
 	@Override
 	public String toString()
@@ -85,7 +96,8 @@ public class UserProfile
 
 		private String fullName;
 
-		private String encodedId;
+		@SerializedName("encodedId")
+		private String userId;
 
 		private String distanceUnit;
 
@@ -391,15 +403,6 @@ public class UserProfile
 			this.fullName = fullName;
 		}
 
-		public String getEncodedId ()
-		{
-			return encodedId;
-		}
-
-		public void setEncodedId (String encodedId)
-		{
-			this.encodedId = encodedId;
-		}
 
 		public String getDistanceUnit ()
 		{
@@ -424,7 +427,15 @@ public class UserProfile
 		@Override
 		public String toString()
 		{
-			return "ClassPojo [dateOfBirth = "+dateOfBirth+", weight = "+weight+", glucoseUnit = "+glucoseUnit+", strideLengthRunningType = "+strideLengthRunningType+", autoStrideEnabled = "+autoStrideEnabled+", foodsLocale = "+foodsLocale+", locale = "+locale+", averageDailySteps = "+averageDailySteps+", startDayOfWeek = "+startDayOfWeek+", timezone = "+timezone+", avatar150 = "+avatar150+", height = "+height+", inactivityAlerts = "+inactivityAlerts+", age = "+age+", heightUnit = "+heightUnit+", features = "+features+", waterUnit = "+waterUnit+", gender = "+gender+", strideLengthWalking = "+strideLengthWalking+", memberSince = "+memberSince+", sedentaryTime = "+sedentaryTime+", weightUnit = "+weightUnit+", offsetFromUTCMillis = "+offsetFromUTCMillis+", avatar = "+avatar+", waterUnitName = "+waterUnitName+", strideLengthWalkingType = "+strideLengthWalkingType+", corporate = "+corporate+", strideLengthRunning = "+strideLengthRunning+", topBadges = "+topBadges+", fullName = "+fullName+", encodedId = "+encodedId+", distanceUnit = "+distanceUnit+", displayName = "+displayName+"]";
+			return "ClassPojo [dateOfBirth = "+dateOfBirth+", weight = "+weight+", glucoseUnit = "+glucoseUnit+", strideLengthRunningType = "+strideLengthRunningType+", autoStrideEnabled = "+autoStrideEnabled+", foodsLocale = "+foodsLocale+", locale = "+locale+", averageDailySteps = "+averageDailySteps+", startDayOfWeek = "+startDayOfWeek+", timezone = "+timezone+", avatar150 = "+avatar150+", height = "+height+", inactivityAlerts = "+inactivityAlerts+", age = "+age+", heightUnit = "+heightUnit+", features = "+features+", waterUnit = "+waterUnit+", gender = "+gender+", strideLengthWalking = "+strideLengthWalking+", memberSince = "+memberSince+", sedentaryTime = "+sedentaryTime+", weightUnit = "+weightUnit+", offsetFromUTCMillis = "+offsetFromUTCMillis+", avatar = "+avatar+", waterUnitName = "+waterUnitName+", strideLengthWalkingType = "+strideLengthWalkingType+", corporate = "+corporate+", strideLengthRunning = "+strideLengthRunning+", topBadges = "+topBadges+", fullName = "+fullName+", userId = "+userId+", distanceUnit = "+distanceUnit+", displayName = "+displayName+"]";
+		}
+
+		public String getUserId() {
+			return userId;
+		}
+
+		public void setUserId(String userId) {
+			this.userId = userId;
 		}
 	}
 
@@ -788,5 +799,7 @@ public class UserProfile
 			return "ClassPojo [exerciseGoal = "+exerciseGoal+"]";
 		}
 	}
+
+
 
 }

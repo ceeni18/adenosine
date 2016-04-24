@@ -294,4 +294,34 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		logger.debug(modelAndView.toString());
 	}
 
+	public SleepDetails getSleepFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public HeartRateDetails getHeartRateFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public FoodDetails getFoodFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ActivityDetails getActivityFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public WaterDetails getWaterFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ActivityGoalDetails getActivityGoalFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

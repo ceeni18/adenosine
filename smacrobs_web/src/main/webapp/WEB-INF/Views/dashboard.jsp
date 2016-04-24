@@ -65,6 +65,17 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
+
+<script>
+console.log('${userId}'=='');
+console.log('${userId}');
+if('${userId}'=='')
+{
+	location.replace("/smacrobs/");
+	
+}
+</script>
+
 </head>
 
 <body class="no-skin">
@@ -114,10 +125,15 @@
 					</a> <!-- NV - start 04/18/2016 -->
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="https://www.fitbit.com/logout"
-								onclick="return redirectFunc()"> <i
-									class="ace-icon fa fa-power-off"></i> Logout
-							</a></li>
+							<li><a href="/smacrobs/tisensor"> <i
+                                    class="ace-icon fa fa-key"></i> Ti Sensor
+                            </a></li>
+							<li><a href="/smacrobs/medical"> <i
+                                    class="ace-icon fa fa-medkit"></i> Medical Details
+                            </a></li>
+							<li><a data-toggle="modal" data-target="#logoutModal"> <i
+                                    class="ace-icon fa fa-power-off"></i> Logout
+                            </a></li>
 						</ul></li>
 
 					<!-- /section:basics/navbar.user_menu -->
@@ -228,73 +244,10 @@
 				</div>
 
 				<!-- /section:basics/content.breadcrumbs -->
-				<div class="page-content">
-					<!--SSR #section:settings.box -->
-					<div class="ace-settings-container" id="ace-settings-container">
-						<div class="btn btn-app btn-xs btn-warning ace-settings-btn"
-							id="ace-settings-btn">
-							<i class="ace-icon fa fa-cog bigger-130"></i>
-						</div>
-						<!-- Modal -->
 
-						<script type="text/javascript">
-							$(document).ready(function(){
-							    $("#ace-settings-btn").click(function(){
-							        $("#tisensorModal").modal();
-							    });
-							});
-							</script>
-
-					</div>
-					<!-- /.ace-settings-box -->
-				</div>
-				<!-- /.ace-settings-container -->
-
-				<div id="tisensorModal" class="modal fade" tabindex="-1">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header no-padding">
-								<div class="table-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">
-										<span class="white">&times;</span>
-									</button>
-									Input TI Sensor Key
-								</div>
-							</div>
-
-							<div class="modal-body no-padding">
-								<hr />
-								<div class="row">
-
-									<div class="input-group col-md-offset-3 col-md-6">
-										<input class="form-control input-mask-product"
-											placeholder="TI Sensor Key" type="text"
-											id="form-field-mask-3" /> <span class="input-group-addon">
-											<i class="ace-icon fa fa-key"></i>
-										</span>
-									</div>
-								</div>
-								<hr />
-								<!-- /.span -->
-							</div>
-
-							<div class="modal-footer no-margin-top">
-								<button class="btn btn-sm btn-danger pull-left"
-									data-dismiss="modal">
-									<i class="glyphicon glyphicon-ok"></i> Submit
-								</button>
-
-
-							</div>
-						</div>
-						<!-- /.modal-content -->
-					</div>
-					<!-- /.modal-dialog -->
-				</div>
 
 				<!-- /section:settings.box -->
-				<div class="row">
+				<div id="dashboard" class="row">
 					<div class="col-xs-12">
 						<!-- SSR page contents -->
 						<!-- NV - start 04/21/2016 -->
@@ -377,7 +330,7 @@
 						
 					</div>
 					<!-- /.col -->
-				</div>
+				
 
 				<!-- /.row -->
 				<!-- /section:settings.box -->
@@ -464,6 +417,7 @@
 				</div>
 
 
+</div>
 
 
 			</div>
@@ -471,6 +425,29 @@
 		</div>
 	</div>
 	<!-- /.main-content -->
+	
+	<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div id="logoutModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Alert!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Success. You are Logged out of SMACROBS. Dont forget to logout of Fitbit</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/smacrobs/redirectToSite" class="btn btn-default">OK</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 
 
@@ -1108,5 +1085,7 @@
 });
 		<!-- NV - end 04/18/2016 -->		
 </script>
+
+							
 </body>
 </html>

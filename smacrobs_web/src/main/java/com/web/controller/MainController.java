@@ -4,7 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,6 +30,8 @@ import service.FitbitOAuthServiceIntf;
 import service.UserProfileServiceIntf;
 
 import java.io.IOException;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
@@ -77,14 +84,32 @@ public class MainController {
 	public ModelAndView redirectToData() throws IOException {
 		return new ModelAndView("data");
 	}
-
+	
+	
+	@RequestMapping(value = "/tisensor", method = RequestMethod.POST)
+	   public String saveTiSensor(@RequestParam(
+				value = "id",
+				required = true,
+				defaultValue = ""
+				) String id, HttpSession session) {
+	   System.out.println(id);
+	   userProfileService.UpdateTiSensorId(id, session.getAttribute("userId").toString());
+	   return "redirect:/dashboard";
+	  }
+	
+	@RequestMapping("/redirectToSite")
+    public String localRedirect(HttpSession session) {
+		session.invalidate();
+        return "redirect:/";
+    }
+	
 	@RequestMapping(Constants.redirectUriFromFitbit)
-	public ModelAndView redirectFromFitbit(
+	public String redirectFromFitbit(
 			@RequestParam(
 					value = "code",
 					required = false,
 					defaultValue = ""
-					) String response) throws IOException {
+					) String response,HttpSession session) throws IOException {
 		logger.debug("Successfully redirected from Fitbit "+response);
 		FitbitTokens fitbitTokens = this.fitbitOuthService.getFitbitTokens(response);
 		logger.debug("FitbitTokens are received!");
@@ -96,16 +121,17 @@ public class MainController {
 
 		SleepDetails sleepDetails = fitbitDetailsService.getSleepDetails();
 		HeartRateDetails heartRateDetails = fitbitDetailsService.getHeartRateDetails();
-
 		FoodDetails foodDetails = fitbitDetailsService.getFoodDetails();
 		ActivityDetails activityDetails = fitbitDetailsService.getActivityDetails();
 		WaterDetails waterDetails = fitbitDetailsService.getWaterDetails();
 		ActivityGoalDetails activityGoalDetails = fitbitDetailsService.getActivityGoalDetails();
 		
+		session.setAttribute("userId" , userProfile.getUser().getUserId());
+		session.setAttribute("user", userProfile.getUser());
+		
+		//TODO: SSR Need to put this in dashboard
 		FitbitDetailsServiceImpl fitbitService = new FitbitDetailsServiceImpl();
-
 		mv = new ModelAndView("dashboard");
-
 		fitbitService.getHeartRate(mv, heartRateDetails);
 		fitbitService.getActivity(mv,activityDetails);
 		fitbitService.getFood(mv,foodDetails);
@@ -113,10 +139,31 @@ public class MainController {
 		fitbitService.getUserProfile(mv, userProfile);
 		fitbitService.getActivityGoals(mv, activityGoalDetails);
 		fitbitService.getSleep(mv, sleepDetails);
-
-		return mv;
+		
+		return "redirect:/dashboard";
 	}
-
+	
+	@RequestMapping("/dashboard")
+	public ModelAndView dashboard(HttpSession session) {
+		//TODO: SSR Query From database and send values
+		return new ModelAndView("dashboard");
+	}
+	
+	@RequestMapping("/error")
+	public ModelAndView Error() {
+		return new ModelAndView("Error");
+	}
+	
+	@RequestMapping("/tisensor")
+	public ModelAndView tisensor() {
+		return new ModelAndView("TiSensor");
+	}
+	
+	@RequestMapping("/medical")
+	public ModelAndView medical() {
+		return new ModelAndView("Medical");
+	}
+	
 	private String getRedirectURL() {
 		return "https://www.fitbit.com/oauth2/authorize?" +
 				"response_type=" + Constants.fitbitOauthResposeType +

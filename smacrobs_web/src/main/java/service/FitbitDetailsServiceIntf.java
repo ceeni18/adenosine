@@ -21,6 +21,16 @@ public interface FitbitDetailsServiceIntf {
 	ActivityDetails getActivityDetails();
 	WaterDetails getWaterDetails();
 	ActivityGoalDetails getActivityGoalDetails();
+	
+	
+	/*SleepDetails getSleepFromDB();
+	HeartRateDetails getHeartRateFromDB();
+	FoodDetails getFoodFromDB();
+	ActivityDetails getActivityFromDB();
+	WaterDetails getWaterFromDB();
+	ActivityGoalDetails getActivityGoalFromDB();*/
+	
+	
 
 	void getHeartRate(ModelAndView modelAndView, 
 			HeartRateDetails heartRateDetails);
