@@ -1,13 +1,13 @@
 package com.web.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,15 +23,10 @@ import com.web.model.SleepDetails;
 import com.web.model.UserProfile;
 import com.web.model.WaterDetails;
 
-import ch.qos.logback.classic.LoggerContext;
 import service.FitbitDetailsServiceImpl;
 import service.FitbitDetailsServiceIntf;
 import service.FitbitOAuthServiceIntf;
 import service.UserProfileServiceIntf;
-
-import java.io.IOException;
-
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
@@ -54,11 +49,9 @@ public class MainController {
 
 	@RequestMapping("/")
 	public ModelAndView index() {
-		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-		logger.debug(lc.toString());
 		return new ModelAndView("index");
 	}
-
+	
 	@RequestMapping("/oauth")
 	public String redirectToFitbit() throws IOException {
 		logger.debug("Redirecting to " + getRedirectURL());
@@ -84,7 +77,7 @@ public class MainController {
 	public ModelAndView redirectToData() throws IOException {
 		return new ModelAndView("data");
 	}
-
+	
 	@RequestMapping(value = "/tisensor", method = RequestMethod.POST)
 	public String saveTiSensor(@RequestParam(
 			value = "id",
@@ -116,9 +109,11 @@ public class MainController {
 					required = false,
 					defaultValue = ""
 					) String response,HttpSession session) throws IOException {
+		
 		logger.debug("Successfully redirected from Fitbit "+response);
 		FitbitTokens fitbitTokens = this.fitbitOuthService.getFitbitTokens(response);
-		logger.debug("FitbitTokens are received!");
+		logger.info("FitbitTokens are received!");
+		
 		userProfileService.setFitbitTokens(fitbitTokens);
 		userProfile = userProfileService.getUserDetails();
 		fitbitDetailsService.setFitbitTokens(fitbitTokens);
@@ -128,8 +123,10 @@ public class MainController {
 		activityDetails = fitbitDetailsService.getActivityDetails(userProfile.getUser().getUserId());
 		waterDetails = fitbitDetailsService.getWaterDetails(userProfile.getUser().getUserId());
 		activityGoalDetails = fitbitDetailsService.getActivityGoalDetails(userProfile.getUser().getUserId());
+		
 		session.setAttribute("userId" , userProfile.getUser().getUserId());
 		session.setAttribute("user", userProfile.getUser());
+		
 		return "redirect:/dashboard";
 	}
 
@@ -175,12 +172,11 @@ public class MainController {
 	}
 
 	private String getRedirectURL() {
-		return "https://www.fitbit.com/oauth2/authorize?" +
+		return Constants.fitbitAuthUri + 
 				"response_type=" + Constants.fitbitOauthResposeType +
 				"&client_id=" + Constants.fitbitOauthClientId +
 				"&redirect_uri=" +
 				Constants.LOCALHOST + Constants.redirectUriFromFitbit +
-				"&scope=" + Constants.fitbitScope +
-				"&z=1";
+				"&scope=" + Constants.fitbitScope;
 	}
 }

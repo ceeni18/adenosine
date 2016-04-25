@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie9.css" /><![endif]-->
+		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
 	</head>
 	<body class="data">
 		<div id="page-wrapper">
@@ -30,11 +31,11 @@
 					<nav id="nav">
 						<ul>
 							<li class="current"><a href="<%=request.getContextPath()%>">Home</a></li>
-							<li class="submenu">
-								<a href="#">Layouts</a>
+								<li class="submenu">
+								<a href="#">What's More?</a>
 								<ul>
 									<li><a href="/smacrobs/fitbit">Fitbit</a></li>
-									<li><a href="/smacrobs/senso">TI Sensor</a></li>
+									<li><a href="/smacrobs/senso">Sense Fence</a></li>
 									<li><a href="/smacrobs/data">Data Analytics</a></li>
 									<li><a href="/smacrobs/contact">Contact Us</a></li>
 								</ul>

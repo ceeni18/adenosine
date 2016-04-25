@@ -20,21 +20,22 @@
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie9.css" /><![endif]-->
+		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
 	</head>
-	<body class="left-sidebar">
+	<body class="fitbit">
 		<div id="page-wrapper">
 
-			<!-- Header -->
+				<!-- Header -->
 				<header id="header">
 					<h1 id="logo"><a href="<%=request.getContextPath()%>">EaseMySleep <span>by SMACROBS</span></a></h1>
 					<nav id="nav">
 						<ul>
 							<li class="current"><a href="<%=request.getContextPath()%>">Home</a></li>
-							<li class="submenu">
+								<li class="submenu">
 								<a href="#">What's More?</a>
 								<ul>
 									<li><a href="/smacrobs/fitbit">Fitbit</a></li>
-									<li><a href="/smacrobs/senso">TI Sensor</a></li>
+									<li><a href="/smacrobs/senso">Sense Fence</a></li>
 									<li><a href="/smacrobs/data">Data Analytics</a></li>
 									<li><a href="/smacrobs/contact">Contact Us</a></li>
 								</ul>
@@ -62,25 +63,20 @@
 										<div class="sidebar">
 											<section>
 												<header>
-													<h3>Magna Feugiat</h3>
+													<h3>Sleep Tracking</h3>
 												</header>
 												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
-												<footer>
-													<ul class="buttons">
-														<li><a href="#" class="button small">Learn More</a></li>
-													</ul>
-												</footer>
 											</section>
 
 											<section>
 												<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
 												<header>
-													<h3>Amet Lorem Tempus</h3>
+													<h3>Heart Rate</h3>
 												</header>
 												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
 												<footer>
 													<ul class="buttons">
-														<li><a href="#" class="button small">Learn More</a></li>
+														<li><a href="#" class="button small">Buy Now</a></li>
 													</ul>
 												</footer>
 											</section>
@@ -94,7 +90,7 @@
 											<section>
 												<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
 												<header>
-													<h3>Dolore Amet Consequat</h3>
+													<h3>Activity Tracking</h3>
 												</header>
 												<p>Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum massa. Morbi eu faucibus massa. Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam.</p>
 												<p>Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum porta cursus justo. Quisque ultricies lorem in ligula condimentum, et egestas turpis sagittis. Cras ac nunc urna. Nullam eget lobortis purus. Phasellus vitae tortor non est placerat tristique. Sed id sem et massa ornare pellentesque. Maecenas pharetra porta accumsan. </p>
@@ -116,11 +112,6 @@
 											<h3>This is Something</h3>
 										</header>
 										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-										<footer>
-											<ul class="buttons">
-												<li><a href="#" class="button small">Learn More</a></li>
-											</ul>
-										</footer>
 									</section>
 
 								</div>
@@ -131,11 +122,6 @@
 											<h3>Also Something</h3>
 										</header>
 										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-										<footer>
-											<ul class="buttons">
-												<li><a href="#" class="button small">Learn More</a></li>
-											</ul>
-										</footer>
 									</section>
 
 								</div>
@@ -169,14 +155,14 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="<%=request.getContextPath()%>home/js/jquery.min.js"></script>
-			<script src="<%=request.getContextPath()%>home/js/jquery.dropotron.min.js"></script>
-			<script src="<%=request.getContextPath()%>home/js/jquery.scrolly.min.js"></script>
-			<script src="<%=request.getContextPath()%>home/js/jquery.scrollgress.min.js"></script>
-			<script src="<%=request.getContextPath()%>home/js/skel.min.js"></script>
-			<script src="<%=request.getContextPath()%>home/js/util.js"></script>
-			<!--[if lte IE 8]><script src="<%=request.getContextPath()%>home/js/ie/respond.min.js"></script><![endif]-->
-			<script src="<%=request.getContextPath()%>home/js/main.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/jquery.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/jquery.dropotron.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/jquery.scrolly.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/jquery.scrollgress.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/skel.min.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/util.js"></script>
+			<!--[if lte IE 8]><script src="<%=request.getContextPath()%>/home/js/ie/respond.min.js"></script><![endif]-->
+			<script src="<%=request.getContextPath()%>/home/js/main.js"></script>
 
 	</body>
 </html>

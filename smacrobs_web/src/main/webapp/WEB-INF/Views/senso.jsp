@@ -10,7 +10,7 @@
 -->
 <html lang="en">
 	<head>
-		<title>TI Sensor | EaseMySleep</title>
+		<title>Sense Fence | EaseMySleep</title>
 		<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico"  type="image/x-icon" />
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,8 +20,9 @@
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie9.css" /><![endif]-->
+		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
 	</head>
-	<body class="right-sidebar">
+	<body class="senso">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -30,11 +31,11 @@
 					<nav id="nav">
 						<ul>
 							<li class="current"><a href="<%=request.getContextPath()%>">Home</a></li>
-							<li class="submenu">
+								<li class="submenu">
 								<a href="#">What's More?</a>
 								<ul>
 									<li><a href="/smacrobs/fitbit">Fitbit</a></li>
-									<li><a href="/smacrobs/senso">TI Sensor</a></li>
+									<li><a href="/smacrobs/senso">Sense Fence</a></li>
 									<li><a href="/smacrobs/data">Data Analytics</a></li>
 									<li><a href="/smacrobs/contact">Contact Us</a></li>
 								</ul>
@@ -47,9 +48,9 @@
 				<article id="main">
 
 					<header class="special container">
-						<span class="icon fa-tablet"></span>
-						<h2>Behold the <strong>TI Sensor</strong></h2>
-						<p>Where things on the right ... accompany that on the left.</p>
+						<span class="icon fa-bar-chart"></span>
+						<h2><strong>Sense Fence</strong></h2>
+						<p></p>
 					</header>
 
 					<!-- One -->
@@ -96,7 +97,7 @@
 												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
 												<footer>
 													<ul class="buttons">
-														<li><a href="#" class="button small">Learn More</a></li>
+														<li><a href="#" class="button small">Buy Now</a></li>
 													</ul>
 												</footer>
 											</section>
@@ -116,11 +117,6 @@
 											<h3>This is Something</h3>
 										</header>
 										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-										<footer>
-											<ul class="buttons">
-												<li><a href="#" class="button small">Learn More</a></li>
-											</ul>
-										</footer>
 									</section>
 
 								</div>
@@ -131,11 +127,6 @@
 											<h3>Also Something</h3>
 										</header>
 										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-										<footer>
-											<ul class="buttons">
-												<li><a href="#" class="button small">Learn More</a></li>
-											</ul>
-										</footer>
 									</section>
 
 								</div>
@@ -146,11 +137,6 @@
 											<h3>Probably Something</h3>
 										</header>
 										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-										<footer>
-											<ul class="buttons">
-												<li><a href="#" class="button small">Learn More</a></li>
-											</ul>
-										</footer>
 									</section>
 
 								</div>
@@ -174,7 +160,7 @@
 			<script src="<%=request.getContextPath()%>/home/js/jquery.scrolly.min.js"></script>
 			<script src="<%=request.getContextPath()%>/home/js/jquery.scrollgress.min.js"></script>
 			<script src="<%=request.getContextPath()%>/home/js/skel.min.js"></script>
-			<script src="<%=request.getContextPath()%>home/js/util.js"></script>
+			<script src="<%=request.getContextPath()%>/home/js/util.js"></script>
 			<!--[if lte IE 8]><script src="<%=request.getContextPath()%>/home/js/ie/respond.min.js"></script><![endif]-->
 			<script src="<%=request.getContextPath()%>/home/js/main.js"></script>
 

@@ -26,8 +26,6 @@
 		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
 
 <script>
-console.log('${userId}'=='');
-console.log('${userId}');
 if('${userId}'!='')
 {
 	location.replace("/smacrobs/dashboard");
@@ -47,12 +45,10 @@ if('${userId}'!='')
 							<li class="submenu">
 								<a href="#">What's More?</a>
 								<ul>
-									<!-- NV - start 04/18/2016 --> 
 									<li><a href="/smacrobs/fitbit">Fitbit</a></li>
-									<li><a href="/smacrobs/senso">TI Sensor</a></li>
+									<li><a href="/smacrobs/senso">Sense Fence</a></li>
 									<li><a href="/smacrobs/data">Data Analytics</a></li>
 									<li><a href="/smacrobs/contact">Contact Us</a></li>
-									<!-- NV - end 04/18/2016 --> 
 								</ul>
 							</li>				
 						</ul>
@@ -73,20 +69,15 @@ if('${userId}'!='')
 						<header>
 							<h2>EaseMySleep</h2>
 						</header>
-						<p style="font-size:25px">Did you have a restless sleep last night?
-						<br /><br />
-						<strong> Wonder Why?</strong>
-						<br /><br />
-						Click to know more.
+						<p style="font-size:15px" >Did you have a restless sleep last night?<br/>
+						<strong> Wonder Why?</strong><br/>Click to know more.
 						</p>
 						<footer>
 							<ul class="buttons vertical">
 								<li><a href="/smacrobs/oauth" class="button fit scrolly">Connect With Fitbit</a></li>
 							</ul>
 						</footer>
-
 					</div>
-
 				</section>
 
 			<!-- Main -->
@@ -142,9 +133,9 @@ if('${userId}'!='')
 								<div class="4u 12u(narrower)">
 
 									<section>
-										<span class="icon featured fa-check"></span>
+										<span class="icon featured fa-ioxhost"></span>
 										<header>
-											<h3>This is Something</h3>
+											<h3>Fast Fact #1</h3>
 										</header>
 										<p>People who don't get enough sleep are more likely to have bigger appetites due to the fact that their leptin levels (an appetite-regulating hormone) fall, promoting appetite increase.</p>
 									</section>
@@ -153,9 +144,9 @@ if('${userId}'!='')
 								<div class="4u 12u(narrower)">
 
 									<section>
-										<span class="icon featured fa-check"></span>
+										<span class="icon featured fa-ioxhost"></span>
 										<header>
-											<h3>Also Something</h3>
+											<h3>Fast Fact #2</h3>
 										</header>
 										<p>In general, most healthy adults need seven to nine hours of sleep a night. However, some individuals are able to function without sleepiness or drowsiness after as little as six hours of sleep. Others can't perform at their peak unless they've slept for ten hours.</p>
 									</section>
@@ -164,9 +155,9 @@ if('${userId}'!='')
 								<div class="4u 12u(narrower)">
 
 									<section>
-										<span class="icon featured fa-check"></span>
+										<span class="icon featured fa-ioxhost"></span>
 										<header>
-											<h3>Probably Something</h3>
+											<h3>Fast Fact #3</h3>
 										</header>
 										<p>24 hours of wakefulness caused as much impairment as a blood alcohol content of 0.10%.Microsleeps are brief episodes of sleep that occur in the midst of ongoing wakeful activity. They can happen in people who are sleep deprived, often without their awareness.</p>
 									</section>
@@ -247,11 +238,15 @@ if('${userId}'!='')
 			<script src="<%=request.getContextPath()%>/home/js/util.js"></script>
 			<!--[if lte IE 8]><script src="<%=request.getContextPath()%>/home/js/ie/respond.min.js"></script><![endif]-->
 			<script src="<%=request.getContextPath()%>/home/js/main.js"></script>
-<script type="text/javascript">
+			<script type="text/javascript">
 							$(document).ready(function(){
-								
-								
+								if(${isLoggedIn}!=null){
+								console.log(${isLoggedIn} +".."+ (${isLoggedIn}==true));
+								if(${isLoggedIn}==true){
+									window.open("oauth"); 
+								}
+								}
 							});
-							</script>
+			</script>
 	</body>
 </html>

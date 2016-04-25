@@ -6963,7 +6963,7 @@ fieldset[disabled] .btn-white.btn-grey.active {
 }
 .btn.btn-app {
   display: inline-block;
-  width: 100px;
+  width: 130px;
   font-size: 18px;
   font-weight: normal;
   color: #FFF;
@@ -6973,7 +6973,7 @@ fieldset[disabled] .btn-white.btn-grey.active {
   border-radius: 12px;
   padding: 12px 0 8px;
   margin: 2px;
-  line-height: 1.7;
+  line-height: 2.7;
   position: relative;
 }
 .btn-app,

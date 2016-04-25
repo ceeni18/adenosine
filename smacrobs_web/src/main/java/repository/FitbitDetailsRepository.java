@@ -32,7 +32,7 @@ public class FitbitDetailsRepository implements FitbitDetailsRepositoryIntf {
 
 	public void saveHeartRateData(HeartRateDetails heartRateDetails) {
 		logger.info("Saving user's heart details");
-		if(findSleepData(heartRateDetails.getUserId(), heartRateDetails.getDate())==null)
+		if(findHeartRateData(heartRateDetails.getUserId(), heartRateDetails.getDate())==null)
 			mongoOperation.save(heartRateDetails);
 	}
 
@@ -44,7 +44,7 @@ public class FitbitDetailsRepository implements FitbitDetailsRepositoryIntf {
 
 	public void saveActivityData(ActivityDetails activityDetails) {
 		logger.info("Saving user's activity details");
-		if(findFoodData(activityDetails.getUserId(), activityDetails.getDate())==null)
+		if(findActivityData(activityDetails.getUserId(), activityDetails.getDate())==null)
 		  mongoOperation.save(activityDetails);
 	}
 

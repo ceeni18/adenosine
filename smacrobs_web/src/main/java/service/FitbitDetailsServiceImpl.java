@@ -142,17 +142,17 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 	
 	public void getSleep(ModelAndView modelAndView, SleepDetails sleepDetails) {
 		String duration = null;
-		int efficiency = 0;
+		int sleepEfficiency = 0;
 		int awakeningTime = 0;
 		int length = sleepDetails.getSleep().length;
 		try {
 			duration = sleepDetails.getSummary().getTotalTimeInBed();
 			for(int count=0; count< length; count++) {
-				efficiency += Integer.parseInt(
-						sleepDetails.getSleep()[length]
+				sleepEfficiency += Integer.parseInt(
+						sleepDetails.getSleep()[count]
 								.getEfficiency()); 
 				awakeningTime += Integer.parseInt(
-						sleepDetails.getSleep()[length]
+						sleepDetails.getSleep()[count]
 								.getAwakeningsCount());
 			}
 		}catch(Exception ex){
@@ -162,7 +162,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		long minutes = Long.parseLong(duration)%60;
 		duration = hours + " hr " + minutes + " min";
 		modelAndView.addObject("sleepDuration", duration);
-		modelAndView.addObject("sleepEfficiency", efficiency);
+		modelAndView.addObject("sleepEfficiency", sleepEfficiency);
 		modelAndView.addObject("awakeningTime", awakeningTime);
 		logger.debug(modelAndView.toString());
 	}
@@ -181,11 +181,14 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		}catch(Exception ex) {
 			logger.warn(ex.getMessage());
 		}
-
+		
+		int calOutGoal = Integer.parseInt(cal);
+		
 		modelAndView.addObject("distanceGoal", Math.round(Double.parseDouble(distance)));
 		modelAndView.addObject("floorsGoal", Integer.parseInt(floor));
 		modelAndView.addObject("stepsGoal", Integer.parseInt(step));
-		modelAndView.addObject("caloriesOutGoal", Integer.parseInt(cal));
+		modelAndView.addObject("caloriesOutGoal", calOutGoal);
+		
 		logger.debug(modelAndView.toString());
 	}
 
@@ -217,9 +220,13 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		modelAndView.addObject("gender", gender);
 		modelAndView.addObject("age", age);
 		modelAndView.addObject("dateOfBirth", dateOfBirth);
-		modelAndView.addObject("weight", weight);
+		String wt = weight + " pounds";
+		modelAndView.addObject("weight", wt);
 		modelAndView.addObject("weightUnit", weightUnit);
-		modelAndView.addObject("height", height);
+		int feet = (int)height / 12;
+		int inch = (int)height % 12;
+		String ht = feet + " ft " + inch + " in"; 
+		modelAndView.addObject("height", ht);
 		modelAndView.addObject("heightUnit", heightUnit);
 		modelAndView.addObject("avatar", avatar);
 		logger.debug(modelAndView.toString());
@@ -232,10 +239,10 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		}catch(Exception ex) {
 			logger.warn(ex.getMessage());
 		}
-		//BigDecimal bd = new BigDecimal(Double.parseDouble(water));
-		//bd = bd.setScale(2, RoundingMode.FLOOR);
-
-		modelAndView.addObject("water", water);
+		BigDecimal bd = new BigDecimal(Double.parseDouble(water));
+		bd = bd.setScale(2, RoundingMode.FLOOR);
+		String val = bd + " fl.oz.";
+		modelAndView.addObject("water", val);
 		logger.debug(modelAndView.toString());
 	}
 
@@ -258,12 +265,15 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		catch(Exception ex){
 			logger.warn(ex.getMessage());
 		}
+		
+		int calIn = Integer.parseInt(caloriesIn);
+		
 		modelAndView.addObject("sodium", sodium);
 		modelAndView.addObject("carbs", carbs);
 		modelAndView.addObject("fats", fats);
 		modelAndView.addObject("fibre", fibre);
 		modelAndView.addObject("protein", protein);
-		modelAndView.addObject("caloriesIn", caloriesIn);
+		modelAndView.addObject("calIn", calIn);
 		logger.debug(modelAndView.toString());
 	}
 
@@ -272,11 +282,14 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		double distance=0.0d;
 		String steps=null;
 		String floors=null;
+		int calOut = 0;
 		try{
 			steps=activityDetails.getSummary().getSteps();
 			floors=activityDetails.getSummary().getFloors();
+			calOut += Math.round(
+					Integer.parseInt(activityDetails.getSummary().getCaloriesOut()));
 			for(int i=0;i<activityDetails.getSummary().getDistances().length;i++){
-				distance+=Math.round(
+				distance += Math.round(
 						Double.parseDouble(activityDetails.getSummary().getDistances()[i].getDistance()));
 			}
 		}
@@ -284,11 +297,16 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		{
 			logger.warn(ex.getMessage());
 		}
-
+		
+		int calOut1 = calOut / 3;
+		int calOut2 = calOut1 * 2;
+		
 		modelAndView.addObject("distance",distance);
 		modelAndView.addObject("steps",steps);
 		modelAndView.addObject("floors",floors);
-		
+		modelAndView.addObject("calOut",calOut);
+		modelAndView.addObject("calOut1",calOut1);
+		modelAndView.addObject("calOut2",calOut2);
 		logger.debug(modelAndView.toString());
 	}
 

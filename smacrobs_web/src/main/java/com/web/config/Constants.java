@@ -19,8 +19,12 @@ public class Constants {
 	public static final String fitbitOauthResposeType="code";
 	public static final String JSON_EXTENSION = ".json";
 	public static final String fitbitOauthClientId = "227NJT";
+	//public static final String fitbitOauthClientId = "227L87";
 	public static final String appClientIdAndSecrect =
 			"MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm";
+	//public static final String appClientIdAndSecrect = "81063562c7b36efec1f34f9caa2ce57d";
+	public static final String fitbitAuthUri =
+			"https://www.fitbit.com/oauth2/authorize?";
 	public static final String redirectUriFromFitbit =
 			"/oauthredirect";
 	public static final String fitbitScope =
@@ -42,6 +46,7 @@ public class Constants {
 	public static final String activityGoalURL = 
 			"https://api.fitbit.com/1/user/-/activities/goals/daily.json";
 	public static final String dateFormat = "yyyy-MM-dd";
+	public static final String grantType = "authorization_code";
 
 	static {
 		if(System.getenv("environment") == "production") {
