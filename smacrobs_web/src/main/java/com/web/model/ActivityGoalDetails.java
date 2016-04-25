@@ -6,6 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ActivityGoalDetails {
 
 	private Goals goals;
+	
+	private String userId;
+	
+	private String date;
 
 	public Goals getGoals ()
 	{
@@ -23,7 +27,7 @@ public class ActivityGoalDetails {
 		return "ClassPojo [goals = "+goals+"]";
 	}
 
-	public class Goals
+	public static class Goals
 	{
 		private String distance;
 
@@ -90,6 +94,22 @@ public class ActivityGoalDetails {
 		{
 			return "ClassPojo [distance = "+distance+", floors = "+floors+", activeMinutes = "+activeMinutes+", steps = "+steps+", caloriesOut = "+caloriesOut+"]";
 		}
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

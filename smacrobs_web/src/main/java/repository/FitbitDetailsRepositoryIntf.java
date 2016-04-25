@@ -14,4 +14,10 @@ public interface FitbitDetailsRepositoryIntf {
 	void saveActivityData(ActivityDetails activityDetails);
 	void saveWaterData(WaterDetails waterDetails);
 	void saveActivityGoalData(ActivityGoalDetails activityGoalDetails);
+	SleepDetails findSleepData(String userId, String date);
+	HeartRateDetails findHeartRateData(String userId, String date);
+	FoodDetails findFoodData( String userId, String date);
+	ActivityDetails findActivityData(String userId, String date);
+	WaterDetails findWaterData(String userId, String date);
+	ActivityGoalDetails findActivityGoalData(String userId, String date);
 }

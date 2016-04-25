@@ -1,6 +1,8 @@
 package com.web.model;
 
 public class WaterDetails {
+	private String userId;
+	private String date;
 	private Water[] water;
 	private Summary summary;
 
@@ -25,7 +27,7 @@ public class WaterDetails {
 		return "ClassPojo [water = " + water + ", summary = " + summary + "]";
 	}
 
-	public class Water {
+	public static class Water {
 		private String amount;
 		private String logId;
 
@@ -51,7 +53,7 @@ public class WaterDetails {
 		}
 	}
 
-	public class Summary {
+	public static class Summary {
 		private String water;
 
 		public String getWater() {
@@ -66,5 +68,21 @@ public class WaterDetails {
 		public String toString() {
 			return "ClassPojo [water = " + water + "]";
 		}
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

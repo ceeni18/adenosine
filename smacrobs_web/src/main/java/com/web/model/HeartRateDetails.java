@@ -7,6 +7,10 @@ import com.google.gson.annotations.SerializedName;
 public class HeartRateDetails {
 	@SerializedName("activities-heart")
 	private ActivitiesHeart[] activities_heart;
+	
+	private String userId;
+	
+	private String date;
 
 	public ActivitiesHeart[] getActivitiesHeart() {
 		return activities_heart;
@@ -21,7 +25,7 @@ public class HeartRateDetails {
 		return "ClassPojo [activities_heart = " + activities_heart + "]";
 	}
 
-	public class ActivitiesHeart {
+	public static class ActivitiesHeart {
 		private String dateTime;
 		private Value value;
 
@@ -48,7 +52,7 @@ public class HeartRateDetails {
 		}
 	}
 
-	public class Value {
+	public static class Value {
 		private String restingHeartRate;
 		private HeartRateZones[] heartRateZones;
 		private CustomHeartRateZones[] customHeartRateZones;
@@ -86,7 +90,7 @@ public class HeartRateDetails {
 		}
 	}
 
-	public class HeartRateZones {
+	public static class HeartRateZones {
 		private String min;
 		private String minutes;
 		private String max;
@@ -141,7 +145,7 @@ public class HeartRateDetails {
 		}
 	}
 
-	public class CustomHeartRateZones {
+	public static class CustomHeartRateZones {
 		private String min;
 		private String minutes;
 		private String max;
@@ -194,5 +198,21 @@ public class HeartRateDetails {
 					+ ", max = " + max + ", name = " + name
 					+ ", caloriesOut = " + caloriesOut + "]";
 		}
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

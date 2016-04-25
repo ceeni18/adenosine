@@ -17,6 +17,7 @@ import org.bson.conversions.Bson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mapping.model.MappingInstantiationException;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -33,49 +34,29 @@ public class UserProfileRepository implements UserProfileRepositoryIntf {
 
 	public void createUser(UserProfile userProfile) {
 		logger.info("Saving User Profile details");
-		mongoOperation.save(userProfile);		
+		if(FindUser(userProfile.getUser().getUserId())==null)
+		 mongoOperation.save(userProfile);		
 	}
 
 	public void updateUser(String tisensorId, String userId) {
-		System.out.println(tisensorId+"............."+userId);
 		
 				Query query = new Query();
-				query.addCriteria(Criteria.where("_id").is("ObjectId(\"571c87dc522676316e8b7c4d\")"));
-				
-				//TODO: SSR - Query
-				//List<UserProfile> user = mongoOperation.find(query, UserProfile.class, "userProfile");
+				query.addCriteria(Criteria.where("user.userId").is(userId));
+				UserProfile user = mongoOperation.findOne(query, UserProfile.class, "userProfile");
+				user.getUser().setTiSensorId(tisensorId);
+				mongoOperation.save(user);	
+	}
 
-				/*System.out.println(mongoOperation.find(new Query().addCriteria(
-			                Criteria.where("user.userId").is(userId)),
-			                UserProfile.class,
-			                "userProfile"));*/
-				 
-				//System.out.println("userTest1 - " + user);
-
-				//modify and update with save()
-				//user.setTiSensorId(tisensorId);
-				//mongoOperation.save(user);
-				
-				//user = mongoOperation.findOne(query, UserProfile.class, "userProfile");
-				//System.out.println(user);
-				
-				MongoClient client;
-				MongoDatabase db;
-				MongoCollection coll;
-				Bson filter;
-				ArrayList<Document> list = new ArrayList<Document>();
-				try {
-					 client = new MongoClient(Constants.DATABASE_HOSTNAME,Constants.DATABASE_PORT);
-					 db = client.getDatabase(Constants.DATABASE_NAME);
-					 coll = db.getCollection("userProfile", BsonDocument.class);
-					 filter = new Document("user.userId","2YRX98");
-					 list = (ArrayList<Document>) coll.find(filter).into(new ArrayList<Document>());
-					 System.out.println("........"+list);
-					 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
+	public UserProfile FindUser(String userId) {
+		UserProfile userProfile1 = null;
+		try {
+		   userProfile1 = mongoOperation.findOne(new Query()
+		               .addCriteria(Criteria.where("user.userId").is(userId)),
+		         UserProfile.class, "userProfile");
+		}catch (MappingInstantiationException e){
+		   logger.error("unable to get data "+e.getMessage());
+		}
+		return userProfile1;
 	}
 
 }

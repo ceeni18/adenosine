@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class UserProfile
 {
 	private User user;
-	//private String tiSensorId;
+	
 
 	public User getUser ()
 	{
@@ -20,13 +20,7 @@ public class UserProfile
 		this.user = user;
 	}
 	
-	/*public String getTiSensorId() {
-		return tiSensorId;
-	}
-
-	public void setTiSensorId(String tiSensorId) {
-		this.tiSensorId = tiSensorId;
-	}*/
+	
 
 	@Override
 	public String toString()
@@ -34,8 +28,10 @@ public class UserProfile
 		return "ClassPojo [user = "+user+"]";
 	}
 
-	public class User
+	public static class User
 	{
+		private String tiSensorId;
+		
 		private String dateOfBirth;
 
 		private String weight;
@@ -102,6 +98,14 @@ public class UserProfile
 		private String distanceUnit;
 
 		private String displayName;
+		
+		public String getTiSensorId() {
+			return tiSensorId;
+		}
+
+		public void setTiSensorId(String tiSensorId) {
+			this.tiSensorId = tiSensorId;
+		}
 
 		public String getDateOfBirth ()
 		{
@@ -439,7 +443,7 @@ public class UserProfile
 		}
 	}
 
-	public class TopBadges
+	public static class TopBadges
 	{
 		private String image75px;
 
@@ -724,7 +728,7 @@ public class UserProfile
 		}
 	}
 
-	public class SedentaryTime
+	public static class SedentaryTime
 	{
 		private String startTime;
 
@@ -758,7 +762,7 @@ public class UserProfile
 	}
 
 
-	public class InactivityAlerts
+	public static class InactivityAlerts
 	{
 		private String[] weekDays;
 
@@ -779,7 +783,7 @@ public class UserProfile
 		}
 	}
 
-	public class Features
+	public static class Features
 	{
 		private String exerciseGoal;
 

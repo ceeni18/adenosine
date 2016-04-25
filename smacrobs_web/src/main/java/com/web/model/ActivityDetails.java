@@ -5,6 +5,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "activityDetails")
 public class ActivityDetails
 {
+	private String userId;
+	
+	private String date;
+	
 	private Summary summary;
 
 	private Goals goals;
@@ -47,7 +51,7 @@ public class ActivityDetails
 		return "ClassPojo [summary = "+summary+", goals = "+goals+", activities = "+activities+"]";
 	}
 
-	public class Summary
+	public static class Summary
 	{
 		private String fairlyActiveMinutes;
 
@@ -200,7 +204,7 @@ public class ActivityDetails
 		}
 	}
 
-	public class Distances
+	public static class Distances
 	{
 		private String distance;
 
@@ -232,7 +236,7 @@ public class ActivityDetails
 			return "ClassPojo [distance = "+distance+", activity = "+activity+"]";
 		}
 	}
-	public class Goals
+	public static class Goals
 	{
 		private String distance;
 
@@ -289,7 +293,7 @@ public class ActivityDetails
 		}
 	}
 
-	public class Activities
+	public static class Activities
 	{
 		private String startTime;
 
@@ -440,5 +444,21 @@ public class ActivityDetails
 		{
 			return "ClassPojo [startTime = "+startTime+", activityId = "+activityId+", duration = "+duration+", distance = "+distance+", logId = "+logId+", description = "+description+", name = "+name+", isFavorite = "+isFavorite+", hasStartTime = "+hasStartTime+", calories = "+calories+", steps = "+steps+", activityParentId = "+activityParentId+"]";
 		}
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

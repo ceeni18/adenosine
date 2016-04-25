@@ -36,7 +36,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		this.access_token = fitbitTokens.getAccess_token();
 	}
 
-	public SleepDetails getSleepDetails() {
+	public SleepDetails getSleepDetails(String userId) {
 		String data = ServiceUtils.httpGet(
 				Constants.sleepLogURL + getTodayDate() 
 				+ Constants.JSON_EXTENSION,
@@ -45,12 +45,14 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 				SleepDetails.class); // gson returns null is json is null
 		logger.debug("SLEEP PATTERNS :: " + sleepDetails);
 		if(sleepDetails != null){
+			sleepDetails.setDate(getTodayDate());
+			sleepDetails.setUserId(userId);
 			fitbitDetailsRepository.saveSleepData(sleepDetails);
 		}
 		return sleepDetails;
 	}
 
-	public HeartRateDetails getHeartRateDetails() {
+	public HeartRateDetails getHeartRateDetails(String userId) {
 		String data = ServiceUtils.httpGet(Constants.heartRateURL 
 				+getYesterdayDate() +"/1d.json",
 				access_token);
@@ -59,25 +61,29 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 				HeartRateDetails.class);
 		logger.debug("HEART PATTERNS :: " + heartRateDetails);
 		if(heartRateDetails != null){
+			heartRateDetails.setDate(getYesterdayDate());
+			heartRateDetails.setUserId(userId);
 			fitbitDetailsRepository.saveHeartRateData(heartRateDetails);
 		}
 		return heartRateDetails;
 	}
 
-	public FoodDetails getFoodDetails() {
+	public FoodDetails getFoodDetails(String userId) {
 		String data = ServiceUtils.httpGet(Constants.foodURL
 				+ getYesterdayDate() + Constants.JSON_EXTENSION,
 				access_token);
 		FoodDetails foodDetails = ServiceUtils.gson.fromJson(data,
 				FoodDetails.class);
 		logger.debug("FOOD PATTERNS :: " + foodDetails);
-		if(foodDetails != null){
+		if(foodDetails != null){ 
+			foodDetails.setDate(getYesterdayDate());
+			foodDetails.setUserId(userId);
 			fitbitDetailsRepository.saveFoodData(foodDetails);
 		}
 		return foodDetails;
 	}
 
-	public ActivityDetails getActivityDetails() {
+	public ActivityDetails getActivityDetails(String userId) {
 		String data = ServiceUtils.httpGet(Constants.activityURL
 				+ getYesterdayDate()+ Constants.JSON_EXTENSION,
 				access_token);
@@ -85,12 +91,14 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 				ActivityDetails.class);
 		logger.debug("ACTIVITY PATTERNS :: " + activityDetails);
 		if(activityDetails != null){
+			activityDetails.setDate(getYesterdayDate());
+			activityDetails.setUserId(userId);
 			fitbitDetailsRepository.saveActivityData(activityDetails);
 		}
 		return activityDetails;
 	}
 
-	public WaterDetails getWaterDetails() {
+	public WaterDetails getWaterDetails(String userId) {
 		String data = ServiceUtils.httpGet(Constants.waterURL 
 				+ getYesterdayDate()+ Constants.JSON_EXTENSION,
 				access_token);
@@ -98,18 +106,22 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 				WaterDetails.class);
 		logger.debug("WATER PATTERNS :: " + waterDetails);
 		if(waterDetails != null){
+			waterDetails.setDate(getYesterdayDate());
+			waterDetails.setUserId(userId);
 			fitbitDetailsRepository.saveWaterData(waterDetails);
 		}
 		return waterDetails;
 	}
 
-	public ActivityGoalDetails getActivityGoalDetails() {
+	public ActivityGoalDetails getActivityGoalDetails(String userId) {
 		String data = ServiceUtils.httpGet(Constants.activityGoalURL,
 				access_token);
 		ActivityGoalDetails activityGoalDetails = ServiceUtils.gson.fromJson(data,
 				ActivityGoalDetails.class);
 		logger.debug("GOAL PATTERNS :: " + activityGoalDetails);
 		if(activityGoalDetails != null){
+			activityGoalDetails.setDate(getYesterdayDate());
+			activityGoalDetails.setUserId(userId);
 			fitbitDetailsRepository.saveActivityGoalData(activityGoalDetails);
 		}
 		return activityGoalDetails;
@@ -133,7 +145,6 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		int efficiency = 0;
 		int awakeningTime = 0;
 		int length = sleepDetails.getSleep().length;
-		System.out.println(length);
 		try {
 			duration = sleepDetails.getSummary().getTotalTimeInBed();
 			for(int count=0; count< length; count++) {
@@ -221,10 +232,10 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		}catch(Exception ex) {
 			logger.warn(ex.getMessage());
 		}
-		BigDecimal bd = new BigDecimal(Double.parseDouble(water));
-		bd = bd.setScale(2, RoundingMode.FLOOR);
+		//BigDecimal bd = new BigDecimal(Double.parseDouble(water));
+		//bd = bd.setScale(2, RoundingMode.FLOOR);
 
-		modelAndView.addObject("water", bd);
+		modelAndView.addObject("water", water);
 		logger.debug(modelAndView.toString());
 	}
 
@@ -252,7 +263,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		modelAndView.addObject("fats", fats);
 		modelAndView.addObject("fibre", fibre);
 		modelAndView.addObject("protein", protein);
-		modelAndView.addObject("caloriesIn", Integer.parseInt(caloriesIn));
+		modelAndView.addObject("caloriesIn", caloriesIn);
 		logger.debug(modelAndView.toString());
 	}
 
@@ -294,34 +305,28 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		logger.debug(modelAndView.toString());
 	}
 
-	public SleepDetails getSleepFromDB() {
-		// TODO Auto-generated method stub
-		return null;
+	public SleepDetails getSleepDetailsFromDB(String userId) {
+		return fitbitDetailsRepository.findSleepData(userId, getTodayDate());
 	}
 
-	public HeartRateDetails getHeartRateFromDB() {
-		// TODO Auto-generated method stub
-		return null;
+	public HeartRateDetails getHeartRateDetailsFromDB(String userId) {
+		return fitbitDetailsRepository.findHeartRateData(userId, getYesterdayDate());
 	}
 
-	public FoodDetails getFoodFromDB() {
-		// TODO Auto-generated method stub
-		return null;
+	public FoodDetails getFoodDetailsFromDB(String userId) {
+		return fitbitDetailsRepository.findFoodData(userId, getYesterdayDate());
 	}
 
-	public ActivityDetails getActivityFromDB() {
-		// TODO Auto-generated method stub
-		return null;
+	public ActivityDetails getActivityDetailsFromDB(String userId) {
+		return fitbitDetailsRepository.findActivityData(userId, getYesterdayDate());
 	}
 
-	public WaterDetails getWaterFromDB() {
-		// TODO Auto-generated method stub
-		return null;
+	public WaterDetails getWaterDetailsFromDB(String userId) {
+		return fitbitDetailsRepository.findWaterData(userId, getYesterdayDate());
 	}
 
-	public ActivityGoalDetails getActivityGoalFromDB() {
-		// TODO Auto-generated method stub
-		return null;
+	public ActivityGoalDetails getActivityGoalDetailsFromDB(String userId) {
+		return fitbitDetailsRepository.findActivityGoalData(userId, getYesterdayDate());
 	}
 
 }

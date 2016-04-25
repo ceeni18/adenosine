@@ -15,23 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface FitbitDetailsServiceIntf {
 	void setFitbitTokens(FitbitTokens fitbitTokens);
-	SleepDetails getSleepDetails() throws IOException ;
-	HeartRateDetails getHeartRateDetails();
-	FoodDetails getFoodDetails();
-	ActivityDetails getActivityDetails();
-	WaterDetails getWaterDetails();
-	ActivityGoalDetails getActivityGoalDetails();
-	
-	
-	/*SleepDetails getSleepFromDB();
-	HeartRateDetails getHeartRateFromDB();
-	FoodDetails getFoodFromDB();
-	ActivityDetails getActivityFromDB();
-	WaterDetails getWaterFromDB();
-	ActivityGoalDetails getActivityGoalFromDB();*/
-	
-	
-
+	SleepDetails getSleepDetails(String userId) throws IOException ;
+	HeartRateDetails getHeartRateDetails(String userId);
+	FoodDetails getFoodDetails(String userId);
+	ActivityDetails getActivityDetails(String userId);
+	WaterDetails getWaterDetails(String userId);
+	ActivityGoalDetails getActivityGoalDetails(String userId);
 	void getHeartRate(ModelAndView modelAndView, 
 			HeartRateDetails heartRateDetails);
 	void getActivity(ModelAndView modelAndView,
@@ -42,4 +31,11 @@ public interface FitbitDetailsServiceIntf {
 	void getActivityGoals(ModelAndView modelAndView, 
 			ActivityGoalDetails activityGoalDetails);
 	void getSleep(ModelAndView modelAndView, SleepDetails sleepDetails);
+	SleepDetails getSleepDetailsFromDB(String string);
+	HeartRateDetails getHeartRateDetailsFromDB(String string);
+	FoodDetails getFoodDetailsFromDB(String string);
+	ActivityDetails getActivityDetailsFromDB(String string);
+	WaterDetails getWaterDetailsFromDB(String string);
+	ActivityGoalDetails getActivityGoalDetailsFromDB(String string);
+	
 }

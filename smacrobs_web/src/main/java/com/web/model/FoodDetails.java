@@ -2,6 +2,10 @@ package com.web.model;
 
 public class FoodDetails
 {
+	private String userId;
+	
+	private String date;
+	
 	private Summary summary;
 
 	private Foods[] foods;
@@ -32,7 +36,7 @@ public class FoodDetails
 		return "ClassPojo [summary = "+summary+", foods = "+foods+"]";
 	}
 
-	public class Summary
+	public static class Summary
 	{
 		private String water;
 
@@ -127,7 +131,7 @@ public class FoodDetails
 
 
 
-	public class Unit
+	public static class Unit
 	{
 		private String id;
 
@@ -172,7 +176,7 @@ public class FoodDetails
 		}
 	}
 
-	public class Foods
+	public static class Foods
 	{
 		private LoggedFood loggedFood;
 
@@ -241,7 +245,7 @@ public class FoodDetails
 		}
 	}
 
-	public class NutritionalValues
+	public static class NutritionalValues
 	{
 		private String protein;
 
@@ -322,7 +326,7 @@ public class FoodDetails
 		}
 	}
 
-	public class LoggedFood
+	public static class LoggedFood
 	{
 		private String amount;
 
@@ -437,6 +441,22 @@ public class FoodDetails
 		{
 			return "ClassPojo [amount = "+amount+", unit = "+unit+", foodId = "+foodId+", name = "+name+", calories = "+calories+", brand = "+brand+", mealTypeId = "+mealTypeId+", accessLevel = "+accessLevel+", units = "+units+"]";
 		}
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

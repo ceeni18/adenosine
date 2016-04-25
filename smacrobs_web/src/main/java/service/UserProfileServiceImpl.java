@@ -37,4 +37,8 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf {
 		userProfileRepository.updateUser(tisensorId, userId);
 	}
 
+	public UserProfile getUserDetailsFromDB(String userId) {		
+		return userProfileRepository.FindUser(userId);
+	}
+
 }

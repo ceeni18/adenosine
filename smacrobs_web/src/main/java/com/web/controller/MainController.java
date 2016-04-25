@@ -52,7 +52,7 @@ public class MainController {
 		this.fitbitOuthService = fitbitOuthService;
 	}
 
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public ModelAndView index() {
 		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
 		logger.debug(lc.toString());
@@ -84,25 +84,31 @@ public class MainController {
 	public ModelAndView redirectToData() throws IOException {
 		return new ModelAndView("data");
 	}
-	
-	
+
 	@RequestMapping(value = "/tisensor", method = RequestMethod.POST)
-	   public String saveTiSensor(@RequestParam(
-				value = "id",
-				required = true,
-				defaultValue = ""
-				) String id, HttpSession session) {
-	   System.out.println(id);
-	   userProfileService.UpdateTiSensorId(id, session.getAttribute("userId").toString());
-	   return "redirect:/dashboard";
-	  }
-	
+	public String saveTiSensor(@RequestParam(
+			value = "id",
+			required = true,
+			defaultValue = ""
+			) String id, HttpSession session) {
+		userProfileService.UpdateTiSensorId(id, session.getAttribute("userId").toString());
+		return "redirect:/dashboard";
+	}
+
 	@RequestMapping("/redirectToSite")
-    public String localRedirect(HttpSession session) {
+	public String localRedirect(HttpSession session) {
 		session.invalidate();
-        return "redirect:/";
-    }
-	
+		return "redirect:/";
+	}
+
+	UserProfile userProfile=null;
+	SleepDetails sleepDetails = null;
+	HeartRateDetails heartRateDetails= null;
+	FoodDetails foodDetails= null;
+	ActivityDetails activityDetails= null;
+	WaterDetails waterDetails= null ;
+	ActivityGoalDetails activityGoalDetails= null;
+
 	@RequestMapping(Constants.redirectUriFromFitbit)
 	public String redirectFromFitbit(
 			@RequestParam(
@@ -113,57 +119,61 @@ public class MainController {
 		logger.debug("Successfully redirected from Fitbit "+response);
 		FitbitTokens fitbitTokens = this.fitbitOuthService.getFitbitTokens(response);
 		logger.debug("FitbitTokens are received!");
-
 		userProfileService.setFitbitTokens(fitbitTokens);
-		UserProfile userProfile = userProfileService.getUserDetails();
-
+		userProfile = userProfileService.getUserDetails();
 		fitbitDetailsService.setFitbitTokens(fitbitTokens);
-
-		SleepDetails sleepDetails = fitbitDetailsService.getSleepDetails();
-		HeartRateDetails heartRateDetails = fitbitDetailsService.getHeartRateDetails();
-		FoodDetails foodDetails = fitbitDetailsService.getFoodDetails();
-		ActivityDetails activityDetails = fitbitDetailsService.getActivityDetails();
-		WaterDetails waterDetails = fitbitDetailsService.getWaterDetails();
-		ActivityGoalDetails activityGoalDetails = fitbitDetailsService.getActivityGoalDetails();
-		
+		sleepDetails = fitbitDetailsService.getSleepDetails(userProfile.getUser().getUserId());
+		heartRateDetails = fitbitDetailsService.getHeartRateDetails(userProfile.getUser().getUserId());
+		foodDetails = fitbitDetailsService.getFoodDetails(userProfile.getUser().getUserId());
+		activityDetails = fitbitDetailsService.getActivityDetails(userProfile.getUser().getUserId());
+		waterDetails = fitbitDetailsService.getWaterDetails(userProfile.getUser().getUserId());
+		activityGoalDetails = fitbitDetailsService.getActivityGoalDetails(userProfile.getUser().getUserId());
 		session.setAttribute("userId" , userProfile.getUser().getUserId());
 		session.setAttribute("user", userProfile.getUser());
-		
-		//TODO: SSR Need to put this in dashboard
-		FitbitDetailsServiceImpl fitbitService = new FitbitDetailsServiceImpl();
-		mv = new ModelAndView("dashboard");
-		fitbitService.getHeartRate(mv, heartRateDetails);
-		fitbitService.getActivity(mv,activityDetails);
-		fitbitService.getFood(mv,foodDetails);
-		fitbitService.getWater(mv,waterDetails);
-		fitbitService.getUserProfile(mv, userProfile);
-		fitbitService.getActivityGoals(mv, activityGoalDetails);
-		fitbitService.getSleep(mv, sleepDetails);
-		
 		return "redirect:/dashboard";
 	}
-	
+
 	@RequestMapping("/dashboard")
 	public ModelAndView dashboard(HttpSession session) {
-		//TODO: SSR Query From database and send values
-		return new ModelAndView("dashboard");
+		if(session.getAttribute("userId")==null){
+			index();
+		}
+		else{
+			FitbitDetailsServiceImpl fitbitService = new FitbitDetailsServiceImpl();
+			mv = new ModelAndView("dashboard");
+			userProfile = userProfileService.getUserDetailsFromDB(session.getAttribute("userId").toString());
+			sleepDetails = fitbitDetailsService.getSleepDetailsFromDB(session.getAttribute("userId").toString());
+			heartRateDetails = fitbitDetailsService.getHeartRateDetailsFromDB(session.getAttribute("userId").toString());
+			foodDetails = fitbitDetailsService.getFoodDetailsFromDB(session.getAttribute("userId").toString());
+			activityDetails = fitbitDetailsService.getActivityDetailsFromDB(session.getAttribute("userId").toString());
+			waterDetails = fitbitDetailsService.getWaterDetailsFromDB(session.getAttribute("userId").toString());
+			activityGoalDetails = fitbitDetailsService.getActivityGoalDetailsFromDB(session.getAttribute("userId").toString());
+			fitbitService.getHeartRate(mv, heartRateDetails);
+			fitbitService.getActivity(mv,activityDetails);
+			fitbitService.getFood(mv,foodDetails);
+			fitbitService.getWater(mv,waterDetails);
+			fitbitService.getUserProfile(mv, userProfile);
+			fitbitService.getActivityGoals(mv, activityGoalDetails);
+			fitbitService.getSleep(mv, sleepDetails);
+		}
+		return mv;
 	}
-	
+
 	@RequestMapping("/error")
 	public ModelAndView Error() {
 		return new ModelAndView("Error");
 	}
-	
+
 	@RequestMapping("/tisensor")
 	public ModelAndView tisensor() {
 		return new ModelAndView("TiSensor");
 	}
-	
+
 	@RequestMapping("/medical")
 	public ModelAndView medical() {
 		return new ModelAndView("Medical");
 	}
-	
+
 	private String getRedirectURL() {
 		return "https://www.fitbit.com/oauth2/authorize?" +
 				"response_type=" + Constants.fitbitOauthResposeType +

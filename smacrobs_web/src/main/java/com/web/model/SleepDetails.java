@@ -9,6 +9,10 @@ public class SleepDetails
 	private Summary summary;
 
 	private Sleep[] sleep;
+	
+	private String userId;
+	
+	private String date;
 
 	public Summary getSummary ()
 	{
@@ -37,7 +41,7 @@ public class SleepDetails
 				'}';
 	}
 
-	public class Summary
+	public static class Summary
 	{
 		private String totalTimeInBed;
 
@@ -76,7 +80,7 @@ public class SleepDetails
 		}
 	}
 
-	public class Sleep
+	public static class Sleep
 	{
 		private String isMainSleep;
 
@@ -271,7 +275,7 @@ public class SleepDetails
 		}
 	}
 
-	public class MinuteData
+	public static class MinuteData
 	{
 		private String dateTime;
 
@@ -296,6 +300,22 @@ public class SleepDetails
 		{
 			this.value = value;
 		}
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 }
