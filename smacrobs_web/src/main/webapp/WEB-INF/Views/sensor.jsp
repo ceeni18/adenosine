@@ -10,7 +10,7 @@
 -->
 <html lang="en">
 	<head>
-		<title>Fitbit | EaseMySleep</title>
+		<title>Sense Fence | EaseMySleep</title>
 		<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico"  type="image/x-icon" />
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,10 +22,10 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie9.css" /><![endif]-->
 		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
 	</head>
-	<body class="fitbit">
+	<body class="senso">
 		<div id="page-wrapper">
 
-				<!-- Header -->
+			<!-- Header -->
 				<header id="header">
 					<h1 id="logo"><a href="<%=request.getContextPath()%>">EaseMySleep <span>by SMACROBS</span></a></h1>
 					<nav id="nav">
@@ -48,31 +48,55 @@
 				<article id="main">
 
 					<header class="special container">
-						<span class="icon fa-laptop"></span>
-						<h2>Behold the <strong>Fitbit</strong></h2>
-						<p>Where things on the left ... accompany that on the right.</p>
+						<span class="icon fa-bar-chart"></span>
+						<h2><strong>Sense Fence</strong></h2>
+						<p>Sense Fence tracks your environment for you!</p>
 					</header>
 
 					<!-- One -->
 						<section class="wrapper style4 container">
 
 							<div class="row 150%">
+								<div class="8u 12u(narrower)">
+
+									<!-- Content -->
+										<div class="content">
+											<section>
+												<a href="#" class="image featured"><img src="images/sensorTag.jpg" alt="" /></a>
+												<header>
+													<h3>Sensor Tag CC2650</h3>
+												</header>
+												<p>The multi-standard SensorTag, based on the SimpleLink ultra-low power 
+												CC2650 wireless MCU, supports development for Bluetooth Smart, 
+												6LoWPAN and ZigBee. 
+												This SensorTag has a unique feature that allows developers to change 
+												between different 2.4 GHz technologies by simply loading new software 
+												images directly from the SensorTag app over-the-air.</p>
+											</section>
+										</div>
+
+								</div>
 								<div class="4u 12u(narrower)">
 
 									<!-- Sidebar -->
 										<div class="sidebar">
 											<section>
 												<header>
-													<h3>Sleep Tracking</h3>
+													<h3>Magna Feugiat</h3>
 												</header>
-												<p>Fitbit tracks your sleep and classifies your sleep time as 'Asleep', 'Restless' and 'Awake'.
-												 Sleep Efficiency is calculated with these different sleep stages.</p>
+												<p>The SimpleLink&trade; SensorTag allows quick and easy prototyping of IoT devices. 
+												It just works – connect your sensor solution to the cloud in three minutes.</p>
+												<footer>
+													<ul class="buttons">
+														<li><a href="https://store.ti.com/Basket.aspx" class="button small">Buy Now</a></li>
+													</ul>
+												</footer>
 											</section>
 
 											<section>
-												<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+												<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
 												<header>
-													<h3>Heart Rate</h3>
+													<h3>Amet Lorem Tempus</h3>
 												</header>
 												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
 												<footer>
@@ -80,22 +104,6 @@
 														<li><a href="#" class="button small">Buy Now</a></li>
 													</ul>
 												</footer>
-											</section>
-										</div>
-
-								</div>
-								<div class="8u 12u(narrower) important(narrower)">
-
-									<!-- Content -->
-										<div class="content">
-											<section>
-												<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-												<header>
-													<h3>Activity Tracking</h3>
-												</header>
-												<p>Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum massa. Morbi eu faucibus massa. Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam.</p>
-												<p>Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum porta cursus justo. Quisque ultricies lorem in ligula condimentum, et egestas turpis sagittis. Cras ac nunc urna. Nullam eget lobortis purus. Phasellus vitae tortor non est placerat tristique. Sed id sem et massa ornare pellentesque. Maecenas pharetra porta accumsan. </p>
-												<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus, non hendrerit ipsum arcu tristique est.</p>
 											</section>
 										</div>
 
@@ -110,9 +118,10 @@
 
 									<section>
 										<header>
-											<h3>This is Something</h3>
+											<h3>Light</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<p>Sense Fence monitors your bedroom's lighting when you sleep and 
+										will let you know if there were any disturbances!</p>
 									</section>
 
 								</div>
@@ -120,9 +129,9 @@
 
 									<section>
 										<header>
-											<h3>Also Something</h3>
+											<h3>Temperature</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<p>Sense Fence tracks your bedroom temperature for you!</p>
 									</section>
 
 								</div>
@@ -130,14 +139,9 @@
 
 									<section>
 										<header>
-											<h3>Probably Something</h3>
+											<h3>Humidity</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-										<footer>
-											<ul class="buttons">
-												<li><a href="#" class="button small">Learn More</a></li>
-											</ul>
-										</footer>
+										<p>Sense Fence compares your bedroom humidity with your location's humidity and gives you more insights.</p>
 									</section>
 
 								</div>

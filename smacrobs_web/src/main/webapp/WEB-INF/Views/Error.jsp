@@ -311,8 +311,6 @@
 	<script src="<%=request.getContextPath()%>/assets/js/language/css.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
-
-	<script type="text/javascript">
 		
 							
 </body>

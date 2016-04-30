@@ -33,11 +33,14 @@
 <!-- text fonts -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/ace-fonts.css" />
+	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Arapey:400,400italic' rel='stylesheet' type='text/css'>
 
 <!-- ace styles -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/ace.css"
 	class="ace-main-stylesheet" id="main-ace-style" />
+	
 
 <!--[if lte IE 9]>
 			<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/ace-part2.css" class="ace-main-stylesheet" />
@@ -65,6 +68,7 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
 
 <script>
 if('${userId}'=='')
@@ -72,7 +76,6 @@ if('${userId}'=='')
 	location.replace("/smacrobs/");
 }
 </script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
 
 </head>
 
@@ -246,29 +249,30 @@ if('${userId}'=='')
 						<!-- NV - start 04/21/2016 -->
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="heartData">
-								<span class="btn btn-app btn-danger no-hover" style="width:100%" 
+								<span class="btn btn-app btn-danger no-hover" 
+								style="width:100%;cursor:default" 
 								data-toggle="tooltip" data-placement="top" title="Resting Heart Rate">
 								<span class="line-height-1 bigger-170"> <i
 										class="fa fa-heartbeat fa-2x"></i>
 								</span> <br /> <span class="line-height-1 smaller-90">
-										${heartRate}/minute </span>
+										${heartRate} bpm </span>
 								</span>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="calData">
-								<span class="btn btn-app btn-success no-hover" style="width:100%"
+								<span class="btn btn-app btn-success no-hover" style="width:100%;cursor:auto"
 								data-toggle="tooltip" data-placement="top" title="Calories Intake">
 								<span class="line-height-1 bigger-170"> <i
 										class="fa fa-cutlery fa-2x"></i>
 								</span> <br /> <span class="line-height-1 smaller-90">
-										${calIn} cal</span>
+										${caloriesIn} cal</span>
 								</span>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="waterData">
-								<span class="btn btn-app btn-primary no-hover" style="width:100%"
+								<span class="btn btn-app btn-primary no-hover" style="width:100%;cursor:auto"
 								data-toggle="tooltip" data-placement="top" title="Water Consumed">
 								<span class="line-height-1 bigger-170">
 									<i class="fa fa-tint fa-2x"></i>
@@ -279,7 +283,7 @@ if('${userId}'=='')
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="heartData">
-								<span class="btn btn-app btn-yellow no-hover" style="width:100%"
+								<span class="btn btn-app btn-yellow no-hover" style="width:100%;cursor:auto"
 								data-toggle="tooltip" data-placement="top" title="Sleep Duration">
 								<span class="line-height-1 bigger-170"> <i
 										class="fa fa-moon-o fa-2x"></i>
@@ -290,7 +294,7 @@ if('${userId}'=='')
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="sleepEffData">
-								<span class="btn btn-app btn-pink no-hover" style="width:100%"
+								<span class="btn btn-app btn-pink no-hover" style="width:100%;cursor:auto"
 								data-toggle="tooltip" data-placement="top" title="Sleep Efficiency">
 								<span class="line-height-1 bigger-170">
 									<i class="fa fa-calculator fa-2x"></i>
@@ -302,7 +306,7 @@ if('${userId}'=='')
 						</div>
 							<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="sleepCountData">
-								<span class="btn btn-app btn-purple no-hover" style="width:100%"
+								<span class="btn btn-app btn-purple no-hover" style="width:100%;cursor:auto"
 								data-toggle="tooltip" data-placement="top" title="Awake/Restless Count">
 								<span class="line-height-1 bigger-170"> <i
 										class="fa fa-eye fa-2x"></i>
@@ -315,7 +319,7 @@ if('${userId}'=='')
 				</div>
 				<br/>
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
-				Synchronized Charts - Sleep, Temperature, Light & Humidity</h3>
+				Sleep and Sensors</h3>
 				<div class="row">
 					<div class="col-xs-12">
 						<div id="sleep" class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
@@ -338,7 +342,7 @@ if('${userId}'=='')
 				</div>
 
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
-				Activity Charts - Steps, Floors & Distance</h3>
+				Activity</h3>
 				<div class="row col-md-12">	
 					<div class="col-md-offset-1 col-md-10">
 						<div id="steps" class="col-md-4 col-sm-6 col-xs-12"
@@ -351,7 +355,7 @@ if('${userId}'=='')
 				</div>
 				<br/>
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
-				Food Charts - Food Intake & Calorie Meter</h3>
+				Food</h3>
 				<div class="row col-md-12">
 					<div class="col-md-offset-1 col-md-10">
 						<div id="food" class="col-md-6 col-sm-6 col-xs-12"
@@ -364,12 +368,12 @@ if('${userId}'=='')
 
 				<!-- SSR Recommendations -->
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">Recommendations</h3>
-				<div class="row col-md-12">
+				<div class="row col-md-12" style="font-family: 'Arapey', serif;">
 				<div class="col-md-offset-1 col-md-10">
 				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
 					<div class="widget-box widget-color-orange  light-border">
 						<div class="widget-header">
-							<h5 class="widget-title smaller">Light</h5>
+							<h5 class="widget-title smaller"><strong>Light</strong></h5>
 						</div>
 
 						<div class="widget-body scrollable">
@@ -385,14 +389,14 @@ if('${userId}'=='')
 				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
 					<div class="widget-box widget-color-blue light-border">
 						<div class="widget-header">
-							<h5 class="widget-title smaller">Food</h5>
+							<h5 class="widget-title smaller"><strong>Food</strong></h5>
 						</div>
 
 						<div class="widget-body scrollable">
 							<div class="widget-main padding-6">
-								<div class="alert alert-info">Hello World!</div>
-								<div class="alert alert-success">Hello World!</div>
-								<div class="alert alert-danger">Hello World!</div>
+								<div class="alert alert-info">${steps}</div>
+								<div class="alert alert-success">${floors}</div>
+								<div class="alert alert-danger">${distance}</div>
 							</div>
 						</div>
 					</div>
@@ -401,29 +405,23 @@ if('${userId}'=='')
 				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
 					<div class="widget-box widget-color-pink light-border">
 						<div class="widget-header">
-							<h5 class="widget-title smaller">Temperature</h5>
+							<h5 class="widget-title smaller"><strong>Temperature</strong></h5>
 						</div>
 
 						<div class="widget-body scrollable">
 							<div class="widget-main padding-6">
-								<div class="alert alert-info">Hello World!</div>
-								<div class="alert alert-success">Hello World!</div>
-								<div class="alert alert-danger">Hello World!</div>
+								<div class="alert alert-info">a</div>
+								<div class="alert alert-success">b</div>
+								<div class="alert alert-danger">c</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				</div>
 			</div>
-
-</div>
-
-
-			</div>
-			<!-- /.page-content -->
 		</div>
-	</div>
-	<!-- /.main-content -->
+			</div>
+		</div>
 	
 	<!-- Trigger the modal with a button -->
 
@@ -433,11 +431,15 @@ if('${userId}'=='')
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Alert!</h4>
+      <div class="modal-header" style="text-align: center">
+        <h4 class="modal-title">
+        <i class="ace-icon fa fa-sign-out">
+        <strong>Logout</strong></i></h4>
       </div>
-      <div class="modal-body">
-        <p>Success. You are Logged out of SMACROBS. Dont forget to logout of Fitbit</p>
+      <div class="modal-body" style="font-size:20px;text-align: center">
+        <p><span style="color:green"><b>Success!</b></span><br/>
+        You are now logged out of <b>EaseMySleep</b>.
+        <br/>But remember to logout of <b>Fitbit</b>!</p>
       </div>
       <div class="modal-footer">
         <a href="/smacrobs/redirectToSite" class="btn btn-default">OK</a>
@@ -1058,8 +1060,14 @@ if('${userId}'=='')
     yAxis: {
       visible: false,
     },
+    legend: {
+    	labelFormatter: function () {
+            return this.name;
+    	}
+    },
     plotOptions: {
       series: {
+    	  //color: ['#9B59B6', '#3498DB', '#2ECC71'],
         pointPadding: 0,
         groupPadding: 0,
         borderWidth: 0,
@@ -1068,6 +1076,12 @@ if('${userId}'=='')
       },
     },
     series: [{
+    	 /* name: 'Awake',
+        color:'#9B59B6'
+    }, {
+        name: 'Restless',
+        color:'#3498DB'
+    },{ */ 
         name: 'Asleep',
     	color: '#2ECC71',	
       keys: ['x', 'y', 'value'],
@@ -1144,112 +1158,113 @@ if('${userId}'=='')
   });
 });
 		//Calories Data from Fitbit - Highcharts
-		$(function() {
+		$(function () {
 
-  $('#calorie').highcharts({
+    $('#calorie').highcharts({
 
-    chart: {
-      type: 'gauge',
-      plotBackgroundColor: null,
-      plotBackgroundImage: null,
-      plotBorderWidth: 0,
-      plotShadow: false
-    },
-
-    title: {
-      text: 'Calories In Vs Out'
-    },
-
-    pane: {
-      startAngle: -150,
-      endAngle: 150,
-      background: [{
-        backgroundColor: {
-          linearGradient: {
-            x1: 0,
-            y1: 0,
-            x2: 0,
-            y2: 1
-          },
-          stops: [
-            [0, '#FFF'],
-            [1, '#333']
-          ]
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
         },
-        borderWidth: 0,
-        outerRadius: '109%'
-      }, {
-        backgroundColor: {
-          linearGradient: {
-            x1: 0,
-            y1: 0,
-            x2: 0,
-            y2: 1
-          },
-          stops: [
-            [0, '#333'],
-            [1, '#FFF']
-          ]
+
+        title: {
+            text: 'Calories In Vs Out'
         },
-        borderWidth: 1,
-        outerRadius: '107%'
-      }, {
-        // default background
-      }, {
-        backgroundColor: '#DDD',
-        borderWidth: 0,
-        outerRadius: '105%',
-        innerRadius: '103%'
-      }]
-    },
 
-    // the value axis
-    yAxis: {
-      min: 0,
-      max: [${calOut}],
+        pane: {
+            startAngle: -150,
+            endAngle: 150,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+            }, {
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+            }]
+        },
 
-      minorTickInterval: 'auto',
-      minorTickWidth: 1,
-      minorTickLength: 10,
-      minorTickPosition: 'inside',
-      minorTickColor: '#666',
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: ${calOut},
 
-      tickPixelInterval: 30,
-      tickWidth: 2,
-      tickPosition: 'inside',
-      tickLength: 10,
-      tickColor: '#666',
-      labels: {
-        step: 2,
-        rotation: 'auto'
-      },
-      title: {
-        text: 'In vs Out'
-      },
-      plotBands: [{
-        from: 0,
-        to: [${calOut1}],
-        color: '#55BF3B' // green
-      }, {
-        from: [${calOut1}],
-        to: [${calOut2}],
-        color: '#DDDF0D' // yellow
-      }, {
-        from: [${calOut2}],
-        to: [${calOut}],
-        color: '#DF5353' // red
-      }]
-    },
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
 
-    series: [{
-      name: 'Calories',
-      data: [${calIn}],
-      tooltip: {
-        valueSuffix: ''
-      }
-    }]
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: 'In vs Out'
+            },
+            plotBands: [{
+                from: 0,
+                to: [${calOut1}],
+                color: '#DDDF0D' // yellow
+            }, {
+                from: [${calOut1}],
+                to: [${calOut2}],
+                color: '#55BF3B' // green
+            }, {
+                from: [${calOut2}],
+                to: [${calOut}],
+                color: '#DF5353' // red
+            }]
+        },
+        tooltip: {
+            formatter: function() {
+              var val = "No data available!";
+               if (0 < ${caloriesIn} < ${calOut1}) {
+                val = "You are below range!";
+              }
+              else if (${calOut1} < ${caloriesIn} < ${calOut2}) {
+                val = "You are in range!";
+              } */
+              else {
+                val = "You are out of range!";
+              }
+              return val;
+            },
+          },
 
-  });
+        series: [{
+            name: 'Calories',
+            data: [${caloriesIn}]
+        }]
+    });
 });
 		
 </script>

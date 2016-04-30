@@ -76,6 +76,9 @@ if('${userId}'!='')
 							<ul class="buttons vertical">
 								<li><a href="/smacrobs/oauth" class="button fit scrolly">Connect With Fitbit</a></li>
 							</ul>
+							<ul class="buttons vertical">
+								<li><a href="http://goo.gl/CrrYPU" class="button fit scrolly">Checkout Out SensorTag</a></li>
+							</ul>
 						</footer>
 					</div>
 				</section>
