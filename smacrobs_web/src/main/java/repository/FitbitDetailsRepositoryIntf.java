@@ -1,11 +1,8 @@
 package repository;
 
-import com.web.model.ActivityDetails;
-import com.web.model.ActivityGoalDetails;
-import com.web.model.FoodDetails;
-import com.web.model.HeartRateDetails;
-import com.web.model.SleepDetails;
-import com.web.model.WaterDetails;
+import com.web.model.*;
+
+import java.util.List;
 
 public interface FitbitDetailsRepositoryIntf {
 	void saveSleepData(SleepDetails sleepDetails);
@@ -20,4 +17,7 @@ public interface FitbitDetailsRepositoryIntf {
 	ActivityDetails findActivityData(String userId, String date);
 	WaterDetails findWaterData(String userId, String date);
 	ActivityGoalDetails findActivityGoalData(String userId, String date);
+	List<TiSensorLight> getLightMinuteData(String userId);
+	List<TiSensorTemperature> getTemperatureMinuteData(String userId);
+	List<TiSensorHumidity> getHumidityMinuteData(String userId);
 }

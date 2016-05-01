@@ -38,20 +38,20 @@ public class SpringMongoConfig {
                   ));
    }
 
-   public @Bean
-   MongoTemplate mongoTemplate(){
-      MongoDbFactory mongoDbFactory = null;
-      MongoTemplate mongoTemplate = null;
+	public @Bean
+	MongoTemplate mongoTemplate(){
+		MongoDbFactory mongoDbFactory = null;
+		MongoTemplate mongoTemplate = null;
 
-      try {
-         //remove _class
-         MappingMongoConverter converter = new MappingMongoConverter(
-               mongoDbFactory(), new MongoMappingContext());
-         converter.setTypeMapper(new DefaultMongoTypeMapper(null));
-         mongoTemplate = new MongoTemplate(mongoDbFactory(), converter);
-      }catch (Exception e){
-         logger.error("Database exception :: " + e);
-      }
-      return mongoTemplate;
-   }
+		try {
+			//remove _class
+			MappingMongoConverter converter = new MappingMongoConverter(
+					mongoDbFactory(), new MongoMappingContext());
+			converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+			mongoTemplate = new MongoTemplate(mongoDbFactory(), converter);
+		}catch (Exception e){
+			logger.error("Database exception :: " + e);
+		}
+		return mongoTemplate;
+	}
 }

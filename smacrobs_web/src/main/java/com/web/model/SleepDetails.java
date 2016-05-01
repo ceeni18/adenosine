@@ -1,7 +1,8 @@
 package com.web.model;
 
-import java.util.Arrays;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Arrays;
 
 @Document(collection = "sleepDetails")
 public class SleepDetails

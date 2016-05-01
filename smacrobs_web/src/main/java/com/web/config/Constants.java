@@ -14,10 +14,15 @@ public class Constants {
 	public static final int DATABASE_PORT;
 
 	/*
+	* TiSensor REST API Constants for com.web.load.SimulateAUserTiSensor
+	* */
+	public static final String TISENSOR_REST_URL = "http://localhost:8081/tisensor";
+
+	/*
 	 * FitBit Constants
 	 * */
-	public static final String fitbitOauthResposeType="code";
-	public static final String JSON_EXTENSION = ".json";
+	//public static final String fitbitOauthResposeType="code";
+	//public static final String JSON_EXTENSION = ".json";
 	public static final String fitbitOauthClientId = "227NJT";
 	//public static final String fitbitOauthClientId = "227L87";
 	public static final String appClientIdAndSecrect =
@@ -46,9 +51,11 @@ public class Constants {
 	public static final String activityGoalURL = 
 			"https://api.fitbit.com/1/user/-/activities/goals/daily.json";
 	public static final String dateFormat = "yyyy-MM-dd";
-	public static final String grantType = "authorization_code";
+	//public static final String grantType = "authorization_code";
+
 
 	static {
+
 		if(System.getenv("environment") == "production") {
 			DATABASE_NAME      = System.getenv("DATABASE_NAME");
 			DATABASE_USERNAME  = System.getenv("DATABASE_USERNAME");
@@ -60,7 +67,7 @@ public class Constants {
 			DATABASE_NAME      = "mydb";
 			DATABASE_USERNAME  = "";
 			DATABASE_PASSWORD  = "";
-			DATABASE_HOSTNAME  = "localhost";
+			DATABASE_HOSTNAME  = "192.168.10.2";
 			DATABASE_PORT      = 27017;
 		}
 	}

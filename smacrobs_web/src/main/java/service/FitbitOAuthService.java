@@ -64,7 +64,7 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 
 	private String getURLParameters(String authCode) {
 		return "client_id=" + Constants.fitbitOauthClientId +
-				"&grant_type=" + Constants.grantType +
+				"&grant_type=authorization_code" +
 				"&redirect_uri=" + Constants.LOCALHOST + 
 				Constants.redirectUriFromFitbit +
 				"&code=" + authCode;

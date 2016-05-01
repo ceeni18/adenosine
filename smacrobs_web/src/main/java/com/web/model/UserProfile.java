@@ -1,14 +1,17 @@
 package com.web.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.google.gson.annotations.SerializedName;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "userProfile")
 public class UserProfile
 {
+	@Id
+	private ObjectId _id;
+
 	private User user;
-	
 
 	public User getUser ()
 	{
@@ -19,8 +22,6 @@ public class UserProfile
 	{
 		this.user = user;
 	}
-	
-	
 
 	@Override
 	public String toString()
@@ -31,7 +32,7 @@ public class UserProfile
 	public static class User
 	{
 		private String tiSensorId;
-		
+
 		private String dateOfBirth;
 
 		private String weight;
@@ -98,7 +99,7 @@ public class UserProfile
 		private String distanceUnit;
 
 		private String displayName;
-		
+
 		public String getTiSensorId() {
 			return tiSensorId;
 		}
@@ -407,7 +408,6 @@ public class UserProfile
 			this.fullName = fullName;
 		}
 
-
 		public String getDistanceUnit ()
 		{
 			return distanceUnit;
@@ -440,6 +440,7 @@ public class UserProfile
 
 		public void setUserId(String userId) {
 			this.userId = userId;
+
 		}
 	}
 
@@ -724,7 +725,7 @@ public class UserProfile
 		@Override
 		public String toString()
 		{
-			return "ClassPojo [image75px = "+image75px+", earnedMessage = "+earnedMessage+", shareImage640px = "+shareImage640px+", dateTime = "+dateTime+", image50px = "+image50px+", badgeGradientEndColor = "+badgeGradientEndColor+", timesAchieved = "+timesAchieved+", mobileDescription = "+mobileDescription+", marketingDescription = "+marketingDescription+", category = "+category+", shortDescription = "+shortDescription+", badgeGradientStartColor = "+badgeGradientStartColor+", description = "+description+", name = "+name+", image125px = "+image125px+", value = "+value+", shareText = "+shareText+", cheers = "+cheers+", shortName = "+shortName+", encodedId = "+encodedId+", image300px = "+image300px+", badgeType = "+badgeType+", image100px = "+image100px+"]";
+			return "ClassPojo [image75px = "+image75px+", earnedMessage = "+earnedMessage+", shareImage640px = "+shareImage640px+", dateTime = "+dateTime+", image50px = "+image50px+", badgeGradientEndColor = "+badgeGradientEndColor+", timesAchieved = "+timesAchieved+", mobileDescription = "+mobileDescription+", marketingDescription = "+marketingDescription+", category = "+category+", shortDescription = "+shortDescription+", badgeGradientStartColor = "+badgeGradientStartColor+", description = "+description+", name = "+name+", image125px = "+image125px+", value = "+value+", shareText = "+shareText+", cheers = "+cheers+", shortName = "+shortName+", userId = "+encodedId+", image300px = "+image300px+", badgeType = "+badgeType+", image100px = "+image100px+"]";
 		}
 	}
 

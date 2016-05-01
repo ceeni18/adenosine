@@ -1,7 +1,7 @@
 package com.web.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
 import com.google.gson.annotations.SerializedName;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "heartRateDetails")
 public class HeartRateDetails {

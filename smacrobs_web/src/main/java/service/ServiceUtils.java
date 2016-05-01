@@ -2,6 +2,8 @@ package service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.web.config.Constants;
+import com.web.model.SynchronizedData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +13,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class ServiceUtils {
 	public static final Gson gson = new GsonBuilder()
@@ -67,4 +75,43 @@ public class ServiceUtils {
 		}
 		return sb.toString();
 	}
+
+	public static String getTodayDate() {
+		DateFormat dateFormat = new SimpleDateFormat(Constants.dateFormat);
+		Calendar cal = Calendar.getInstance();
+		return dateFormat.format(cal.getTime());
+	}
+
+	public static String getYesterdayDate() {
+		DateFormat dateFormat = new SimpleDateFormat(Constants.dateFormat);
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		return dateFormat.format(cal.getTime());
+	}
+
+	public static List<SynchronizedData> getSynchronizedDataList(){
+		List<SynchronizedData> synchronizedData = new
+				ArrayList<SynchronizedData>();
+		DecimalFormat formatter = new DecimalFormat("00");
+		for(int i=22; i<24; i++){
+			for(int j=0; j<60; j++){
+				String minute = ""+i+":"+formatter.format(j);
+				SynchronizedData sdm = new SynchronizedData();
+				sdm.setTime(minute);
+				synchronizedData.add(sdm);
+			}
+		}
+		for(int i=0; i<10; i++){
+			for(int j=0; j<60; j++){
+				String minute = ""+formatter.format(i)+":"
+						+formatter.format(j);
+				SynchronizedData sdm = new SynchronizedData();
+				sdm.setTime(minute);
+				synchronizedData.add(sdm);
+			}
+		}
+
+		return synchronizedData;
+	}
+
 }
