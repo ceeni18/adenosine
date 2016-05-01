@@ -13,6 +13,15 @@ public class TiSensorTemperature implements TiSensorDatapoint {
     private String tiSensorId;
     private String userId;
     private String collection = "tiSensorTemperature";
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getCollectionName() {
         return collection;

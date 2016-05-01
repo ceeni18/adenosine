@@ -13,6 +13,15 @@ public class TiSensorHumidity implements TiSensorDatapoint {
     private String tiSensorId;
     private String userId;
     private String collection = "tiSensorHumidity";
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getCollectionName() {
         return collection;

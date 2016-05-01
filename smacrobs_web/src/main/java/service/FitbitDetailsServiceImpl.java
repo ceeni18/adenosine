@@ -129,25 +129,24 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 	private String getSleepMinuteData(SleepDetails sleepDetails){
 		StringBuffer sb = new StringBuffer();
 		sb.append("[");
+		List<SynchronizedData> synchronizedSleepData =
+				getSleepInRequiredFormat();
 		try {
-			/*SleepDetails.Sleep sleep[] = sleepDetails.getSleep();
-			for (int i = 0; i < sleep.length; i++) {
-				SleepDetails.MinuteData minuteData[] = sleep[i].getMinuteData();
-				for (int j = 0; j < minuteData.length; j++) {
-					String minute = minuteData[i].getDateTime().substring(0, 6);
-					if (Constants.acceptedMinutes.containsKey(minute)) {
-						sb.append("['");
-						sb.append(minute);
-						sb.append("', ");
-						sb.append("2, ");
-						sb.append(minuteData[i].getValue());
-						sb.append("]");
-					}
-				}
-			}*/
+			for(int i=0; i<synchronizedSleepData.size(); i++){
+				SynchronizedData sleepMinutedata = synchronizedSleepData.get(i);
+				sb.append("[");
+				sb.append("'" + sleepMinutedata.getTime() + "', ");
+				sb.append("2, ");
+				if(sleepMinutedata.getValue() == null)
+					sb.append("" + 0);
+				else
+					sb.append(Integer.parseInt(sleepMinutedata.getValue()));
+				sb.append("],");
+			}
 		}catch (Exception e){
 			logger.warn("Unable to get sleep minute data "+e);
 		}
+		sb.deleteCharAt(sb.length()-1);
 		sb.append("]");
 		return sb.toString();
 	}
@@ -245,10 +244,6 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		modelAndView.addObject("awakeningTime", awakeningTime);
 		modelAndView.addObject("sleepMinuteData",
 				getSleepMinuteData(sleepDetails));
-		modelAndView.addObject("lightMinuteData", getLightMinuteData());
-		modelAndView.addObject("temperatureMinuteData",
-				getTemperatureMinuteData());
-		modelAndView.addObject("humidityMinuteData", getHumidityMinuteData());
 		logger.debug(modelAndView.toString());
 	}
 
@@ -467,7 +462,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		for(int i=0; i<sleep.length; i++){
 			SleepDetails.MinuteData minuteData[] = sleep[i].getMinuteData();
 			for(int j=0; j<minuteData.length; j++){
-				tempHash.put(minuteData[j].getDateTime().substring(0,6),
+				tempHash.put(minuteData[j].getDateTime().substring(0,5),
 						minuteData[j].getValue());
 			}
 		}

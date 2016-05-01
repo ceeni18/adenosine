@@ -3,6 +3,7 @@ package com.web.load;
 import com.web.config.Constants;
 import com.web.model.*;
 import org.springframework.web.client.RestTemplate;
+import service.ServiceUtils;
 
 import java.text.DecimalFormat;
 import java.util.Random;
@@ -16,6 +17,7 @@ public class SimulateAUserTiSensor {
     static TiSensorLight light = new TiSensorLight();
     static TiSensorHumidity humidity = new TiSensorHumidity();
     static Random random = new Random();
+    static String yesterdayDate = ServiceUtils.getYesterdayDate();
 
 
     public static void main(String args[]) throws Exception {
@@ -29,6 +31,10 @@ public class SimulateAUserTiSensor {
         temperature.setTiSensorId("REDD");
         light.setTiSensorId("REDD");
         humidity.setTiSensorId("REDD");
+
+        temperature.setDate(yesterdayDate);
+        light.setDate(yesterdayDate);
+        humidity.setDate(yesterdayDate);
 
         DecimalFormat formatter = new DecimalFormat("00");
         for(int i=22; i<24; i++){

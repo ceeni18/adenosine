@@ -13,6 +13,15 @@ public class TiSensorLight implements TiSensorDatapoint {
     private String tiSensorId;
     private String userId;
     private String collection = "tiSensorLight";
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getCollectionName() {
         return collection;

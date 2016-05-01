@@ -27,16 +27,19 @@ public class MainController {
 	FitbitOAuthServiceIntf fitbitOuthService;
 	RecommendationsServiceImpl recommendationsService;
 	FitbitDetailsServiceIntf fitbitDetailsService;
+	TiSensorService tiSensorService;
 
 	@Autowired
 	public MainController(UserProfileServiceIntf userProfileService,
 						  FitbitOAuthServiceIntf fitbitOuthService,
 						  RecommendationsServiceImpl recommendationsService,
-						  FitbitDetailsServiceIntf fitbitDetailsService){
+						  FitbitDetailsServiceIntf fitbitDetailsService,
+						  TiSensorService tiSensorService){
 		this.userProfileService = userProfileService;
 		this.fitbitOuthService = fitbitOuthService;
 		this.recommendationsService = recommendationsService;
 		this.fitbitDetailsService = fitbitDetailsService;
+		this.tiSensorService = tiSensorService;
 	}
 
 	@RequestMapping("/")
@@ -123,6 +126,7 @@ public class MainController {
 			mv = new ModelAndView("dashboard");
 			recommendationsService.setSessionVariables(session);
 			fitbitDetailsService.setSessionVariables(session);
+			tiSensorService.setSessionVariables(session);
 
 			fitbitDetailsService.AddHeartRateToModel(mv);
 			fitbitDetailsService.AddActivityDetailsToModel(mv);
@@ -131,6 +135,11 @@ public class MainController {
 			fitbitDetailsService.AddUserProfileToModel(mv);
 			fitbitDetailsService.AddActivityGoalsToModel(mv);
 			fitbitDetailsService.AddSleepToModel(mv);
+
+			tiSensorService.AddTemperatureToModel(mv);
+			tiSensorService.AddLightToModel(mv);
+			tiSensorService.AddHumidityToModel(mv);
+
 			recommendationsService.addRecommendationsToModel(mv, Boolean.FALSE);
 		}
 		return mv;

@@ -1,5 +1,7 @@
 package repository;
 
+import com.web.model.TiSensorHumidity;
+import com.web.model.TiSensorLight;
 import com.web.model.TiSensorTemperature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,5 +36,31 @@ public class TiSensorRepositoryImpl {
             logger.info("unable to get data "+e);
         }
         return tiSensorTemperatures;
+    }
+
+    public List<TiSensorLight> getLightData(String userId, String date){
+        List<TiSensorLight> tiSensorLightData = null;
+        try {
+            tiSensorLightData = mongoTemplate.find(
+                    new Query().addCriteria(Criteria.where("userId").is(userId)
+                            .andOperator(Criteria.where("date").is(date))),
+                    TiSensorLight.class, "tiSensorLight");
+        }catch (MappingInstantiationException e){
+            logger.info("unable to get data "+e);
+        }
+        return tiSensorLightData;
+    }
+
+    public List<TiSensorHumidity> getHumidityData(String userId, String date){
+        List<TiSensorHumidity> tiSensorHumidityData = null;
+        try {
+            tiSensorHumidityData = mongoTemplate.find(
+                    new Query().addCriteria(Criteria.where("userId").is(userId)
+                            .andOperator(Criteria.where("date").is(date))),
+                    TiSensorHumidity.class, "tiSensorHumidity");
+        }catch (MappingInstantiationException e){
+            logger.info("unable to get data "+e);
+        }
+        return tiSensorHumidityData;
     }
 }
