@@ -144,9 +144,12 @@ public class TiSensorService {
                 SynchronizedData minutedata = synchronizedData.get(i);
                 if(minutedata.getValue() != null){
                     sb.append("[");
-                    sb.append("'" + minutedata.getTime() + "', ");
-                    sb.append(Double.parseDouble(minutedata.getValue
-                            ()));
+                    sb.append(minutedata.getTime().replace(":", "") + ", ");
+                    minutedata.getValue().substring(0, minutedata.getValue()
+                            .indexOf(',')+3);
+                    sb.append(Double.parseDouble(minutedata
+                            .getValue().substring(0, minutedata.getValue()
+                            .indexOf('.')+3)));
                     sb.append("],");
                 }
             }

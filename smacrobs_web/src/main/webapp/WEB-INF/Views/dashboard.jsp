@@ -640,7 +640,7 @@ if('${userId}'=='')
 		
 		//Temperature Data from TI Sensor - Highcharts
 		$(function () {
-		    var ordersJson = '{"charts":[{"name":"Temperature","units": "�C","type": "line","data":[[1446994800000,18.5],[1446998400000,18.6],[1447002000000,18.4],[1447005600000,18.4],[1447009200000,18.5],[1447012800000,17.5],[1447016400000,18.5],[1447020000000,17.8],[1447023600000,18.6],[1447027200000,20.1],[1447030800000,20.5],[1447034400000,20.4],[1447038000000,18.5],[1447041600000,18.3],[1447045200000,18.0],[1447048800000,18.2],[1447052400000,18.4],[1447056000000,18.5],[1447059600000,18.3],[1447063200000,18.8],[1447066800000,19.0],[1447070400000,18.5],[1447074000000,18.9],[1447077600000,18.4]]}]}';
+		    var ordersJson = '{"charts":[{"name":"Temperature","units": "C","type": "line","data": ${temperatureMinuteData}}]}';
 		    Highcharts.setOptions({
 		        global: {
 		            timezoneOffset: 7 * 60 //7 hours ahead of UTC
@@ -742,7 +742,7 @@ if('${userId}'=='')
 		
 		//Light Data from TI Sensor - Highcharts
 		$(function () {
-		    var ordersJson = '{"charts":[{"name":"Light","type": "line","units": "lux","data":[[1446994800000,55.1],[1446998400000,55],[1447002000000,54.4],[1447005600000,54.4],[1447009200000,54.3],[1447012800000,54.1],[1447016400000,55.1],[1447020000000,55.1],[1447023600000,55.1],[1447027200000,55.1],[1447030800000,55.1],[1447034400000,55.1],[1447038000000,55.1],[1447041600000,55.1],[1447045200000,55.1],[1447048800000,55.1],[1447052400000,55.1],[1447056000000,55.1],[1447059600000,55.1],[1447063200000,55.1],[1447066800000,55.1],[1447070400000,55.1],[1447074000000,55.1],[1447077600000,55.1]]}]}';
+		    var ordersJson = '{"charts":[{"name":"Light","type": "line","units": "lux","data":${lightMinuteData}}]}';
 		    Highcharts.setOptions({
 		        global: {
 		            timezoneOffset: 7 * 60 //7 hours ahead of UTC
@@ -843,7 +843,7 @@ if('${userId}'=='')
 		
 		//Himidity Data from TI Sensor - Highcharts
 		$(function () {
-		    var ordersJson = '{"charts":[{"name":"Humidity","units": " % rH","type": "line","data":[[1446994800000,18.5],[1446998400000,18.6],[1447002000000,18.4],[1447005600000,18.4],[1447009200000,18.5],[1447012800000,17.5],[1447016400000,18.5],[1447020000000,17.8],[1447023600000,18.6],[1447027200000,20.1],[1447030800000,20.5],[1447034400000,20.4],[1447038000000,18.5],[1447041600000,18.3],[1447045200000,18.0],[1447048800000,18.2],[1447052400000,18.4],[1447056000000,18.5],[1447059600000,18.3],[1447063200000,18.8],[1447066800000,19.0],[1447070400000,18.5],[1447074000000,18.9],[1447077600000,18.4]]}]}';
+		    var ordersJson = '{"charts":[{"name":"Humidity","units": " % rH","type": "line","data":${humidityMinuteData}}]}';
 		    Highcharts.setOptions({
 		        global: {
 		            timezoneOffset: 7 * 60 //7 hours ahead of UTC
@@ -1057,69 +1057,7 @@ if('${userId}'=='')
         name: 'Asleep',
     	color: '#2ECC71',	
       keys: ['x', 'y', 'value'],
-      data: [
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 1],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 2],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-        [this.x, 2, 3],
-      ]
+      data: ${sleepMinuteData}
     }]
   }, function(chart) {
     Highcharts.each(chart.series[0].data, function(p, i) {

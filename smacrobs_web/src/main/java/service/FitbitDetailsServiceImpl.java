@@ -135,12 +135,16 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 			for(int i=0; i<synchronizedSleepData.size(); i++){
 				SynchronizedData sleepMinutedata = synchronizedSleepData.get(i);
 				sb.append("[");
-				sb.append("'" + sleepMinutedata.getTime() + "', ");
-				sb.append("2, ");
-				if(sleepMinutedata.getValue() == null)
+				sb.append("" + sleepMinutedata.getTime().replace(":", "") + ", ");
+
+				if(sleepMinutedata.getValue() == null){
+					sb.append("0, ");
 					sb.append("" + 0);
-				else
+				}
+				else {
+					sb.append("2, ");
 					sb.append(Integer.parseInt(sleepMinutedata.getValue()));
+				}
 				sb.append("],");
 			}
 		}catch (Exception e){

@@ -41,6 +41,7 @@ public class RecommendationsServiceImpl {
     List<SynchronizedData> synchronizedTemperatureData;
     List<SynchronizedData> synchronizedLightData;
     List<SynchronizedData> synchronizedHumidityData;
+    List<String> foodsConsumed;
 
     boolean lowTemperatureHasEffect = false;
     boolean highTemperatureHasEffect = false;
@@ -60,6 +61,7 @@ public class RecommendationsServiceImpl {
     double idealLightValue = 10;
     double idealHumidityLow = 45;
     double idealHumidityHigh = 55;
+    String[] foodsInDB = {"coffee", "protein", "carbs"};
 
     static final int MAXIMUM_RECOMMENDATIONS_PER_TOPIC = 2;
 
@@ -124,7 +126,27 @@ public class RecommendationsServiceImpl {
     }
 
     private void classifyFood(){
-
+        if(foodDetails == null || foodDetails.getFoods() == null ||
+                foodDetails.getSummary() == null){
+            return;
+        }
+        foodsConsumed = new ArrayList<String>();
+        try {
+            for(int i=0; i<foodDetails.getFoods().length; i++){
+                FoodDetails.Foods food = foodDetails.getFoods()[i];
+                String items;
+                items = food.getLoggedFood().getName();
+                for(int j=0; j<foodsInDB.length; j++){
+                    if(items.contains(foodsInDB[j])){
+                        foodsConsumed.add(foodsInDB[j]);
+                    }
+                }
+            }
+            FoodDetails.Summary foodSummary = foodDetails.getSummary();
+            //if(foodSummary.getCarbs() > )
+        }catch (Exception e){
+            logger.error("Unable to parse food data"+ e);
+        }
     }
 
     private void classifyActivity(){
@@ -141,6 +163,16 @@ public class RecommendationsServiceImpl {
         setTemperatureRecommendations();
         setLightRecommendations();
         setHumidityRecommendations();
+        setFoodRecommendations();
+    }
+
+    private void setFoodRecommendations(){
+        String key = null;
+        if(foodsConsumed == null || foodsConsumed.size() == 0){
+            for(int i=0; i<foodsConsumed.size(); i++) {
+                setTopicRecommendations("food_" + foodsConsumed.get(i));
+            }
+        }
     }
 
     private void setHumidityRecommendations(){
