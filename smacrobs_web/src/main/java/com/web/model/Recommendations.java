@@ -1,6 +1,5 @@
 package com.web.model;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashMap;
@@ -15,7 +14,6 @@ public class Recommendations {
 
     private String date;
 
-    @DBRef
     private HashMap<String, List<String>> topics;
 
     public String getUserId() {

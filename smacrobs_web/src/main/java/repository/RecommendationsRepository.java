@@ -4,7 +4,6 @@ import com.web.model.Recommendations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mapping.model.MappingInstantiationException;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -29,10 +28,14 @@ public class RecommendationsRepository {
                     new Query().addCriteria(Criteria.where("userId").is(userId)
                             .andOperator(Criteria.where("date").is(date))),
                     Recommendations.class, "recommendations");
-        } catch (MappingInstantiationException e) {
+        } catch (Exception e) {
             logger.error("unable to get recommendations from DB " + e.getMessage());
         }
-        logger.debug("Default recommendations retrieved are "+recommendations);
+        if(recommendations != null && recommendations.getTopics() != null){
+            logger.debug("Recommendations retrieved from db for user " +
+                    ""+userId+" and " +
+                    "date: "+ date + " are " +recommendations.getTopics().toString());
+        }
         return recommendations;
     }
 

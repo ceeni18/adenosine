@@ -9,9 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import repository.RecommendationsRepository;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by uday on 4/26/16.
@@ -41,9 +39,14 @@ public class RecommendationsServiceImpl {
     List<String> disturbedTimeFrames;
     List<SynchronizedData> synchronizedSleepData;
     List<SynchronizedData> synchronizedTemperatureData;
+    List<SynchronizedData> synchronizedLightData;
+    List<SynchronizedData> synchronizedHumidityData;
 
-    boolean lowTemperatureHasEffect;
-    boolean highTemperatureHasEffect;
+    boolean lowTemperatureHasEffect = false;
+    boolean highTemperatureHasEffect = false;
+    boolean lightHasEffect = false;
+    boolean lowHumidityHasEffect = false;
+    boolean highHumidityHasEffect = false;
 
     static final String RESTLESS_SLEEP_VALUE = "2";
     static final String AWAKE_SLEEP_VALUE = "3";
@@ -54,6 +57,9 @@ public class RecommendationsServiceImpl {
 
     double idealTemperatureLow = 19;
     double idealTemperatureHigh = 25;
+    double idealLightValue = 10;
+    double idealHumidityLow = 45;
+    double idealHumidityHigh = 55;
 
     static final int MAXIMUM_RECOMMENDATIONS_PER_TOPIC = 2;
 
@@ -67,31 +73,59 @@ public class RecommendationsServiceImpl {
 
     public void addRecommendationsToModel(ModelAndView mv, Boolean recalculate){
         if(recalculate){
-            logger.debug("Recalculation flag is set, building " +
+            logger.info("Recalculation flag is set, building " +
                     "recommendations again now!");
             calculateAndSaveRecommendations();
         }
         recommendations = recommendationsRepository
                 .getRecommendations(userId, todayDate);
         if(recommendations == null) {
-            logger.debug("No recommendations in database, building now!");
+            logger.info("No recommendations in database, building now!");
             calculateAndSaveRecommendations();
         }
-        //parseAndRecommendationsToModel(mv);
+
+        StringBuffer recommendationsForModel = new StringBuffer();
+        if(recommendations == null){
+            recommendationsForModel.append("[As data that you have provided " +
+                    "is very limited, There are no recommendations for now!]");
+        }else{
+            recommendationsForModel.append("[");
+            Iterator it = recommendations.getTopics().entrySet().iterator();
+            while(it.hasNext()){
+                Map.Entry entry = (Map.Entry)it.next();
+                List<String> topic = (List<String>)entry.getValue();
+                for(int i=0; i < topic.size(); i++){
+                    recommendationsForModel.append(topic.get(i)+", ");
+                }
+            }
+            if(recommendationsForModel.length() > 1){
+                recommendationsForModel.setLength(recommendationsForModel
+                        .length()-2);
+            }
+            recommendationsForModel.append("]");
+        }
+        mv.addObject("recommendations", recommendationsForModel);
     }
 
     private void calculateAndSaveRecommendations(){
-        //try {
-            getDataFromDB();
+        getDataFromDB();
+        try{
             classifyFood();
             classifyActivity();
             calculateEffectsOnDisturbedSleepTimeFrames();
-            getRecommendations();
+            calculateRecommendations();
+        }catch (Exception e){
+            logger.error("Error in generating recommendations"+e.getMessage());
+        }
+        saveRecommendations();
+    }
+
+    private void saveRecommendations(){
+        try {
             recommendationsRepository.saveRecommendations(recommendations);
-        //}catch (Exception e){
-        //    logger.warn("Error in getting details from Fitbit"+e.getMessage
-            // ());
-       // }
+        }catch (Exception e){
+            logger.error("Error in saving recommendations to database"+e.getStackTrace());
+        }
     }
 
     private void classifyFood(){
@@ -102,24 +136,55 @@ public class RecommendationsServiceImpl {
 
     }
 
-    private void getRecommendations(){
+    private void calculateRecommendations(){
         recommendations = new Recommendations();
         defaultTopics = defaultRecommendations.getTopics();
         topics = new HashMap<String, List<String>>();
         recommendations.setTopics(topics);
-        if(lowTemperatureHasEffect){
-            setTopicRecommendations("temperature_low");
-        }
+        recommendations.setUserId(userId);
+        recommendations.setDate(todayDate);
+        setTemperatureRecommendations();
+        setLightRecommendations();
+        setHumidityRecommendations();
+    }
+
+    private void setHumidityRecommendations(){
+        String key = null;
+        if(lowHumidityHasEffect) key = "humidity_low";
+        else if(highHumidityHasEffect) key = "humidity_high";
+        else return;
+        setTopicRecommendations(key);
+    }
+
+    private void setLightRecommendations(){
+        if(lightHasEffect) setTopicRecommendations("light");
+        return;
+    }
+
+    private void setTemperatureRecommendations(){
+        String key = null;
+        if(lowTemperatureHasEffect) key = "temperature_low";
+        else if(highTemperatureHasEffect) key = "temperature_high";
+        else return;
+        setTopicRecommendations(key);
     }
 
     private void setTopicRecommendations(String key){
-        List<String> defaultTopicRecommendations = defaultTopics.get(key);
+        List<String> defaultTopicRecommendations;
+        if(defaultTopics.containsKey(key))
+            defaultTopicRecommendations = defaultTopics.get(key);
+        else{
+            logger.warn("No recommendations found for topic "+key);
+            return;
+        }
         List<String> topicRecommendations = new ArrayList<String>();
         int[] arr = getRandomNumbers(defaultTopicRecommendations.size());
 
         for(int i=0; i<arr.length; i++){
             topicRecommendations.add(defaultTopicRecommendations.get(arr[i]));
         }
+        logger.debug("Recommendations set for topic: "+key+" are "+
+                topicRecommendations);
         topics.put(key, topicRecommendations);
     }
 
@@ -134,40 +199,84 @@ public class RecommendationsServiceImpl {
     private void calculateEffectsOnDisturbedSleepTimeFrames(){
         for(int i=0; i<synchronizedSleepData.size(); i++){
             SynchronizedData sdmS = synchronizedSleepData.get(i);
-            if(sdmS.getValue() == RESTLESS_SLEEP_VALUE ||
-                    sdmS.getValue() == AWAKE_SLEEP_VALUE){
+            if(sdmS.getValue() != null && (sdmS.getValue().equals
+                    (RESTLESS_SLEEP_VALUE) ||
+                    sdmS.getValue().equals(AWAKE_SLEEP_VALUE))){
+                if(!(lowTemperatureHasEffect || highTemperatureHasEffect)) {
                     checkTemperaturesEffect(
                             synchronizedTemperatureData.get(i).getValue());
+                }
+                if(!lightHasEffect) {
+                    checkLightEffect(synchronizedLightData.get(i).getValue());
+                }
+                if(!(lowHumidityHasEffect || highHumidityHasEffect)) {
+                    checkHumidityEffect(synchronizedHumidityData.get(i).getValue());
+                }
             }
         }
     }
 
     private void checkTemperaturesEffect(String temperature){
+        if(temperature == null){
+            return;
+        }
         double temp = Double.parseDouble(temperature);
-        if(!lowTemperatureHasEffect && (temp < idealTemperatureLow)){
+        if(temp < idealTemperatureLow){
             lowTemperatureHasEffect = true;
             return;
         }
-        if(!highTemperatureHasEffect && temp > idealTemperatureHigh){
+        if(temp > idealTemperatureHigh){
             highTemperatureHasEffect = true;
         }
     }
 
+    private void checkLightEffect(String light){
+        if(light == null){
+            return;
+        }
+        Double lightValue = Double.parseDouble(light);
+        if(lightValue > idealLightValue){
+            lightHasEffect = true;
+        }
+    }
+
+    private void checkHumidityEffect(String humidity){
+        if(humidity == null){
+            return;
+        }
+        Double humidityValue = Double.parseDouble(humidity);
+        if(humidityValue < idealHumidityLow){
+            lowHumidityHasEffect = true;
+            return;
+        }
+        if(humidityValue > idealHumidityHigh){
+            highHumidityHasEffect = true;
+        }
+    }
+
     private void getDataFromDB(){
-        synchronizedSleepData = fitbitDetailsService.getSleepInRequiredFormat();
-        heartRateDetails = fitbitDetailsService.getHeartRateDetailsFromDB();
-        foodDetails = fitbitDetailsService.getFoodDetailsFromDB();
-        activityDetails = fitbitDetailsService.getActivityDetailsFromDB();
-        waterDetails = fitbitDetailsService.getWaterDetailsFromDB();
-        activityGoalDetails = fitbitDetailsService.getActivityGoalDetailsFromDB();
-        synchronizedTemperatureData = tiSensorService
-                .getTemperatureInRequiredFormat();
-        getDefaultRecommendations();
+        try {
+            synchronizedSleepData = fitbitDetailsService.getSleepInRequiredFormat();
+            heartRateDetails = fitbitDetailsService.getHeartRateDetailsFromDB();
+            foodDetails = fitbitDetailsService.getFoodDetailsFromDB();
+            activityDetails = fitbitDetailsService.getActivityDetailsFromDB();
+            waterDetails = fitbitDetailsService.getWaterDetailsFromDB();
+            activityGoalDetails = fitbitDetailsService.getActivityGoalDetailsFromDB();
+            synchronizedTemperatureData = tiSensorService
+                    .getTemperatureInRequiredFormat();
+            synchronizedLightData = tiSensorService
+                    .getLightInRequiredFormat();
+            synchronizedHumidityData = tiSensorService
+                    .getHumidityInRequiredFormat();
+            getDefaultRecommendations();
+        }catch (Exception e){
+            logger.error("Error in getting data for generating " +
+                    "recommendations " + e.getStackTrace());
+        }
     }
 
     private void getDefaultRecommendations(){
         defaultRecommendations = recommendationsRepository.getRecommendations
                 ("default", "all");
-        logger.debug("Default recommendations from the db are : " + defaultRecommendations);
     }
 }

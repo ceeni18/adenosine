@@ -120,7 +120,7 @@ public class MainController {
 		// and overwrite session variables
 		ModelAndView mv = null;
 		if(session.getAttribute("userId")==null){
-			return new ModelAndView("index");
+			return index();
 		}
 		else{
 			mv = new ModelAndView("dashboard");
