@@ -30,6 +30,13 @@ public interface FitbitDetailsServiceIntf {
 	ActivityDetails getActivityDetailsFromDB();
 	WaterDetails getWaterDetailsFromDB();
 	ActivityGoalDetails getActivityGoalDetailsFromDB();
+	
+	void removeSleepDetailsFromDB();
+	void removeHeartRateDetailsFromDB();
+	void removeFoodDetailsFromDB();
+	void removeActivityDetailsFromDB();
+	void removeWaterDetailsFromDB();
+	void removeActivityGoalDetailsFromDB();
 
 	List<SynchronizedData>
 	getSleepInRequiredFormat();

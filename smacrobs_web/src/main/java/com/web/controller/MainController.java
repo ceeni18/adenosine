@@ -140,9 +140,26 @@ public class MainController {
 			tiSensorService.AddLightToModel(mv);
 			tiSensorService.AddHumidityToModel(mv);
 
-			recommendationsService.addRecommendationsToModel(mv, Boolean.FALSE);
+			recommendationsService.addRecommendationsToModel(mv);
 		}
 		return mv;
+	}
+	
+	@RequestMapping("/refresh")
+	public String refresh(HttpSession session) {
+		if(session.getAttribute("userId")==null){
+			return "redirect:/";
+		}
+		else{
+		fitbitDetailsService.removeActivityDetailsFromDB();
+		fitbitDetailsService.removeActivityGoalDetailsFromDB();
+		fitbitDetailsService.removeFoodDetailsFromDB();
+		fitbitDetailsService.removeHeartRateDetailsFromDB();
+		fitbitDetailsService.removeSleepDetailsFromDB();
+		fitbitDetailsService.removeWaterDetailsFromDB();
+		recommendationsService.removeRecommendationsFromDB();
+		return "redirect:/dashboard";
+		}
 	}
 
 	@RequestMapping("/error")

@@ -161,5 +161,41 @@ public class FitbitDetailsRepository implements FitbitDetailsRepositoryIntf {
 		return tiSensorHumidities;
 
 	}
+	
+	public void removeWaterData(String userId, String date) {
+		mongoOperation.remove(new Query().addCriteria(Criteria
+				.where("userId").is(userId).and("date").is(date)), WaterDetails.class);
+		
+	}
+
+	public void removeSleepData(String userId, String date) {
+		mongoOperation.remove(new Query().addCriteria(Criteria
+				.where("userId").is(userId).and("date").is(date)), SleepDetails.class);
+		
+	}
+
+	public void removeHeartRateData(String userId, String date) {
+		mongoOperation.remove(new Query().addCriteria(Criteria
+				.where("userId").is(userId).and("date").is(date)), HeartRateDetails.class);
+		
+	}
+
+	public void removeFoodData(String userId, String date) {
+		mongoOperation.remove(new Query().addCriteria(Criteria
+				.where("userId").is(userId).and("date").is(date)), FoodDetails.class);
+		
+	}
+
+	public void removeActivityData(String userId, String date) {
+		mongoOperation.remove(new Query().addCriteria(Criteria
+				.where("userId").is(userId).and("date").is(date)), ActivityDetails.class);
+		
+	}
+
+	public void removeActivityGoalData(String userId, String date) {
+		mongoOperation.remove(new Query().addCriteria(Criteria
+				.where("userId").is(userId).and("date").is(date)), ActivityGoalDetails.class);
+		
+	}
 
 }

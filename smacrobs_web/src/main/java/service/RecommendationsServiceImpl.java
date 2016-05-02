@@ -71,12 +71,7 @@ public class RecommendationsServiceImpl {
         tiSensorService.setSessionVariables(session);
     }
 
-    public void addRecommendationsToModel(ModelAndView mv, Boolean recalculate){
-        if(recalculate){
-            logger.info("Recalculation flag is set, building " +
-                    "recommendations again now!");
-            calculateAndSaveRecommendations();
-        }
+    public void addRecommendationsToModel(ModelAndView mv){
         recommendations = recommendationsRepository
                 .getRecommendations(userId, todayDate);
         if(recommendations == null) {
@@ -278,5 +273,9 @@ public class RecommendationsServiceImpl {
     private void getDefaultRecommendations(){
         defaultRecommendations = recommendationsRepository.getRecommendations
                 ("default", "all");
+    }
+    public void removeRecommendationsFromDB()
+    {
+    	recommendationsRepository.removeRecommendations(userId,todayDate);
     }
 }

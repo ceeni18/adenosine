@@ -1,6 +1,8 @@
 package repository;
 
+import com.web.model.ActivityGoalDetails;
 import com.web.model.Recommendations;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +43,11 @@ public class RecommendationsRepository {
 
     public void saveRecommendations(Recommendations recommendations){
         mongoOperation.save(recommendations);
+    }
+    
+    public void removeRecommendations(String userId,String date)
+    {
+    	mongoOperation.remove(new Query().addCriteria(Criteria
+				.where("userId").is(userId).and("date").is(date)), Recommendations.class);
     }
 }

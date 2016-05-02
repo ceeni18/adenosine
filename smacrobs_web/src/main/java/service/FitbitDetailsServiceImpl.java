@@ -478,5 +478,35 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 
 		return synchronizedSleepData;
 	}
+	
+	public void removeSleepDetailsFromDB() {
+		fitbitDetailsRepository.removeSleepData(userId, todayDate);
+		
+	}
+
+	public void removeHeartRateDetailsFromDB() {
+		fitbitDetailsRepository.removeHeartRateData(userId, yesterdayDate);
+		
+	}
+
+	public void removeFoodDetailsFromDB() {
+		fitbitDetailsRepository.removeFoodData(userId, yesterdayDate);
+		
+	}
+
+	public void removeActivityDetailsFromDB() {
+		fitbitDetailsRepository.removeActivityData(userId, yesterdayDate);
+		
+	}
+
+	public void removeWaterDetailsFromDB() {
+		fitbitDetailsRepository.removeWaterData(userId, yesterdayDate);
+		
+	}
+
+	public void removeActivityGoalDetailsFromDB() {
+		fitbitDetailsRepository.removeActivityGoalData(userId, yesterdayDate);
+		
+	}
 
 }

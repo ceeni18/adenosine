@@ -20,4 +20,10 @@ public interface FitbitDetailsRepositoryIntf {
 	List<TiSensorLight> getLightMinuteData(String userId);
 	List<TiSensorTemperature> getTemperatureMinuteData(String userId);
 	List<TiSensorHumidity> getHumidityMinuteData(String userId);
+	void removeWaterData(String userId, String date);
+	void removeSleepData(String userId, String date);
+	void removeHeartRateData(String userId, String date);
+	void removeFoodData(String userId, String date);
+	void removeActivityData(String userId, String date);
+	void removeActivityGoalData(String userId, String date);
 }

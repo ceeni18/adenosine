@@ -231,7 +231,7 @@ if('${userId}'=='')
 							href="#">Dashboard</a></li>
 					</ul>
 					<!-- /.breadcrumb -->
-
+<a href="/smacrobs/refresh" class="btn btn-danger btn-circle pull-right"><i class="glyphicon glyphicon-refresh"></i></a>
 
 
 					<!-- /section:basics/content.searchbox -->
@@ -367,56 +367,28 @@ if('${userId}'=='')
 				<br/>
 
 				<!-- SSR Recommendations -->
-				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">Recommendations</h3>
+				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">Recommendations<a href="/smacrobs/refresh" class="btn btn-danger pull-right">Try new Recommendations</a></h3>
+				
 				<div class="row col-md-12" style="font-family: 'Arapey', serif;">
 				<div class="col-md-offset-1 col-md-10">
-				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
-					<div class="widget-box widget-color-orange  light-border">
+			<div class="col-xs-12 col-sm-12 col-md-12 widget-container-col">
+					<div class="widget-box widget-color-pink  light-border">
 						<div class="widget-header">
 							<h5 class="widget-title smaller"><strong>Light</strong></h5>
 						</div>
 
-						<div class="widget-body scrollable">
-							<div class="widget-main padding-6">
-								<div class="alert alert-info">${calOut}</div>
-								<div class="alert alert-success">${calOut1}</div>
+						<div class="widget-body" >
+							<div class="widget-main padding-6 scrollable" data-size="125">
+							<c:forEach var="i" begin="1" end="5">
+   								<div class="alert alert-info">${calOut}</div>
+   								<div class="alert alert-success">${calOut1}</div>
 								<div class="alert alert-danger">${calOut2}</div>
+							</c:forEach>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
-					<div class="widget-box widget-color-blue light-border">
-						<div class="widget-header">
-							<h5 class="widget-title smaller"><strong>Food</strong></h5>
-						</div>
-
-						<div class="widget-body scrollable">
-							<div class="widget-main padding-6">
-								<div class="alert alert-info">${steps}</div>
-								<div class="alert alert-success">${floors}</div>
-								<div class="alert alert-danger">${distance}</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">
-					<div class="widget-box widget-color-pink light-border">
-						<div class="widget-header">
-							<h5 class="widget-title smaller"><strong>Temperature</strong></h5>
-						</div>
-
-						<div class="widget-body scrollable">
-							<div class="widget-main padding-6">
-								<div class="alert alert-info">a</div>
-								<div class="alert alert-success">b</div>
-								<div class="alert alert-danger">c</div>
-							</div>
-						</div>
-					</div>
-				</div>
 				</div>
 			</div>
 		</div>
