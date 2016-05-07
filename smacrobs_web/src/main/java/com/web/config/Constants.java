@@ -21,8 +21,6 @@ public class Constants {
 	/*
 	 * FitBit Constants
 	 * */
-	//public static final String fitbitOauthResposeType="code";
-	//public static final String JSON_EXTENSION = ".json";
 	public static final String fitbitOauthClientId = "227NJT";
 	//public static final String fitbitOauthClientId = "227L87";
 	public static final String appClientIdAndSecrect =
@@ -48,15 +46,15 @@ public class Constants {
 			"https://api.fitbit.com/1/user/-/foods/log/water/date/";
 	public static final String activityURL =
 			"https://api.fitbit.com/1/user/-/activities/date/";
-	public static final String activityGoalURL = 
+	public static final String activityGoalURL =
 			"https://api.fitbit.com/1/user/-/activities/goals/daily.json";
 	public static final String dateFormat = "yyyy-MM-dd";
 	//public static final String grantType = "authorization_code";
 
 
 	static {
-
-		if(System.getenv("environment") == "production") {
+		if(System.getenv("environment") != null &&
+				System.getenv("environment").equals("production")) {
 			DATABASE_NAME      = System.getenv("DATABASE_NAME");
 			DATABASE_USERNAME  = System.getenv("DATABASE_USERNAME");
 			DATABASE_PASSWORD  = System.getenv("DATABASE_PASSWORD");

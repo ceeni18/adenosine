@@ -2,6 +2,7 @@ package service;
 
 import com.web.config.Constants;
 import com.web.model.*;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 	private String userId;
 	private String todayDate;
 	private String yesterdayDate;
+
+	private String NO_SLEEP_COLOR = "#FFFFFF";
+	private String RESTLESS_COLOR = "#3498DB";
+	private String SLEEP_COLOR = "#2ECC71";
+	private String AWAKE_COLOR = "#9B59B6";
 
 	public void setSessionVariables(HttpSession session){
 		this.userId = session.getAttribute("userId").toString();
@@ -128,97 +134,32 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 
 	private String getSleepMinuteData(SleepDetails sleepDetails){
 		StringBuffer sb = new StringBuffer();
+		String datapointTemplate = "{ y: 2, color: '%%COLOR%%'},";
 		sb.append("[");
 		List<SynchronizedData> synchronizedSleepData =
 				getSleepInRequiredFormat();
 		try {
 			for(int i=0; i<synchronizedSleepData.size(); i++){
 				SynchronizedData sleepMinutedata = synchronizedSleepData.get(i);
-				sb.append("[");
-				sb.append("" + sleepMinutedata.getTime().replace(":", "") + ", ");
-
-				if(sleepMinutedata.getValue() == null){
-					sb.append("0, ");
-					sb.append("" + 0);
-				}
-				else {
-					sb.append("2, ");
-					sb.append(Integer.parseInt(sleepMinutedata.getValue()));
-				}
-				sb.append("],");
+				sb.append(datapointTemplate.replaceFirst("%%COLOR%%",
+						getSleepColor(sleepMinutedata.getValue())));
 			}
 		}catch (Exception e){
-			logger.warn("Unable to get sleep minute data "+e);
+			logger.error("Unable to get sleep minute data "+e);
 		}
-		sb.deleteCharAt(sb.length()-1);
-		sb.append("]");
-		return sb.toString();
-	}
-
-	private String getLightMinuteData(){
-		String userId = "";
-		StringBuffer sb = new StringBuffer();
-		sb.append("[");
-		try {
-			/*List<TiSensorLight> tiSensorLights = fitbitDetailsRepository
-					.getLightMinuteData(userId);
-			for (int i = 0; i < tiSensorLights.size(); i++) {
-				if (Constants.acceptedMinutes.containsKey(tiSensorLights.get(i))) {
-					sb.append("[");
-					sb.append("'" + tiSensorLights.get(i).getTimestamp() + "', ");
-					sb.append("" + tiSensorLights.get(i).getLight());
-					sb.append("]");
-				}
-			}*/
-		}catch (Exception e){
-			logger.warn("Unable to get light minute data"+e);
+		if(sb.length() > 1){
+			sb.setLength(sb.length() - 1);
 		}
 		sb.append("]");
 		return sb.toString();
 	}
 
-	private String getTemperatureMinuteData(){
-		String userId = "";
-		StringBuffer sb = new StringBuffer();
-		sb.append("[");
-		try {
-			/*List<TiSensorTemperature> tiSensorTemperatures = fitbitDetailsRepository
-					.getTemperatureMinuteData(userId);
-			for (int i = 0; i < tiSensorTemperatures.size(); i++) {
-				if (Constants.acceptedMinutes.containsKey(tiSensorTemperatures.get(i))) {
-					sb.append("[");
-					sb.append("'" + tiSensorTemperatures.get(i).getTimestamp() + "', ");
-					sb.append("" + tiSensorTemperatures.get(i).getTemperature());
-					sb.append("]");
-				}
-			}*/
-		}catch (Exception e){
-			logger.warn("Unable to get temperature minute data");
-		}
-		sb.append("]");
-		return sb.toString();
-	}
-
-	private String getHumidityMinuteData(){
-		String userId = "";
-		StringBuffer sb = new StringBuffer();
-		sb.append("[");
-		try {
-			/*List<TiSensorHumidity> tiSensorHumidities = fitbitDetailsRepository
-					.getHumidityMinuteData(userId);
-			for (int i = 0; i < tiSensorHumidities.size(); i++) {
-				if (Constants.acceptedMinutes.containsKey(tiSensorHumidities.get(i))) {
-					sb.append("[");
-					sb.append("'" + tiSensorHumidities.get(i).getTimestamp() + "', ");
-					sb.append("" + tiSensorHumidities.get(i).getHumidity());
-					sb.append("]");
-				}
-			}*/
-		}catch (Exception e){
-			logger.warn("Unable to get humidity minute data"+e);
-		}
-		sb.append("]");
-		return sb.toString();
+	private String getSleepColor(String value){
+		if(value == null) return NO_SLEEP_COLOR;
+		if(value.equals("1")) return SLEEP_COLOR;
+		if(value.equals("2")) return RESTLESS_COLOR;
+		if(value.equals("3")) return AWAKE_COLOR;
+		return null;
 	}
 
 	public void AddSleepToModel(ModelAndView modelAndView) {
@@ -231,14 +172,17 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		String duration = "0";
 		try {
 			duration = sleepDetails.getSummary().getTotalTimeInBed();
-			for(int count=0; count < sleepDetails.getSleep().length; count++) {
-				sleepEfficiency += Integer.parseInt(sleepDetails.getSleep()
+			SleepDetails.Sleep[] sleep = sleepDetails.getSleep();
+			int sleepCount = sleep.length;
+			for(int count=0; count < sleepCount; count++) {
+				sleepEfficiency += Integer.parseInt(sleep
 						[count].getEfficiency());
 				awakeningTime += Integer.parseInt(
-						sleepDetails.getSleep()[count].getAwakeningsCount());
+						sleep[count].getAwakeningsCount());
 			}
+			sleepEfficiency = sleepEfficiency/sleepCount;
 		}catch(Exception ex){
-			logger.warn("Unable to parse efficiency and awakeningTime "+ex);
+			logger.error("Unable to parse efficiency and awakeningTime "+ex);
 		}
 		long hours = Long.parseLong(duration)/60;
 		long minutes = Long.parseLong(duration)%60;
@@ -267,7 +211,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 			step = activityGoalDetails.getGoals().getSteps();
 			cal = activityGoalDetails.getGoals().getCaloriesOut();
 		}catch(Exception ex) {
-			logger.warn(ex.getMessage());
+			logger.error(ExceptionUtils.getFullStackTrace(ex));
 		}
 		
 		int calOutGoal = Integer.parseInt(cal);
@@ -302,7 +246,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 			heightUnit = userProfile.getUser().getHeightUnit();
 			avatar = userProfile.getUser().getAvatar();
 		}catch(Exception ex) {
-			logger.warn(ex.getMessage());
+			logger.error(ExceptionUtils.getFullStackTrace(ex));
 		}
 
 		modelAndView.addObject("fullName", fullName);
@@ -330,7 +274,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		try {
 			water = waterDetails.getSummary().getWater();
 		}catch(Exception ex) {
-			logger.warn(ex.getMessage());
+			logger.error(ExceptionUtils.getFullStackTrace(ex));
 		}
 		String val = "0 fl.oz.";
 		if(water != null) {
@@ -347,7 +291,6 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		if(foodDetails == null){
 			foodDetails = getFoodDetails();
 		}
-		String sodium=null;
 		String carbs=null;
 		String fats=null;
 		String fibre=null;
@@ -355,7 +298,6 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		String caloriesIn=null;
 
 		try{
-			sodium=foodDetails.getSummary().getSodium();
 			carbs=foodDetails.getSummary().getCarbs();
 			fats=foodDetails.getSummary().getFat();
 			fibre=foodDetails.getSummary().getFiber();
@@ -363,14 +305,13 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 			caloriesIn=foodDetails.getSummary().getCalories();
 		}
 		catch(Exception ex){
-			logger.warn(ex.getMessage());
+			logger.error(ExceptionUtils.getFullStackTrace(ex));
 		}
 		
 		int calIn = 0;
 		if(caloriesIn != null)
 			calIn = Integer.parseInt(caloriesIn);
 		
-		modelAndView.addObject("sodium", sodium);
 		modelAndView.addObject("carbs", carbs);
 		modelAndView.addObject("fats", fats);
 		modelAndView.addObject("fibre", fibre);
@@ -391,27 +332,23 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		try{
 			steps=activityDetails.getSummary().getSteps();
 			floors=activityDetails.getSummary().getFloors();
-			calOut += Math.round(
-					Integer.parseInt(activityDetails.getSummary().getCaloriesOut()));
+			calOut = Integer.parseInt(activityDetails.getSummary().getCaloriesOut());
 			for(int i=0;i<activityDetails.getSummary().getDistances().length;i++){
-				distance += Math.round(
-						Double.parseDouble(activityDetails.getSummary().getDistances()[i].getDistance()));
+				if(activityDetails.getSummary().getDistances()[i].getActivity().equalsIgnoreCase("total")) {
+					distance = Double.parseDouble(activityDetails.getSummary().getDistances()[i].getDistance());
+					break;
+				}
 			}
 		}
 		catch(Exception ex)
 		{
-			logger.warn(ex.getMessage());
+			logger.error(ExceptionUtils.getFullStackTrace(ex));
 		}
-		
-		int calOut1 = calOut / 3;
-		int calOut2 = calOut1 * 2;
-		
+
 		modelAndView.addObject("distance",distance);
 		modelAndView.addObject("steps",steps);
 		modelAndView.addObject("floors",floors);
 		modelAndView.addObject("calOut",calOut);
-		modelAndView.addObject("calOut1",calOut1);
-		modelAndView.addObject("calOut2",calOut2);
 		logger.debug(modelAndView.toString());
 	}
 
@@ -426,7 +363,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 					.getRestingHeartRate();
 		}
 		catch(Exception ex){
-			logger.warn(ex.getMessage());
+			logger.error(ExceptionUtils.getFullStackTrace(ex));
 		}
 		modelAndView.addObject("heartRate",heartRate);
 		

@@ -1,6 +1,7 @@
 package service;
 
 import com.web.model.*;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import java.util.*;
  */
 @Service("RecommendationsServiceImpl")
 public class RecommendationsServiceImpl {
-
     private static final Logger logger = LoggerFactory.getLogger
             (RecommendationsServiceImpl.class);
     @Autowired RecommendationsRepository recommendationsRepository;
@@ -27,16 +27,11 @@ public class RecommendationsServiceImpl {
     String todayDate;
     String access_token;
     Recommendations recommendations;
-    SleepDetails sleepDetails;
     HeartRateDetails heartRateDetails= null;
     FoodDetails foodDetails;
     ActivityDetails activityDetails;
     WaterDetails waterDetails = null ;
     ActivityGoalDetails activityGoalDetails;
-    List<TiSensorTemperature> tiSensorTemperatures;
-    List<TiSensorLight> tiSensorLights;
-    List<TiSensorHumidity> tiSensorHumidities;
-    List<String> disturbedTimeFrames;
     List<SynchronizedData> synchronizedSleepData;
     List<SynchronizedData> synchronizedTemperatureData;
     List<SynchronizedData> synchronizedLightData;
@@ -48,6 +43,7 @@ public class RecommendationsServiceImpl {
     boolean lightHasEffect = false;
     boolean lowHumidityHasEffect = false;
     boolean highHumidityHasEffect = false;
+    boolean fairlyActive = false;
 
     static final String RESTLESS_SLEEP_VALUE = "2";
     static final String AWAKE_SLEEP_VALUE = "3";
@@ -61,9 +57,10 @@ public class RecommendationsServiceImpl {
     double idealLightValue = 10;
     double idealHumidityLow = 45;
     double idealHumidityHigh = 55;
+    double idealFairlyActiveMinutes = 25;
     String[] foodsInDB = {"coffee", "protein", "carbs"};
-
     static final int MAXIMUM_RECOMMENDATIONS_PER_TOPIC = 2;
+    static final int MAXIMUM_FACTS = 3;
 
     public void setSessionVariables(HttpSession session){
         this.userId = session.getAttribute("userId").toString();
@@ -87,21 +84,44 @@ public class RecommendationsServiceImpl {
                     "is very limited, There are no recommendations for now!]");
         }else{
             recommendationsForModel.append("[");
-            Iterator it = recommendations.getTopics().entrySet().iterator();
-            while(it.hasNext()){
-                Map.Entry entry = (Map.Entry)it.next();
-                List<String> topic = (List<String>)entry.getValue();
-                for(int i=0; i < topic.size(); i++){
-                    recommendationsForModel.append(topic.get(i)+", ");
+            try {
+                Iterator it = recommendations.getTopics().entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry entry = (Map.Entry) it.next();
+                    List<String> topic = (List<String>) entry.getValue();
+                    for (int i = 0; i < topic.size(); i++) {
+                        recommendationsForModel.append(topic.get(i) + ", ");
+                    }
                 }
-            }
-            if(recommendationsForModel.length() > 1){
-                recommendationsForModel.setLength(recommendationsForModel
-                        .length()-2);
+                if (recommendationsForModel.length() > 1) {
+                    recommendationsForModel.setLength(recommendationsForModel
+                            .length() - 2);
+                }
+            }catch (Exception e){
+                logger.error("Unable to add recommendations to model "+e);
             }
             recommendationsForModel.append("]");
         }
         mv.addObject("recommendations", recommendationsForModel);
+
+        StringBuffer recommendationFactsForModel = new StringBuffer();
+        recommendationFactsForModel.append("[");
+        try {
+            List<String> facts = defaultRecommendations
+                    .getTopics().get("facts");
+            int[] randomNumbers = getRandomNumbers(facts.size());
+            for(int i=0; i<MAXIMUM_FACTS; i++){
+                recommendationFactsForModel.append(facts.get(i)+", ");
+            }
+            if(recommendationFactsForModel.length() > 1){
+                recommendationFactsForModel.setLength
+                        (recommendationFactsForModel.length()-2);
+            }
+        }catch(Exception e){
+            logger.error("Unable to get facts for the model"+e);
+        }
+        recommendationFactsForModel.append("]");
+        mv.addObject("recommendationFacts", recommendationFactsForModel);
     }
 
     private void calculateAndSaveRecommendations(){
@@ -143,14 +163,35 @@ public class RecommendationsServiceImpl {
                 }
             }
             FoodDetails.Summary foodSummary = foodDetails.getSummary();
-            //if(foodSummary.getCarbs() > )
+
+            parseAndAddFood("carbs", foodSummary.getCarbs());
+            parseAndAddFood("protein", foodSummary.getProtein());
+            parseAndAddFood("fat", foodSummary.getFat());
+            parseAndAddFood("fiber", foodSummary.getFiber());
+            parseAndAddFood("water", foodSummary.getWater());
         }catch (Exception e){
-            logger.error("Unable to parse food data"+ e);
+            logger.error("Unable to parse food data" +
+                    ExceptionUtils.getFullStackTrace(e));
         }
     }
 
-    private void classifyActivity(){
+    private void parseAndAddFood(String food, String value){
+        Double foodConsumptionValue = Double.parseDouble(value);
+        if(foodConsumptionValue > 0)
+            foodsConsumed.add(food);
+    }
 
+    private void classifyActivity(){
+        try {
+            Double fairlyActiveMinutes = Double.parseDouble(
+                    activityDetails.getSummary()
+                            .getFairlyActiveMinutes());
+            if(fairlyActiveMinutes > idealFairlyActiveMinutes){
+                fairlyActive = true;
+            }
+        }catch(Exception e) {
+            logger.error("Unable to parse activity data for recommendations"+e);
+        }
     }
 
     private void calculateRecommendations(){
@@ -164,6 +205,12 @@ public class RecommendationsServiceImpl {
         setLightRecommendations();
         setHumidityRecommendations();
         setFoodRecommendations();
+        setActivityRecommendations();
+    }
+
+    private void setActivityRecommendations(){
+        if(fairlyActive)
+            setTopicRecommendations("activity");
     }
 
     private void setFoodRecommendations(){
@@ -207,7 +254,7 @@ public class RecommendationsServiceImpl {
         List<String> topicRecommendations = new ArrayList<String>();
         int[] arr = getRandomNumbers(defaultTopicRecommendations.size());
 
-        for(int i=0; i<arr.length; i++){
+        for(int i=0; i<MAXIMUM_RECOMMENDATIONS_PER_TOPIC; i++){
             topicRecommendations.add(defaultTopicRecommendations.get(arr[i]));
         }
         logger.debug("Recommendations set for topic: "+key+" are "+
@@ -216,10 +263,11 @@ public class RecommendationsServiceImpl {
     }
 
     private int[] getRandomNumbers(int sizeOfTopic){
-        int[] randomNumbers = new int[MAXIMUM_RECOMMENDATIONS_PER_TOPIC];
-        for(int i = 0; i<MAXIMUM_RECOMMENDATIONS_PER_TOPIC; i++){
+        int[] randomNumbers = new int[sizeOfTopic];
+        for(int i = 0; i<sizeOfTopic; i++){
             randomNumbers[i] = i;
         }
+        Collections.shuffle(Arrays.asList(randomNumbers));
         return randomNumbers;
     }
 
@@ -306,8 +354,7 @@ public class RecommendationsServiceImpl {
         defaultRecommendations = recommendationsRepository.getRecommendations
                 ("default", "all");
     }
-    public void removeRecommendationsFromDB()
-    {
+    public void removeRecommendationsFromDB(){
     	recommendationsRepository.removeRecommendations(userId,todayDate);
     }
 }

@@ -140,23 +140,21 @@ public class TiSensorService {
         StringBuffer sb = new StringBuffer();
         sb.append("[");
         try {
-            for(int i=0; i<synchronizedData.size(); i++){
+            for(int i=0; i<synchronizedData.size(); i++) {
                 SynchronizedData minutedata = synchronizedData.get(i);
-                if(minutedata.getValue() != null){
-                    sb.append("[");
-                    sb.append(minutedata.getTime().replace(":", "") + ", ");
-                    minutedata.getValue().substring(0, minutedata.getValue()
-                            .indexOf(',')+3);
+                if (minutedata.getValue() == null) {
+                    sb.append("null, ");
+                } else {
                     sb.append(Double.parseDouble(minutedata
                             .getValue().substring(0, minutedata.getValue()
-                            .indexOf('.')+3)));
-                    sb.append("],");
+                                    .indexOf('.')+3))+", ");
                 }
             }
         }catch (Exception e){
             logger.warn("Unable to get data for "+key+" "+e);
         }
-        sb.deleteCharAt(sb.length()-1);
+        if(sb.length() > 1)
+            sb.setLength(sb.length()-2);
         sb.append("]");
         mv.addObject(key, sb.toString());
     }
