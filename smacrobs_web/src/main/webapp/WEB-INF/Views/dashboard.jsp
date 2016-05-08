@@ -76,7 +76,10 @@ if('${userId}'=='')
 	location.replace("/smacrobs/");
 }
 </script>
-
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 </head>
 
 <body class="no-skin">
@@ -231,8 +234,33 @@ if('${userId}'=='')
 							href="#">Dashboard</a></li>
 					</ul>
 					<!-- /.breadcrumb -->
-<a href="/smacrobs/refresh" class="btn btn-danger btn-circle pull-right"><i class="glyphicon glyphicon-refresh"></i></a>
 
+					<form action="/smacrobs/date" method="post">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="col-md-offset-9 col-md-2 col-sm-6 col-xs-12 form-group">
+								<!-- Date input -->
+								<input class="form-control" id="date" name="date"
+									placeholder="MM/DD/YYY" type="text" required/>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-danger btn-circle">
+									<i class="glyphicon glyphicon-ok"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<script>
+    var date_input=$('input[name="date"]'); //our date input has the name "date"
+    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    var options={
+        format: 'yyyy-mm-dd',
+        container: container,
+        todayHighlight: true,
+        autoclose: true
+    };
+  
+    date_input.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
+</script>
 
 					<!-- /section:basics/content.searchbox -->
 				</div>
@@ -372,21 +400,35 @@ if('${userId}'=='')
 				<div class="row col-md-12" style="font-family: 'Arapey', serif;">
 				<div class="col-md-offset-1 col-md-10">
 			<div class="col-xs-12 col-sm-12 col-md-12 widget-container-col">
-					<div class="widget-box widget-color-pink  light-border">
-						<div class="widget-header">
-							<h5 class="widget-title smaller"><strong>Light</strong></h5>
-						</div>
+						
 
 						<div class="widget-body" >
 							<div class="widget-main padding-6 scrollable" data-size="125">
-							<c:forEach var="i" begin="1" end="5">
-   								<div class="alert alert-info">${calOut}</div>
-   								<div class="alert alert-success">${calOut1}</div>
-								<div class="alert alert-danger">${calOut2}</div>
+							<c:forEach var="i" begin="0" end="${recommendations.size()-1}">
+								<div class="alert alert-danger">${recommendations.get(i)}</div>
 							</c:forEach>
 							</div>
 						</div>
-					</div>
+				</div>
+
+				</div>
+			</div>
+			
+			<!-- SSR Facts -->
+				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">Facts</h3>
+
+				<div class="row col-md-12" style="font-family: 'Arapey', serif;">
+				<div class="col-md-offset-1 col-md-10">
+			<div class="col-xs-12 col-sm-12 col-md-12 widget-container-col">
+						
+
+						<div class="widget-body" >
+							<div class="widget-main padding-6 scrollable" data-size="125">
+							<c:forEach var="i" begin="0" end="${recommendationFacts.size()-1}">
+   								<div class="alert alert-info">${recommendationFacts.get(i)}</div>
+							</c:forEach>
+							</div>
+						</div>
 				</div>
 
 				</div>

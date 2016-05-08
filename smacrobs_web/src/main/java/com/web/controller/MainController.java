@@ -83,6 +83,26 @@ public class MainController {
 				session.getAttribute("userId").toString());
 		return "redirect:/dashboard";
 	}
+	
+	@RequestMapping(value = "/medical", method = RequestMethod.POST)
+	public String saveMedical(@RequestParam(
+			value = "isDiabetic"
+			) Boolean isDiabetic, @RequestParam(value="medicine") String[] medicine, HttpSession session) {
+		userProfileService.UpdateMedicalDetails(isDiabetic, medicine,
+				session.getAttribute("userId").toString());
+		return "redirect:/dashboard";
+	}
+	
+	@RequestMapping(value="/date", method = RequestMethod.POST)
+	public String getDateData(@RequestParam(
+			value = "date",
+			required = true,
+			defaultValue = ""
+			) String date, HttpSession session) {
+		session.setAttribute("todayDate", date);
+		session.setAttribute("yesterdayDate", ServiceUtils.getYesterdayDate(date));
+		return "redirect:/dashboard";
+	}
 
 	@RequestMapping("/redirectToSite")
 	public String localRedirect(HttpSession session) {
@@ -141,6 +161,9 @@ public class MainController {
 			tiSensorService.AddHumidityToModel(mv);
 
 			recommendationsService.addRecommendationsToModel(mv);
+			
+			session.setAttribute("todayDate", ServiceUtils.getTodayDate());
+			session.setAttribute("yesterdayDate", ServiceUtils.getYesterdayDate());
 		}
 		return mv;
 	}

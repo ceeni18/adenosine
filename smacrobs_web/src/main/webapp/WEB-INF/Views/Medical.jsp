@@ -251,23 +251,22 @@ if('${userId}'=='')
 						<h3 class="col-md-offset-3">Check conditions if applicable</h3>
 						<div class="input-group col-md-offset-3 col-md-6">
 							<div class="checkbox ">
-								<label> <input name="form-field-checkbox"
+								<label> <input name="isDiabetic"
 									type="checkbox" class="ace" /> <span class="lbl"> Is
-										Condition</span>
+										Diabetic</span>
 								</label>
 							</div>
 						</div>
 						<br />
 						<div class="input-group col-md-offset-3 col-md-6">
-							<label for="form-field-select-2">Multiple</label> <select
-								class="form-control" id="form-field-select-2"
+							<label for="form-field-select-2">Medicines Taken</label> <select
+								class="form-control" id="form-field-select-2" name="medicine"
 								multiple="multiple">
 								<option value="AL">Condition 1</option>
 								<option value="AK">Condition 1</option>
 								<option value="AZ">Condition 1</option>
 								<option value="AR">Condition 1</option>
 								<option value="CA">Condition 1</option>
-
 							</select>
 						</div>
 					</div>
@@ -275,8 +274,7 @@ if('${userId}'=='')
 					<br />
 					<!-- /.span -->
 					<div class="col-md-offset-5">
-						<button id="submitTiBtn" type="submit" class=" btn btn-sm btn-danger pull-left"
-							data-dismiss="modal">
+						<button id="submitTiBtn" type="submit" class=" btn btn-sm btn-danger pull-left">
 							<i class="glyphicon glyphicon-ok"></i> Submit
 						</button>
 					</div>

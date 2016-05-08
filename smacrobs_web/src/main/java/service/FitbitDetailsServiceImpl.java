@@ -180,7 +180,8 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 				awakeningTime += Integer.parseInt(
 						sleep[count].getAwakeningsCount());
 			}
-			sleepEfficiency = sleepEfficiency/sleepCount;
+			if(sleepCount>0)
+				sleepEfficiency = sleepEfficiency/sleepCount;
 		}catch(Exception ex){
 			logger.error("Unable to parse efficiency and awakeningTime "+ex);
 		}

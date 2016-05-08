@@ -73,54 +73,45 @@ public class RecommendationsServiceImpl {
     public void addRecommendationsToModel(ModelAndView mv){
         recommendations = recommendationsRepository
                 .getRecommendations(userId, todayDate);
-        if(recommendations == null) {
+        if(recommendations == null || recommendations.getTopics().isEmpty()) {
             logger.info("No recommendations in database, building now!");
             calculateAndSaveRecommendations();
         }
 
-        StringBuffer recommendationsForModel = new StringBuffer();
+        List<String> recommendationsForModel = new ArrayList<String>();
+        String NO_RECOMMENDATIONS_MESSAGE = "As data that you have provided " +
+                "is very limited, there are no recommendations for now!";
         if(recommendations == null){
-            recommendationsForModel.append("[As data that you have provided " +
-                    "is very limited, There are no recommendations for now!]");
-        }else{
-            recommendationsForModel.append("[");
+            recommendationsForModel.add(NO_RECOMMENDATIONS_MESSAGE);
+        }else if(recommendations.getTopics().isEmpty()){
+            recommendationsForModel.add(NO_RECOMMENDATIONS_MESSAGE);
+        }
+        else{
             try {
                 Iterator it = recommendations.getTopics().entrySet().iterator();
                 while (it.hasNext()) {
                     Map.Entry entry = (Map.Entry) it.next();
                     List<String> topic = (List<String>) entry.getValue();
                     for (int i = 0; i < topic.size(); i++) {
-                        recommendationsForModel.append(topic.get(i) + ", ");
+                        recommendationsForModel.add(topic.get(i));
                     }
-                }
-                if (recommendationsForModel.length() > 1) {
-                    recommendationsForModel.setLength(recommendationsForModel
-                            .length() - 2);
                 }
             }catch (Exception e){
                 logger.error("Unable to add recommendations to model "+e);
             }
-            recommendationsForModel.append("]");
         }
         mv.addObject("recommendations", recommendationsForModel);
-
-        StringBuffer recommendationFactsForModel = new StringBuffer();
-        recommendationFactsForModel.append("[");
+        List<String> recommendationFactsForModel = new ArrayList<String>();
         try {
             List<String> facts = defaultRecommendations
                     .getTopics().get("facts");
             int[] randomNumbers = getRandomNumbers(facts.size());
             for(int i=0; i<MAXIMUM_FACTS; i++){
-                recommendationFactsForModel.append(facts.get(i)+", ");
-            }
-            if(recommendationFactsForModel.length() > 1){
-                recommendationFactsForModel.setLength
-                        (recommendationFactsForModel.length()-2);
+                recommendationFactsForModel.add(facts.get(i));
             }
         }catch(Exception e){
             logger.error("Unable to get facts for the model"+e);
         }
-        recommendationFactsForModel.append("]");
         mv.addObject("recommendationFacts", recommendationFactsForModel);
     }
 
@@ -132,7 +123,8 @@ public class RecommendationsServiceImpl {
             calculateEffectsOnDisturbedSleepTimeFrames();
             calculateRecommendations();
         }catch (Exception e){
-            logger.error("Error in generating recommendations"+e.getMessage());
+            logger.error("Error in generating recommendations" +
+                    ExceptionUtils.getFullStackTrace(e));
         }
         saveRecommendations();
     }
@@ -355,6 +347,6 @@ public class RecommendationsServiceImpl {
                 ("default", "all");
     }
     public void removeRecommendationsFromDB(){
-    	recommendationsRepository.removeRecommendations(userId,todayDate);
+       recommendationsRepository.removeRecommendations(userId,todayDate);
     }
 }

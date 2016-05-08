@@ -1,6 +1,7 @@
 package repository;
 
 import com.web.model.UserProfile;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,14 @@ public class UserProfileRepository implements UserProfileRepositoryIntf {
 			logger.error("unable to get data "+e.getMessage());
 		}
 		return userProfile;
+	}
+
+	public void updateUser(Boolean isDiabetic, String[] medicine, String userId) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("user.userId").is(userId));
+		UserProfile user = mongoOperation.findOne(query, UserProfile.class, "userProfile");
+		user.getUser().setIsDiabetic(isDiabetic);
+		user.getUser().setMedicines(medicine);
+		mongoOperation.save(user);	
 	}
 }

@@ -3,10 +3,12 @@ package service;
 import com.web.config.Constants;
 import com.web.model.FitbitTokens;
 import com.web.model.UserProfile;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import repository.UserProfileRepositoryIntf;
 
 @Service("UserProfileService")
@@ -41,9 +43,18 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf {
 	public void UpdateTiSensorId(String tisensorId, String userId) {
 		userProfileRepository.updateUser(tisensorId, userId);
 	}
+	
+	public void UpdateMedicalDetails(Boolean isDiabetic, String[] medicine,
+			String userId) {
+		System.out.println(isDiabetic+"...."+medicine.toString());
+		userProfileRepository.updateUser(isDiabetic,medicine, userId);
+		
+	}
 
 	public UserProfile getUserDetailsFromDB(String userId) {		
 		return userProfileRepository.findUser(userId);
 	}
+
+	
 
 }

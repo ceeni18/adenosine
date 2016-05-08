@@ -4,10 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.web.config.Constants;
 import com.web.model.SynchronizedData;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.HttpsURLConnection;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,6 +20,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ServiceUtils {
@@ -87,6 +90,19 @@ public class ServiceUtils {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, -1);
 		return dateFormat.format(cal.getTime());
+	}
+	
+	public static String getYesterdayDate(String dateString) {
+		DateFormat dateFormat = new SimpleDateFormat(Constants.dateFormat);
+		Date oneDayBefore = null;
+		try {
+			Date date = dateFormat.parse(dateString);
+			oneDayBefore = new Date(date.getTime() - 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dateFormat.format(oneDayBefore);
 	}
 
 	public static List<SynchronizedData> getSynchronizedDataList(){

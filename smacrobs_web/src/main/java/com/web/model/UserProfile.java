@@ -99,6 +99,10 @@ public class UserProfile
 		private String distanceUnit;
 
 		private String displayName;
+		
+		private Boolean isDiabetic;
+		
+		private String[] medicines;
 
 		public String getTiSensorId() {
 			return tiSensorId;
@@ -441,6 +445,22 @@ public class UserProfile
 		public void setUserId(String userId) {
 			this.userId = userId;
 
+		}
+
+		public Boolean getIsDiabetic() {
+			return isDiabetic;
+		}
+
+		public void setIsDiabetic(Boolean isDiabetic) {
+			this.isDiabetic = isDiabetic;
+		}
+
+		public String[] getMedicines() {
+			return medicines;
+		}
+
+		public void setMedicines(String[] medicines) {
+			this.medicines = medicines;
 		}
 	}
 
