@@ -33,14 +33,17 @@
 <!-- text fonts -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/ace-fonts.css" />
-	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Arapey:400,400italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lora'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Arapey:400,400italic'
+	rel='stylesheet' type='text/css'>
 
 <!-- ace styles -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/ace.css"
 	class="ace-main-stylesheet" id="main-ace-style" />
-	
+
 
 <!--[if lte IE 9]>
 			<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/ace-part2.css" class="ace-main-stylesheet" />
@@ -127,16 +130,17 @@ if('${userId}'=='')
 								<small>Welcome,</small> ${fullName}
 						</span> <i class="ace-icon fa fa-caret-down"></i>
 					</a> <!-- NV - start 04/18/2016 -->
-						<ul	class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+						<ul
+							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 							<li><a href="/smacrobs/tisensor"> <i
-                                    class="ace-icon fa fa-key"></i> TI Sensor
-                            </a></li>
+									class="ace-icon fa fa-key"></i> TI Sensor
+							</a></li>
 							<li><a href="/smacrobs/medical"> <i
-                                    class="ace-icon fa fa-medkit"></i> Medical Details
-                            </a></li>
+									class="ace-icon fa fa-medkit"></i> Medical Details
+							</a></li>
 							<li><a data-toggle="modal" data-target="#logoutModal"> <i
-                                    class="ace-icon fa fa-power-off"></i> Logout
-                            </a></li>
+									class="ace-icon fa fa-power-off"></i> Logout
+							</a></li>
 						</ul></li>
 
 					<!-- /section:basics/navbar.user_menu -->
@@ -169,9 +173,8 @@ if('${userId}'=='')
 
 
 				<ul class="nav nav-list">
-					<li class=""><a href="#"> <i
-							class="menu-icon fa fa-user"></i> <span class="menu-text">
-								${fullName} </span>
+					<li class=""><a href="#"> <i class="menu-icon fa fa-user"></i>
+							<span class="menu-text"> ${fullName} </span>
 					</a> <b class="arrow"></b></li>
 
 					<li class=""><a href="#"> <i
@@ -235,12 +238,13 @@ if('${userId}'=='')
 					</ul>
 					<!-- /.breadcrumb -->
 
-					<form action="/smacrobs/date" method="post">
+					<form action="/smacrobs/dashboard" method="GET">
 						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="col-md-offset-9 col-md-2 col-sm-6 col-xs-12 form-group">
+							<div
+								class="col-md-offset-9 col-md-2 col-sm-6 col-xs-12 form-group">
 								<!-- Date input -->
 								<input class="form-control" id="date" name="date"
-									placeholder="MM/DD/YYY" type="text" required/>
+									placeholder="MM/DD/YYY" type="text" required />
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-danger btn-circle">
@@ -270,17 +274,18 @@ if('${userId}'=='')
 
 				<!-- /section:settings.box -->
 
-				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">User Profile Summary</h3>
+				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">User
+					Profile Summary</h3>
 				<div class="row col-md-12">
 					<div class="col-xs-12 col-md-offset-1 col-md-10">
 						<!-- SSR page contents -->
 						<!-- NV - start 04/21/2016 -->
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="heartData">
-								<span class="btn btn-app btn-danger no-hover" 
-								style="width:100%;cursor:default" 
-								data-toggle="tooltip" data-placement="top" title="Resting Heart Rate">
-								<span class="line-height-1 bigger-170"> <i
+								<span class="btn btn-app btn-danger no-hover"
+									style="width: 100%; cursor: default" data-toggle="tooltip"
+									data-placement="top" title="Resting Heart Rate"> <span
+									class="line-height-1 bigger-170"> <i
 										class="fa fa-heartbeat fa-2x"></i>
 								</span> <br /> <span class="line-height-1 smaller-90">
 										${heartRate} bpm </span>
@@ -289,31 +294,33 @@ if('${userId}'=='')
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="calData">
-								<span class="btn btn-app btn-success no-hover" style="width:100%;cursor:auto"
-								data-toggle="tooltip" data-placement="top" title="Calories Intake">
-								<span class="line-height-1 bigger-170"> <i
+								<span class="btn btn-app btn-success no-hover"
+									style="width: 100%; cursor: auto" data-toggle="tooltip"
+									data-placement="top" title="Calories Intake"> <span
+									class="line-height-1 bigger-170"> <i
 										class="fa fa-cutlery fa-2x"></i>
-								</span> <br /> <span class="line-height-1 smaller-90">
-										${calIn} cal</span>
+								</span> <br /> <span class="line-height-1 smaller-90"> ${calIn}
+										cal</span>
 								</span>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="waterData">
-								<span class="btn btn-app btn-primary no-hover" style="width:100%;cursor:auto"
-								data-toggle="tooltip" data-placement="top" title="Water Consumed">
-								<span class="line-height-1 bigger-170">
-									<i class="fa fa-tint fa-2x"></i>
-								</span> <br /> <span class="line-height-1 smaller-90">
-									${water}</span>
+								<span class="btn btn-app btn-primary no-hover"
+									style="width: 100%; cursor: auto" data-toggle="tooltip"
+									data-placement="top" title="Water Consumed"> <span
+									class="line-height-1 bigger-170"> <i
+										class="fa fa-tint fa-2x"></i>
+								</span> <br /> <span class="line-height-1 smaller-90"> ${water}</span>
 								</span>
 							</div>
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="heartData">
-								<span class="btn btn-app btn-yellow no-hover" style="width:100%;cursor:auto"
-								data-toggle="tooltip" data-placement="top" title="Sleep Duration">
-								<span class="line-height-1 bigger-170"> <i
+								<span class="btn btn-app btn-yellow no-hover"
+									style="width: 100%; cursor: auto" data-toggle="tooltip"
+									data-placement="top" title="Sleep Duration"> <span
+									class="line-height-1 bigger-170"> <i
 										class="fa fa-moon-o fa-2x"></i>
 								</span> <br /> <span class="line-height-1 smaller-90">
 										${sleepDuration} </span>
@@ -322,21 +329,22 @@ if('${userId}'=='')
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="sleepEffData">
-								<span class="btn btn-app btn-pink no-hover" style="width:100%;cursor:auto"
-								data-toggle="tooltip" data-placement="top" title="Sleep Efficiency">
-								<span class="line-height-1 bigger-170">
-									<i class="fa fa-calculator fa-2x"></i>
-								</span> <br /> <span class="line-height-1 smaller-90"> 
-								${sleepEfficiency}
-										%</span>
+								<span class="btn btn-app btn-pink no-hover"
+									style="width: 100%; cursor: auto" data-toggle="tooltip"
+									data-placement="top" title="Sleep Efficiency"> <span
+									class="line-height-1 bigger-170"> <i
+										class="fa fa-calculator fa-2x"></i>
+								</span> <br /> <span class="line-height-1 smaller-90">
+										${sleepEfficiency} %</span>
 								</span>
 							</div>
 						</div>
-							<div class="col-md-2 col-sm-4 col-xs-6">
+						<div class="col-md-2 col-sm-4 col-xs-6">
 							<div id="sleepCountData">
-								<span class="btn btn-app btn-purple no-hover" style="width:100%;cursor:auto"
-								data-toggle="tooltip" data-placement="top" title="Awake/Restless Count">
-								<span class="line-height-1 bigger-170"> <i
+								<span class="btn btn-app btn-purple no-hover"
+									style="width: 100%; cursor: auto" data-toggle="tooltip"
+									data-placement="top" title="Awake/Restless Count"> <span
+									class="line-height-1 bigger-170"> <i
 										class="fa fa-eye fa-2x"></i>
 								</span> <br /> <span class="line-height-1 smaller-90">
 										${awakeningTime}x </span>
@@ -345,32 +353,36 @@ if('${userId}'=='')
 						</div>
 					</div>
 				</div>
-				<br/>
+				<br />
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
-				Sleep and Sensors</h3>
+					Sleep and Sensors</h3>
 				<div class="row">
 					<div class="col-xs-12">
-						<div id="sleep" class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
+						<div id="sleep"
+							class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
 							style="height: 300px"></div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12">		
-						<div id="temp" class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
-							style="height: 300px"></div>
-					</div>
-				 	<div class="col-xs-12">
-						<div id="light" class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
+					<div class="col-xs-12">
+						<div id="temp"
+							class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
 							style="height: 300px"></div>
 					</div>
 					<div class="col-xs-12">
-						<div id="humid" class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
+						<div id="light"
+							class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
+							style="height: 300px"></div>
+					</div>
+					<div class="col-xs-12">
+						<div id="humid"
+							class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
 							style="height: 300px"></div>
 					</div>
 				</div>
 
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
-				Activity</h3>
+					Activity</h3>
 				<div class="row col-md-12">
 					<div class="col-md-offset-1 col-md-10">
 						<div id="steps" class="col-md-4 col-sm-6 col-xs-12"
@@ -381,87 +393,106 @@ if('${userId}'=='')
 							style="height: 200px"></div>
 					</div>
 				</div>
-				<br/>
+				<br />
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
-				Food</h3>
+					Food</h3>
 				<div class="row col-md-12">
 					<div class="col-md-offset-1 col-md-10">
 						<div id="food" class="col-md-6 col-sm-6 col-xs-12"
 							style="height: 250px"></div>
-							<div id="calorie" class="col-md-6 col-sm-6 col-xs-12"
+						<div id="calorie" class="col-md-6 col-sm-6 col-xs-12"
 							style="height: 250px"></div>
 					</div>
 				</div>
-				<br/>
+				<br />
 
 				<!-- SSR Recommendations -->
-				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">Recommendations<a href="/smacrobs/refresh" class="btn btn-danger pull-right">Try new Recommendations</a></h3>
+				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
+					Recommendations<a href="/smacrobs/refresh"
+						class="btn btn-danger pull-right">Try new Recommendations</a>
+				</h3>
 
 				<div class="row col-md-12" style="font-family: 'Arapey', serif;">
-				<div class="col-md-offset-1 col-md-10">
-			<div class="col-xs-12 col-sm-12 col-md-12 widget-container-col">
-						
+					<div class="col-md-offset-1 col-md-10">
+						<div class="col-xs-12 col-sm-12 col-md-12 widget-container-col">
 
-						<div class="widget-body" >
-							<div class="widget-main padding-6 scrollable" data-size="125">
-							<c:forEach var="i" begin="0" end="${recommendations.size()-1}">
-								<div class="alert alert-danger">${recommendations.get(i)}</div>
-							</c:forEach>
+
+							<div class="widget-body">
+								<div class="widget-main padding-6 scrollable" data-size="125">
+									<c:forEach var="i" begin="0" end="${recommendations.size()-1}">
+									<c:if test="${i%3 eq 0}">
+											<div class="alert alert-danger">${recommendations.get(i)}</div>
+										</c:if>
+										<c:if test="${i%3 eq 1}">
+											<div class="alert alert-success">${recommendations.get(i)}</div>
+										</c:if>
+										<c:if test="${i%3 eq 2}">
+											<div class="alert alert-info">${recommendations.get(i)}</div>
+										</c:if>
+									</c:forEach>
+								</div>
 							</div>
 						</div>
+
+					</div>
 				</div>
 
-				</div>
-			</div>
-			
-			<!-- SSR Facts -->
+				<!-- SSR Facts -->
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">Facts</h3>
 
 				<div class="row col-md-12" style="font-family: 'Arapey', serif;">
-				<div class="col-md-offset-1 col-md-10">
-			<div class="col-xs-12 col-sm-12 col-md-12 widget-container-col">
-						
-
-						<div class="widget-body" >
-							<div class="widget-main padding-6 scrollable" data-size="125">
-							<c:forEach var="i" begin="0" end="${recommendationFacts.size()-1}">
-   								<div class="alert alert-info">${recommendationFacts.get(i)}</div>
-							</c:forEach>
+					<div class="col-md-offset-1 col-md-10">
+						<div class="col-xs-12 col-sm-12 col-md-12 widget-container-col">
+							<div class="widget-body">
+								<div class="widget-main padding-6 scrollable" data-size="125">
+									<c:forEach var="i" begin="0"
+										end="${recommendationFacts.size()-1}">
+										<c:if test="${i%3 eq 0}">
+											<div class="alert alert-danger">${recommendationFacts.get(i)}</div>
+										</c:if>
+										<c:if test="${i%3 eq 1}">
+											<div class="alert alert-success">${recommendationFacts.get(i)}</div>
+										</c:if>
+										<c:if test="${i%3 eq 2}">
+											<div class="alert alert-info">${recommendationFacts.get(i)}</div>
+										</c:if>
+									</c:forEach>
+								</div>
 							</div>
 						</div>
-				</div>
-
+					</div>
 				</div>
 			</div>
 		</div>
-			</div>
-		</div>
+	</div>
 
 	<!-- Trigger the modal with a button -->
 
-<!-- Modal -->
-<div id="logoutModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+	<!-- Modal -->
+	<div id="logoutModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header" style="text-align: center">
-        <h4 class="modal-title">
-        <i class="ace-icon fa fa-sign-out">
-        <strong>Logout</strong></i></h4>
-      </div>
-      <div class="modal-body" style="font-size:20px;text-align: center">
-        <p><span style="color:green"><b>Success!</b></span><br/>
-        You are now logged out of <b>EaseMySleep</b>.
-        <br/>But remember to logout of <b>Fitbit</b>!</p>
-      </div>
-      <div class="modal-footer">
-        <a href="/smacrobs/redirectToSite" class="btn btn-default">OK</a>
-      </div>
-    </div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="text-align: center">
+					<h4 class="modal-title">
+						<i class="ace-icon fa fa-sign-out"> <strong>Logout</strong></i>
+					</h4>
+				</div>
+				<div class="modal-body" style="font-size: 20px; text-align: center">
+					<p>
+						<span style="color: green"><b>Success!</b></span><br /> You are
+						now logged out of <b>EaseMySleep</b>. <br />But remember to logout
+						of <b>Fitbit</b>!
+					</p>
+				</div>
+				<div class="modal-footer">
+					<a href="/smacrobs/redirectToSite" class="btn btn-default">OK</a>
+				</div>
+			</div>
 
-  </div>
-</div>
+		</div>
+	</div>
 
 
 	<script type="text/javascript">
@@ -1187,7 +1218,7 @@ if('${userId}'=='')
 });
 		
 </script>
-<div class="footer">
+	<div class="footer">
 		<div class="footer-inner">
 			<!-- #section:basics/footer -->
 			<div class="footer-content">

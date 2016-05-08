@@ -251,7 +251,7 @@ if('${userId}'=='')
 					<div class="row">
 						<div class="input-group col-md-offset-3 col-md-6">
 							<input class="form-control input-mask-product"
-								name="id" placeholder="TI Sensor ID" type="text" id="id" />
+								name="id" placeholder="TI Sensor ID" type="text" id="id"  required/>
 							<span class="input-group-addon"> <i
 								class="ace-icon fa fa-key"></i>
 							</span>
@@ -261,7 +261,7 @@ if('${userId}'=='')
 					<br />
 					<!-- /.span -->
 					<div class="col-md-offset-5">
-						<button id="submitTiBtn" type="submit" class=" btn btn-sm btn-danger pull-left"
+						<button id="submitBtn" type="submit" class=" btn btn-sm btn-danger pull-left"
 							data-dismiss="modal">
 							<i class="glyphicon glyphicon-ok"></i> Submit
 						</button>
@@ -286,25 +286,7 @@ if('${userId}'=='')
 			<!-- /.page-content -->
 		</div>
 	</div>
-	<!-- /.main-content --><!-- Modal -->
-<div id="logoutModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Alert!</h4>
-      </div>
-      <div class="modal-body">
-        <p>Success. You are Logged out of SMACROBS. Dont forget to logout of Fitbit</p>
-      </div>
-      <div class="modal-footer">
-        <a href="/smacrobs/redirectToSite" class="btn btn-default">OK</a>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 	<div class="footer">
 		<div class="footer-inner">
@@ -410,9 +392,6 @@ if('${userId}'=='')
 	<script src="<%=request.getContextPath()%>/assets/js/language/css.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
-
-	<script type="text/javascript">
-		
-							
+					
 </body>
 </html>

@@ -31,10 +31,10 @@ public class MainController {
 
 	@Autowired
 	public MainController(UserProfileServiceIntf userProfileService,
-						  FitbitOAuthServiceIntf fitbitOuthService,
-						  RecommendationsServiceImpl recommendationsService,
-						  FitbitDetailsServiceIntf fitbitDetailsService,
-						  TiSensorService tiSensorService){
+			FitbitOAuthServiceIntf fitbitOuthService,
+			RecommendationsServiceImpl recommendationsService,
+			FitbitDetailsServiceIntf fitbitDetailsService,
+			TiSensorService tiSensorService){
 		this.userProfileService = userProfileService;
 		this.fitbitOuthService = fitbitOuthService;
 		this.recommendationsService = recommendationsService;
@@ -46,7 +46,7 @@ public class MainController {
 	public ModelAndView index() {
 		return new ModelAndView("index");
 	}
-	
+
 	@RequestMapping("/oauth")
 	public String redirectToFitbit() throws IOException {
 		logger.debug("Redirecting to " + getRedirectURL());
@@ -72,35 +72,45 @@ public class MainController {
 	public ModelAndView redirectToData() throws IOException {
 		return new ModelAndView("data");
 	}
-	
+
 	@RequestMapping(value = "/tisensor", method = RequestMethod.POST)
 	public String saveTiSensor(@RequestParam(
 			value = "id",
 			required = true,
 			defaultValue = ""
 			) String id, HttpSession session) {
+		if(id==null||id.equals(""))
+		{
+			return "redirect:/error";
+		}
 		userProfileService.UpdateTiSensorId(id,
 				session.getAttribute("userId").toString());
 		return "redirect:/dashboard";
 	}
-	
+
 	@RequestMapping(value = "/medical", method = RequestMethod.POST)
 	public String saveMedical(@RequestParam(
 			value = "isDiabetic"
 			) Boolean isDiabetic, @RequestParam(value="medicine") String[] medicine, HttpSession session) {
+		if(isDiabetic==false||medicine==null ||medicine.length==0)
+		{
+			return "redirect:/error";
+		}
+		boolean isValidMedicine=false;
+		for(int i=0;i<medicine.length;i++)
+		{
+			if(Constants.medicines.contains(medicine[i]))
+			{
+				isValidMedicine=true;
+			}
+		}
+		if(!isValidMedicine)
+		{
+			return "redirect:/error";
+		}
+		
 		userProfileService.UpdateMedicalDetails(isDiabetic, medicine,
 				session.getAttribute("userId").toString());
-		return "redirect:/dashboard";
-	}
-	
-	@RequestMapping(value="/date", method = RequestMethod.POST)
-	public String getDateData(@RequestParam(
-			value = "date",
-			required = true,
-			defaultValue = ""
-			) String date, HttpSession session) {
-		session.setAttribute("todayDate", date);
-		session.setAttribute("yesterdayDate", ServiceUtils.getYesterdayDate(date));
 		return "redirect:/dashboard";
 	}
 
@@ -117,7 +127,7 @@ public class MainController {
 					required = false,
 					defaultValue = ""
 					) String response, HttpSession session) throws IOException {
-		
+
 		logger.debug("Redirected from Fitbit with response "+response);
 		FitbitTokens fitbitTokens = this.fitbitOuthService.getFitbitTokens(response);
 
@@ -135,14 +145,26 @@ public class MainController {
 	}
 
 	@RequestMapping("/dashboard")
-	public ModelAndView dashboard(HttpSession session) {
-		// add functionality to take date as a parameter
-		// and overwrite session variables
+	public ModelAndView dashboard(@RequestParam(
+			value = "date",
+			required = false,
+			defaultValue = ""
+			) String date, HttpSession session) {
 		ModelAndView mv = null;
 		if(session.getAttribute("userId")==null){
 			return index();
 		}
 		else{
+			if(date==null||date.equals(""))
+			{
+				session.setAttribute("todayDate", ServiceUtils.getTodayDate());
+				session.setAttribute("yesterdayDate", ServiceUtils.getYesterdayDate());
+			}
+			else
+			{
+				session.setAttribute("todayDate", date);
+				session.setAttribute("yesterdayDate", ServiceUtils.getYesterdayDate(date));
+			}
 			mv = new ModelAndView("dashboard");
 			recommendationsService.setSessionVariables(session);
 			fitbitDetailsService.setSessionVariables(session);
@@ -161,27 +183,27 @@ public class MainController {
 			tiSensorService.AddHumidityToModel(mv);
 
 			recommendationsService.addRecommendationsToModel(mv);
-			
+
 			session.setAttribute("todayDate", ServiceUtils.getTodayDate());
 			session.setAttribute("yesterdayDate", ServiceUtils.getYesterdayDate());
 		}
 		return mv;
 	}
-	
+
 	@RequestMapping("/refresh")
 	public String refresh(HttpSession session) {
 		if(session.getAttribute("userId")==null){
 			return "redirect:/";
 		}
 		else{
-		fitbitDetailsService.removeActivityDetailsFromDB();
-		fitbitDetailsService.removeActivityGoalDetailsFromDB();
-		fitbitDetailsService.removeFoodDetailsFromDB();
-		fitbitDetailsService.removeHeartRateDetailsFromDB();
-		fitbitDetailsService.removeSleepDetailsFromDB();
-		fitbitDetailsService.removeWaterDetailsFromDB();
-		recommendationsService.removeRecommendationsFromDB();
-		return "redirect:/dashboard";
+			fitbitDetailsService.removeActivityDetailsFromDB();
+			fitbitDetailsService.removeActivityGoalDetailsFromDB();
+			fitbitDetailsService.removeFoodDetailsFromDB();
+			fitbitDetailsService.removeHeartRateDetailsFromDB();
+			fitbitDetailsService.removeSleepDetailsFromDB();
+			fitbitDetailsService.removeWaterDetailsFromDB();
+			recommendationsService.removeRecommendationsFromDB();
+			return "redirect:/dashboard";
 		}
 	}
 
@@ -210,9 +232,9 @@ public class MainController {
 					"&redirect_uri=" +
 					URLEncoder.encode(Constants.LOCALHOST + Constants
 							.redirectUriFromFitbit, "UTF-8") +
-					// scope is already encoded
-					"&scope=" + Constants.fitbitScope +
-					"&prompt=none";
+							// scope is already encoded
+							"&scope=" + Constants.fitbitScope +
+							"&prompt=none";
 		}catch (Exception e){
 			logger.error("URL encoding exception"+e);
 		}

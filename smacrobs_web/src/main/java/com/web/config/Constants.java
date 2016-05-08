@@ -1,5 +1,7 @@
 package com.web.config;
 
+import java.util.ArrayList;
+
 public class Constants {
 
 	public static final String LOCALHOST = "http://localhost:8080/smacrobs";
@@ -50,8 +52,16 @@ public class Constants {
 			"https://api.fitbit.com/1/user/-/activities/goals/daily.json";
 	public static final String dateFormat = "yyyy-MM-dd";
 	//public static final String grantType = "authorization_code";
+	public static ArrayList<String> medicines = new ArrayList<String>();
 
-
+	static{
+	    ArrayList<String> temp = new ArrayList<String>();
+	    temp.add("a");
+	    temp.add("b");
+	    temp.add("c");
+	    medicines = temp;
+	  }
+	
 	static {
 		if(System.getenv("environment") != null &&
 				System.getenv("environment").equals("production")) {

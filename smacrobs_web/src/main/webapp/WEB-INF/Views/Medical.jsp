@@ -252,7 +252,7 @@ if('${userId}'=='')
 						<div class="input-group col-md-offset-3 col-md-6">
 							<div class="checkbox ">
 								<label> <input name="isDiabetic"
-									type="checkbox" class="ace" /> <span class="lbl"> Is
+									type="checkbox" class="ace" id="isDiabetic"  required /> <span class="lbl"> Is
 										Diabetic</span>
 								</label>
 							</div>
@@ -260,13 +260,11 @@ if('${userId}'=='')
 						<br />
 						<div class="input-group col-md-offset-3 col-md-6">
 							<label for="form-field-select-2">Medicines Taken</label> <select
-								class="form-control" id="form-field-select-2" name="medicine"
-								multiple="multiple">
-								<option value="AL">Condition 1</option>
-								<option value="AK">Condition 1</option>
-								<option value="AZ">Condition 1</option>
-								<option value="AR">Condition 1</option>
-								<option value="CA">Condition 1</option>
+								class="form-control" id="dropdown" name="medicine"
+								multiple="multiple" disabled required>
+								<option value="a">Condition 1</option>
+								<option value="b">Condition 1</option>
+								<option value="c">Condition 1</option>
 							</select>
 						</div>
 					</div>
@@ -420,10 +418,18 @@ if('${userId}'=='')
 		src="<%=request.getContextPath()%>/assets/js/language/generic.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/language/html.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/language/css.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
 
 	<script type="text/javascript">
+	$('#isDiabetic').change(function(){
+		 if ($(this).is(":checked")) {
+		      $("#dropdown").prop("disabled", false);
+		   } else {
+		      $("#dropdown").prop("disabled", true);  
+		      $("#dropdown option:selected").removeAttr("selected");
+		   }
+	});
+	</script>
 		
 							
 </body>

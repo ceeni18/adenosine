@@ -46,7 +46,6 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf {
 	
 	public void UpdateMedicalDetails(Boolean isDiabetic, String[] medicine,
 			String userId) {
-		System.out.println(isDiabetic+"...."+medicine.toString());
 		userProfileRepository.updateUser(isDiabetic,medicine, userId);
 		
 	}
