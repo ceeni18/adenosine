@@ -34,10 +34,10 @@
 								<li class="submenu">
 								<a href="#">What's More?</a>
 								<ul>
-									<li><a href="/smacrobs/fitbit">Fitbit</a></li>
-									<li><a href="/smacrobs/senso">Sense Fence</a></li>
-									<li><a href="/smacrobs/data">Data Analytics</a></li>
-									<li><a href="/smacrobs/contact">Contact Us</a></li>
+									<li><a href="/fitbit">Fitbit</a></li>
+									<li><a href="/senso">Sense Fence</a></li>
+									<li><a href="/data">Data Analytics</a></li>
+									<li><a href="/contact">Contact Us</a></li>
 								</ul>
 							</li>
 						</ul>

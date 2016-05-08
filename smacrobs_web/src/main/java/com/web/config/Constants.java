@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Constants {
 
-	public static final String LOCALHOST = "http://localhost:8080/smacrobs";
+	public static final String LOCALHOST = "http://localhost:80";
 
 	/*
 	 * Database Constants

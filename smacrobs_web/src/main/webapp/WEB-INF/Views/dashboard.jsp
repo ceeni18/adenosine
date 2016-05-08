@@ -76,7 +76,7 @@
 <script>
 if('${userId}'=='')
 {
-	location.replace("/smacrobs/");
+	location.replace("/");
 }
 </script>
 <script type="text/javascript"
@@ -132,10 +132,10 @@ if('${userId}'=='')
 					</a> <!-- NV - start 04/18/2016 -->
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="/smacrobs/tisensor"> <i
+							<li><a href="/tisensor"> <i
 									class="ace-icon fa fa-key"></i> TI Sensor
 							</a></li>
-							<li><a href="/smacrobs/medical"> <i
+							<li><a href="/medical"> <i
 									class="ace-icon fa fa-medkit"></i> Medical Details
 							</a></li>
 							<li><a data-toggle="modal" data-target="#logoutModal"> <i
@@ -238,7 +238,7 @@ if('${userId}'=='')
 					</ul>
 					<!-- /.breadcrumb -->
 
-					<form action="/smacrobs/dashboard" method="GET">
+					<form action="/dashboard" method="GET">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div
 								class="col-md-offset-9 col-md-2 col-sm-6 col-xs-12 form-group">
@@ -408,7 +408,7 @@ if('${userId}'=='')
 
 				<!-- SSR Recommendations -->
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
-					Recommendations<a href="/smacrobs/refresh"
+					Recommendations<a href="/refresh"
 						class="btn btn-danger pull-right">Try new Recommendations</a>
 				</h3>
 
@@ -487,7 +487,7 @@ if('${userId}'=='')
 					</p>
 				</div>
 				<div class="modal-footer">
-					<a href="/smacrobs/redirectToSite" class="btn btn-default">OK</a>
+					<a href="/redirectToSite" class="btn btn-default">OK</a>
 				</div>
 			</div>
 

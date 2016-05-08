@@ -179,7 +179,7 @@
 												Go Back
 											</a>
 
-											<a href="/smacrobs/dashboard" class="btn btn-primary">
+											<a href="/dashboard" class="btn btn-primary">
 												<i class="ace-icon fa fa-home "></i>
 												Take me Home
 											</a>

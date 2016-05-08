@@ -67,7 +67,7 @@ console.log('${userId}'=='');
 console.log('${userId}');
 if('${userId}'=='')
 {
-	location.replace("/smacrobs/");
+	location.replace("/");
 	
 }
 </script>
@@ -121,10 +121,10 @@ if('${userId}'=='')
 					</a> <!-- NV - start 04/18/2016 -->
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="/smacrobs/tisensor"> <i
+							<li><a href="/tisensor"> <i
                                     class="ace-icon fa fa-key"></i> Ti Sensor
                             </a></li>
-							<li><a href="/smacrobs/medical"> <i
+							<li><a href="/medical"> <i
                                     class="ace-icon fa fa-medkit"></i> Medical Details
                             </a></li>
 							<li><a data-toggle="modal" data-target="#logoutModal"> <i
@@ -155,7 +155,7 @@ if('${userId}'=='')
         <p>Success. You are Logged out of SMACROBS. Dont forget to logout of Fitbit</p>
       </div>
       <div class="modal-footer">
-        <a href="/smacrobs/redirectToSite" class="btn btn-default">OK</a>
+        <a href="/redirectToSite" class="btn btn-default">OK</a>
       </div>
     </div>
 
@@ -244,7 +244,7 @@ if('${userId}'=='')
 
 					<ul class="breadcrumb">
 						<li><i class="ace-icon fa fa-tachometer"></i> <a
-							href="/smacrobs/dashboard">Dashboard</a></li>
+							href="/dashboard">Dashboard</a></li>
 
 							<li><i class="ace-icon fa fa-random active"></i> <a
 							href="#">Ti Sensor</a></li>
@@ -266,7 +266,7 @@ if('${userId}'=='')
 							<div id="details">
 					<h3 class="col-md-offset-3">Input Ti Sensor ID</h3>
 					<br />
-					<form id="tisensorForm" action="/smacrobs/tisensor" method="POST">
+					<form id="tisensorForm" action="/tisensor" method="POST">
 					<div class="row">
 						<div class="input-group col-md-offset-3 col-md-6">
 							<input class="form-control input-mask-product"

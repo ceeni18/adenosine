@@ -28,7 +28,7 @@
 <script>
 if('${userId}'!='')
 {
-	location.replace("/smacrobs/dashboard");
+	location.replace("/dashboard");
 	
 }
 </script>
@@ -45,10 +45,10 @@ if('${userId}'!='')
 							<li class="submenu">
 								<a href="#">What's More?</a>
 								<ul>
-									<li><a href="/smacrobs/fitbit">Fitbit</a></li>
-									<li><a href="/smacrobs/senso">Sense Fence</a></li>
-									<li><a href="/smacrobs/data">Data Analytics</a></li>
-									<li><a href="/smacrobs/contact">Contact Us</a></li>
+									<li><a href="/fitbit">Fitbit</a></li>
+									<li><a href="/senso">Sense Fence</a></li>
+									<li><a href="/data">Data Analytics</a></li>
+									<li><a href="/contact">Contact Us</a></li>
 								</ul>
 							</li>				
 						</ul>
@@ -74,7 +74,7 @@ if('${userId}'!='')
 						</p>
 						<footer>
 							<ul class="buttons vertical">
-								<li><a href="/smacrobs/oauth" class="button fit scrolly">Connect With Fitbit</a></li>
+								<li><a href="/oauth" class="button fit scrolly">Connect With Fitbit</a></li>
 							</ul>
 							<ul class="buttons vertical">
 								<li><a href="http://goo.gl/CrrYPU" class="button fit scrolly">Checkout Out SensorTag</a></li>
@@ -215,7 +215,7 @@ if('${userId}'!='')
 					</header>
 					<footer>
 						<ul class="buttons">
-							<li><a href="<%=request.getContextPath()%>/smacrobs/oauth" class="button special">Login with Fitbit</a></li>
+							<li><a href="<%=request.getContextPath()%>/oauth" class="button special">Login with Fitbit</a></li>
 						</ul>
 					</footer>
 
