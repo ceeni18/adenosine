@@ -79,40 +79,38 @@ public class RecommendationsServiceImpl {
         }
 
         List<String> recommendationsForModel = new ArrayList<String>();
-        String NO_RECOMMENDATIONS_MESSAGE = "As data that you have provided " +
-                "is very limited, there are no recommendations for now!";
-        if(recommendations == null){
-            recommendationsForModel.add(NO_RECOMMENDATIONS_MESSAGE);
-        }else if(recommendations.getTopics().isEmpty()){
-            recommendationsForModel.add(NO_RECOMMENDATIONS_MESSAGE);
-        }
-        else{
+        List<String> factsForModel = new ArrayList<String>();
+        String NO_RECOMMENDATIONS_MESSAGE = "The data you have provided is " +
+                "very limited!";
+        if(recommendations != null && !recommendations.getTopics().isEmpty()){
             try {
                 Iterator it = recommendations.getTopics().entrySet().iterator();
+                List<String> modelListRef;
                 while (it.hasNext()) {
                     Map.Entry entry = (Map.Entry) it.next();
+                    if(entry.getKey().equals("facts"))
+                        modelListRef = factsForModel;
+                    else
+                        modelListRef = recommendationsForModel;
                     List<String> topic = (List<String>) entry.getValue();
                     for (int i = 0; i < topic.size(); i++) {
-                        recommendationsForModel.add(topic.get(i));
+                        modelListRef.add(topic.get(i));
                     }
                 }
             }catch (Exception e){
-                logger.error("Unable to add recommendations to model "+e);
+                logger.error("Unable to add recommendations/facts to model "+e);
             }
+        }
+        if(recommendationsForModel.isEmpty()){
+            recommendationsForModel.add(NO_RECOMMENDATIONS_MESSAGE);
+        }
+        if(factsForModel.isEmpty()){
+            factsForModel.add("Something went wrong! please reload " +
+                    "recommendations or report this " +
+                    "error");
         }
         mv.addObject("recommendations", recommendationsForModel);
-        List<String> recommendationFactsForModel = new ArrayList<String>();
-        try {
-            List<String> facts = defaultRecommendations
-                    .getTopics().get("facts");
-            int[] randomNumbers = getRandomNumbers(facts.size());
-            for(int i=0; i<MAXIMUM_FACTS; i++){
-                recommendationFactsForModel.add(facts.get(i));
-            }
-        }catch(Exception e){
-            logger.error("Unable to get facts for the model"+e);
-        }
-        mv.addObject("recommendationFacts", recommendationFactsForModel);
+        mv.addObject("recommendationFacts", factsForModel);
     }
 
     private void calculateAndSaveRecommendations(){
@@ -198,6 +196,11 @@ public class RecommendationsServiceImpl {
         setHumidityRecommendations();
         setFoodRecommendations();
         setActivityRecommendations();
+        setFacts();
+    }
+
+    private void setFacts(){
+        setTopicRecommendations("facts");
     }
 
     private void setActivityRecommendations(){
@@ -207,7 +210,7 @@ public class RecommendationsServiceImpl {
 
     private void setFoodRecommendations(){
         String key = null;
-        if(foodsConsumed == null || foodsConsumed.size() == 0){
+        if(foodsConsumed != null || foodsConsumed.size() != 0){
             for(int i=0; i<foodsConsumed.size(); i++) {
                 setTopicRecommendations("food_" + foodsConsumed.get(i));
             }
@@ -244,12 +247,17 @@ public class RecommendationsServiceImpl {
             return;
         }
         List<String> topicRecommendations = new ArrayList<String>();
-        int[] arr = getRandomNumbers(defaultTopicRecommendations.size());
-
-        for(int i=0; i<MAXIMUM_RECOMMENDATIONS_PER_TOPIC; i++){
-            topicRecommendations.add(defaultTopicRecommendations.get(arr[i]));
+        int recommendationsPerTopic = MAXIMUM_RECOMMENDATIONS_PER_TOPIC;
+        if(defaultTopicRecommendations.size() < recommendationsPerTopic){
+            recommendationsPerTopic = defaultTopicRecommendations.size();
         }
-        logger.debug("Recommendations set for topic: "+key+" are "+
+        int[] randomNumbers = getRandomNumbers(defaultTopicRecommendations.size());
+
+        for(int i=0; i<recommendationsPerTopic; i++){
+            topicRecommendations
+                    .add(defaultTopicRecommendations.get(randomNumbers[i]));
+        }
+        logger.debug("Recommendations set for topic '"+key+"' are: "+
                 topicRecommendations);
         topics.put(key, topicRecommendations);
     }

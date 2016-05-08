@@ -22,7 +22,6 @@ public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(
 			MainController.class);
 
-
 	UserProfileServiceIntf userProfileService;
 	FitbitOAuthServiceIntf fitbitOuthService;
 	RecommendationsServiceImpl recommendationsService;
