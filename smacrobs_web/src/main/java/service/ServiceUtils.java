@@ -101,7 +101,6 @@ public class ServiceUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return dateFormat.format(oneDayBefore);
 	}
 

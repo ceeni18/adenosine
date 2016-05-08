@@ -47,7 +47,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 				+ ".json",
 				access_token);
 		SleepDetails sleepDetails = ServiceUtils.gson.fromJson(data,
-				SleepDetails.class); // gson returns null is json is null
+				SleepDetails.class); // gson returns null if json is null
 		logger.debug("SLEEP PATTERNS :: " + sleepDetails);
 		if(sleepDetails != null){
 			sleepDetails.setDate(todayDate);
