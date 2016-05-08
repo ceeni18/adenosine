@@ -142,6 +142,25 @@ if('${userId}'=='')
 		</div>
 		<!-- /.navbar-container -->
 	</div>
+	<!-- Modal -->
+<div id="logoutModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Alert!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Success. You are Logged out of SMACROBS. Dont forget to logout of Fitbit</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/smacrobs/redirectToSite" class="btn btn-default">OK</a>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 	<!-- /section:basics/navbar.layout -->
 	<div class="main-container" id="main-container">
