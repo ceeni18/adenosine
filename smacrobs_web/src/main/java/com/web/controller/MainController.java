@@ -27,6 +27,7 @@ public class MainController {
 	RecommendationsServiceImpl recommendationsService;
 	FitbitDetailsServiceIntf fitbitDetailsService;
 	TiSensorService tiSensorService;
+	//Em
 
 	@Autowired
 	public MainController(UserProfileServiceIntf userProfileService,

@@ -23,11 +23,11 @@ public class Constants {
 	/*
 	 * FitBit Constants
 	 * */
-	//public static final String fitbitOauthClientId = "227NJT";
-	public static final String fitbitOauthClientId = "227L87";
-	//public static final String appClientIdAndSecrect =
-	//		"MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm";
-	public static final String appClientIdAndSecrect = "MjI3TDg3OjgxMDYzNTYyYzdiMzZlZmVjMWYzNGY5Y2FhMmNlNTdk";
+	public static final String fitbitOauthClientId = "227NJT";
+	//public static final String fitbitOauthClientId = "227L87";
+	public static final String appClientIdAndSecrect =
+			"MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm";
+	//public static final String appClientIdAndSecrect = "MjI3TDg3OjgxMDYzNTYyYzdiMzZlZmVjMWYzNGY5Y2FhMmNlNTdk";
 	public static final String fitbitAuthUri =
 			"https://www.fitbit.com/oauth2/authorize?";
 	public static final String redirectUriFromFitbit =

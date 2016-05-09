@@ -269,34 +269,6 @@ if('${userId}'=='')
   
     date_input.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
 </script>
-
-					<!-- /section:basics/content.searchbox -->
-					<form action="/smacrobs/date" method="post">
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="col-md-offset-9 col-md-2 col-sm-6 col-xs-12 form-group">
-								<!-- Date input -->
-								<input class="form-control" id="date" name="date"
-									placeholder="MM/DD/YYY" type="text" required/>
-							</div>
-							<div class="form-group">
-								<button type="submit" class="btn btn-danger btn-circle">
-									<i class="glyphicon glyphicon-ok"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-					<script>
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true
-    };
-  
-    date_input.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
-</script>
 				</div>
 
 				<!-- /section:basics/content.breadcrumbs -->
