@@ -78,6 +78,20 @@ public class MainController {
 		return new ModelAndView("about");
 	}
 	
+	/*@RequestMapping(value = "/contact", method = RequestMethod.POST)
+	public String sendEmail(@RequestParam(
+			value = "name"
+			) String name, @RequestParam(value="email") String email,
+			@RequestParam(value="subject") String subject, 
+			@RequestParam(value="message") String message, HttpSession session) {
+		if(name == null || email == null || subject == null || message == null) {
+			return "redirect:/error";
+		}
+		
+		
+		return "redirect:/dashboard";
+	}*/
+	
 	@RequestMapping(value = "/tisensor", method = RequestMethod.POST)
 	public String saveTiSensor(@RequestParam(
 			value = "id",

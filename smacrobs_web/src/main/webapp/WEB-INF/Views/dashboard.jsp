@@ -137,11 +137,11 @@ if('${userId}'=='')
 					</a> <!-- NV - start 04/18/2016 -->
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="/tisensor"> <i
-									class="ace-icon fa fa-key"></i> TI Sensor
+							<li><a href="/tisensor"> <i class="ace-icon fa fa-key"></i>
+									TI Sensor
 							</a></li>
-							<li><a href="/medical"> <i 
-									class="ace-icon fa fa-medkit"></i> Medical Details
+							<li><a href="/medical"> <i class="ace-icon fa fa-medkit"></i>
+									Medical Details
 							</a></li>
 							<li><a data-toggle="modal" data-target="#logoutModal"> <i
 									class="ace-icon fa fa-power-off"></i> Logout
@@ -410,8 +410,8 @@ if('${userId}'=='')
 
 				<!-- SSR Recommendations -->
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
-					Recommendations<a href="/refresh"
-						class="btn btn-danger pull-right">Try new Recommendations</a>
+					Recommendations<a href="/refresh" class="btn btn-danger pull-right">Try
+						new Recommendations</a>
 				</h3>
 
 				<div class="row col-md-12" style="font-family: 'Arapey', serif;">
@@ -420,7 +420,7 @@ if('${userId}'=='')
 							<div class="widget-body">
 								<div class="widget-main padding-6 scrollable" data-size="125">
 									<c:forEach var="i" begin="0" end="${recommendations.size()-1}">
-									<c:if test="${i%3 eq 0}">
+										<c:if test="${i%3 eq 0}">
 											<div class="alert alert-danger">${recommendations.get(i)}</div>
 										</c:if>
 										<c:if test="${i%3 eq 1}">
@@ -482,8 +482,8 @@ if('${userId}'=='')
 				<div class="modal-body" style="font-size: 20px; text-align: center">
 					<p>
 						<span style="color: green"><b>Success!</b></span><br /> You are
-						now logged out of <b>EaseMySleep</b>. <br />But remember to logout
-						of <b>Fitbit</b>!
+						now logged out of <b>EaseMySleep</b>. <br />But remember to
+						logout of <b>Fitbit</b>!
 					</p>
 				</div>
 				<div class="modal-footer">
