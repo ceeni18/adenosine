@@ -10,19 +10,21 @@
 -->
 <html lang="en">
 	<head>
-		<title>Contact Us | EaseMySleep</title>
+		<title>About Us | EaseMySleep</title>
 		<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico"  type="image/x-icon" />
 		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		
 		<!--[if lte IE 8]><script src="<%=request.getContextPath()%>/home/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie9.css" /><![endif]-->
 		<link rel="stylesheet" href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
+		
+		
 	</head>
-	<body class="contact">
+	<body class="about">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -34,11 +36,11 @@
 								<li class="submenu">
 								<a href="#">What's More?</a>
 								<ul>
-									<li><a href="/fitbit">Fitbit</a></li>
-									<li><a href="/senso">Sense Fence</a></li>
-									<li><a href="/data">Data Analytics</a></li>
-									<li><a href="/contact">Contact Us</a></li>
-									<li><a href="/about">About Us</a></li>
+									<li><a href="/smacrobs/fitbit">Fitbit</a></li>
+									<li><a href="/smacrobs/senso">Sense Fence</a></li>
+									<li><a href="/smacrobs/data">Data Analytics</a></li>
+									<li><a href="/smacrobs/contact">Contact Us</a></li>
+									<li><a href="/smacrobs/about">About Us</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -49,56 +51,38 @@
 				<article id="main">
 
 					<header class="special container">
-						<span class="icon fa-envelope"></span>
-						<h2>Get In Touch - EaseMySleep</h2>
-						<p>Use the form below to give us your comments and feedback.</p>
+						<span class="icon fa-users"></span>
+						<h2><strong>About Us</strong></h2>
+						<p>Meet the team which will help you sleep better!</p>
 					</header>
 
 					<!-- One -->
-						<section class="wrapper style4 special container 75%">
+						<section class="">
 
-							<!-- Content -->
-								<div class="content">
-									<form>
-										<div class="row 50%">
-											<div class="6u 12u(mobile)">
-												<input type="text" name="name" id="name" placeholder="Name" />
-											</div>
-											<div class="6u 12u(mobile)">
-												<input type="text" name="email" id="email" placeholder="Email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}"/>
-											</div>
+									<!-- Content -->
+											<div class="row">
+											<div class="2u"></div>
+      											<div class="2u">
+													 <p class="p-center"><img class="circle-img p-center" height="150" src="images/srini.jpg" />Srinidhi<br/>Full Stack Developer</p>
+												</div>
+												<div class="2u">
+													 <p class="p-center"><img class="circle-img p-center" width="150" height="150" src="images/uday.jpeg" />Uday Sagar<br/>Backend Developer</p>
+												</div>
+												<div class="2u">
+													 <p class="p-center"><img class="circle-img p-center" width="150" height="150" src="images/neha.jpg" />Neha <br/>FrontEnd Developer</p>
+												</div>
+												<div class="2u">
+													 <p class="p-center"><img class="circle-img p-center" width="150" height="150" src="images/ceeeni.jpg" />Sreenivaasan <br/>Android Developer</p>
+												</div>
 										</div>
-										<div class="row 50%">
-											<div class="12u">
-												<input type="text" name="subject" id="sub" placeholder="Subject" />
-											</div>
-										</div>
-										<div class="row 50%">
-											<div class="12u">
-												<textarea name="message" id="msg" placeholder="Message" rows="7"></textarea>
-											</div>
-										</div>
-										<div class="row">
-											<div class="12u">
-												<ul class="buttons">
-													<li><input type="submit" class="special" value="Send Message" /></li>
-												</ul>
-											</div>
-										</div>
-									</form>
-								</div>
-
-						</section>
-
+						</section>	
 				</article>
 
 			<!-- Footer -->
 				<footer id="footer">
-
 					<ul class="copyright">
 						<li>&copy; <strong>SMACROBS</strong> 2015-2016</li><li>Design: <a href="http://html5up.net">TWENTY By HTML5 UP</a></li>
 					</ul>
-
 				</footer>
 
 		</div>

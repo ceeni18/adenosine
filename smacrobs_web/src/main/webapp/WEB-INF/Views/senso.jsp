@@ -38,6 +38,7 @@
 									<li><a href="/senso">Sense Fence</a></li>
 									<li><a href="/data">Data Analytics</a></li>
 									<li><a href="/contact">Contact Us</a></li>
+									<li><a href="/about">About Us</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -50,7 +51,7 @@
 					<header class="special container">
 						<span class="icon fa-bar-chart"></span>
 						<h2><strong>Sense Fence</strong></h2>
-						<p></p>
+						<p>Sense Fence tracks your environment for you!</p>
 					</header>
 
 					<!-- One -->
@@ -62,13 +63,22 @@
 									<!-- Content -->
 										<div class="content">
 											<section>
-												<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+												<img width="100%" height="100%" src="images/sensorTag-teardown.jpg" alt="" />
 												<header>
-													<h3>Dolore Amet Consequat</h3>
+													<h3>Sensor Tag CC2650</h3>
 												</header>
-												<p>Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum massa. Morbi eu faucibus massa. Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam.</p>
-												<p>Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum porta cursus justo. Quisque ultricies lorem in ligula condimentum, et egestas turpis sagittis. Cras ac nunc urna. Nullam eget lobortis purus. Phasellus vitae tortor non est placerat tristique. Sed id sem et massa ornare pellentesque. Maecenas pharetra porta accumsan. </p>
-												<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus, non hendrerit ipsum arcu tristique est.</p>
+												<p>The multi-standard SensorTag, based on the SimpleLink ultra-low power 
+												CC2650 wireless MCU, supports development for Bluetooth Smart, 
+												6LoWPAN and ZigBee. 
+												This SensorTag has a unique feature that allows developers to change 
+												between different 2.4 GHz technologies by simply loading new software 
+												images directly from the SensorTag app over-the-air.</p>
+												<p>The CC2650 device contains a 32-bit ARM Cortex-M3 processor that runs at 
+												48 MHz as the main processor and a rich peripheral feature set that includes a 
+												unique ultralow power sensor controller. This sensor controller is ideal for 
+												interfacing external sensors and for collecting analog and digital data 
+												autonomously while the rest of the system is in sleep mode.
+												</p>
 											</section>
 										</div>
 
@@ -79,27 +89,23 @@
 										<div class="sidebar">
 											<section>
 												<header>
-													<h3>Magna Feugiat</h3>
+													<h3>Sense Fence is Sensor Tag</h3>
 												</header>
-												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
+												<p>The SimpleLink&trade; SensorTag allows quick and easy prototyping of IoT devices. 
+												It just works - connect your sensor solution to the cloud in three minutes.</p>
 												<footer>
 													<ul class="buttons">
-														<li><a href="#" class="button small">Learn More</a></li>
+														<li><a href="https://store.ti.com/" class="button small">Buy Now</a></li>
 													</ul>
 												</footer>
 											</section>
 
 											<section>
-												<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
+												<img width="120%" height="100%" src="images/sensorTag.jpg" alt="" />
 												<header>
-													<h3>Amet Lorem Tempus</h3>
+													<h3>Blueprint of SensorTag</h3>
 												</header>
-												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
-												<footer>
-													<ul class="buttons">
-														<li><a href="#" class="button small">Buy Now</a></li>
-													</ul>
-												</footer>
+												<p>The MCU unit is surrounded by sensors that collect data and pushes to app through bluetooth.</p>
 											</section>
 										</div>
 
@@ -113,30 +119,34 @@
 								<div class="4u 12u(narrower)">
 
 									<section>
+									<span class="icon featured fa-check-square-o"></span>
 										<header>
-											<h3>This is Something</h3>
+											<h3>Light</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<p>Sense Fence monitors your bedroom's lighting when you sleep and 
+										will let you know if there were any disturbances!</p>
 									</section>
 
 								</div>
 								<div class="4u 12u(narrower)">
 
 									<section>
+									<span class="icon featured fa-check-square-o"></span>
 										<header>
-											<h3>Also Something</h3>
+											<h3>Temperature</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<p>Sense Fence tracks your bedroom temperature for you!</p>
 									</section>
 
 								</div>
 								<div class="4u 12u(narrower)">
 
 									<section>
+									<span class="icon featured fa-check-square-o"></span>
 										<header>
-											<h3>Probably Something</h3>
+											<h3>Humidity</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<p>Sense Fence compares your bedroom humidity with your location's humidity and gives you more insights.</p>
 									</section>
 
 								</div>

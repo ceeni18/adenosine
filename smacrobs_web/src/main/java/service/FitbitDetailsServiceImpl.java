@@ -123,7 +123,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 				access_token);
 		ActivityGoalDetails activityGoalDetails = ServiceUtils.gson.fromJson(data,
 				ActivityGoalDetails.class);
-		logger.debug("GOAL PATTERNS :: " + activityGoalDetails);
+		logger.debug("ACTIVITY GOAL PATTERNS :: " + activityGoalDetails);
 		if(activityGoalDetails != null){
 			activityGoalDetails.setDate(yesterdayDate);
 			activityGoalDetails.setUserId(userId);
@@ -217,7 +217,7 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
 		
 		int calOutGoal = Integer.parseInt(cal);
 		
-		modelAndView.addObject("distanceGoal", Math.round(Double.parseDouble(distance)));
+		modelAndView.addObject("distanceGoal", Double.parseDouble(distance));
 		modelAndView.addObject("floorsGoal", Integer.parseInt(floor));
 		modelAndView.addObject("stepsGoal", Integer.parseInt(step));
 		modelAndView.addObject("caloriesOutGoal", calOutGoal);

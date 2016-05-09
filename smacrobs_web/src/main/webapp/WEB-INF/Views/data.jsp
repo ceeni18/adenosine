@@ -38,6 +38,7 @@
 									<li><a href="/senso">Sense Fence</a></li>
 									<li><a href="/data">Data Analytics</a></li>
 									<li><a href="/contact">Contact Us</a></li>
+									<li><a href="/about">About Us</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -48,9 +49,9 @@
 				<article id="main">
 
 					<header class="special container">
-						<span class="icon fa-mobile"></span>
+						<span class="icon fa fa-cogs"></span>
 						<h2>Data <strong>Analytics</strong></h2>
-						<p>Where that in the center faces the nameless horrors alone.</p>
+						<p>To reveal the hidden secrets of your data.</p>
 					</header>
 
 					<!-- One -->
@@ -59,13 +60,10 @@
 							<!-- Content -->
 								<div class="content">
 									<section>
-										<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-										<header>
-											<h3>Dolore Amet Consequat</h3>
-										</header>
-										<p>Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum massa. Morbi eu faucibus massa. Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam.</p>
-										<p>Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum porta cursus justo. Quisque ultricies lorem in ligula condimentum, et egestas turpis sagittis. Cras ac nunc urna. Nullam eget lobortis purus. Phasellus vitae tortor non est placerat tristique. Sed id sem et massa ornare pellentesque. Maecenas pharetra porta accumsan. </p>
-										<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus, non hendrerit ipsum arcu tristique est.</p>
+										<img style="margin: 0 auto;display: block" width="75%" src="images/data.jpg" alt="" />
+										<br/><br/><p>Data Ingestion is where we collect by importing data from the devices - Fitbit and Sense Fence. We process the data and store it as collections in the database. This sometimes involves merging individual files and formatting them to fit into a large document. We validate, prioritize the sources for proessing and validate results.</p>
+										<p>Data Visualization is the another component that helps us to visualize the data we import. Unlike a singular chart or graph data, visualization tools help us visualize the data interconnected with time. This time series is often helpful to find out ambiguities in patterns of data. We have used Highcharts for data representation</p>
+										<p>Highcharts is a JavaScript based charting library, which offers interactive charts for web applications. It offers a variety of chart types such as line, area, column, etc. It supports multiple axes, exporting features among many other features.</p>
 									</section>
 								</div>
 
@@ -77,45 +75,33 @@
 								<div class="4u 12u(narrower)">
 
 									<section>
+									<span class="icon featured fa-check-square-o"></span>
 										<header>
-											<h3>This is Something</h3>
+											<h3>Big Data Fact #1</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-										<footer>
-											<ul class="buttons">
-												<li><a href="#" class="button small">Learn More</a></li>
-											</ul>
-										</footer>
+										<p>The world is growing at a breathtaking pace, from 2 billion objects in 2006 to a projected 200 billion by 2020. That will be around 26 smart objects for every human being on Earth! We need a strong data engine to understand this data!</p>
 									</section>
 
 								</div>
 								<div class="4u 12u(narrower)">
 
 									<section>
+									<span class="icon featured fa-check-square-o"></span>
 										<header>
-											<h3>Also Something</h3>
+											<h3>Big Data Fact #2</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-										<footer>
-											<ul class="buttons">
-												<li><a href="#" class="button small">Learn More</a></li>
-											</ul>
-										</footer>
+										<p>By 2025, the total global worth of IoT technology with data analytics could be as high as USD 6.2 trillion. Most of that value comes from devices in the domain of health care (USD 2.5 trillion) and manufacturing (USD 2.3 trillion).</p>
 									</section>
 
 								</div>
 								<div class="4u 12u(narrower)">
 
 									<section>
+									<span class="icon featured fa-check-square-o"></span>
 										<header>
-											<h3>Probably Something</h3>
+											<h3>Big Data Fact #3</h3>
 										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-										<footer>
-											<ul class="buttons">
-												<li><a href="#" class="button small">Learn More</a></li>
-											</ul>
-										</footer>
+										<p>IOT and Data analytics go together and they are spread across various domains - 40% in business and manufacturing, 30% in healthcare, 8.3% in retail and 7.7% in security.</p>
 									</section>
 
 								</div>

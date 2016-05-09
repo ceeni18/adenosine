@@ -72,6 +72,11 @@ public class MainController {
 		return new ModelAndView("data");
 	}
 
+	@RequestMapping("/about")
+	public ModelAndView redirectToAbout() throws IOException {
+		return new ModelAndView("about");
+	}
+	
 	@RequestMapping(value = "/tisensor", method = RequestMethod.POST)
 	public String saveTiSensor(@RequestParam(
 			value = "id",
