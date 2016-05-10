@@ -3,6 +3,8 @@ package com.web.controller;
 import com.web.config.Constants;
 import com.web.model.FitbitTokens;
 import com.web.model.UserProfile;
+import com.web.model.IdealValues;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import repository.RecommendationsRepository;
 import service.*;
 
 import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -78,7 +83,7 @@ public class MainController {
 			required = true,
 			defaultValue = ""
 			) String id, HttpSession session) {
-		if(id==null||id.equals(""))
+		if(!userProfileService.ValidateTiSensor(id))
 		{
 			return "redirect:/error";
 		}
@@ -88,27 +93,11 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/medical", method = RequestMethod.POST)
-	public String saveMedical(@RequestParam(
-			value = "isDiabetic"
-			) Boolean isDiabetic, @RequestParam(value="medicine") String[] medicine, HttpSession session) {
-		if(isDiabetic==false||medicine==null ||medicine.length==0)
-		{
-			return "redirect:/error";
-		}
-		boolean isValidMedicine=false;
-		for(int i=0;i<medicine.length;i++)
-		{
-			if(Constants.medicines.contains(medicine[i]))
-			{
-				isValidMedicine=true;
-			}
-		}
-		if(!isValidMedicine)
-		{
-			return "redirect:/error";
-		}
+	public String saveMedical(@RequestParam(value="medicine") String[] medicine, HttpSession session) {
+			if(!recommendationsService.ValidateMedicine(medicine))
+				return "redirect:/error";
 		
-		userProfileService.UpdateMedicalDetails(isDiabetic, medicine,
+		userProfileService.UpdateMedicalDetails(medicine,
 				session.getAttribute("userId").toString());
 		return "redirect:/dashboard";
 	}
@@ -218,7 +207,9 @@ public class MainController {
 
 	@RequestMapping("/medical")
 	public ModelAndView medical() {
-		return new ModelAndView("medical");
+		ModelAndView mv= new ModelAndView("medical");
+		recommendationsService.addMedicinesToModel(mv);
+		return mv;
 	}
 
 	private String getRedirectURL() {

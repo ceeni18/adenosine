@@ -100,7 +100,6 @@ public class UserProfile
 
 		private String displayName;
 		
-		private Boolean isDiabetic;
 		
 		private String[] medicines;
 
@@ -447,13 +446,7 @@ public class UserProfile
 
 		}
 
-		public Boolean getIsDiabetic() {
-			return isDiabetic;
-		}
-
-		public void setIsDiabetic(Boolean isDiabetic) {
-			this.isDiabetic = isDiabetic;
-		}
+		
 
 		public String[] getMedicines() {
 			return medicines;

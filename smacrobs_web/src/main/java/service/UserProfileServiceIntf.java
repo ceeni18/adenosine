@@ -8,6 +8,7 @@ public interface UserProfileServiceIntf {
 	UserProfile getUserDetails();
 	void UpdateTiSensorId(String tisensorId, String userId);
 	UserProfile getUserDetailsFromDB(String string);
-	void UpdateMedicalDetails(Boolean isDiabetic, String[] medicine,
+	void UpdateMedicalDetails( String[] medicine,
 			String userId);
+	boolean ValidateTiSensor(String id);
 }

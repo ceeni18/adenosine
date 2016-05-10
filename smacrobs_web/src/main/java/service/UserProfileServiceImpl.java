@@ -44,15 +44,25 @@ public class UserProfileServiceImpl implements UserProfileServiceIntf {
 		userProfileRepository.updateUser(tisensorId, userId);
 	}
 	
-	public void UpdateMedicalDetails(Boolean isDiabetic, String[] medicine,
+	public void UpdateMedicalDetails(String[] medicine,
 			String userId) {
-		userProfileRepository.updateUser(isDiabetic,medicine, userId);
+		userProfileRepository.updateUser(medicine, userId);
 		
 	}
 
 	public UserProfile getUserDetailsFromDB(String userId) {		
 		return userProfileRepository.findUser(userId);
 	}
+
+	public boolean ValidateTiSensor(String id) {
+		if(id==null||id.equals(""))
+		{
+			return false;
+		}
+		return true;
+	}
+
+
 
 	
 

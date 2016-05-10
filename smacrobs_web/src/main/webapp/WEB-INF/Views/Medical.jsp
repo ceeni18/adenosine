@@ -248,23 +248,18 @@ if('${userId}'=='')
 					<form id="medicalForm" action="/smacrobs/medical" method="POST">
 					<div class="row">
 						
-						<h3 class="col-md-offset-3">Check conditions if applicable</h3>
-						<div class="input-group col-md-offset-3 col-md-6">
-							<div class="checkbox ">
-								<label> <input name="isDiabetic"
-									type="checkbox" class="ace" id="isDiabetic"  required /> <span class="lbl"> Is
-										Diabetic</span>
-								</label>
-							</div>
-						</div>
+						<h3 class="col-md-offset-3">Select medicines taken</h3>
+						
 						<br />
 						<div class="input-group col-md-offset-3 col-md-6">
 							<label for="form-field-select-2">Medicines Taken</label> <select
 								class="form-control" id="dropdown" name="medicine"
-								multiple="multiple" disabled required>
-								<option value="a">Condition 1</option>
-								<option value="b">Condition 1</option>
-								<option value="c">Condition 1</option>
+								multiple="multiple" required>
+										<c:forEach var="i" begin="0"
+										end="${medicines.size()-1}">
+										<option value=${medicines.get(i)}>${medicines.get(i)}</option>
+									</c:forEach>
+
 							</select>
 						</div>
 					</div>
@@ -420,16 +415,6 @@ if('${userId}'=='')
 	<script src="<%=request.getContextPath()%>/assets/js/language/css.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/language/javascript.js"></script>
 
-	<script type="text/javascript">
-	$('#isDiabetic').change(function(){
-		 if ($(this).is(":checked")) {
-		      $("#dropdown").prop("disabled", false);
-		   } else {
-		      $("#dropdown").prop("disabled", true);  
-		      $("#dropdown option:selected").removeAttr("selected");
-		   }
-	});
-	</script>
 		
 							
 </body>

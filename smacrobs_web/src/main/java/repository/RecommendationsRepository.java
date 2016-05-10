@@ -1,6 +1,8 @@
 package repository;
 
 import com.web.model.ActivityGoalDetails;
+import com.web.model.IdealValues;
+import com.web.model.Medicine;
 import com.web.model.Recommendations;
 
 import org.slf4j.Logger;
@@ -10,6 +12,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+
 
 /**
  * Created by uday on 4/26/16.
@@ -50,4 +53,15 @@ public class RecommendationsRepository {
     	mongoOperation.remove(new Query().addCriteria(Criteria
 				.where("userId").is(userId).and("date").is(date)), Recommendations.class);
     }
+    
+    public IdealValues getIdealValues()
+    {
+    	return mongoOperation.findAll(IdealValues.class).get(0);
+    }
+
+	public Medicine getMedicines() {
+		return mongoOperation.findAll(Medicine.class).get(0);
+		
+	}
+    
 }

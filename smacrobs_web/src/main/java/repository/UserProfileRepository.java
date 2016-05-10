@@ -48,11 +48,10 @@ public class UserProfileRepository implements UserProfileRepositoryIntf {
 		return userProfile;
 	}
 
-	public void updateUser(Boolean isDiabetic, String[] medicine, String userId) {
+	public void updateUser(String[] medicine, String userId) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("user.userId").is(userId));
 		UserProfile user = mongoOperation.findOne(query, UserProfile.class, "userProfile");
-		user.getUser().setIsDiabetic(isDiabetic);
 		user.getUser().setMedicines(medicine);
 		mongoOperation.save(user);	
 	}

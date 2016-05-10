@@ -6,5 +6,5 @@ public interface UserProfileRepositoryIntf {
 	void createUser(UserProfile userProfile);
 	void updateUser(String tisensorId, String userId);
 	UserProfile findUser(String userId);
-	void updateUser(Boolean isDiabetic, String[] medicine, String userId);
+	void updateUser(String[] medicine, String userId);
 }

@@ -23,7 +23,7 @@ public class Constants {
 	/*
 	 * FitBit Constants
 	 * */
-	public static final String fitbitOauthClientId = "227NJT";
+	public static final String fitbitOauthClientId = "227FN4";
 	//public static final String fitbitOauthClientId = "227L87";
 	public static final String appClientIdAndSecrect =
 			"MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm";
@@ -52,15 +52,6 @@ public class Constants {
 			"https://api.fitbit.com/1/user/-/activities/goals/daily.json";
 	public static final String dateFormat = "yyyy-MM-dd";
 	//public static final String grantType = "authorization_code";
-	public static ArrayList<String> medicines = new ArrayList<String>();
-
-	static{
-	    ArrayList<String> temp = new ArrayList<String>();
-	    temp.add("a");
-	    temp.add("b");
-	    temp.add("c");
-	    medicines = temp;
-	  }
 	
 	static {
 		if(System.getenv("environment") != null &&
