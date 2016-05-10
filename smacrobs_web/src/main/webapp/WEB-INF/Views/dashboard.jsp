@@ -73,10 +73,15 @@
 <script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
 <script>
 if('${userId}'=='')
 {
-	location.replace("/smacrobs/");
+	location.replace("/");
 }
 </script>
 <script type="text/javascript"
@@ -132,11 +137,11 @@ if('${userId}'=='')
 					</a> <!-- NV - start 04/18/2016 -->
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="/smacrobs/tisensor"> <i
-									class="ace-icon fa fa-key"></i> TI Sensor
+							<li><a href="/tisensor"> <i class="ace-icon fa fa-key"></i>
+									TI Sensor
 							</a></li>
-							<li><a href="/smacrobs/medical"> <i
-									class="ace-icon fa fa-medkit"></i> Medical Details
+							<li><a href="/medical"> <i class="ace-icon fa fa-medkit"></i>
+									Medical Details
 							</a></li>
 							<li><a data-toggle="modal" data-target="#logoutModal"> <i
 									class="ace-icon fa fa-power-off"></i> Logout
@@ -237,8 +242,7 @@ if('${userId}'=='')
 							href="#">Dashboard</a></li>
 					</ul>
 					<!-- /.breadcrumb -->
-
-					<form action="/smacrobs/dashboard" method="GET">
+					<form action="/dashboard" method="GET">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div
 								class="col-md-offset-9 col-md-2 col-sm-6 col-xs-12 form-group">
@@ -265,8 +269,6 @@ if('${userId}'=='')
   
     date_input.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
 </script>
-
-					<!-- /section:basics/content.searchbox -->
 				</div>
 
 				<!-- /section:basics/content.breadcrumbs -->
@@ -401,26 +403,24 @@ if('${userId}'=='')
 						<div id="food" class="col-md-6 col-sm-6 col-xs-12"
 							style="height: 250px"></div>
 						<div id="calorie" class="col-md-6 col-sm-6 col-xs-12"
-							style="height: 250px"></div>
+							style="min-width: 310px; max-width: 400px; height: 250px; margin: 0 auto"></div>
 					</div>
 				</div>
 				<br />
 
 				<!-- SSR Recommendations -->
 				<h3 class="header smaller lighter blue col-md-offset-1 col-md-10">
-					Recommendations<a href="/smacrobs/refresh"
-						class="btn btn-danger pull-right">Try new Recommendations</a>
+					Recommendations<a href="/refresh" class="btn btn-danger pull-right">Try
+						new Recommendations</a>
 				</h3>
 
 				<div class="row col-md-12" style="font-family: 'Arapey', serif;">
 					<div class="col-md-offset-1 col-md-10">
 						<div class="col-xs-12 col-sm-12 col-md-12 widget-container-col">
-
-
 							<div class="widget-body">
 								<div class="widget-main padding-6 scrollable" data-size="125">
 									<c:forEach var="i" begin="0" end="${recommendations.size()-1}">
-									<c:if test="${i%3 eq 0}">
+										<c:if test="${i%3 eq 0}">
 											<div class="alert alert-danger">${recommendations.get(i)}</div>
 										</c:if>
 										<c:if test="${i%3 eq 1}">
@@ -482,12 +482,12 @@ if('${userId}'=='')
 				<div class="modal-body" style="font-size: 20px; text-align: center">
 					<p>
 						<span style="color: green"><b>Success!</b></span><br /> You are
-						now logged out of <b>EaseMySleep</b>. <br />But remember to logout
-						of <b>Fitbit</b>!
+						now logged out of <b>EaseMySleep</b>. <br />But remember to
+						logout of <b>Fitbit</b>!
 					</p>
 				</div>
 				<div class="modal-footer">
-					<a href="/smacrobs/redirectToSite" class="btn btn-default">OK</a>
+					<a href="/redirectToSite" class="btn btn-default">OK</a>
 				</div>
 			</div>
 
@@ -531,12 +531,12 @@ if('${userId}'=='')
 		        },
 		        series: [{
 		            name: 'Current',
-		            colorByPoint: false,
+		            //colorByPoint: false,
 		            data: [${floors}],
 		            color:'#00796B'
 		        }, {
 		            name: 'Goal',
-		            colorByPoint: false,
+		            //colorByPoint: false,
 		            data: [${floorsGoal}],
 		            color:'#F57C00'
 		        }]
@@ -709,304 +709,302 @@ if('${userId}'=='')
 
 
 		//Light Data from TI Sensor - Highcharts
-			$(function () {
-			    var ordersJson = '{"charts":[{"name":"Light","type": "line","units": "lux"}]}';
-			    Highcharts.setOptions({
-			        global: {
-			            timezoneOffset: 7 * 60 //7 hours ahead of UTC
-			        }
-			    });
-			    var json = $.parseJSON(ordersJson),
-			        container = $('#light');
-			    var row = $('<div class="row">').appendTo(container);
-			    $.each(json.charts, function (i, chart) {
-			        var column = $('<div class="col-md-12" ">').appendTo(row);
-			        $('<div class="chart" id="' + i + '">')
-			            .appendTo(column)
-			            .highcharts({
-			            chart: {
-			                marginLeft: 40,
-			                spacingTop: 20,
-			                spacingBottom: 30,
-			                height: 260,
-			                type: chart.type
-			            },
-			            title: {
-			                text: chart.name,
-			                align: 'left',
-			                x: 30
-			            },
-			            credits: {
-			                enabled: false
-			            },
-			            legend: {
-			                enabled: false
-			            },
-			            xAxis: {
-			                type: 'datetime',
-			                crosshair: true,
-			                tickInterval: 1000 * 3600,
-			                labels: {
-			        					formatter: function() {
-			          					return Highcharts.dateFormat('%H:%M', this.value);
-			       						}
-			      					}
-			            },
-			            yAxis: {
-			               visible: false,
-			            },
-			            tooltip: {
-			                formatter: function() {
-			        					var d = new Date(this.x);
-			                  return '<b>Time: </b>' + Highcharts.dateFormat('%H:%M', d) + '<br><b>' + this.y + '</b>' + chart.units;
-			                },
-
-			            },
-			            plotOptions: {
-			            	series: {
-			               	pointStart: Date.UTC(2016, 0, 6, 5, 0), // start date
-			       			pointInterval: 1000 * 60 * 1, // data every minute
-			                pointPadding: 0,
-			                groupPadding: 0,
-			                borderWidth: 0,
-			               }
-			            },
-			            series: [{
-			               // type: 'line',
-			                color: Highcharts.getOptions().colors[i],
-			                tooltip: {
-			                    valueSuffix: ' orders'
-			                },
-			                pointPlacement: 'between',
-			                data: ${lightMinuteData},
-			            }]
-			        });
-			        if (i % 2) {
-			            row = $('<div class="row">').appendTo(container);
-			        }
-			    });
-			    for (var j = 0; j < Highcharts.charts.length; j++) {
-			        $('#' + j).bind('mousemove touchmove', function (e) {
-			            var i = $(this).attr('id'),
-			                chart = Highcharts.charts[i],
-			                point;
-			            e = chart.pointer.normalize(e);
-			            point = chart.series[0].searchPoint(e, true);
-			            for (i = 0; i < Highcharts.charts.length; i = i + 1) {
-			                chart = Highcharts.charts[i];
-			                point = chart.series[0].searchPoint(e, true);
-			                if (point) {
-			                    point.onMouseOver();
-			                    chart.tooltip.refresh(point);
-			                    chart.xAxis[0].drawCrosshair(e, point);
-			                }
-			            }
-			        });
-			    }
-			    Highcharts.Pointer.prototype.reset = function () {
-			        return undefined;
-			    };
-			});
-
-
-
+		/**
+   * In order to synchronize tooltips and crosshairs, override the
+   * built-in events with handlers defined on the parent element.
+   */
+  $('#light').bind('mousemove touchmove touchstart', function(e) {
+    var chart,
+      point,
+      i,
+      event;
+    for (i = 0; i < Highcharts.charts.length; i = i + 1) {
+      chart = Highcharts.charts[i];
+      event = chart.pointer.normalize(e.originalEvent); // Find coordinates within the chart
+      point = chart.series[0].searchPoint(event, true); // Get the hovered point
+      if (point) {
+        point.onMouseOver(); // Show the hover marker
+        chart.tooltip.refresh(point); // Show the tooltip
+        chart.xAxis[0].drawCrosshair(event, point); // Show the crosshair
+      }
+    }
+  });
+  /**
+   * Override the reset function, we don't need to hide the tooltips and crosshairs.
+   */
+  Highcharts.Pointer.prototype.reset = function() {
+    return undefined;
+  };
+  /**
+   * Synchronize zooming through the setExtremes event handler.
+   */
+  function syncExtremes(e) {
+    var thisChart = this.chart;
+    if (e.trigger !== 'syncExtremes') { // Prevent feedback loop
+      Highcharts.each(Highcharts.charts, function(chart) {
+        if (chart !== thisChart) {
+          if (chart.xAxis[0].setExtremes) { // It is null while updating
+            chart.xAxis[0].setExtremes(e.min, e.max, undefined, false, {
+              trigger: 'syncExtremes'
+            });
+          }
+        }
+      });
+    }
+  }
+		$(function() {
+Highcharts.setOptions({
+        colors: ['#FF6666'],
+	    global: {
+	      timezoneOffset: 7 * 60 //7 hours ahead of UTC
+	    }
+    });
+    
+  $('#light').highcharts({
+    title: {
+      text: 'Light',
+      align: 'left',
+      x: 30
+    },
+    chart: {
+      renderTo: 'container',
+      type: 'line'
+    },
+    xAxis: {
+      type: 'datetime',
+      tickInterval: 1000 * 3600, // tick every hour,
+      crosshair: true,
+      labels: {
+        formatter: function() {
+          return Highcharts.dateFormat('%H:%M', this.value);
+        }
+      },
+    },
+    yAxis: {
+      visible: false,
+    },
+    tooltip: {
+      formatter: function() {
+    	  return '<b>Time: </b>' + Highcharts.dateFormat('%H:%M', this.x) + '<br><b>' + this.y + '</b>' + ' lux';
+      },
+    },
+    plotOptions: {
+      series: {
+        pointStart: Date.UTC(2016, 4, 7, 5, 0), // start date
+        pointInterval: 1000 * 60 * 1, // data every minute
+      }
+    },
+    legend: {
+        enabled: false
+    },
+    series: [{
+      name: 'Light',
+      lineWidth: 0.2,
+      marker: {
+    	  enabled: false
+      },
+      data: ${lightMinuteData},
+    }]
+  });
+});
 		//Temperature Data from TI Sensor - Highcharts
-		$(function () {
-		    var ordersJson = '{"charts":[{"name":"Temperature","units": "C","type": "line"}]}';
-		    Highcharts.setOptions({
-		        global: {
-		            timezoneOffset: 7 * 60 //7 hours ahead of UTC
-		        }
-		    });
-		    var json = $.parseJSON(ordersJson),
-		        container = $('#temp');
-		    var row = $('<div class="row">').appendTo(container);
-		    $.each(json.charts, function (i, chart) {
-		        var column = $('<div class="col-md-12" ">').appendTo(row);
-		        $('<div class="chart" id="' + i + '">')
-		            .appendTo(column)
-		            .highcharts({
-		            chart: {
-		                marginLeft: 40,
-		                spacingTop: 20,
-		                spacingBottom: 30,
-		                height: 260,
-		                type: chart.type
-		            },
-		            title: {
-		                text: chart.name,
-		                align: 'left',
-		                x: 30
-		            },
-		            credits: {
-		                enabled: false
-		            },
-		            legend: {
-		                enabled: false
-		            },
-		            xAxis: {
-		                type: 'datetime',
-		                crosshair: true,
-		                tickInterval: 1000 * 3600,
-		                labels: {
-		        					formatter: function() {
-		          					return Highcharts.dateFormat('%H:%M', this.value);
-		       						}
-		      					}
-		            },
-		            yAxis: {
-		               visible: false,
-		            },
-		            tooltip: {
-		                formatter: function() {
-		        					var d = new Date(this.x);
-		                  return '<b>Time: </b>' + Highcharts.dateFormat('%H:%M', d) + '<br><b>' + this.y + '</b>' + chart.units;
-		                },
-
-		            },
-		            plotOptions: {
-		            	series: {
-		               	pointStart: Date.UTC(2016, 4, 1, 5, 0), // start date
-		       		   pointInterval: 1000 * 60 * 1, // data every minute
-		                pointPadding: 0,
-		                groupPadding: 0,
-		                borderWidth: 0,
-		               }
-		            },
-		            series: [{
-		               // type: 'line',
-		                color: Highcharts.getOptions().colors[i],
-		                tooltip: {
-		                    valueSuffix: ' orders'
-		                },
-		                pointPlacement: 'between',
-		                data: ${temperatureMinuteData},
-		            }]
-		        });
-		        if (i % 2) {
-		            row = $('<div class="row">').appendTo(container);
-		        }
-		    });
-		    for (var j = 0; j < Highcharts.charts.length; j++) {
-		        $('#' + j).bind('mousemove touchmove', function (e) {
-		            var i = $(this).attr('id'),
-		                chart = Highcharts.charts[i],
-		                point;
-		            e = chart.pointer.normalize(e);
-		            point = chart.series[0].searchPoint(e, true);
-		            for (i = 0; i < Highcharts.charts.length; i = i + 1) {
-		                chart = Highcharts.charts[i];
-		                point = chart.series[0].searchPoint(e, true);
-		                if (point) {
-		                    point.onMouseOver();
-		                    chart.tooltip.refresh(point);
-		                    chart.xAxis[0].drawCrosshair(e, point);
-		                }
-		            }
-		        });
-		    }
-		    Highcharts.Pointer.prototype.reset = function () {
-		        return undefined;
-		    };
-		});
-
-
+		/**
+   * In order to synchronize tooltips and crosshairs, override the
+   * built-in events with handlers defined on the parent element.
+   */
+  $('#temp').bind('mousemove touchmove touchstart', function(e) {
+    var chart,
+      point,
+      i,
+      event;
+    for (i = 0; i < Highcharts.charts.length; i = i + 1) {
+      chart = Highcharts.charts[i];
+      event = chart.pointer.normalize(e.originalEvent); // Find coordinates within the chart
+      point = chart.series[0].searchPoint(event, true); // Get the hovered point
+      if (point) {
+        point.onMouseOver(); // Show the hover marker
+        chart.tooltip.refresh(point); // Show the tooltip
+        chart.xAxis[0].drawCrosshair(event, point); // Show the crosshair
+      }
+    }
+  });
+  /**
+   * Override the reset function, we don't need to hide the tooltips and crosshairs.
+   */
+  Highcharts.Pointer.prototype.reset = function() {
+    return undefined;
+  };
+  /**
+   * Synchronize zooming through the setExtremes event handler.
+   */
+  function syncExtremes(e) {
+    var thisChart = this.chart;
+    if (e.trigger !== 'syncExtremes') { // Prevent feedback loop
+      Highcharts.each(Highcharts.charts, function(chart) {
+        if (chart !== thisChart) {
+          if (chart.xAxis[0].setExtremes) { // It is null while updating
+            chart.xAxis[0].setExtremes(e.min, e.max, undefined, false, {
+              trigger: 'syncExtremes'
+            });
+          }
+        }
+      });
+    }
+  }
+		$(function() {
+Highcharts.setOptions({
+        colors: ['#FF80D5'],
+	    global: {
+	      timezoneOffset: 7 * 60 //7 hours ahead of UTC
+	    }
+    });
+    
+  $('#temp').highcharts({
+    title: {
+      text: 'Ambient Temperature',
+      align: 'left',
+      x: 30
+    },
+    chart: {
+      renderTo: 'container',
+      type: 'line'
+    },
+    xAxis: {
+      type: 'datetime',
+      tickInterval: 1000 * 3600, // tick every hour,
+      crosshair: true,
+      labels: {
+        formatter: function() {
+          return Highcharts.dateFormat('%H:%M', this.value);
+        }
+      },
+    },
+    yAxis: {
+      visible: false,
+    },
+    tooltip: {
+      formatter: function() {
+    	  return '<b>Time: </b>' + Highcharts.dateFormat('%H:%M', this.x) + '<br><b>' + this.y + '</b>' + '°C';
+      },
+    },
+    plotOptions: {
+      series: {
+        pointStart: Date.UTC(2016, 4, 7, 5, 0), // start date
+        pointInterval: 1000 * 60 * 1, // data every minute
+      }
+    },
+    legend: {
+        enabled: false
+    },
+    series: [{
+      name: 'Temperature',
+      lineWidth: 0.2,
+      marker: {
+    	  enabled: false
+      },
+      data: ${temperatureMinuteData},
+    }]
+  });
+});
 		//Humidity Data from TI Sensor - Highcharts
-		$(function () {
-		    var ordersJson = '{"charts":[{"name":"Humidity","units": " % rH","type": "line"}]}';
-		    Highcharts.setOptions({
-		        global: {
-		            timezoneOffset: 7 * 60 //7 hours ahead of UTC
-		        }
-		    });
-		    var json = $.parseJSON(ordersJson),
-		        container = $('#humid');
-		    var row = $('<div class="row">').appendTo(container);
-		    $.each(json.charts, function (i, chart) {
-		        var column = $('<div class="col-md-12" ">').appendTo(row);
-		        $('<div class="chart" id="' + i + '">')
-		            .appendTo(column)
-		            .highcharts({
-		            chart: {
-		                marginLeft: 40,
-		                spacingTop: 20,
-		                spacingBottom: 30,
-		                height: 260,
-		                type: chart.type
-		            },
-		            title: {
-		                text: chart.name,
-		                align: 'left',
-		                x: 30
-		            },
-		            credits: {
-		                enabled: false
-		            },
-		            legend: {
-		                enabled: false
-		            },
-		            xAxis: {
-		                type: 'datetime',
-		                crosshair: true,
-		                tickInterval: 1000 * 3600,
-		                labels: {
-		        					formatter: function() {
-		          					return Highcharts.dateFormat('%H:%M', this.value);
-		       						}
-		      					}
-		            },
-		            yAxis: {
-		               visible: false,
-		            },
-		            tooltip: {
-		                formatter: function() {
-		        					var d = new Date(this.x);
-		                  return '<b>Time: </b>' + Highcharts.dateFormat('%H:%M', d) + '<br><b>' + this.y + '</b>' + chart.units;
-		                },
-
-		            },
-		            plotOptions: {
-		            	series: {
-		                pointStart: Date.UTC(2016, 0, 6, 5, 0), // start date
-		       			pointInterval: 1000 * 60 * 1, // data every minute
-		                pointPadding: 0,
-		                groupPadding: 0,
-		                borderWidth: 0,
-		               }
-		            },
-		            series: [{
-		               // type: 'line',
-		                //color: Highcharts.getOptions().colors[i],
-		                //pointPlacement: 'between',
-		                data: ${humidityMinuteData},
-		            }]
-		        });
-		        if (i % 2) {
-		            row = $('<div class="row">').appendTo(container);
-		        }
-		    });
-		    for (var j = 0; j < Highcharts.charts.length; j++) {
-		        $('#' + j).bind('mousemove touchmove', function (e) {
-		            var i = $(this).attr('id'),
-		                chart = Highcharts.charts[i],
-		                point;
-		            e = chart.pointer.normalize(e);
-		            point = chart.series[0].searchPoint(e, true);
-		            for (i = 0; i < Highcharts.charts.length; i = i + 1) {
-		                chart = Highcharts.charts[i];
-		                point = chart.series[0].searchPoint(e, true);
-		                if (point) {
-		                    point.onMouseOver();
-		                    chart.tooltip.refresh(point);
-		                    chart.xAxis[0].drawCrosshair(e, point);
-		                }
-		            }
-		        });
-		    }
-		    Highcharts.Pointer.prototype.reset = function () {
-		        return undefined;
-		    };
-		});
+		/**
+   * In order to synchronize tooltips and crosshairs, override the
+   * built-in events with handlers defined on the parent element.
+   */
+  $('#humid').bind('mousemove touchmove touchstart', function(e) {
+    var chart,
+      point,
+      i,
+      event;
+    for (i = 0; i < Highcharts.charts.length; i = i + 1) {
+      chart = Highcharts.charts[i];
+      event = chart.pointer.normalize(e.originalEvent); // Find coordinates within the chart
+      point = chart.series[0].searchPoint(event, true); // Get the hovered point
+      if (point) {
+        point.onMouseOver(); // Show the hover marker
+        chart.tooltip.refresh(point); // Show the tooltip
+        chart.xAxis[0].drawCrosshair(event, point); // Show the crosshair
+      }
+    }
+  });
+  /**
+   * Override the reset function, we don't need to hide the tooltips and crosshairs.
+   */
+  Highcharts.Pointer.prototype.reset = function() {
+    return undefined;
+  };
+  /**
+   * Synchronize zooming through the setExtremes event handler.
+   */
+  function syncExtremes(e) {
+    var thisChart = this.chart;
+    if (e.trigger !== 'syncExtremes') { // Prevent feedback loop
+      Highcharts.each(Highcharts.charts, function(chart) {
+        if (chart !== thisChart) {
+          if (chart.xAxis[0].setExtremes) { // It is null while updating
+            chart.xAxis[0].setExtremes(e.min, e.max, undefined, false, {
+              trigger: 'syncExtremes'
+            });
+          }
+        }
+      });
+    }
+  }
+		$(function() {
+Highcharts.setOptions({
+        colors: ['#59B300'],
+	    global: {
+	      timezoneOffset: 7 * 60 //7 hours ahead of UTC
+	    }
+    });
+    
+  $('#humid').highcharts({
+    title: {
+      text: 'Humidity',
+      align: 'left',
+      x: 30
+    },
+    chart: {
+      renderTo: 'container',
+      type: 'line'
+    },
+    xAxis: {
+      type: 'datetime',
+      tickInterval: 1000 * 3600, // tick every hour,
+      crosshair: true,
+      labels: {
+        formatter: function() {
+          return Highcharts.dateFormat('%H:%M', this.value);
+        }
+      },
+    },
+    yAxis: {
+      visible: false,
+    },
+    tooltip: {
+      formatter: function() {
+        return '<b>Time: </b>' + Highcharts.dateFormat('%H:%M', this.x) + '<br><b>' + this.y + '</b>' + ' % rH';
+      },
+    },
+    plotOptions: {
+      series: {
+        pointStart: Date.UTC(2016, 4, 7, 5, 0), // start date
+        pointInterval: 1000 * 60 * 1, // data every minute
+      }
+    },
+    legend: {
+        enabled: false
+    },
+    series: [{
+      name: 'Humidity',
+      lineWidth: 0.2,
+      marker: {
+    	  enabled: false
+      },
+      data: ${humidityMinuteData},
+    }]
+  });
+});
 
 
 
@@ -1065,13 +1063,11 @@ if('${userId}'=='')
         yAxis: {
             min: 0,
             max: ${calOut},
-
             minorTickInterval: 'auto',
             minorTickWidth: 1,
             minorTickLength: 10,
             minorTickPosition: 'inside',
             minorTickColor: '#666',
-
             tickPixelInterval: 30,
             tickWidth: 2,
             tickPosition: 'inside',
@@ -1090,15 +1086,16 @@ if('${userId}'=='')
                 color: '#DDDF0D' // yellow
             }]
         },
-
-
         series: [{
             name: 'Calories',
-            data: [${calIn}]
+            data: [${calIn}],
+            tooltip: {
+                valueSuffix: '<b>' +
+                '</b> vs <b>' + ${calOut} + '</b>'
+            }
         }]
     });
 });
-
 
 		//Sleep Data from Fitbit - Highcharts
 		$(function() {
@@ -1203,7 +1200,7 @@ if('${userId}'=='')
       },
     },
     series: [{
-    	 /* name: 'Awake',
+    	/*  name: 'Awake',
         color:'#9B59B6'
     }, {
         name: 'Restless',

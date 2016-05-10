@@ -28,7 +28,7 @@
 <script>
 if('${userId}'!='')
 {
-	location.replace("/smacrobs/dashboard");
+	location.replace("/dashboard");
 	
 }
 </script>
@@ -45,10 +45,11 @@ if('${userId}'!='')
 							<li class="submenu">
 								<a href="#">What's More?</a>
 								<ul>
-									<li><a href="/smacrobs/fitbit">Fitbit</a></li>
-									<li><a href="/smacrobs/senso">Sense Fence</a></li>
-									<li><a href="/smacrobs/data">Data Analytics</a></li>
-									<li><a href="/smacrobs/contact">Contact Us</a></li>
+									<li><a href="/fitbit">Fitbit</a></li>
+									<li><a href="/senso">Sense Fence</a></li>
+									<li><a href="/data">Data Analytics</a></li>
+									<li><a href="/contact">Contact Us</a></li>
+									<li><a href="/about">About Us</a></li>
 								</ul>
 							</li>				
 						</ul>
@@ -74,7 +75,7 @@ if('${userId}'!='')
 						</p>
 						<footer>
 							<ul class="buttons vertical">
-								<li><a href="/smacrobs/oauth" class="button fit scrolly">Connect With Fitbit</a></li>
+								<li><a href="/oauth" class="button fit scrolly">Connect With Fitbit</a></li>
 							</ul>
 							<ul class="buttons vertical">
 								<li><a href="http://goo.gl/CrrYPU" class="button fit scrolly">Checkout Out SensorTag</a></li>
@@ -105,12 +106,8 @@ if('${userId}'!='')
 									<header>
 										<h2>Your sleep decides the energy during the day and the energy defines you.</h2>
 									</header>
-									<p>Your food and water in-take, your activities during the day, the coffee you drink, the drink that makes you high, your smartphone, laptop and the big screens, the temperature in your bedroom, the mattress on your bed. All of these contribute to your sleep. Do you care? </p>
-									<footer>
-										<ul class="buttons">
-											<li><a href="#" class="button">Find Out More</a></li>
-										</ul>
-									</footer>
+									<p>Your food and water in-take, your activities during the day, the coffee you drink, the drink that makes you high, your smartphones, laptops and other big screens, the temperature in your bedroom, the mattress on your bed. All of these contribute to your sleep. Do you care? </p>
+									<p>We're trying to track most of these from your tracking devices, so you need not spend time in giving us details. We use Fitbit as the tracking device to collect your data and Sense Fence to collect your environment's data.</p>
 
 								</div>
 								<div class="4u 12u(narrower) important(narrower)">
@@ -136,7 +133,7 @@ if('${userId}'!='')
 								<div class="4u 12u(narrower)">
 
 									<section>
-										<span class="icon featured fa-ioxhost"></span>
+										<span class="icon featured fa-check-square-o"></span>
 										<header>
 											<h3>Fast Fact #1</h3>
 										</header>
@@ -147,7 +144,7 @@ if('${userId}'!='')
 								<div class="4u 12u(narrower)">
 
 									<section>
-										<span class="icon featured fa-ioxhost"></span>
+										<span class="icon featured fa-check-square-o"></span>
 										<header>
 											<h3>Fast Fact #2</h3>
 										</header>
@@ -158,7 +155,7 @@ if('${userId}'!='')
 								<div class="4u 12u(narrower)">
 
 									<section>
-										<span class="icon featured fa-ioxhost"></span>
+										<span class="icon featured fa-check-square-o"></span>
 										<header>
 											<h3>Fast Fact #3</h3>
 										</header>
@@ -215,7 +212,7 @@ if('${userId}'!='')
 					</header>
 					<footer>
 						<ul class="buttons">
-							<li><a href="<%=request.getContextPath()%>/smacrobs/oauth" class="button special">Login with Fitbit</a></li>
+							<li><a href="<%=request.getContextPath()%>/oauth" class="button special">Login with Fitbit</a></li>
 						</ul>
 					</footer>
 

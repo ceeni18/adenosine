@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Constants {
 
-	public static final String LOCALHOST = "http://localhost:8080/smacrobs";
-
+	public static final String LOCALHOST = "http://easemysleep.com";
+	
 	/*
 	 * Database Constants
 	 * */
@@ -27,7 +27,7 @@ public class Constants {
 	//public static final String fitbitOauthClientId = "227L87";
 	public static final String appClientIdAndSecrect =
 			"MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm";
-	//public static final String appClientIdAndSecrect = "81063562c7b36efec1f34f9caa2ce57d";
+	//public static final String appClientIdAndSecrect = "MjI3TDg3OjgxMDYzNTYyYzdiMzZlZmVjMWYzNGY5Y2FhMmNlNTdk";
 	public static final String fitbitAuthUri =
 			"https://www.fitbit.com/oauth2/authorize?";
 	public static final String redirectUriFromFitbit =
