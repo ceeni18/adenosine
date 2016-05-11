@@ -23,7 +23,7 @@ public class Constants {
 	/*
 	 * FitBit Constants
 	 * */
-	public static final String fitbitOauthClientId = "227FN4";
+	public static final String fitbitOauthClientId = "227NJT";
 	//public static final String fitbitOauthClientId = "227L87";
 	public static final String appClientIdAndSecrect =
 			"MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm";
