@@ -144,23 +144,29 @@ if('${userId}'=='')
 	</div>
 	<!-- Modal -->
 <div id="logoutModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+		<div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Alert!</h4>
-      </div>
-      <div class="modal-body">
-        <p>Success. You are Logged out of SMACROBS. Dont forget to logout of Fitbit</p>
-      </div>
-      <div class="modal-footer">
-        <a href="/redirectToSite" class="btn btn-default">OK</a>
-      </div>
-    </div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="text-align: center">
+					<h4 class="modal-title">
+						<i class="ace-icon fa fa-sign-out"> <strong>Logout</strong></i>
+					</h4>
+				</div>
+				<div class="modal-body" style="font-size: 20px; text-align: center">
+					<p>
+						<span style="color: green"><b>Success!</b></span><br /> You are
+						now logged out of <b>EaseMySleep</b>. <br />But remember to
+						logout of <b>Fitbit</b>!
+					</p>
+				</div>
+				<div class="modal-footer">
+					<a href="/redirectToSite" class="btn btn-default">OK</a>
+				</div>
+			</div>
 
-  </div>
-</div>
+		</div>
+	</div>
 
 	<!-- /section:basics/navbar.layout -->
 	<div class="main-container" id="main-container">
@@ -247,7 +253,7 @@ if('${userId}'=='')
 							href="/dashboard">Dashboard</a></li>
 
 							<li><i class="ace-icon fa fa-random active"></i> <a
-							href="#">Ti Sensor</a></li>
+							href="#">TI Sensor</a></li>
 					</ul>
 					<!-- /.breadcrumb -->
 
@@ -264,7 +270,7 @@ if('${userId}'=='')
 								<!-- PAGE CONTENT BEGINS -->
 
 							<div id="details">
-					<h3 class="col-md-offset-3">Input Ti Sensor ID</h3>
+					<h3 class="col-md-offset-3">Input TI Sensor ID</h3>
 					<br />
 					<form id="tisensorForm" action="/tisensor" method="POST">
 					<div class="row">

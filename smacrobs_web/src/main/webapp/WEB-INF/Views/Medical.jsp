@@ -292,25 +292,33 @@ if('${userId}'=='')
 		</div>
 	</div>
 	<!-- /.main-content -->
+	
 <!-- Modal -->
 <div id="logoutModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+		<div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Alert!</h4>
-      </div>
-      <div class="modal-body">
-        <p>Success. You are Logged out of SMACROBS. Dont forget to logout of Fitbit</p>
-      </div>
-      <div class="modal-footer">
-        <a href="/redirectToSite" class="btn btn-default">OK</a>
-      </div>
-    </div>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="text-align: center">
+					<h4 class="modal-title">
+						<i class="ace-icon fa fa-sign-out"> <strong>Logout</strong></i>
+					</h4>
+				</div>
+				<div class="modal-body" style="font-size: 20px; text-align: center">
+					<p>
+						<span style="color: green"><b>Success!</b></span><br /> You are
+						now logged out of <b>EaseMySleep</b>. <br />But remember to
+						logout of <b>Fitbit</b>!
+					</p>
+				</div>
+				<div class="modal-footer">
+					<a href="/redirectToSite" class="btn btn-default">OK</a>
+				</div>
+			</div>
 
-  </div>
-</div>
+		</div>
+	</div>
+	
 	<div class="footer">
 		<div class="footer-inner">
 			<!-- #section:basics/footer -->

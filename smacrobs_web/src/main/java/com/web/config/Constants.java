@@ -1,10 +1,9 @@
 package com.web.config;
 
-import java.util.ArrayList;
-
 public class Constants {
 
 	public static final String LOCALHOST = "http://easemysleep.com";
+	//public static final String LOCALHOST = "http://localhost:8080";
 	
 	/*
 	 * Database Constants
@@ -26,7 +25,7 @@ public class Constants {
 	public static final String fitbitOauthClientId = "227NJT";
 	//public static final String fitbitOauthClientId = "227L87";
 	public static final String appClientIdAndSecrect =
-			"MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm";
+		"MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm";
 	//public static final String appClientIdAndSecrect = "MjI3TDg3OjgxMDYzNTYyYzdiMzZlZmVjMWYzNGY5Y2FhMmNlNTdk";
 	public static final String fitbitAuthUri =
 			"https://www.fitbit.com/oauth2/authorize?";
@@ -51,7 +50,9 @@ public class Constants {
 	public static final String activityGoalURL =
 			"https://api.fitbit.com/1/user/-/activities/goals/daily.json";
 	public static final String dateFormat = "yyyy-MM-dd";
-	//public static final String grantType = "authorization_code";
+	public static final String GMAIL_USERNAME = System.getenv("GMAIL_USERNAME");
+	public static final String GMAIL_PASSWORD = System.getenv("GMAIL_PASSWORD");
+
 	
 	static {
 		if(System.getenv("environment") != null &&

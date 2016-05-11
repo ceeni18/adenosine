@@ -1,9 +1,9 @@
 package com.web.controller;
 
-import com.web.config.Constants;
-import com.web.model.FitbitTokens;
-import com.web.model.UserProfile;
-import com.web.model.IdealValues;
+import java.io.IOException;
+import java.net.URLEncoder;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import repository.RecommendationsRepository;
-import service.*;
+import com.web.config.Constants;
+import com.web.model.FitbitTokens;
+import com.web.model.UserProfile;
 
-import javax.servlet.http.HttpSession;
-
-import java.io.IOException;
-import java.net.URLEncoder;
+import service.FitbitDetailsServiceIntf;
+import service.FitbitOAuthServiceIntf;
+import service.RecommendationsServiceImpl;
+import service.ServiceUtils;
+import service.TiSensorService;
+import service.UserProfileServiceIntf;
 
 @Controller
 public class MainController {
@@ -32,7 +35,6 @@ public class MainController {
 	RecommendationsServiceImpl recommendationsService;
 	FitbitDetailsServiceIntf fitbitDetailsService;
 	TiSensorService tiSensorService;
-	//Em
 
 	@Autowired
 	public MainController(UserProfileServiceIntf userProfileService,
@@ -60,7 +62,10 @@ public class MainController {
 
 	@RequestMapping("/contact")
 	public ModelAndView redirectToContact() throws IOException {
-		return new ModelAndView("contact");
+		ModelAndView mv = new ModelAndView("contact");
+		mv.addObject("emailsent", "false");
+		//return new ModelAndView("contact");
+		return mv;
 	}
 
 	@RequestMapping("/senso")
@@ -83,19 +88,27 @@ public class MainController {
 		return new ModelAndView("about");
 	}
 	
-	/*@RequestMapping(value = "/contact", method = RequestMethod.POST)
-	public String sendEmail(@RequestParam(
+	@RequestMapping(value = "/contact", method = RequestMethod.POST)
+	public ModelAndView sendEmail(@RequestParam(
 			value = "name"
 			) String name, @RequestParam(value="email") String email,
 			@RequestParam(value="subject") String subject, 
 			@RequestParam(value="message") String message, HttpSession session) {
 		if(name == null || email == null || subject == null || message == null) {
-			return "redirect:/error";
+			return new ModelAndView("error");
+		}
+		ModelAndView mv = new ModelAndView("contact");
+		try {
+			ServiceUtils.sendEmailNotification(name, email, subject, message);
+			
+			mv.addObject("emailsent", "true");
+		} catch (Exception e) {
+			logger.error("Unable to send email notifications :: "+e);
 		}
 		
-		
-		return "redirect:/dashboard";
-	}*/
+		//return "redirect:/dashboard";
+		return mv;
+	}
 	
 	@RequestMapping(value = "/tisensor", method = RequestMethod.POST)
 	public String saveTiSensor(@RequestParam(

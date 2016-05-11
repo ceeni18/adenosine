@@ -1,10 +1,5 @@
 package repository;
 
-import com.web.model.ActivityGoalDetails;
-import com.web.model.IdealValues;
-import com.web.model.Medicine;
-import com.web.model.Recommendations;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +7,10 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+
+import com.web.model.IdealValues;
+import com.web.model.Medicine;
+import com.web.model.Recommendations;
 
 
 /**

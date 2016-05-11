@@ -26,6 +26,7 @@
 <!--[if lte IE 9]><link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/ie9.css" /><![endif]-->
 <link rel="stylesheet"
 	href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 <body class="contact">
 	<div id="page-wrapper">
@@ -59,13 +60,32 @@
 				<h2>Get In Touch - EaseMySleep</h2>
 				<p>Use the form below to give us your comments and feedback.</p>
 			</header>
+			
+			<div id="mailModal" class="modal fade" role="dialog" style="display:none">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="text-align: center">
+					<h4 class="modal-title">
+						<i class="ace-icon fa fa-envelope"> <strong>Email Sent</strong></i>
+					</h4>
+				</div>
+				<div class="modal-body" style="font-size: 20px; text-align: center">
+					<p>
+						<span style="color: green"><b>Email sent successfully!</b></span><br />
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 			<!-- One -->
 			<section class="wrapper style4 special container 75%">
 
 				<!-- Content -->
 				<div class="content">
-					<form method="POST">
+					<form method="POST" action="/contact">
 						<div class="row 50%">
 							<div class="6u 12u(mobile)">
 								<input type="text" name="name" placeholder="Name" required/>
@@ -99,7 +119,7 @@
 			</section>
 
 		</article>
-
+		
 		<!-- Footer -->
 		<footer id="footer">
 
@@ -125,6 +145,14 @@
 	<script src="<%=request.getContextPath()%>/home/js/util.js"></script>
 	<!--[if lte IE 8]><script src="<%=request.getContextPath()%>/home/js/ie/respond.min.js"></script><![endif]-->
 	<script src="<%=request.getContextPath()%>/home/js/main.js"></script>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			if(${emailsent} == true) {
+				$("#mailModal").show();
+			} else {
+				$("#mailModal").hide();
+			}
+		}); 
+	</script>
 </body>
 </html>

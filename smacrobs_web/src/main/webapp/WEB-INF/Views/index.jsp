@@ -78,7 +78,7 @@ if('${userId}'!='')
 								<li><a href="/oauth" class="button fit scrolly">Connect With Fitbit</a></li>
 							</ul>
 							<ul class="buttons vertical">
-								<li><a href="http://goo.gl/CrrYPU" class="button fit scrolly">Checkout Out SensorTag</a></li>
+								<li><a href="http://goo.gl/CrrYPU" class="button fit scrolly">Checkout Sense Fence</a></li>
 							</ul>
 						</footer>
 					</div>
@@ -175,10 +175,8 @@ if('${userId}'!='')
 
 							<div class="row">
 								<div class="6u 12u(narrower)">
-
 									<section>
-										<!-- <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>-->
-										<iframe width="500" height="300" src="https://www.youtube.com/watch?v=gedoSfZvBgE" frameborder="0" allowfullscreen></iframe>
+										 <iframe width="500" height="300" src="http://www.youtube.com/embed/qPoZVQvsbW0?autoplay=1"></iframe> 
 										<header>
 											<h3>What is Sleep Deprivation?</h3>
 										</header>
@@ -187,10 +185,8 @@ if('${userId}'!='')
 
 								</div>
 								<div class="6u 12u(narrower)">
-
 									<section>
-										<!-- <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>-->
-										<iframe width="500" height="300" src="//www.dailymotion.com/embed/video/x1ky31w" frameborder="0" allowfullscreen></iframe>
+										<iframe width="500" height="300" src="http://www.youtube.com/embed/gedoSfZvBgE?autoplay=1"></iframe>
 										<header>
 											<h3>How to sleep better?</h3>
 										</header>

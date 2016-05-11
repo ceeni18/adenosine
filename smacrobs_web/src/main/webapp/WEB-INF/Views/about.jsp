@@ -105,11 +105,11 @@
 
 				<!-- Content -->
 				<div class="row">
-					<div class="2u"></div>
-					<div class="2u">
+				 <div class="2u"></div>
+					<div class="2u 12u(mobile) 6u(narrower)">
 						<p class="p-center">
 							<img class="circle-img p-center" height="150"
-								src="images/srini.jpg" />Srinidhi<br />Full Stack Developer<br />
+								src="images/srini.jpg" /><br/>Srinidhi Srinivasa Raghavan<br />Full Stack Developer<br />
 							<a href="https://www.linkedin.com/in/srinidhisrinivasaraghavan"
 								style="text-decoration: none;"><span
 								style="font: 80% Arial, sans-serif; color: #0783B6;"><img
@@ -122,10 +122,10 @@
 								aria-label="Follow @srinidhi on GitHub">Follow @srinidhi</a>
 						</p>
 					</div>
-					<div class="2u">
+					<div class="2u 12u(mobile) 6u(narrower)">
 						<p class="p-center">
 							<img class="circle-img p-center" width="150" height="150"
-								src="images/uday.jpeg" />Uday Sagar<br />Backend Developer<br />
+								src="images/uday.jpeg" /><br/>Uday Sagar Shiramshetty<br />Backend Developer<br />
 							<a href="https://www.linkedin.com/in/udaysagar"
 								style="text-decoration: none;"><span
 								style="font: 80% Arial, sans-serif; color: #0783B6;"><img
@@ -137,10 +137,10 @@
 								aria-label="Follow @uday on GitHub">Follow @uday</a>
 						</p>
 					</div>
-					<div class="2u">
+					<div class="2u 12u(mobile) 6u(narrower)">
 						<p class="p-center">
 							<img class="circle-img p-center" width="150" height="150"
-								src="images/neha.jpg" />Neha <br />FrontEnd Developer<br /> <a
+								src="images/neha.jpg" /><br/>Neha<br/> Viswanathan<br />FrontEnd Developer<br /> <a
 								href="https://www.linkedin.com/in/nehaviswanathan"
 								style="text-decoration: none;"><span
 								style="font: 80% Arial, sans-serif; color: #0783B6;"><img
@@ -152,10 +152,10 @@
 								aria-label="Follow @neha on GitHub">Follow @neha</a>
 						</p>
 					</div>
-					<div class="2u">
+					<div class="2u 12u(mobile) 6u(narrower)">
 						<p class="p-center">
 							<img class="circle-img p-center" width="150" height="150"
-								src="images/ceeeni.jpg" />Sreenivaasan <br />Android Developer<br />
+								src="images/ceeeni.jpg" /><br/>Sreenivaasan Gajapathy<br />Android Developer<br />
 							<a href="https://www.linkedin.com/in/ceeeni"
 								style="text-decoration: none;"><span
 								style="font: 80% Arial, sans-serif; color: #0783B6;"><img
@@ -173,6 +173,10 @@
 
 		<!-- Footer -->
 		<footer id="footer">
+			<br /><a 
+				href='https://play.google.com/store/apps/details?id=com.smacrobs.ti.ble.sensortag&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
+				alt='Get it on Google Play'
+				src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' /></a>
 			<br /> <a href="https://www.instagram.com/smacrobs/?ref=badge"
 				class="ig-b- ig-b-v-24"><img
 				src="//badges.instagram.com/static/images/ig-badge-view-24.png"
@@ -191,9 +195,8 @@
 					}
 				}(document, 'script', 'twitter-wjs');
 			</script>
-			<br /> 
-			<a data-pin-do="buttonFollow" href="https://www.pinterest.com/smacrobs/">smacrobs</a>
-			<br /> <br />
+			<br /> <a data-pin-do="buttonFollow"
+				href="https://www.pinterest.com/smacrobs/">smacrobs</a> <br /> <br />
 			<ul class="copyright">
 				<li>&copy; <strong>SMACROBS</strong> 2015-2016
 				</li>

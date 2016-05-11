@@ -471,7 +471,6 @@ if('${userId}'=='')
 	<!-- Modal -->
 	<div id="logoutModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
-
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="text-align: center">

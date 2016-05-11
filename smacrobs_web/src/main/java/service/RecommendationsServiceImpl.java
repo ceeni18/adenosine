@@ -1,6 +1,14 @@
 package service;
 
-import com.web.model.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -9,11 +17,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.web.model.ActivityDetails;
+import com.web.model.ActivityGoalDetails;
+import com.web.model.FoodDetails;
+import com.web.model.HeartRateDetails;
+import com.web.model.IdealValues;
+import com.web.model.Medicine;
+import com.web.model.Recommendations;
+import com.web.model.SynchronizedData;
+import com.web.model.WaterDetails;
+
 import repository.RecommendationsRepository;
-
-import javax.servlet.http.HttpSession;
-
-import java.util.*;
 
 /**
  * Created by uday on 4/26/16.

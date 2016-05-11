@@ -8,6 +8,13 @@ import com.web.model.SynchronizedData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.net.ssl.HttpsURLConnection;
 
 import java.io.BufferedReader;
@@ -22,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 public class ServiceUtils {
 	public static final Gson gson = new GsonBuilder()
@@ -91,7 +99,7 @@ public class ServiceUtils {
 		cal.add(Calendar.DATE, -1);
 		return dateFormat.format(cal.getTime());
 	}
-	
+
 	public static String getYesterdayDate(String dateString) {
 		DateFormat dateFormat = new SimpleDateFormat(Constants.dateFormat);
 		Date oneDayBefore = null;
@@ -127,6 +135,39 @@ public class ServiceUtils {
 		}
 
 		return synchronizedData;
+	}
+
+	public static void sendEmailNotification(String name, String email, 
+			String subject, String body) {
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		try {
+			Session session = Session.getInstance(props,
+					new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(Constants.GMAIL_USERNAME, 
+							Constants.GMAIL_PASSWORD);
+				}
+			});
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(Constants.GMAIL_USERNAME));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse(email));
+			message.setSubject(subject);
+			message.setText("Dear " + name + ",\n Thank you for contacting us. "
+					+ "We will get back to you as soon as we can.\n\n\n Your message - \n\n" 
+					+ subject + "\n\n" + body);
+
+			Transport.send(message);
+
+		} catch(MessagingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
