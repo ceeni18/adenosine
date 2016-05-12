@@ -1,33 +1,16 @@
 package service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
+import com.web.model.*;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.web.model.ActivityDetails;
-import com.web.model.ActivityGoalDetails;
-import com.web.model.FoodDetails;
-import com.web.model.HeartRateDetails;
-import com.web.model.IdealValues;
-import com.web.model.Medicine;
-import com.web.model.Recommendations;
-import com.web.model.SynchronizedData;
-import com.web.model.WaterDetails;
-
 import repository.RecommendationsRepository;
+
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 /**
  * Created by uday on 4/26/16.
@@ -36,12 +19,10 @@ import repository.RecommendationsRepository;
 public class RecommendationsServiceImpl {
 	private static final Logger logger = LoggerFactory
 			.getLogger(RecommendationsServiceImpl.class);
-	@Autowired
-	RecommendationsRepository recommendationsRepository;
-	@Autowired
-	FitbitDetailsServiceIntf fitbitDetailsService;
-	@Autowired
-	TiSensorService tiSensorService;
+	@Autowired RecommendationsRepository recommendationsRepository;
+	@Autowired FitbitDetailsServiceIntf fitbitDetailsService;
+	@Autowired TiSensorService tiSensorService;
+	@Autowired UserProfileServiceImpl userProfileService;
 
 	String userId;
 	String todayDate;
@@ -57,6 +38,7 @@ public class RecommendationsServiceImpl {
 	List<SynchronizedData> synchronizedLightData;
 	List<SynchronizedData> synchronizedHumidityData;
 	List<String> foodsConsumed;
+	String[] medicines;
 
 	boolean lowTemperatureHasEffect = false;
 	boolean highTemperatureHasEffect = false;
@@ -134,6 +116,7 @@ public class RecommendationsServiceImpl {
 			idealValues = recommendationsRepository.getIdealValues();
 			classifyFood();
 			classifyActivity();
+			classifyMedicine();
 			calculateEffectsOnDisturbedSleepTimeFrames();
 			calculateRecommendations();
 		} catch (Exception e) {
@@ -149,6 +132,18 @@ public class RecommendationsServiceImpl {
 		} catch (Exception e) {
 			logger.error("Error in saving recommendations to database"
 					+ e.getStackTrace());
+		}
+	}
+
+	private void classifyMedicine(){
+		try {
+			medicines = userProfileService
+					.getUserDetailsFromDB(this.userId)
+					.getUser()
+					.getMedicines();
+		}catch (Exception e){
+			logger.error("Unable to classify medicine " +
+					ExceptionUtils.getFullStackTrace(e));
 		}
 	}
 
@@ -213,7 +208,14 @@ public class RecommendationsServiceImpl {
 		setHumidityRecommendations();
 		setFoodRecommendations();
 		setActivityRecommendations();
+		setMedicineRecommendations();
 		setFacts();
+	}
+
+	private void setMedicineRecommendations(){
+		for(int i=0; i<medicines.length; i++){
+			setTopicRecommendations("medicine_"+medicines[i]);
+		}
 	}
 
 	private void setFacts() {

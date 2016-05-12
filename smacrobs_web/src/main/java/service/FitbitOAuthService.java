@@ -29,7 +29,7 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 			// add request header
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Authorization",
-					"Basic "+Constants.appClientIdAndSecrect);
+					"Basic "+Constants.APP_CLIENT_ID_AND_SECRET);
 			con.setRequestProperty("Content-Type",
 					"application/x-www-form-urlencoded");
 			con.setRequestProperty("Accept-Language", "en_US");
@@ -63,9 +63,9 @@ public class FitbitOAuthService implements FitbitOAuthServiceIntf {
 	}
 
 	private String getURLParameters(String authCode) {
-		return "client_id=" + Constants.fitbitOauthClientId +
+		return "client_id=" + Constants.FITBIT_OAUTH_CLIENT_ID +
 				"&grant_type=authorization_code" +
-				"&redirect_uri=" + Constants.LOCALHOST + 
+				"&redirect_uri=" + Constants.REDIRECT_URL_BASE +
 				Constants.redirectUriFromFitbit +
 				"&code=" + authCode;
 	}

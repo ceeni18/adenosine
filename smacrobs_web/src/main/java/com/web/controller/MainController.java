@@ -1,10 +1,8 @@
 package com.web.controller;
 
-import java.io.IOException;
-import java.net.URLEncoder;
-
-import javax.servlet.http.HttpSession;
-
+import com.web.config.Constants;
+import com.web.model.FitbitTokens;
+import com.web.model.UserProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import service.*;
 
-import com.web.config.Constants;
-import com.web.model.FitbitTokens;
-import com.web.model.UserProfile;
-
-import service.FitbitDetailsServiceIntf;
-import service.FitbitOAuthServiceIntf;
-import service.RecommendationsServiceImpl;
-import service.ServiceUtils;
-import service.TiSensorService;
-import service.UserProfileServiceIntf;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.net.URLEncoder;
 
 @Controller
 public class MainController {
@@ -251,9 +243,9 @@ public class MainController {
 			url = "https://www.fitbit.com/oauth2/authorize?" +
 					"response_type=code" +
 					"&client_id=" +
-					URLEncoder.encode(Constants.fitbitOauthClientId, "UTF-8") +
+					URLEncoder.encode(Constants.FITBIT_OAUTH_CLIENT_ID, "UTF-8") +
 					"&redirect_uri=" +
-					URLEncoder.encode(Constants.LOCALHOST + Constants
+					URLEncoder.encode(Constants.REDIRECT_URL_BASE + Constants
 							.redirectUriFromFitbit, "UTF-8") +
 							// scope is already encoded
 							"&scope=" + Constants.fitbitScope +

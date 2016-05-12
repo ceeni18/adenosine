@@ -2,8 +2,8 @@ package com.web.config;
 
 public class Constants {
 
-	public static final String LOCALHOST = "http://easemysleep.com";
-	//public static final String LOCALHOST = "http://localhost:8080";
+	public static final String REDIRECT_URL_BASE;
+	//public static final String REDIRECT_URL_BASE = "http://localhost:8080";
 	
 	/*
 	 * Database Constants
@@ -17,16 +17,16 @@ public class Constants {
 	/*
 	* TiSensor REST API Constants for com.web.load.SimulateAUserTiSensor
 	* */
-	public static final String TISENSOR_REST_URL = "http://localhost:8081/tisensor";
+	public static final String TISENSOR_REST_URL;
+	//public static final String TISENSOR_REST_URL="http://localhost:8081/tisensor";
 
 	/*
 	 * FitBit Constants
 	 * */
-	public static final String fitbitOauthClientId = "227NJT";
-	//public static final String fitbitOauthClientId = "227L87";
-	public static final String appClientIdAndSecrect =
-		"MjI3Rk40OjVmNmU0NmI0ZDI5NTZlODAwNTZjYjk3ZGEwYTI3YTZm";
-	//public static final String appClientIdAndSecrect = "MjI3TDg3OjgxMDYzNTYyYzdiMzZlZmVjMWYzNGY5Y2FhMmNlNTdk";
+	public static final String FITBIT_OAUTH_CLIENT_ID;
+	//public static final String FITBIT_OAUTH_CLIENT_ID = "227L87";
+	public static final String APP_CLIENT_ID_AND_SECRET;
+	//public static final String APP_CLIENT_ID_AND_SECRET = "MjI3TDg3OjgxMDYzNTYyYzdiMzZlZmVjMWYzNGY5Y2FhMmNlNTdk";
 	public static final String fitbitAuthUri =
 			"https://www.fitbit.com/oauth2/authorize?";
 	public static final String redirectUriFromFitbit =
@@ -57,6 +57,10 @@ public class Constants {
 	static {
 		if(System.getenv("environment") != null &&
 				System.getenv("environment").equals("production")) {
+			REDIRECT_URL_BASE = System.getenv("REDIRECT_URL_BASE");
+			TISENSOR_REST_URL = System.getenv("TISENSOR_REST_URL");
+			FITBIT_OAUTH_CLIENT_ID = System.getenv("FITBIT_OAUTH_CLIENT_ID");
+			APP_CLIENT_ID_AND_SECRET = System.getenv("APP_CLIENT_ID_AND_SECRECT");
 			DATABASE_NAME      = System.getenv("DATABASE_NAME");
 			DATABASE_USERNAME  = System.getenv("DATABASE_USERNAME");
 			DATABASE_PASSWORD  = System.getenv("DATABASE_PASSWORD");
