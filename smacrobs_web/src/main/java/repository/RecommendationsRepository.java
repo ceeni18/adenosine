@@ -57,7 +57,6 @@ public class RecommendationsRepository {
 
     public Medicine getMedicines() {
         return mongoOperation.findAll(Medicine.class).get(0);
-
     }
 
 }

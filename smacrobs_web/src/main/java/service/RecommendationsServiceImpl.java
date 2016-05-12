@@ -211,6 +211,9 @@ public class RecommendationsServiceImpl {
     }
 
     private void setMedicineRecommendations() {
+        if (medicines == null){
+            return;
+        }
         for (int i = 0; i < medicines.length; i++) {
             setTopicRecommendations("medicine_" + medicines[i]);
         }

@@ -3,6 +3,7 @@ package com.web.controller;
 import com.web.config.Constants;
 import com.web.model.FitbitTokens;
 import com.web.model.UserProfile;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +96,8 @@ public class MainController {
 
             mv.addObject("emailsent", "true");
         } catch (Exception e) {
-            logger.error("Unable to send email notifications :: " + e);
+            logger.error("Unable to send email notifications :: " +
+                    ExceptionUtils.getFullStackTrace(e));
         }
 
         //return "redirect:/dashboard";
@@ -245,7 +247,8 @@ public class MainController {
                     "&scope=" + Constants.fitbitScope +
                     "&prompt=none";
         } catch (Exception e) {
-            logger.error("URL encoding exception" + e);
+            logger.error("URL encoding exception" +
+                    ExceptionUtils.getFullStackTrace(e));
         }
         return url;
     }
