@@ -15,43 +15,45 @@ import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
 @Configuration
 public class SpringMongoConfig {
-   private static Logger logger = LoggerFactory.getLogger(
-         SpringMongoConfig.class);
+    private static Logger logger = LoggerFactory.getLogger(
+            SpringMongoConfig.class);
 
-   public @Bean
-   MongoDbFactory mongoDbFactory() throws Exception {
-      logger.debug("Connecting to MongoDB at "+
-            Constants.DATABASE_HOSTNAME+":"+Constants.DATABASE_PORT);
-      logger.debug("Using Database "+Constants.DATABASE_NAME);
-      logger.debug("with Username :: "+ Constants.DATABASE_USERNAME+" and " +
-            "password :: "+Constants.DATABASE_PASSWORD);
+    public
+    @Bean
+    MongoDbFactory mongoDbFactory() throws Exception {
+        logger.debug("Connecting to MongoDB at " +
+                Constants.DATABASE_HOSTNAME + ":" + Constants.DATABASE_PORT);
+        logger.debug("Using Database " + Constants.DATABASE_NAME);
+        logger.debug("with Username :: " + Constants.DATABASE_USERNAME + " and " +
+                "password :: " + Constants.DATABASE_PASSWORD);
 
-      return new SimpleMongoDbFactory(
-            new MongoClient(
-                  Constants.DATABASE_HOSTNAME,
-                  Constants.DATABASE_PORT
-                  ),
-            Constants.DATABASE_NAME,
-            new UserCredentials(
-                  Constants.DATABASE_USERNAME,
-                  Constants.DATABASE_PASSWORD
-                  ));
-   }
+        return new SimpleMongoDbFactory(
+                new MongoClient(
+                        Constants.DATABASE_HOSTNAME,
+                        Constants.DATABASE_PORT
+                ),
+                Constants.DATABASE_NAME,
+                new UserCredentials(
+                        Constants.DATABASE_USERNAME,
+                        Constants.DATABASE_PASSWORD
+                ));
+    }
 
-	public @Bean
-	MongoTemplate mongoTemplate(){
-		MongoDbFactory mongoDbFactory = null;
-		MongoTemplate mongoTemplate = null;
+    public
+    @Bean
+    MongoTemplate mongoTemplate() {
+        MongoDbFactory mongoDbFactory = null;
+        MongoTemplate mongoTemplate = null;
 
-		try {
-			//remove _class
-			MappingMongoConverter converter = new MappingMongoConverter(
-					mongoDbFactory(), new MongoMappingContext());
-			converter.setTypeMapper(new DefaultMongoTypeMapper(null));
-			mongoTemplate = new MongoTemplate(mongoDbFactory(), converter);
-		}catch (Exception e){
-			logger.error("Database exception :: " + e);
-		}
-		return mongoTemplate;
-	}
+        try {
+            //remove _class
+            MappingMongoConverter converter = new MappingMongoConverter(
+                    mongoDbFactory(), new MongoMappingContext());
+            converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+            mongoTemplate = new MongoTemplate(mongoDbFactory(), converter);
+        } catch (Exception e) {
+            logger.error("Database exception :: " + e);
+        }
+        return mongoTemplate;
+    }
 }

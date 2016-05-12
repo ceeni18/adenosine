@@ -5,111 +5,96 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "activityGoalDetails")
 public class ActivityGoalDetails {
 
-	private Goals goals;
-	
-	private String userId;
-	
-	private String date;
+    private Goals goals;
 
-	public Goals getGoals ()
-	{
-		return goals;
-	}
+    private String userId;
 
-	public void setGoals (Goals goals)
-	{
-		this.goals = goals;
-	}
+    private String date;
 
-	@Override
-	public String toString()
-	{
-		return "ClassPojo [goals = "+goals+"]";
-	}
+    public Goals getGoals() {
+        return goals;
+    }
 
-	public static class Goals
-	{
-		private String distance;
+    public void setGoals(Goals goals) {
+        this.goals = goals;
+    }
 
-		private String floors;
+    @Override
+    public String toString() {
+        return "ClassPojo [goals = " + goals + "]";
+    }
 
-		private String activeMinutes;
+    public String getUserId() {
+        return userId;
+    }
 
-		private String steps;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-		private String caloriesOut;
+    public String getDate() {
+        return date;
+    }
 
-		public String getDistance ()
-		{
-			return distance;
-		}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-		public void setDistance (String distance)
-		{
-			this.distance = distance;
-		}
+    public static class Goals {
+        private String distance;
 
-		public String getFloors ()
-		{
-			return floors;
-		}
+        private String floors;
 
-		public void setFloors (String floors)
-		{
-			this.floors = floors;
-		}
+        private String activeMinutes;
 
-		public String getActiveMinutes ()
-		{
-			return activeMinutes;
-		}
+        private String steps;
 
-		public void setActiveMinutes (String activeMinutes)
-		{
-			this.activeMinutes = activeMinutes;
-		}
+        private String caloriesOut;
 
-		public String getSteps ()
-		{
-			return steps;
-		}
+        public String getDistance() {
+            return distance;
+        }
 
-		public void setSteps (String steps)
-		{
-			this.steps = steps;
-		}
+        public void setDistance(String distance) {
+            this.distance = distance;
+        }
 
-		public String getCaloriesOut ()
-		{
-			return caloriesOut;
-		}
+        public String getFloors() {
+            return floors;
+        }
 
-		public void setCaloriesOut (String caloriesOut)
-		{
-			this.caloriesOut = caloriesOut;
-		}
+        public void setFloors(String floors) {
+            this.floors = floors;
+        }
 
-		@Override
-		public String toString()
-		{
-			return "ClassPojo [distance = "+distance+", floors = "+floors+", activeMinutes = "+activeMinutes+", steps = "+steps+", caloriesOut = "+caloriesOut+"]";
-		}
-	}
+        public String getActiveMinutes() {
+            return activeMinutes;
+        }
 
-	public String getUserId() {
-		return userId;
-	}
+        public void setActiveMinutes(String activeMinutes) {
+            this.activeMinutes = activeMinutes;
+        }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+        public String getSteps() {
+            return steps;
+        }
 
-	public String getDate() {
-		return date;
-	}
+        public void setSteps(String steps) {
+            this.steps = steps;
+        }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+        public String getCaloriesOut() {
+            return caloriesOut;
+        }
+
+        public void setCaloriesOut(String caloriesOut) {
+            this.caloriesOut = caloriesOut;
+        }
+
+        @Override
+        public String toString() {
+            return "ClassPojo [distance = " + distance + ", floors = " + floors + ", activeMinutes = " + activeMinutes + ", steps = " + steps + ", caloriesOut = " + caloriesOut + "]";
+        }
+    }
 
 }

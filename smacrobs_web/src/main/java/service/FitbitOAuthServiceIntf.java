@@ -3,5 +3,5 @@ package service;
 import com.web.model.FitbitTokens;
 
 public interface FitbitOAuthServiceIntf {
-	FitbitTokens getFitbitTokens(String authCode);
+    FitbitTokens getFitbitTokens(String authCode);
 }

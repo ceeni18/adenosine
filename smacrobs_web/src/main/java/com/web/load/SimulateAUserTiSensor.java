@@ -1,7 +1,10 @@
 package com.web.load;
 
 import com.web.config.Constants;
-import com.web.model.*;
+import com.web.model.TiSensorDatapoint;
+import com.web.model.TiSensorHumidity;
+import com.web.model.TiSensorLight;
+import com.web.model.TiSensorTemperature;
 import org.springframework.web.client.RestTemplate;
 import service.ServiceUtils;
 
@@ -32,38 +35,38 @@ public class SimulateAUserTiSensor {
         humidity.setDate(yesterdayDate);
 
         DecimalFormat formatter = new DecimalFormat("00");
-        for(int i=22; i<24; i++){
-            for(int j=0; j<60; j++){
-                sendData(""+i+":"+formatter.format(j)+":00");
+        for (int i = 22; i < 24; i++) {
+            for (int j = 0; j < 60; j++) {
+                sendData("" + i + ":" + formatter.format(j) + ":00");
             }
         }
-        for(int i=0; i<10; i++){
-            for(int j=0; j<60; j++){
-                sendData(""+formatter.format(i)+":"+formatter.format(j)+":00");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 60; j++) {
+                sendData("" + formatter.format(i) + ":" + formatter.format(j) + ":00");
             }
         }
     }
 
-    private static void sendData(String minute){
+    private static void sendData(String minute) {
         temperature.setTimestamp(minute);
         light.setTimestamp(minute);
         humidity.setTimestamp(minute);
 
-        temperature.setTemperature(15+random.nextDouble());
+        temperature.setTemperature(15 + random.nextDouble());
         sendDataPoint(temperature, "/temperature");
-        light.setLight(5+random.nextDouble());
+        light.setLight(5 + random.nextDouble());
         sendDataPoint(light, "/light");
-        humidity.setHumidity(50+random.nextDouble());
+        humidity.setHumidity(50 + random.nextDouble());
         sendDataPoint(humidity, "/humidity");
     }
 
     private static void sendDataPoint(TiSensorDatapoint datapoint, String
-            restUrl){
-        try{
-            restTemplate.postForLocation(Constants.TISENSOR_REST_URL+restUrl,
+            restUrl) {
+        try {
+            restTemplate.postForLocation(Constants.TISENSOR_REST_URL + restUrl,
                     datapoint);
-        }catch(Exception e){
-            System.out.println("Unable to Send datapoint"+e);
+        } catch (Exception e) {
+            System.out.println("Unable to Send datapoint" + e);
         }
     }
 }

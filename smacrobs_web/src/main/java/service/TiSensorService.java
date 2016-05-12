@@ -31,46 +31,46 @@ public class TiSensorService {
     private String yesterdayDate;
 
 
-    public void setSessionVariables(HttpSession session){
+    public void setSessionVariables(HttpSession session) {
         this.userId = session.getAttribute("userId").toString();
         this.todayDate = session.getAttribute("todayDate").toString();
         this.yesterdayDate = session.getAttribute("yesterdayDate").toString();
     }
 
-    public List<TiSensorTemperature> getTemperaturesFromDB(){
+    public List<TiSensorTemperature> getTemperaturesFromDB() {
         List<TiSensorTemperature> tiSensorTemperatures =
                 tiSensorRepository.getTemperatures(userId, yesterdayDate);
         return tiSensorTemperatures;
     }
 
-    public List<TiSensorLight> getLightFromDB(){
+    public List<TiSensorLight> getLightFromDB() {
         List<TiSensorLight> tiSensorLightData =
                 tiSensorRepository.getLightData(userId, yesterdayDate);
         return tiSensorLightData;
     }
 
-    public List<TiSensorHumidity> getHumidityFromDB(){
+    public List<TiSensorHumidity> getHumidityFromDB() {
         List<TiSensorHumidity> tiSensorHumidityData =
                 tiSensorRepository.getHumidityData(userId, yesterdayDate);
         return tiSensorHumidityData;
     }
 
-    public List<SynchronizedData> getTemperatureInRequiredFormat(){
+    public List<SynchronizedData> getTemperatureInRequiredFormat() {
 
         List<TiSensorTemperature> temperatures = getTemperaturesFromDB();
         HashMap<String, String> tempHash = new HashMap<String, String>();
 
-        for(int i=0; i<temperatures.size(); i++){
+        for (int i = 0; i < temperatures.size(); i++) {
             TiSensorTemperature tiSensorTemperature = temperatures.get(i);
-            tempHash.put(tiSensorTemperature.getTimestamp().substring(0,5)+"",
-                    tiSensorTemperature.getTemperature()+"");
+            tempHash.put(tiSensorTemperature.getTimestamp().substring(0, 5) + "",
+                    tiSensorTemperature.getTemperature() + "");
         }
 
         List<SynchronizedData> synchronizedTemperatureData = ServiceUtils
                 .getSynchronizedDataList();
 
-        for(SynchronizedData sdm: synchronizedTemperatureData){
-            if(tempHash.containsKey(sdm.getTime())){
+        for (SynchronizedData sdm : synchronizedTemperatureData) {
+            if (tempHash.containsKey(sdm.getTime())) {
                 sdm.setValue(tempHash.get(sdm.getTime()));
             }
         }
@@ -78,21 +78,21 @@ public class TiSensorService {
         return synchronizedTemperatureData;
     }
 
-    public List<SynchronizedData> getLightInRequiredFormat(){
+    public List<SynchronizedData> getLightInRequiredFormat() {
         List<TiSensorLight> lightData = getLightFromDB();
         HashMap<String, String> tempHash = new HashMap<String, String>();
 
-        for(int i=0; i<lightData.size(); i++){
+        for (int i = 0; i < lightData.size(); i++) {
             TiSensorLight tiSensorLight = lightData.get(i);
-            tempHash.put(tiSensorLight.getTimestamp().substring(0,5)+"",
-                    tiSensorLight.getLight()+"");
+            tempHash.put(tiSensorLight.getTimestamp().substring(0, 5) + "",
+                    tiSensorLight.getLight() + "");
         }
 
         List<SynchronizedData> synchronizedLightData = ServiceUtils
                 .getSynchronizedDataList();
 
-        for(SynchronizedData sdm: synchronizedLightData){
-            if(tempHash.containsKey(sdm.getTime())){
+        for (SynchronizedData sdm : synchronizedLightData) {
+            if (tempHash.containsKey(sdm.getTime())) {
                 sdm.setValue(tempHash.get(sdm.getTime()));
             }
         }
@@ -100,21 +100,21 @@ public class TiSensorService {
         return synchronizedLightData;
     }
 
-    public List<SynchronizedData> getHumidityInRequiredFormat(){
+    public List<SynchronizedData> getHumidityInRequiredFormat() {
         List<TiSensorHumidity> humidityData = getHumidityFromDB();
         HashMap<String, String> tempHash = new HashMap<String, String>();
 
-        for(int i=0; i<humidityData.size(); i++){
+        for (int i = 0; i < humidityData.size(); i++) {
             TiSensorHumidity tiSensorHumidity = humidityData.get(i);
-            tempHash.put(tiSensorHumidity.getTimestamp().substring(0,5)+"",
-                    tiSensorHumidity.getHumidity()+"");
+            tempHash.put(tiSensorHumidity.getTimestamp().substring(0, 5) + "",
+                    tiSensorHumidity.getHumidity() + "");
         }
 
         List<SynchronizedData> synchronizedHumidityData = ServiceUtils
                 .getSynchronizedDataList();
 
-        for(SynchronizedData sdm: synchronizedHumidityData){
-            if(tempHash.containsKey(sdm.getTime())){
+        for (SynchronizedData sdm : synchronizedHumidityData) {
+            if (tempHash.containsKey(sdm.getTime())) {
                 sdm.setValue(tempHash.get(sdm.getTime()));
             }
         }
@@ -122,39 +122,39 @@ public class TiSensorService {
         return synchronizedHumidityData;
     }
 
-    public void AddTemperatureToModel(ModelAndView mv){
+    public void AddTemperatureToModel(ModelAndView mv) {
         addDataToModel(mv, "temperatureMinuteData", getTemperatureInRequiredFormat());
     }
 
-    public void AddLightToModel(ModelAndView mv){
+    public void AddLightToModel(ModelAndView mv) {
         addDataToModel(mv, "lightMinuteData", getLightInRequiredFormat());
     }
 
-    public void AddHumidityToModel(ModelAndView mv){
+    public void AddHumidityToModel(ModelAndView mv) {
         addDataToModel(mv, "humidityMinuteData", getHumidityInRequiredFormat());
     }
 
     private void addDataToModel(ModelAndView mv, String key,
-                                List<SynchronizedData> synchronizedData){
+                                List<SynchronizedData> synchronizedData) {
 
         StringBuffer sb = new StringBuffer();
         sb.append("[");
         try {
-            for(int i=0; i<synchronizedData.size(); i++) {
+            for (int i = 0; i < synchronizedData.size(); i++) {
                 SynchronizedData minutedata = synchronizedData.get(i);
                 if (minutedata.getValue() == null) {
                     sb.append("null, ");
                 } else {
                     sb.append(Double.parseDouble(minutedata
                             .getValue().substring(0, minutedata.getValue()
-                                    .indexOf('.')+3))+", ");
+                                    .indexOf('.') + 3)) + ", ");
                 }
             }
-        }catch (Exception e){
-            logger.warn("Unable to get data for "+key+" "+e);
+        } catch (Exception e) {
+            logger.warn("Unable to get data for " + key + " " + e);
         }
-        if(sb.length() > 1)
-            sb.setLength(sb.length()-2);
+        if (sb.length() > 1)
+            sb.setLength(sb.length() - 2);
         sb.append("]");
         mv.addObject(key, sb.toString());
     }

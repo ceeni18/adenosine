@@ -25,41 +25,41 @@ public class TiSensorRepositoryImpl {
     @Autowired
     MongoTemplate mongoTemplate;
 
-    public List<TiSensorTemperature> getTemperatures(String userId, String date){
+    public List<TiSensorTemperature> getTemperatures(String userId, String date) {
         List<TiSensorTemperature> tiSensorTemperatures = null;
         try {
             tiSensorTemperatures = mongoTemplate.find(
                     new Query().addCriteria(Criteria.where("userId").is(userId)
                             .andOperator(Criteria.where("date").is(date))),
                     TiSensorTemperature.class, "tiSensorTemperature");
-        }catch (MappingInstantiationException e){
-            logger.info("unable to get data "+e);
+        } catch (MappingInstantiationException e) {
+            logger.info("unable to get data " + e);
         }
         return tiSensorTemperatures;
     }
 
-    public List<TiSensorLight> getLightData(String userId, String date){
+    public List<TiSensorLight> getLightData(String userId, String date) {
         List<TiSensorLight> tiSensorLightData = null;
         try {
             tiSensorLightData = mongoTemplate.find(
                     new Query().addCriteria(Criteria.where("userId").is(userId)
                             .andOperator(Criteria.where("date").is(date))),
                     TiSensorLight.class, "tiSensorLight");
-        }catch (MappingInstantiationException e){
-            logger.info("unable to get data "+e);
+        } catch (MappingInstantiationException e) {
+            logger.info("unable to get data " + e);
         }
         return tiSensorLightData;
     }
 
-    public List<TiSensorHumidity> getHumidityData(String userId, String date){
+    public List<TiSensorHumidity> getHumidityData(String userId, String date) {
         List<TiSensorHumidity> tiSensorHumidityData = null;
         try {
             tiSensorHumidityData = mongoTemplate.find(
                     new Query().addCriteria(Criteria.where("userId").is(userId)
                             .andOperator(Criteria.where("date").is(date))),
                     TiSensorHumidity.class, "tiSensorHumidity");
-        }catch (MappingInstantiationException e){
-            logger.info("unable to get data "+e);
+        } catch (MappingInstantiationException e) {
+            logger.info("unable to get data " + e);
         }
         return tiSensorHumidityData;
     }

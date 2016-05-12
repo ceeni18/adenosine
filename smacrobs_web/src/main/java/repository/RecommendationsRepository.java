@@ -1,5 +1,8 @@
 package repository;
 
+import com.web.model.IdealValues;
+import com.web.model.Medicine;
+import com.web.model.Recommendations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +10,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
-
-import com.web.model.IdealValues;
-import com.web.model.Medicine;
-import com.web.model.Recommendations;
 
 
 /**
@@ -25,7 +24,7 @@ public class RecommendationsRepository {
     MongoTemplate mongoOperation;
 
     public Recommendations getRecommendations(String userId, String
-            date){
+            date) {
         Recommendations recommendations = null;
         try {
             recommendations = mongoOperation.findOne(
@@ -35,32 +34,30 @@ public class RecommendationsRepository {
         } catch (Exception e) {
             logger.error("unable to get recommendations from DB " + e.getMessage());
         }
-        if(recommendations != null && recommendations.getTopics() != null){
+        if (recommendations != null && recommendations.getTopics() != null) {
             logger.debug("Recommendations retrieved from db for user " +
-                    ""+userId+" and " +
-                    "date: "+ date + " are " +recommendations.getTopics().toString());
+                    "" + userId + " and " +
+                    "date: " + date + " are " + recommendations.getTopics().toString());
         }
         return recommendations;
     }
 
-    public void saveRecommendations(Recommendations recommendations){
+    public void saveRecommendations(Recommendations recommendations) {
         mongoOperation.save(recommendations);
     }
-    
-    public void removeRecommendations(String userId,String date)
-    {
-    	mongoOperation.remove(new Query().addCriteria(Criteria
-				.where("userId").is(userId).and("date").is(date)), Recommendations.class);
-    }
-    
-    public IdealValues getIdealValues()
-    {
-    	return mongoOperation.findAll(IdealValues.class).get(0);
+
+    public void removeRecommendations(String userId, String date) {
+        mongoOperation.remove(new Query().addCriteria(Criteria
+                .where("userId").is(userId).and("date").is(date)), Recommendations.class);
     }
 
-	public Medicine getMedicines() {
-		return mongoOperation.findAll(Medicine.class).get(0);
-		
-	}
-    
+    public IdealValues getIdealValues() {
+        return mongoOperation.findAll(IdealValues.class).get(0);
+    }
+
+    public Medicine getMedicines() {
+        return mongoOperation.findAll(Medicine.class).get(0);
+
+    }
+
 }

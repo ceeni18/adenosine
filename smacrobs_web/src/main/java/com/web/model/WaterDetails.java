@@ -1,88 +1,88 @@
 package com.web.model;
 
 public class WaterDetails {
-	private String userId;
-	private String date;
-	private Water[] water;
-	private Summary summary;
+    private String userId;
+    private String date;
+    private Water[] water;
+    private Summary summary;
 
-	public Water[] getWater() {
-		return water;
-	}
+    public Water[] getWater() {
+        return water;
+    }
 
-	public void setWater(Water[] water) {
-		this.water = water;
-	}
+    public void setWater(Water[] water) {
+        this.water = water;
+    }
 
-	public Summary getSummary() {
-		return summary;
-	}
+    public Summary getSummary() {
+        return summary;
+    }
 
-	public void setSummary(Summary summary) {
-		this.summary = summary;
-	}
+    public void setSummary(Summary summary) {
+        this.summary = summary;
+    }
 
-	@Override
-	public String toString() {
-		return "ClassPojo [water = " + water + ", summary = " + summary + "]";
-	}
+    @Override
+    public String toString() {
+        return "ClassPojo [water = " + water + ", summary = " + summary + "]";
+    }
 
-	public static class Water {
-		private String amount;
-		private String logId;
+    public String getUserId() {
+        return userId;
+    }
 
-		public String getAmount() {
-			return amount;
-		}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-		public void setAmount(String amount) {
-			this.amount = amount;
-		}
+    public String getDate() {
+        return date;
+    }
 
-		public String getLogId() {
-			return logId;
-		}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-		public void setLogId(String logId) {
-			this.logId = logId;
-		}
+    public static class Water {
+        private String amount;
+        private String logId;
 
-		@Override
-		public String toString() {
-			return "ClassPojo [amount = " + amount + ", logId = " + logId + "]";
-		}
-	}
+        public String getAmount() {
+            return amount;
+        }
 
-	public static class Summary {
-		private String water;
+        public void setAmount(String amount) {
+            this.amount = amount;
+        }
 
-		public String getWater() {
-			return water;
-		}
+        public String getLogId() {
+            return logId;
+        }
 
-		public void setWater(String water) {
-			this.water = water;
-		}
+        public void setLogId(String logId) {
+            this.logId = logId;
+        }
 
-		@Override
-		public String toString() {
-			return "ClassPojo [water = " + water + "]";
-		}
-	}
+        @Override
+        public String toString() {
+            return "ClassPojo [amount = " + amount + ", logId = " + logId + "]";
+        }
+    }
 
-	public String getUserId() {
-		return userId;
-	}
+    public static class Summary {
+        private String water;
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+        public String getWater() {
+            return water;
+        }
 
-	public String getDate() {
-		return date;
-	}
+        public void setWater(String water) {
+            this.water = water;
+        }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+        @Override
+        public String toString() {
+            return "ClassPojo [water = " + water + "]";
+        }
+    }
 }

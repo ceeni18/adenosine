@@ -5,214 +5,214 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "heartRateDetails")
 public class HeartRateDetails {
-	@SerializedName("activities-heart")
-	private ActivitiesHeart[] activities_heart;
-	
-	private String userId;
-	
-	private String date;
+    @SerializedName("activities-heart")
+    private ActivitiesHeart[] activities_heart;
 
-	public ActivitiesHeart[] getActivitiesHeart() {
-		return activities_heart;
-	}
+    private String userId;
 
-	public void setActivitiesHeart(ActivitiesHeart[] activities_heart) {
-		this.activities_heart = activities_heart;
-	}
+    private String date;
 
-	@Override
-	public String toString() {
-		return "ClassPojo [activities_heart = " + activities_heart + "]";
-	}
+    public ActivitiesHeart[] getActivitiesHeart() {
+        return activities_heart;
+    }
 
-	public static class ActivitiesHeart {
-		private String dateTime;
-		private Value value;
+    public void setActivitiesHeart(ActivitiesHeart[] activities_heart) {
+        this.activities_heart = activities_heart;
+    }
 
-		public String getDateTime() {
-			return dateTime;
-		}
+    @Override
+    public String toString() {
+        return "ClassPojo [activities_heart = " + activities_heart + "]";
+    }
 
-		public void setDateTime(String dateTime) {
-			this.dateTime = dateTime;
-		}
+    public String getUserId() {
+        return userId;
+    }
 
-		public Value getValue() {
-			return value;
-		}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-		public void setValue(Value value) {
-			this.value = value;
-		}
+    public String getDate() {
+        return date;
+    }
 
-		@Override
-		public String toString() {
-			return "ClassPojo [dateTime = " + dateTime + ", value = " + value
-					+ "]";
-		}
-	}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-	public static class Value {
-		private String restingHeartRate;
-		private HeartRateZones[] heartRateZones;
-		private CustomHeartRateZones[] customHeartRateZones;
+    public static class ActivitiesHeart {
+        private String dateTime;
+        private Value value;
 
-		public String getRestingHeartRate() {
-			return restingHeartRate;
-		}
+        public String getDateTime() {
+            return dateTime;
+        }
 
-		public void setRestingHeartRate(String restingHeartRate) {
-			this.restingHeartRate = restingHeartRate;
-		}
+        public void setDateTime(String dateTime) {
+            this.dateTime = dateTime;
+        }
 
-		public HeartRateZones[] getHeartRateZones() {
-			return heartRateZones;
-		}
+        public Value getValue() {
+            return value;
+        }
 
-		public void setHeartRateZones(HeartRateZones[] heartRateZones) {
-			this.heartRateZones = heartRateZones;
-		}
+        public void setValue(Value value) {
+            this.value = value;
+        }
 
-		public CustomHeartRateZones[] getCustomHeartRateZones() {
-			return customHeartRateZones;
-		}
+        @Override
+        public String toString() {
+            return "ClassPojo [dateTime = " + dateTime + ", value = " + value
+                    + "]";
+        }
+    }
 
-		public void setCustomHeartRateZones(
-				CustomHeartRateZones[] customHeartRateZones) {
-			this.customHeartRateZones = customHeartRateZones;
-		}
+    public static class Value {
+        private String restingHeartRate;
+        private HeartRateZones[] heartRateZones;
+        private CustomHeartRateZones[] customHeartRateZones;
 
-		@Override
-		public String toString() {
-			return "ClassPojo [restingHeartRate = " + restingHeartRate
-					+ ", heartRateZones = " + heartRateZones
-					+ ", customHeartRateZones = " + customHeartRateZones + "]";
-		}
-	}
+        public String getRestingHeartRate() {
+            return restingHeartRate;
+        }
 
-	public static class HeartRateZones {
-		private String min;
-		private String minutes;
-		private String max;
-		private String name;
-		private String caloriesOut;
+        public void setRestingHeartRate(String restingHeartRate) {
+            this.restingHeartRate = restingHeartRate;
+        }
 
-		public String getMin() {
-			return min;
-		}
+        public HeartRateZones[] getHeartRateZones() {
+            return heartRateZones;
+        }
 
-		public void setMin(String min) {
-			this.min = min;
-		}
+        public void setHeartRateZones(HeartRateZones[] heartRateZones) {
+            this.heartRateZones = heartRateZones;
+        }
 
-		public String getMinutes() {
-			return minutes;
-		}
+        public CustomHeartRateZones[] getCustomHeartRateZones() {
+            return customHeartRateZones;
+        }
 
-		public void setMinutes(String minutes) {
-			this.minutes = minutes;
-		}
+        public void setCustomHeartRateZones(
+                CustomHeartRateZones[] customHeartRateZones) {
+            this.customHeartRateZones = customHeartRateZones;
+        }
 
-		public String getMax() {
-			return max;
-		}
+        @Override
+        public String toString() {
+            return "ClassPojo [restingHeartRate = " + restingHeartRate
+                    + ", heartRateZones = " + heartRateZones
+                    + ", customHeartRateZones = " + customHeartRateZones + "]";
+        }
+    }
 
-		public void setMax(String max) {
-			this.max = max;
-		}
+    public static class HeartRateZones {
+        private String min;
+        private String minutes;
+        private String max;
+        private String name;
+        private String caloriesOut;
 
-		public String getName() {
-			return name;
-		}
+        public String getMin() {
+            return min;
+        }
 
-		public void setName(String name) {
-			this.name = name;
-		}
+        public void setMin(String min) {
+            this.min = min;
+        }
 
-		public String getCaloriesOut() {
-			return caloriesOut;
-		}
+        public String getMinutes() {
+            return minutes;
+        }
 
-		public void setCaloriesOut(String caloriesOut) {
-			this.caloriesOut = caloriesOut;
-		}
+        public void setMinutes(String minutes) {
+            this.minutes = minutes;
+        }
 
-		@Override
-		public String toString() {
-			return "ClassPojo [min = " + min + ", minutes = " + minutes
-					+ ", max = " + max + ", name = " + name
-					+ ", caloriesOut = " + caloriesOut + "]";
-		}
-	}
+        public String getMax() {
+            return max;
+        }
 
-	public static class CustomHeartRateZones {
-		private String min;
-		private String minutes;
-		private String max;
-		private String name;
-		private String caloriesOut;
+        public void setMax(String max) {
+            this.max = max;
+        }
 
-		public String getMin() {
-			return min;
-		}
+        public String getName() {
+            return name;
+        }
 
-		public void setMin(String min) {
-			this.min = min;
-		}
+        public void setName(String name) {
+            this.name = name;
+        }
 
-		public String getMinutes() {
-			return minutes;
-		}
+        public String getCaloriesOut() {
+            return caloriesOut;
+        }
 
-		public void setMinutes(String minutes) {
-			this.minutes = minutes;
-		}
+        public void setCaloriesOut(String caloriesOut) {
+            this.caloriesOut = caloriesOut;
+        }
 
-		public String getMax() {
-			return max;
-		}
+        @Override
+        public String toString() {
+            return "ClassPojo [min = " + min + ", minutes = " + minutes
+                    + ", max = " + max + ", name = " + name
+                    + ", caloriesOut = " + caloriesOut + "]";
+        }
+    }
 
-		public void setMax(String max) {
-			this.max = max;
-		}
+    public static class CustomHeartRateZones {
+        private String min;
+        private String minutes;
+        private String max;
+        private String name;
+        private String caloriesOut;
 
-		public String getName() {
-			return name;
-		}
+        public String getMin() {
+            return min;
+        }
 
-		public void setName(String name) {
-			this.name = name;
-		}
+        public void setMin(String min) {
+            this.min = min;
+        }
 
-		public String getCaloriesOut() {
-			return caloriesOut;
-		}
+        public String getMinutes() {
+            return minutes;
+        }
 
-		public void setCaloriesOut(String caloriesOut) {
-			this.caloriesOut = caloriesOut;
-		}
+        public void setMinutes(String minutes) {
+            this.minutes = minutes;
+        }
 
-		@Override
-		public String toString() {
-			return "ClassPojo [min = " + min + ", minutes = " + minutes
-					+ ", max = " + max + ", name = " + name
-					+ ", caloriesOut = " + caloriesOut + "]";
-		}
-	}
+        public String getMax() {
+            return max;
+        }
 
-	public String getUserId() {
-		return userId;
-	}
+        public void setMax(String max) {
+            this.max = max;
+        }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+        public String getName() {
+            return name;
+        }
 
-	public String getDate() {
-		return date;
-	}
+        public void setName(String name) {
+            this.name = name;
+        }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+        public String getCaloriesOut() {
+            return caloriesOut;
+        }
+
+        public void setCaloriesOut(String caloriesOut) {
+            this.caloriesOut = caloriesOut;
+        }
+
+        @Override
+        public String toString() {
+            return "ClassPojo [min = " + min + ", minutes = " + minutes
+                    + ", max = " + max + ", name = " + name
+                    + ", caloriesOut = " + caloriesOut + "]";
+        }
+    }
 }
