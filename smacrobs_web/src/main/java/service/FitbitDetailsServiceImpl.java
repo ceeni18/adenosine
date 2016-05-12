@@ -208,24 +208,22 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
         String step = null;
         String cal = null;
 
-        try {
-            distance = activityGoalDetails.getGoals().getDistance();
-            floor = activityGoalDetails.getGoals().getFloors();
-            step = activityGoalDetails.getGoals().getSteps();
-            cal = activityGoalDetails.getGoals().getCaloriesOut();
-        } catch (Exception ex) {
-            logger.error(ExceptionUtils.getFullStackTrace(ex));
-        }
-
-        int calOutGoal = Integer.parseInt(cal);
-
-        modelAndView.addObject("distanceGoal", Double.parseDouble(distance));
-        modelAndView.addObject("floorsGoal", Integer.parseInt(floor));
-        modelAndView.addObject("stepsGoal", Integer.parseInt(step));
-        modelAndView.addObject("caloriesOutGoal", calOutGoal);
-
-        logger.debug(modelAndView.toString());
-    }
+		try {
+			distance = activityGoalDetails.getGoals().getDistance();
+			floor = activityGoalDetails.getGoals().getFloors();
+			step = activityGoalDetails.getGoals().getSteps();
+			cal = activityGoalDetails.getGoals().getCaloriesOut();
+		}catch(Exception ex) {
+			logger.error(ExceptionUtils.getFullStackTrace(ex));
+		}
+		
+		modelAndView.addObject("distanceGoal", distance);
+		modelAndView.addObject("floorsGoal", floor);
+		modelAndView.addObject("stepsGoal", step);
+		modelAndView.addObject("caloriesOutGoal", cal);
+		
+		logger.debug(modelAndView.toString());
+	}
 
     public void AddUserProfileToModel(ModelAndView modelAndView) {
         UserProfile userProfile = userProfileService.getUserDetailsFromDB(userId);
@@ -300,57 +298,56 @@ public class FitbitDetailsServiceImpl implements FitbitDetailsServiceIntf {
         String protein = null;
         String caloriesIn = null;
 
-        try {
-            carbs = foodDetails.getSummary().getCarbs();
-            fats = foodDetails.getSummary().getFat();
-            fibre = foodDetails.getSummary().getFiber();
-            protein = foodDetails.getSummary().getProtein();
-            caloriesIn = foodDetails.getSummary().getCalories();
-        } catch (Exception ex) {
-            logger.error(ExceptionUtils.getFullStackTrace(ex));
-        }
+		try{
+			carbs=foodDetails.getSummary().getCarbs();
+			fats=foodDetails.getSummary().getFat();
+			fibre=foodDetails.getSummary().getFiber();
+			protein=foodDetails.getSummary().getProtein();
+			caloriesIn=foodDetails.getSummary().getCalories();
+		}
+		catch(Exception ex){
+			logger.error(ExceptionUtils.getFullStackTrace(ex));
+		}
+		
+		modelAndView.addObject("carbs", carbs);
+		modelAndView.addObject("fats", fats);
+		modelAndView.addObject("fibre", fibre);
+		modelAndView.addObject("protein", protein);
+		modelAndView.addObject("calIn", caloriesIn);
+		logger.debug(modelAndView.toString());
+	}
 
-        int calIn = 0;
-        if (caloriesIn != null)
-            calIn = Integer.parseInt(caloriesIn);
-
-        modelAndView.addObject("carbs", carbs);
-        modelAndView.addObject("fats", fats);
-        modelAndView.addObject("fibre", fibre);
-        modelAndView.addObject("protein", protein);
-        modelAndView.addObject("calIn", calIn);
-        logger.debug(modelAndView.toString());
-    }
-
-    public void AddActivityDetailsToModel(ModelAndView modelAndView) {
-        ActivityDetails activityDetails = getActivityDetailsFromDB();
-        if (activityDetails == null) {
-            activityDetails = getActivityDetails();
-        }
-        double distance = 0.0d;
-        String steps = null;
-        String floors = null;
-        int calOut = 0;
-        try {
-            steps = activityDetails.getSummary().getSteps();
-            floors = activityDetails.getSummary().getFloors();
-            calOut = Integer.parseInt(activityDetails.getSummary().getCaloriesOut());
-            for (int i = 0; i < activityDetails.getSummary().getDistances().length; i++) {
-                if (activityDetails.getSummary().getDistances()[i].getActivity().equalsIgnoreCase("total")) {
-                    distance = Double.parseDouble(activityDetails.getSummary().getDistances()[i].getDistance());
-                    break;
-                }
-            }
-        } catch (Exception ex) {
-            logger.error(ExceptionUtils.getFullStackTrace(ex));
-        }
-
-        modelAndView.addObject("distance", distance);
-        modelAndView.addObject("steps", steps);
-        modelAndView.addObject("floors", floors);
-        modelAndView.addObject("calOut", calOut);
-        logger.debug(modelAndView.toString());
-    }
+	public void AddActivityDetailsToModel(ModelAndView modelAndView) {
+		ActivityDetails activityDetails = getActivityDetailsFromDB();
+		if(activityDetails == null){
+			activityDetails = getActivityDetails();
+		}
+		double distance=0.0d;
+		String steps=null;
+		String floors=null;
+		String calOut = null;
+		try{
+			steps=activityDetails.getSummary().getSteps();
+			floors=activityDetails.getSummary().getFloors();
+			calOut = activityDetails.getSummary().getCaloriesOut();
+			for(int i=0;i<activityDetails.getSummary().getDistances().length;i++){
+				if(activityDetails.getSummary().getDistances()[i].getActivity().equalsIgnoreCase("total")) {
+					distance = Double.parseDouble(activityDetails.getSummary().getDistances()[i].getDistance());
+					break;
+				}
+			}
+		}
+		catch(Exception ex)
+		{
+			logger.error(ExceptionUtils.getFullStackTrace(ex));
+		}
+		
+		modelAndView.addObject("distance",distance);
+		modelAndView.addObject("steps",steps);
+		modelAndView.addObject("floors",floors);
+		modelAndView.addObject("calOut",calOut);
+		logger.debug(modelAndView.toString());
+	}
 
     public void AddHeartRateToModel(ModelAndView modelAndView) {
         String heartRate = null;

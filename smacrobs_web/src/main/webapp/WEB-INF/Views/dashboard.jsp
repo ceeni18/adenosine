@@ -363,6 +363,7 @@ if('${userId}'=='')
 						<div id="sleep"
 							class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12"
 							style="height: 300px"></div>
+							<div id="customLegend"></div>
 					</div>
 				</div>
 				<div class="row">
@@ -860,7 +861,7 @@ Highcharts.setOptions({
     
   $('#temp').highcharts({
     title: {
-      text: 'Ambient Temperature',
+      text: 'Temperature',
       align: 'left',
       x: 30
     },
@@ -1098,7 +1099,6 @@ Highcharts.setOptions({
 
 		//Sleep Data from Fitbit - Highcharts
 		$(function() {
-  var colors = [null, '#2ECC71', '#3498DB', '#9B59B6']
   Highcharts.setOptions({
     global: {
       timezoneOffset: 7 * 60 //7 hours ahead of UTC
@@ -1190,7 +1190,6 @@ Highcharts.setOptions({
     },
     plotOptions: {
       series: {
-    	  //color: ['#9B59B6', '#3498DB', '#2ECC71'],
         pointPadding: 0,
         groupPadding: 0,
         borderWidth: 0,
@@ -1199,12 +1198,6 @@ Highcharts.setOptions({
       },
     },
     series: [{
-    	/*  name: 'Awake',
-        color:'#9B59B6'
-    }, {
-        name: 'Restless',
-        color:'#3498DB'
-    },{ */
         name: 'Asleep',
     	color: '#2ECC71',
       keys: ['x', 'y', 'value'],
