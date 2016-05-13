@@ -32,10 +32,17 @@ if('${userId}'!='')
 	
 }
 </script>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-77712704-1'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	</head>
+	
 	<body class="index">
+	
 		<div id="page-wrapper">
-
+			<div id="google_translate_element"></div>
 			<!-- Header -->
 				<header id="header" class="alt">
 					<h1 id="logo"><a href="<%=request.getContextPath()%>">EaseMySleep <span>by SMACROBS</span></a></h1>

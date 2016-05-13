@@ -27,6 +27,11 @@
 	href="https://i.icomoon.io/public/temp/6271e1568c/UntitledProject/style.css">
 </head>
 <body class="fitbit">
+<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-77712704-1'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<div id="page-wrapper">
 
 		<!-- Header -->

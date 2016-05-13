@@ -88,9 +88,16 @@ if('${userId}'=='')
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+	
+	<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-77712704-1'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 
 <body class="no-skin">
+<div id="google_translate_element"></div>
 	<!-- #section:basics/navbar.layout -->
 	<div id="navbar" class="navbar navbar-default">
 		<script type="text/javascript">
@@ -251,8 +258,8 @@ if('${userId}'=='')
 									placeholder="MM/DD/YYY" type="text" required />
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-danger btn-circle">
-									<i class="glyphicon glyphicon-ok"></i>
+								<button type="submit" class="btn btn-danger">
+									<i class="glyphicon glyphicon-ok"></i>Submit
 								</button>
 							</div>
 						</div>
