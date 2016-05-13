@@ -181,9 +181,9 @@ function googleTranslateElementInit() {
 							</header>
 
 							<div class="row">
-								<div class="6u 12u(narrower)">
+								<div class="6u 12u(narrower) 12u(mobile)">
 									<section>
-										 <iframe width="500" height="300" src="http://www.youtube.com/embed/qPoZVQvsbW0"></iframe> 
+										 <iframe src="http://www.youtube.com/embed/qPoZVQvsbW0"></iframe> 
 										<header>
 											<h3>What is Sleep Deprivation?</h3>
 										</header>
@@ -191,9 +191,9 @@ function googleTranslateElementInit() {
 									</section>
 
 								</div>
-								<div class="6u 12u(narrower)">
+								<div class="6u 12u(narrower) 12u(mobile)">
 									<section>
-										<iframe width="500" height="300" src="http://www.youtube.com/embed/gedoSfZvBgE"></iframe>
+										<iframe src="http://www.youtube.com/embed/gedoSfZvBgE"></iframe>
 										<header>
 											<h3>How to sleep better?</h3>
 										</header>

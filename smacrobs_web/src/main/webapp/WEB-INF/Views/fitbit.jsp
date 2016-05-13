@@ -103,12 +103,12 @@ function googleTranslateElementInit() {
 						</div>
 
 					</div>
-					<div class="8u 12u(narrower) important(narrower)">
+					<div class="8u 12u(narrower) 12u(mobile) important(narrower)">
 
 						<!-- Content -->
 						<div class="content">
 							<section>
-								<img src="images/sleep.jpg"
+								<img class="12u(mobile) 12u(narrower)" src="images/sleep.jpg"
 									title="Image Courtesy: Our very own Android Developer"
 									alt="Sample Sleep Graph" />
 								<header>
