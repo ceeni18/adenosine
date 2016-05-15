@@ -94,6 +94,7 @@ function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-77712704-1'}, 'google_translate_element');
 }
 </script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<meta name="google-site-verification" content="NnaQ_m99PNMIJpqw6o1D_ZwBWY1al3iY4xkY8_zQthU" />
 </head>
 
 <body class="no-skin">

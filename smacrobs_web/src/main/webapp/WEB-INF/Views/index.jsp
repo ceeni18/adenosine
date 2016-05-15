@@ -18,6 +18,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		
+		<meta name="google-site-verification" content="NnaQ_m99PNMIJpqw6o1D_ZwBWY1al3iY4xkY8_zQthU" />
 		
 		<!--[if lte IE 8]><script src="<%=request.getContextPath()%>/home/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/home/css/main.css" />
@@ -40,9 +41,9 @@ function googleTranslateElementInit() {
 	</head>
 	
 	<body class="index">
-	
+	<div id="google_translate_element"></div>
 		<div id="page-wrapper">
-			<div id="google_translate_element"></div>
+			
 			<!-- Header -->
 				<header id="header" class="alt">
 					<h1 id="logo"><a href="<%=request.getContextPath()%>">EaseMySleep <span>by SMACROBS</span></a></h1>
