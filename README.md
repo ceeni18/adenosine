@@ -21,13 +21,13 @@ Edit Constants.java file with
   1. Fitbit client Id
   2. Fitbit Application Secret
   3. Mongo db host and port
+  
+The SpringMongoConfig.java file reads the host and port from Constants.java and these details gets autowired in required files.
 
-### TOMCAT MAVEN PLUGIN
+### Run using TOMCAT MAVEN PLUGIN
 The Tomcat Maven Plugin provides goals to manipulate WAR projects within the Apache Tomcat servlet container Or to run your war project in an embeded Apache Tomcat.
 
 mvn clean install tomcat7:run 
-
-The SpringMongoConfig.java file reads the host and port from Constants.java and these details gets autowired in required files.
 
 ### Website Structure:
   Models : A model stores data that is retrieved according to commands from the controller and displayed in the view  
