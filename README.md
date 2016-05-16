@@ -52,7 +52,7 @@ Maven
 ### Authors:
   Neha Viswanathan  
   Sreenivaasan Gajapathy  
-  Srinidhi Srinivasa Raghavan 
+  Srinidhi Srinivasa Raghavan   
   Uday Sagar Shiramshetty  
 
 ### Acknowledgments:
