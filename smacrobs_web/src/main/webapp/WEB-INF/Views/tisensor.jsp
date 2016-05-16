@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,13 +117,13 @@ if('${userId}'=='')
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
 						class="dropdown-toggle"> <img class="nav-user-photo"
 							src="${user.getAvatar()}" alt="User's Photo" /> <span class="user-info">
-								<small>Welcome,</small> ${user.getDisplayName()}
+								<small>Welcome,</small> ${user.getFullName()}
 						</span> <i class="ace-icon fa fa-caret-down"></i>
 					</a> <!-- NV - start 04/18/2016 -->
 						<ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 							<li><a href="/tisensor"> <i
-                                    class="ace-icon fa fa-key"></i> Ti Sensor
+                                    class="ace-icon fa fa-key"></i> TI Sensor
                             </a></li>
 							<li><a href="/medical"> <i
                                     class="ace-icon fa fa-medkit"></i> Medical Details
@@ -208,7 +209,9 @@ if('${userId}'=='')
 
 					<li class=""><a href="index.html"> <i
 							class="menu-icon fa fa-arrows-v"></i> <span class="menu-text">
-								${user.getHeight()} inches</span>
+								<fmt:formatNumber 
+            maxFractionDigits="0" value="${user.getHeight()/12}" />
+								ft ${user.getHeight()%12} inches</span>
 					</a> <b class="arrow"></b></li>
 
 					<li class=""><a href="index.html"> <i
@@ -288,7 +291,7 @@ if('${userId}'=='')
 					<div class="col-md-offset-5">
 						<button id="submitBtn" type="submit" class=" btn btn-sm btn-danger pull-left"
 							data-dismiss="modal">
-							<i class="glyphicon glyphicon-ok"></i> Submit
+							Submit&nbsp;&nbsp;<i class="glyphicon glyphicon-ok"></i> 
 						</button>
 					</div>
 					</form>

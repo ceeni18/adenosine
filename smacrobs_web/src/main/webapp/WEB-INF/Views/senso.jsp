@@ -121,7 +121,7 @@
 							</section>
 
 							<section>
-								<img width="120%" height="100%" src="images/sensorTag.jpg"
+								<img class="12u(mobile) 12u(narrower)" width="100%" height="80%" src="images/sensorTag.jpg"
 									title="Image Courtesy: http://www.ti.com/"
 									alt="SensorTag CC2650" />
 								<header>

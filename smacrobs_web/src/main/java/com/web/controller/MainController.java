@@ -194,8 +194,8 @@ public class MainController {
 
             recommendationsService.addRecommendationsToModel(mv);
 
-            session.setAttribute("todayDate", ServiceUtils.getTodayDate());
-            session.setAttribute("yesterdayDate", ServiceUtils.getYesterdayDate());
+            /*session.setAttribute("todayDate", ServiceUtils.getTodayDate());
+            session.setAttribute("yesterdayDate", ServiceUtils.getYesterdayDate());*/
         }
         return mv;
     }

@@ -83,6 +83,16 @@ if('${userId}'=='')
 {
 	location.replace("/");
 }
+else
+{
+var url =window.location.href ;
+var d = new Date();
+var date=(d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate());
+if(url.indexOf('date=') < 0)
+{
+location.replace("/dashboard?date="+date);
+}
+}
 </script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
@@ -251,8 +261,8 @@ if('${userId}'=='')
 									placeholder="MM/DD/YYY" type="text" required />
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-danger btn-circle">
-									<i class="glyphicon glyphicon-ok"></i>
+								<button type="submit" class="btn btn-danger">
+									Submit&nbsp;&nbsp;<i class="glyphicon glyphicon-ok"></i>
 								</button>
 							</div>
 						</div>
