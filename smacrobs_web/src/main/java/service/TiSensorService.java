@@ -149,7 +149,7 @@ public class TiSensorService {
 					sb.append("null, ");
 				} else {
 					sb.append(df.format(Double.parseDouble(minutedata
-							.getValue())));
+							.getValue()))+", ");
 				}
 			}
 		} catch (Exception e) {
