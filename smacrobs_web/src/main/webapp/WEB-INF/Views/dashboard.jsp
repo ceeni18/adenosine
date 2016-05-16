@@ -87,7 +87,7 @@ else
 {
 var url =window.location.href ;
 var d = new Date();
-var date=(d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate());
+var date=(d.getFullYear()+'-0'+(d.getMonth()+1)+'-'+d.getDate());
 if(url.indexOf('date=') < 0)
 {
 location.replace("/dashboard?date="+date);
