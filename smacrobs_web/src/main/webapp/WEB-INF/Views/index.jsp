@@ -174,7 +174,7 @@ if('${userId}'!='')
 							</header>
 
 							<div class="row">
-								<div class="6u 12u(narrower)">
+								<div class="6u 12u(narrower) 12u(mobile)">
 									<section>
 										 <iframe width="500" height="300" src="http://www.youtube.com/embed/qPoZVQvsbW0"></iframe> 
 										<header>
@@ -184,7 +184,7 @@ if('${userId}'!='')
 									</section>
 
 								</div>
-								<div class="6u 12u(narrower)">
+								<div class="6u 12u(narrower) 12u(mobile)">
 									<section>
 										<iframe width="500" height="300" src="http://www.youtube.com/embed/gedoSfZvBgE"></iframe>
 										<header>
